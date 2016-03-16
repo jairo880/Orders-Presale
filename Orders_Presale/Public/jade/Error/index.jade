@@ -1,0 +1,19 @@
+title {{dato.AOBJ_Datos_Usuario[0].Nombre_Usuario}} | Error
+link(type="text/css" rel="stylesheet" href!="<?php echo URL;?>public/css/Templates/Error/Error.css")
+//link de fontastic, fuentes de iconos
+link(href="https://file.myfontastic.com/Jpco7gv5bXaEnZ8PsDz2Q7/icons.css" rel="stylesheet")
+title ALLOP| Error ..
+link( rel="shortcut icon" type="image/x-icon"  href="https://dl.dropboxusercontent.com/u/232442887/Allop/img/logo/LogoIcono.png")
+
+section#SC_Error
+	main#CONT_E_Error
+		p.CL_TXT_E_Titulo OOPS!
+		p.CL_TXT_E_Texto  La pag&iacute;na solicitada no ha sido encontrada, parece que te has perdido
+		a.icon-inicio.Btn_Estilo_5(href!="<?php echo URL;?>Inicio/Inicio") Volver a inicio
+	style(media="screen")
+		<?php
+		$valor = rand(0,4);
+		$imagenes = array("https://dl.dropboxusercontent.com/u/232442887/Allop/img/wallpapers/413724.png","https://dl.dropboxusercontent.com/u/232442887/Allop/img/wallpapers/639487.png","https://dl.dropboxusercontent.com/u/232442887/Allop/img/wallpapers/7D7.jpg","https://dl.dropboxusercontent.com/u/232442887/Allop/img/wallpapers/CF9.jpg");
+		?>
+		<?php echo "#SC_Error{ background: #000 url('$imagenes[$valor]')no-repeat scroll center center / cover;}";?>
+

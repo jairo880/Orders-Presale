@@ -1,0 +1,8 @@
+//scss para guardar los mixin que contendran las partes de la pagina
+@mixin ContenidoPagina() {
+    .CL_Tabla_Permisos
+    {
+        height: 400px;
+        overflow: auto;
+    }
+}

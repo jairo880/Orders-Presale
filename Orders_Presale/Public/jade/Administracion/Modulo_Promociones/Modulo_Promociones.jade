@@ -1,0 +1,108 @@
+title {{dato.AOBJ_Datos_Usuario[0].Nombre_Usuario}} | Promociones 
+link(rel="stylesheet" href!="<?php echo URL;?>public/css/Templates/Administracion/Modulo_Promociones/Modulo_Promociones.css")
+section#SC_Consultar_Usuarios(ng-controller="Controlador_Consultar_Promociones",)
+	#CONT_Contenedor_Invisible_Header(ng-init="Consultar_Promociones()")
+	#CONT_Consultar_Usuarios
+
+		.Grid_Item.Base-100
+			.CL_Alerta_6.Grid_Contenedor.justify.Padding-5.cross_center(ng-init="BL_ActivarBTN_Modificar = false")
+				p.Grid_Item.Base-50(ng-show="BL_Consultar_Promocion") Consultar promociones
+				p.Grid_Item.Base-50(ng-show="BL_Registrar_Promocion") Registrar nueva promoci&oacute;n
+			
+				.Grid_Item.Base-15
+					.Btn_Estilo_5.icon-list-1(ng-click="Consultar_Promociones()") Consultar
+		#Grid_Item.CL_Contenedor_Productos
+			.Grid_Contenedor.Base-90.Padding-10.main_end.abcenter(ng-init="BL_Consultar_Promocion = true;BL_Registrar_Promocion = false")
+				.Btn_Estilo_1.icon-agregar-producto(ng-click="BL_Registrar_Promocion = true; BL_Consultar_Promocion = false") Agregar nueva promoci&oacute;n
+				.Btn_Estilo_5.icon-list-1(ng-click="Consultar_Promociones();BL_Registrar_Promocion = false; BL_Consultar_Promocion = true") Promociones
+
+				.Grid_Item.Base-30(ng-show="BL_Consultar_Promocion")
+					.CL_Contenedor_Buscador
+						input.CL_Buscar#BuscarPromocion(type="text", name="" placeholder="Buscar promocion" ng-model="Buscar_Promocion")
+						label.icon-buscar.CL_Icono_Buscar(for="BuscarPromocion") 
+				
+		.Grid_Contenedor.Base-100.abcenter.ng_show(ng-show="BL_Registrar_Promocion == true")
+			.Grid_Item.Base-30
+				form#FORM_Registro.Grid_Contenedor.Padding-tablet.Base-100.column(name="Form_Registro_Promocion" ng-submit="Registrar_Promocion(RP)")
+					label(for="#Nombre_Promocion") Nombre promoci&oacute;n
+					input#Nombre_Promocion.Input_Estilo_1(maxlength="45", minlength="5",type="text",name="Nombre_Promocion",ng-model="RP.Nombre_Promocion",placeholder="Nombre",required)
+
+					div#CONT_Mensaje_Validacion(ng-show="!Form_Registro_Promocion.$pristine && Form_Registro_Promocion.Nombre_Promocion.$error.required")
+							p.icon-alerta1 Este campo es obligatorio
+
+					label(for="#Descripcion_Producto") Descripción
+					textarea#Descripcion_Promocion.Input_Estilo_1(maxlength="50" ,minlength="15",type="text",name="Descripcion_Promocion",ng-model="RP.Descripcion_Promocion",placeholder="En que consiste la promocion",required)
+
+					div#CONT_Mensaje_Validacion(ng-show="!Form_Registro_Promocion.$pristine && Form_Registro_Promocion.Descripcion_Promocion.$error.required")
+							p.icon-alerta1 Este campo es obligatorio
+
+
+					label(for="Fecha_Nacimiento") Fecha de inicio promocion
+					input#Fecha_Inicio.Input_Estilo_1(name="Fecha_Inicio",type="date", placeholder="año-mes-día",ng-model="RP.Fecha_Inicio",required)
+
+					div#CONT_Mensaje_Validacion(ng-show="!Form_Registro_Promocion.$pristine && Form_Registro_Promocion.Fecha_Inicio.$error.required")
+							p.icon-alerta1 Este campo es obligatorio
+
+
+					label(for="Fecha_Nacimiento") Fecha fin de promocion
+					input#Fecha_Fin.Input_Estilo_1(name="Fecha_Fin",type="date", placeholder="año-mes-día",ng-model="RP.Fecha_Fin",required)
+
+					div#CONT_Mensaje_Validacion(ng-show="!Form_Registro_Promocion.$pristine && Form_Registro_Promocion.Fecha_Fin.$error.required")
+							p.icon-alerta1 Este campo es obligatorio
+
+
+
+						.Grid_Contenedor.Grid-Item.abcenter.Padding-30
+						input.Btn_Estilo_1#submit(type="submit"  value="Registrar promocion" ng-disabled="!Form_Registro_Promocion.$valid " )
+						a.Btn_Estilo_3(ng-click="FN_Limpiar_Formulario()" ) Limpiar formulario
+		.Grid_Contenedor.Base-100.abcenter.ng_show(ng-show="BL_Consultar_Promocion == true")
+			.Tabla_Estilo_1.relative.Grid_Item.Base-95
+						table
+							thead
+								tr
+																
+									th Codigo promocion
+									th Nombre promocion
+									th Descripcion
+									th Fecha inicio de promocion 
+									th Fecha final de promocion
+									th Enviar promoci&oacute;n
+									th
+									th
+									
+
+
+							tbody(ng-init="BL_Activar_Edicion=false; BL_ActivarBTN_Modificar=false")
+								tr(ng-repeat="Promociones in AOBJ_Consultar_Promociones | filter:Buscar_Promocion:Promociones.Nombre_Promocion ")
+									
+									td
+										input(type="text" value="{{Promociones.PK_ID_Promocion}}" ng-disabled="true" maxlength="5" )
+									td
+										input(type="text" ng-model="Promociones.Nombre_Promocion" ng-disabled="BL_Activar_Edicion == false" maxlength="45" )
+									td
+										input(type="text" ng-model="Promociones.Descripcion", ng-disabled="BL_Activar_Edicion == false", maxlength="250" )
+									td
+										input(type="datetime" ng-model="Promociones.Fecha_Inicio", ng-disabled="BL_Activar_Edicion == false" )
+									td
+										input(type="datetime" ng-model="Promociones.Fecha_Fin", ng-disabled="BL_Activar_Edicion == false" )
+
+									td  
+
+										.Btn_Estilo_5.icon-lapiz(ng-class="{Invisible:BL_ActivarBTN_Modificar == true, Visible: BL_ActivarBTN_Modificar == false}",ng-click="BL_ActivarBTN_Modificar =! BL_ActivarBTN_Modificar;BL_Activar_Edicion =!BL_Activar_Edicion") Editar
+										.Btn_Estilo_2.icon-actualizar(ng-class="{Invisible:BL_ActivarBTN_Modificar == false, Visible: BL_ActivarBTN_Modificar == true}", ng-click="FN_Modificar_Promociones($index);BL_ActivarBTN_Modificar =! BL_ActivarBTN_Modificar;BL_Activar_Edicion =! BL_Activar_Edicion") Modificar
+											
+									td
+										.Btn_Estilo_1.icon-enviar(ng-click="FN_Enviar_Promociones()") Enviar
+									td
+
+										.Btn_Estilo_2.icon-cancelar2(ng-click="FN_Eliminar_Promociones($index)") Eliminar
+									
+									
+		.Grid_Contenedor
+			.Btn_Circular_3.bottom-30(ng-click="Consultar_Promociones()")
+					p.icon-list-1
+					p.CL_TXT_Info_Btn Consultar promociones
+
+		
+				
+	

@@ -1,0 +1,1195 @@
+title {{dato.AOBJ_Datos_Usuario[0].Nombre_Usuario}} | Guia proyecto
+link(rel="stylesheet" href!="<?php echo URL;?>public/css/Templates/Administracion/Guia_Proyecto/Guia_Proyecto.css")
+//sesion Estructura
+main#CONT_Principal_Guia(ng-init="FN_Ver_Elemento_Guia(1)")
+
+	section.ng_show#SC_Guia_Estructura.Grid_Contenedor.Base-100.web-80.abcenter(ng-if="Estructura == true")
+		#CONT_Contenedor_Invisible_Header
+		#CONT_Titulo
+			p.Icono1.icon-sitemap Estructura carpeta principal(Orders_Presale_Aplicacion_Sena)
+		#CONT_Estructura_Carpetas.No_Padding.Padding-tablet
+			#CONT_Contenido.Base-100
+				p.CL_Titulo_Contenedor.icon-folder.CL_Alerta_5 Carpetas principales
+					span Orders_Presale
+				.CL_Bloques.Grid_Contenedor
+					li.Grid_Item.Base-50-tablet-30
+						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 Application
+						span.CL_TXT_Descripcion.icon-alerta2 Lugar donde se encuentran todos los archivos que se encargan del back-end, ademas de las vistas de Orders_Presale
+					li.Grid_Item.Base-50-tablet-30
+						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 Bd_Orders_Presale
+						span.CL_TXT_Descripcion.icon-alerta2 Lugar donde se encuentran los archivos de la base de datos en Mysql, Procedimientos , insercciones, etc.
+					li.Grid_Item.Base-50-tablet-30
+						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 Public
+						span.CL_TXT_Descripcion.icon-alerta2 Lugar donde se encuentran los archivos Front-end
+		//
+		#CONT_Titulo
+			p.Icono1.icon-sitemap Estructura carpeta (Orders_Presale_Aplicacion_Sena\Application)
+		#CONT_Estructura_Carpetas
+			#CONT_Contenido
+				p.CL_Titulo_Contenedor.icon-folder.CL_Alerta_5 Carpetas de 
+					span Application
+				.CL_Bloques.Grid_Contenedor
+					li.Grid_Item.Base-50-tablet-30
+						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 config
+						span.CL_TXT_Descripcion.icon-alerta2 Archivos <i class="icon-file"> .php </i>  para crear la conexi&oacute;n con la base de datos
+
+
+					li.Grid_Item.Base-50-tablet-30
+						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 controller
+						span.CL_TXT_Descripcion.icon-alerta2 Archivos <i class="icon-file"> .php </i>  parar cada pagina web, son controladores que cuando son ejecutados realizan determinada acci&oacute;n como: Pintar una vista, llamar funcion de CRUD
+					li.Grid_Item.Base-50-tablet-30
+						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 core
+						span.CL_TXT_Descripcion.icon-alerta2 Archivos <i class="icon-file"> .php </i>  para realizar las RUTAS AMIGABLES
+					li.Grid_Item.Base-50-tablet-30
+						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 model
+						span.CL_TXT_Descripcion.icon-alerta2 Archivos <i class="icon-file"> .php </i>  para CRUD
+					li.Grid_Item.Base-50-tablet-30
+						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 view
+						span.CL_TXT_Descripcion.icon-alerta2 Archivos <i class="icon-file"> .php </i>  Se encuentra una carpeta _templates, dentro de esta se encuentra el Header y Footer de la pagina web, se insertan en la vista por medio de require APP de php
+		//
+		#CONT_Titulo
+			p.Icono1.icon-sitemap Estructura carpeta (Orders_Presale_Aplicacion_Sena\Bd_Orders_Presale)
+		#CONT_Estructura_Carpetas
+			#CONT_Contenido
+				p.CL_Titulo_Contenedor.icon-folder.CL_Alerta_5 Archivos de 
+					span Bd_Orders_Presale
+				.CL_Bloques.Grid_Contenedor
+					li.Grid_Item.Base-100-tablet-
+						p.icon-file.CL_Txt_1.CL_Alerta_5.Padding-5 Orders_Presale_Funciones
+						span.CL_TXT_Descripcion.icon-alerta2 Archivos <i class="icon-file"> .sql </i>  para las funciones creadas
+
+
+					li.Grid_Item.Base-100-tablet-
+						p.icon-file.CL_Txt_1.CL_Alerta_5.Padding-5 Orders_Presale_Inser
+						span.CL_TXT_Descripcion.icon-alerta2 Archivos <i class="icon-file"> .sql </i>  para las inserciones de datos  de la base de datos
+					li.Grid_Item.Base-100-tablet-
+						p.icon-file.CL_Txt_1.CL_Alerta_5.Padding-5 Orders_Presale_Procedimientos
+						span.CL_TXT_Descripcion.icon-alerta2 Archivos <i class="icon-file"> .sql </i>  para los procedimientos de CRUD de la base de datos
+					li.Grid_Item.Base-100-tablet-
+						p.icon-file.CL_Txt_1.CL_Alerta_5.Padding-5 Bd_Orders_Presale
+						span.CL_TXT_Descripcion.icon-alerta2 Archivos <i class="icon-file"> .sql </i>  para la creacion de la Base de datos Orders_Presale
+					li.Grid_Item.Base-100-tablet-
+						p.icon-file.CL_Txt_1.CL_Alerta_5.Padding-5 Bds_Todo
+						span.CL_TXT_Descripcion.icon-alerta2 Archivos <i class="icon-file"> .sql </i>  Contiene todo lo anterior combinado para as&iacute; acelerar el trabajo de importacion.
+		//
+		#CONT_Titulo
+			p.Icono1.icon-sitemap Estructura carpeta (Orders_Presale_Aplicacion_Sena\Public)
+		#CONT_Estructura_Carpetas
+			#CONT_Contenido
+				p.CL_Titulo_Contenedor.icon-folder.CL_Alerta_5 Carpetas de 
+					span Public
+				.CL_Bloques.Grid_Contenedor
+					li.Grid_Item.Base-50-tablet-30
+						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 css
+						span.CL_TXT_Descripcion.icon-alerta2 Archivos <i class="icon-file"> .css </i>  de las pag&iacute;nas web, cada pag&iacute;na posee un archivo <i class="icon-file"> .css </i> unico, ademas poseen sus propios Mediaquery, los cuales se encuentran en la carpeta <i class="icon-folder"> sass </i>
+						span.CL_TXT_Descripcion.icon-alerta2 Cada archivo  <i class="icon-file"> .css </i>  es generado por un archivo  <i class="icon-file"> .scss </i> ubicado en la carpeta <i class="icon-folder"> sass/Templates </i>
+
+
+					li.Grid_Item.Base-50-tablet-30
+						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 fonts
+
+						span.CL_TXT_Descripcion.icon-alerta2 Fuentes descargadas para usar en la pag&iacute;nas
+						span.CL_TXT_Descripcion.icon-alerta2 Ademas de las fuentes descargadas, en el proyecto Orders_Presale se usan las fuentes de <a target="_blank" class="icon-link" href="http://fontastic.me/">Fontastic</a>, para los iconos de la pag&iacute;na
+						span.CL_TXT_Descripcion.icon-alerta2 Para usar un icono de Fontastic, es necesario agregarle a la etiqueta &ltp&gt  &lta&gt  &ltspan&gt &lti&gt. la clase <i>icon</i>+guion medio+<i>Nombre del icono</i>
+						span Ejemplo: &ltp class="icon-folder"&gt
+						span.CL_TXT_Descripcion.icon-alerta2 El uso de las fuentes de  Fontastic, reduce el peso del proyecto, por el motivo de que no se estan usando imagenes para los iconos, si no, una fuente que trae los iconos
+					li.Grid_Item.Base-50-tablet-30
+						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 img
+						span.CL_TXT_Descripcion.icon-alerta2 Imagenes usadas en la pag&iacute;na web, wallpapers, iconos, logotipos  etc.
+						span.CL_TXT_Descripcion.icon-alerta2 Ademas de las imagenes ubicadas en esta carpeta, en Orders_Presale se usan imagenes alojadas en <a target="_blank" class="icon-link" href="https://www.dropbox.com/home">Dropbox</a> para as&iacute; disminuir el peso del proyecto
+						span.CL_TXT_Descripcion.icon-alerta2 El link para encontrar las imagenes es: <a target="_blank" class="icon-link" href="https://www.dropbox.com/home/Public/Orders_Presale/img">https://www.dropbox.com/home/Public/Orders_Presale/img</a>
+					li.Grid_Item.Base-50-tablet-30
+						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 jade
+						span.CL_TXT_Descripcion.icon-alerta2 Archivos <i class="icon-file"> .jade </i> para generar los archivos <i class="icon-file"> .php </i> ubicados dentro de la carpeta:<i class="icon-folder"> Orders_Presale_Aplicacion_Sena\Application\view </i>
+						span.CL_TXT_Descripcion.icon-alerta2 La guia para usar jade puede encontrarse en su pagina oficial <a target="_blank" class="icon-link" href="http://jade-lang.com/reference/">jade-lang.com</a>
+					li.Grid_Item.Base-50-tablet-30
+						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 js
+						span.CL_TXT_Descripcion.icon-alerta2 Archivos <i class="icon-file"> .js </i>
+						span.CL_TXT_Descripcion.icon-alerta2 se podran encontrar los archivos <i class="icon-file"> .js </i> de Angular.js dentro de la carpeta:<i class="icon-folder"> js/Angular </i>
+						span.CL_TXT_Descripcion.icon-alerta2 La guia para usar Angular.js puede encontrarse en su pagina oficial <a target="_blank" class="icon-link" href="https://angularjs.org/">angularjs.org</a>
+						span.CL_TXT_Descripcion.icon-alerta2 se puede encontrar otra guia para usar Angular.js en: <a target="_blank" class="icon-link" href="https://mega.nz/#!Yd9SSRLA!2P2-X0mcBzAxc6bN1DqHSYSvmdijy0pc071JU9CMhDo">Mega</a> este archivo es un <i class="icon-file"> .iso </i> donde se encuentra una serie de videos
+						span.CL_TXT_Descripcion.icon-alerta2 se podran encontrar los archivos <i class="icon-file"> .js </i> de Javascript dentro de la carpeta:<i class="icon-folder"> js/Javascript </i>
+					li.Grid_Item.Base-50-tablet-30
+						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 scss
+						span.CL_TXT_Descripcion.icon-alerta2 Archivos <i class="icon-file"> .scss </i> para generar los archivos <i class="icon-file"> .css </i> de la web
+						span.CL_TXT_Descripcion.icon-alerta2 la pagina oficial de sass es: <a target="_blank" class="icon-link" href="http://sass-lang.com/">Sass-lang.com</a>
+						span.CL_TXT_Descripcion.icon-alerta2 Aqui un link para una guia rapida de sass: <a target="_blank" class="icon-link" href="https://youtu.be/xu0lVyrA8Y0">Sass guia </a>
+		//
+		#CONT_Titulo
+			p.Icono1.icon-sitemap Estructura carpeta (Orders_Presale_Aplicacion_Sena\Public\css)
+		#CONT_Estructura_Carpetas
+			#CONT_Contenido
+				p.CL_Titulo_Contenedor.icon-folder.CL_Alerta_5 Carpetas de 
+					span css
+				.CL_Bloques.Grid_Contenedor
+					li.Grid_Item.Base-50-tablet-30
+						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 Base_Orders_Presale
+						span.CL_TXT_Descripcion.icon-alerta2 Archivos <i class="icon-file"> .css </i> base, este archivo es el <i class="icon-file"> .css </i> base para todas las paginas web, de este se importan estilos de botones, formularios, textos, etc
+					li.Grid_Item.Base-50-tablet-30
+						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 img
+						span.CL_TXT_Descripcion.icon-alerta2 carpeta <i class="icon-folder">img</i> donde se encuentran las imagenes usadas desde los archivos <i class="icon-file"> .css </i>
+					li.Grid_Item.Base-50-tablet-30
+						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 Templates
+						span.CL_TXT_Descripcion.icon-alerta2 carpeta <i class="icon-folder">Templates</i> donde se encuentran los diferentes  archivos  <i class="icon-file"> .css </i> de las paginas web, cada archivo se encuentra dentro de su carpeta correspondiente.
+		//
+		#CONT_Titulo
+			p.Icono1.icon-sitemap Estructura carpeta (Orders_Presale_Aplicacion_Sena\Public\js\Angular)
+		#CONT_Estructura_Carpetas
+			#CONT_Contenido
+				p.CL_Titulo_Contenedor.icon-folder.CL_Alerta_5 Carpetas de 
+					span Angular
+				.CL_Bloques.Grid_Contenedor
+					li.Grid_Item.Base-50-tablet-30
+						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 Controladores
+						span.CL_TXT_Descripcion.icon-alerta2 dentro de esta carpeta se encuentran los controladores creados para las paginas web.
+					li.Grid_Item.Base-50-tablet-30
+						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 Librerias
+						span.CL_TXT_Descripcion.icon-alerta2 dentro de esta carpeta se encuentran las diferentes librerias importadas para Angular.js
+					li.Grid_Item.Base-50-tablet-30
+						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 Modulos
+						span.CL_TXT_Descripcion.icon-alerta2 dentro de esta carpeta se encuentran los modulos creados para las paginas web.
+		//
+		#CONT_Titulo
+			p.Icono1.icon-sitemap Estructura carpeta (Orders_Presale_Aplicacion_Sena\Public\scss)
+		#CONT_Estructura_Carpetas
+			#CONT_Contenido
+				p.CL_Titulo_Contenedor.icon-folder.CL_Alerta_5 Carpetas de 
+					span scss
+				.CL_Bloques.Grid_Contenedor
+					li.Grid_Item.Base-50-tablet-30
+						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 Base_Orders_Presale
+						span.CL_TXT_Descripcion.icon-alerta2 Archivos basicos (Mediaquery, Variables, Archivo base de scss)
+					li.Grid_Item.Base-50-tablet-30
+						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 Categoria
+						span.CL_TXT_Descripcion.icon-alerta2 Estilos para los: Botones,inputs,textos, etc
+					li.Grid_Item.Base-50-tablet-30
+						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 Modulos
+						span.CL_TXT_Descripcion.icon-alerta2 Estilos para las Ventanas modales
+					li.Grid_Item.Base-50-tablet-30
+						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 Tema
+						span.CL_TXT_Descripcion.icon-alerta2 Estilos del Header/Footer.
+					li.Grid_Item.Base-50-tablet-30
+						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 Templates
+						span.CL_TXT_Descripcion.icon-alerta2 Estilos de los Templates de las paginas
+	//sesion sass
+	section.ng_show#SC_Sass.Grid_Contenedor.Base-100.web-80.abcenter(ng-if="Sass == true")
+		#CONT_Contenedor_Invisible_Header
+		#CONT_Titulo
+			p.Icono1.icon-css Estandarizaci&oacute;n para Sass
+		#CONT_Estructura_Carpetas
+			#CONT_Contenido
+				p.CL_Titulo_Contenedor.icon-css.CL_Alerta_5.Padding-5 Estandarizaci&oacute;n
+					span Mixin
+				.CL_Bloques.Grid_Contenedor
+					li.Grid_Item.Base-100-tablet-
+						p.icon-css.CL_Txt_1.CL_Alerta_5 Botones
+						span.CL_TXT_Descripcion.icon-alerta2 Nombre mixin: MX_Btn_Estilos
+						p.CL_Txt_1 ------------------------------
+
+						span.CL_TXT_Descripcion.icon-alerta2 Nombre de las clases: Btn_Estilo_(1,2,3,4,etc)
+					li.Grid_Item.Base-100-tablet-
+						p.icon-css.CL_Txt_1.CL_Alerta_5 Select
+						span.CL_TXT_Descripcion.icon-alerta2 Nombre mixin: MX_Select_Estilos
+						p.CL_Txt_1 ------------------------------
+
+						span.CL_TXT_Descripcion.icon-alerta2 Nombre de las clases: Select_(1,2,3,4,etc)
+					li.Grid_Item.Base-100-tablet-
+						p.icon-css.CL_Txt_1.CL_Alerta_5 Radio bottom
+						p.CL_Txt_1 ------------------------------
+
+						span.CL_TXT_Descripcion.icon-alerta2 Nombre mixin: MX_Radio_Botton_Estilos
+						p.CL_Txt_1 ------------------------------
+
+						span.CL_TXT_Descripcion.icon-alerta2 Nombre de las clases: RadioBtn_(1,2,3,4,etc)
+						span.CL_TXT_Descripcion.icon-alerta2 Tener en cuenta que el mixin posee una extructura, para aplicar los estilos, revizar como nombrar los elemento para poder aplicar el estilos correctamente
+					li.Grid_Item.Base-100-tablet-
+						p.icon-css.CL_Txt_1.CL_Alerta_5 Input
+						span.CL_TXT_Descripcion.icon-alerta2 Nombre mixin: MX_Input_Estilos
+						p.CL_Txt_1 ------------------------------
+
+						span.CL_TXT_Descripcion.icon-alerta2 Nombre de las clases: Input_Estilo_(1,2,3,4,etc)
+					li.Grid_Item.Base-100-tablet-
+						p.icon-css.CL_Txt_1.CL_Alerta_5 Tablas
+						p.CL_Txt_1 ------------------------------
+
+						span.CL_TXT_Descripcion.icon-alerta2 Nombre mixin: MX_Tablas_Estilo
+						p.CL_Txt_1 ------------------------------
+
+						span.CL_TXT_Descripcion.icon-alerta2 Nombre de las clases: Tabla_Estilo_(1,2,3,4,etc)
+						span.CL_TXT_Descripcion.icon-alerta2 Tener en cuenta que el mixin posee una extructura, para aplicar los estilos, revizar como nombrar los elemento para poder aplicar el estilos correctamente
+					li.Grid_Item.Base-100-tablet-
+						p.icon-css.CL_Txt_1.CL_Alerta_5 Animaciones Regular
+						span.CL_TXT_Descripcion.icon-alerta2 Nombre mixin: MX_Animacion_Normal($Duracion1, $Tipo, $Duracion2)
+						p.CL_Txt_1 ------------------------------
+
+						span $Duracion1: duraci&oacute;n inicial de la animaci&oacute;n
+						p.CL_Txt_1 ------------------------------
+
+						span $Tipo: linear, ease, ease-in-out etc
+						p.CL_Txt_1 ------------------------------
+
+						span $Duracion2: duraci&oacute;n final de la animaci&oacute;n
+						p.CL_Txt_1 ------------------------------
+
+						span.CL_TXT_Descripcion.icon-alerta2 Como llamarlo:  @include MX_Animacion_Normal(0.2, ease, 0.2);
+					li.Grid_Item.Base-100-tablet-
+						p.icon-css.CL_Txt_1.CL_Alerta_5 Animaciones Cubic_beizer
+
+						span.CL_TXT_Descripcion.icon-alerta2 Nombre mixin: MX_Cubic_beizer_Scale($Scale)
+						p.CL_Txt_1 ------------------------------
+
+						span $Scale: tamaño del efecto
+						p.CL_Txt_1 ------------------------------
+
+						span.CL_TXT_Descripcion.icon-alerta2 Como llamarlo: @include MX_Cubic_beizer_Scale(9/10);
+					li.Grid_Item.Base-100-tablet-
+						p.icon-css.CL_Txt_1.CL_Alerta_5 Animaciones Angular.js
+						span.CL_TXT_Descripcion.icon-alerta2 Nombre mixin: MX_Animaciones_Angular
+						p.CL_Txt_1 ------------------------------
+
+						span.CL_TXT_Descripcion.icon-alerta2 Como llamarlo:
+						p.CL_Txt_1 ------------------------------
+
+						span .ng-hide-add { animation: 0.5s Nombre_Animacion_Inicial ease; }
+						p.CL_Txt_1 ------------------------------
+
+						span .ng-hide-remove { animation: 0.5s Nombre_Animacion_Final ease; }
+						p.CL_Txt_1 ------------------------------
+
+						span Los nombres de las animaciones se encuentran dentro del archivo <i class="icon-file"> _Animaciones.scss </i> 
+						p.CL_Txt_1 ------------------------------
+
+						span.CL_TXT_Descripcion.icon-alerta2 Para angular se tienen algunas animaciones por defecto como lo son para la directiva ng-if, ng-repeat
+					li.Grid_Item.Base-100-tablet-
+						p.icon-css.CL_Txt_1.CL_Alerta_5 Fuentes descargadas
+						span.CL_TXT_Descripcion.icon-alerta2 Nombre mixin: MX_Fuentes_Web($Encarpetado_Fuentes)
+						p.CL_Txt_1 ------------------------------
+
+						span $Encarpetado_Fuentes: es la forma de pasar la ruta de la carpeta "../../../fonts/"
+						p.CL_Txt_1 ------------------------------
+
+						span.CL_TXT_Descripcion.icon-alerta2 Como llamarlo: @include MX_Fuentes_Web("../../../fonts/");
+					li.Grid_Item.Base-100-tablet-
+						p.icon-css.CL_Txt_1.CL_Alerta_5 Textos 
+						span.CL_TXT_Descripcion.icon-alerta2 Nombre mixin: Texto_Estilo_1($Tamaño_Fuente,$Color,$Font_Weight,$Aline)
+						p.CL_Txt_1 ------------------------------
+
+						span $Tamaño_Fuente: tamaño de la fuente
+						p.CL_Txt_1 ------------------------------
+
+						span $Color: color de la fuente
+						p.CL_Txt_1 ------------------------------
+
+						span $Font_Weight:  font-wight para la fuente
+						p.CL_Txt_1 ------------------------------
+
+						span $Aline: center, left, right 
+						p.CL_Txt_1 ------------------------------
+
+						span.CL_TXT_Descripcion.icon-alerta2 Como llamarlo:  @include Texto_Estilo_1(13px,$Color_12,100,left);
+						p.CL_Txt_1 ------------------------------
+
+						span.CL_TXT_Descripcion.icon-alerta2 Se poseen varios mixin para los estilos de texto, tansolo varia el numero del mixin Texto_Estilo_(1,2,3,4,etc)
+					li.Grid_Item.Base-100-tablet-
+						p.icon-css.CL_Txt_1.CL_Alerta_5 Barra de busqueda
+						span.CL_TXT_Descripcion.icon-alerta2 Nombre mixin: MX_Barra_Busqueda
+						p.CL_Txt_1 ------------------------------
+
+						span.CL_TXT_Descripcion.icon-alerta2 Como llamarlo: @include MX_Barra_Busqueda();
+						span.CL_TXT_Descripcion.icon-alerta2 Tener en cuenta que el mixin posee una extructura, para aplicar los estilos, revizar como nombrar los elemento para poder aplicar el estilos correctamente
+					li.Grid_Item.Base-100-tablet-
+						p.icon-css.CL_Txt_1.CL_Alerta_5 Boton circular 
+						span.CL_TXT_Descripcion.icon-alerta2 Nombre mixin: MX_Btn_Nuevo_Mensaje
+						p.CL_Txt_1 ------------------------------
+
+						span.CL_TXT_Descripcion.icon-alerta2 Como llamarlo: @include MX_Btn_Nuevo_Mensaje();
+						span.CL_TXT_Descripcion.icon-alerta2 Tener en cuenta que el mixin posee una extructura, para aplicar los estilos, revizar como nombrar los elemento para poder aplicar el estilos correctamente
+					li.Grid_Item.Base-100-tablet-
+						p.icon-css.CL_Txt_1.CL_Alerta_5 Botones notificacion
+
+						span.CL_TXT_Descripcion.icon-alerta2 Nombre mixin: MX_Notificaciones_Estilos
+						p.CL_Txt_1 ------------------------------
+
+						span.CL_TXT_Descripcion.icon-alerta2 Como llamarlo: @include MX_Notificaciones_Estilos();
+						span.CL_TXT_Descripcion.icon-alerta2 Tener en cuenta que el mixin posee una extructura, para aplicar los estilos, revizar como nombrar los elemento para poder aplicar el estilos correctamente
+					li.Grid_Item.Base-100-tablet-
+						p.icon-css.CL_Txt_1.CL_Alerta_5 Box-shadow
+						span.CL_TXT_Descripcion.icon-alerta2 Nombre mixin: MX_Box_Shadow($x, $y, $blur, $opacidad, $Color)
+						p.CL_Txt_1 ------------------------------
+
+						span.CL_TXT_Descripcion.icon-alerta2 Como llamarlo: @include MX_Box_Shadow(0px,0px, 1px, 0px, rgba(0,0,0,6/10));
+					li.Grid_Item.Base-100-tablet-
+						p.icon-css.CL_Txt_1.CL_Alerta_5 Border-radius
+						span.CL_TXT_Descripcion.icon-alerta2 Nombre mixin: MX_Bor_Radius($Valor, $Tipo)
+						p.CL_Txt_1 ------------------------------
+
+						span $Tipo: indica donde se aplicara el border-radius
+						p.CL_Txt_1 ------------------------------
+
+						span 1: border-top-left-radius
+						p.CL_Txt_1 ------------------------------
+
+						span 2: border-top-right-radius
+						p.CL_Txt_1 ------------------------------
+
+						span 3: border-bottom-left-radius
+						p.CL_Txt_1 ------------------------------
+
+						span 4: border-bottom-right-radius
+						p.CL_Txt_1 ------------------------------
+
+						span 0: todos los lados tendran el border-radius
+						p.CL_Txt_1 ------------------------------
+
+						span.CL_TXT_Descripcion.icon-alerta2 Como llamarlo: @include MX_Bor_Radius(2px,0);
+					li.Grid_Item.Base-100-tablet-
+						p.icon-css.CL_Txt_1.CL_Alerta_5 Box-sizing
+						span.CL_TXT_Descripcion.icon-alerta2 Nombre mixin: MX_Box-Sizing(TipoBox)
+						span.CL_TXT_Descripcion.icon-alerta2 Como llamarlo:  @include MX_Box-Sizing(border-box);
+					li.Grid_Item.Base-60
+						p.icon-css.CL_Txt_1.CL_Alerta_5 Imagenes con url local
+						span.CL_TXT_Descripcion.icon-alerta2 Nombre mixin: MX_Imagen_Folder_Proyect($Encarpetado, $url, $Tamaño, $Repeat, $TodoContenido)
+						p.CL_Txt_1 ------------------------------
+
+						span $Encarpetado: ruta de la carpeta img, esta ruta esta ya dada, tansolo es llenar este campo con la variable $Encarpetado
+						p.CL_Txt_1 ------------------------------
+
+						span $url:  url de la imagen despues de la carpeta img
+						p.CL_Txt_1 ------------------------------
+
+						span $Tamaño:  el tamaño de la imagen, se puede dar en px o si se quiere de todo el tamaño se usa el cover para el tamaño auto deacuerdo al contenedor
+						p.CL_Txt_1 ------------------------------
+
+						span $Repeat: por defecto pondremo no-repeat, pero recibe las demas propiedades de repeat
+						p.CL_Txt_1 ------------------------------
+
+						span $TodoContenido: si es igual a 1: obtendra un 50% de border-radius
+
+						p.CL_Txt_1 ------------------------------
+						span $TodoContenido: si es igual a 2: el border-radius cera 0
+						p.CL_Txt_1 ------------------------------
+
+						span.CL_TXT_Descripcion.icon-alerta2 Como llamarlo:  @include MX_Imagen_Folder_Proyect($Encarpetado,'wallpaper/imagen1.jpg',110px 35px,no-repeat,1);
+					li.Grid_Item.Base-60
+						p.icon-css.CL_Txt_1.CL_Alerta_5 Imagenes con url web
+						span.CL_TXT_Descripcion.icon-alerta2 Nombre mixin: MX_Imagen_Folder_Web( $url, $Tamaño, $Repeat, $TodoContenido)
+
+						p.CL_Txt_1 ------------------------------
+
+						span $url:  url de la imagen, esta url es web
+						p.CL_Txt_1 ------------------------------
+
+						span $Tamaño:  el tamaño de la imagen, se puede dar en px o si se quiere de todo el tamaño se usa el cover para el tamaño auto deacuerdo al contenedor
+						p.CL_Txt_1 ------------------------------
+
+						span $Repeat: por defecto pondremo no-repeat, pero recibe las demas propiedades de repeat
+						p.CL_Txt_1 ------------------------------
+
+						span $TodoContenido: si es igual a 1: obtendra un 50% de border-radius
+						p.CL_Txt_1 ------------------------------
+
+						span $TodoContenido: si es igual a 2: el border-radius cera 0
+						p.CL_Txt_1 ------------------------------
+
+						span.CL_TXT_Descripcion.icon-alerta2 Como llamarlo:  @include MX_Imagen_Folder_Web('https://dl.dropboxusercontent.com/u/232442887/Orders_Presale/img/logo/LogoOrders_PresaleColor.png',110px 35px,no-repeat,1);
+
+
+
+
+
+		#CONT_Estructura_Carpetas
+			#CONT_Contenido
+				p.CL_Titulo_Contenedor.icon-css.CL_Alerta_5.Padding-5 Estandarizaci&oacute;n
+					span Placeholder o Estilos fantasmas
+					.CL_Bloques.Grid_Contenedor
+						li.Grid_Item.Base-100-tablet-
+							p.icon-css.CL_Txt_1.CL_Alerta_5 Placeholder o Estilos Fantasmas
+							span.CL_TXT_Descripcion.icon-alerta2 Nombre Placeholder: %PH_Nombre
+		#CONT_Estructura_Carpetas
+			#CONT_Contenido
+				p.CL_Titulo_Contenedor.icon-css.CL_Alerta_5.Padding-5 Estandarizaci&oacute;n
+					span Variables (Colores)
+					.CL_Bloques.Grid_Contenedor
+						li.Grid_Item.Base-100-tablet-
+							p.icon-css.CL_Txt_1.CL_Alerta_5 Colores
+							span.CL_TXT_Descripcion.icon-alerta2 Nombre Colores: $Color_(1,2,3,4,5,6,etc)
+	//sesion angular
+	section.ng_show#SC_Sass.Grid_Contenedor.Base-100.web-80.abcenter( ng-if="Angular == true")
+		#CONT_Contenedor_Invisible_Header
+		#CONT_Titulo
+			p.Icono1.icon-angular Estandarizaci&oacute;n para Angular.js
+		#CONT_Estructura_Carpetas
+			#CONT_Contenido
+				p.CL_Titulo_Contenedor.icon-angular.CL_Alerta_5 Estandarizaci&oacute;n
+					span Variables
+				.CL_Bloques.Grid_Contenedor
+					li.Grid_Item.Base-100-tablet-
+						p.icon-angular.CL_Txt_1.CL_Alerta_5 Boolean
+
+						span.CL_TXT_Descripcion.icon-alerta2 BL_Nombre_Variable
+						p.CL_Txt_1 ------------------------------
+						span.CL_TXT_Descripcion.icon-alerta2 Si el nombre posee mas de dos palabras, separarla por _ y la siguiente letra ponerla en Mayuscula
+					li.Grid_Item.Base-100-tablet-
+						p.icon-angular.CL_Txt_1.CL_Alerta_5 Numerica
+
+						span.CL_TXT_Descripcion.icon-alerta2 NUM_Nombre_Variable
+						p.CL_Txt_1 ------------------------------
+						span.CL_TXT_Descripcion.icon-alerta2 Si el nombre posee mas de dos palabras, separarla por _ y la siguiente letra ponerla en Mayuscula
+					li.Grid_Item.Base-100-tablet-
+						p.icon-angular.CL_Txt_1.CL_Alerta_5 CADENA DE TEXTO
+
+						span.CL_TXT_Descripcion.icon-alerta2 TXT_Nombre_Variable
+						p.CL_Txt_1 ------------------------------
+
+						span.CL_TXT_Descripcion.icon-alerta2 Si el nombre posee mas de dos palabras, separarla por _ y la siguiente letra ponerla en Mayuscula
+					li.Grid_Item.Base-100-tablet-
+						p.icon-angular.CL_Txt_1.CL_Alerta_5 URL
+						span.CL_TXT_Descripcion.icon-alerta2 URL_Nombre_Variable
+						p.CL_Txt_1 ------------------------------
+
+						span.CL_TXT_Descripcion.icon-alerta2 Si el nombre posee mas de dos palabras, separarla por _ y la siguiente letra ponerla en Mayuscula
+					li.Grid_Item.Base-100-tablet-
+						p.icon-angular.CL_Txt_1.CL_Alerta_5 ARRAY OBJETO
+						span.CL_TXT_Descripcion.icon-alerta2 AOBJ_Nombre_Variable
+						p.CL_Txt_1 ------------------------------
+
+						span.CL_TXT_Descripcion.icon-alerta2 Si el nombre posee mas de dos palabras, separarla por _ y la siguiente letra ponerla en Mayuscula
+					li.Grid_Item.Base-100-tablet-
+						p.icon-angular.CL_Txt_1.CL_Alerta_5 FECHA
+						span.CL_TXT_Descripcion.icon-alerta2 DATE_Nombre_Variable
+						p.CL_Txt_1 ------------------------------
+
+						span.CL_TXT_Descripcion.icon-alerta2 Si el nombre posee mas de dos palabras, separarla por _ y la siguiente letra ponerla en Mayuscula
+					li.Grid_Item.Base-100-tablet-
+						p.icon-angular.CL_Txt_1.CL_Alerta_5 FUNCIONES
+						span.CL_TXT_Descripcion.icon-alerta2 FN_Nombre_Variable
+						p.CL_Txt_1 ------------------------------
+
+						span.CL_TXT_Descripcion.icon-alerta2 Si el nombre posee mas de dos palabras, separarla por _ y la siguiente letra ponerla en Mayuscula
+	//sesion Html
+	section.ng_show#SC_Sass.Grid_Contenedor.Base-100.web-80.abcenter( ng-if="Html == true")
+		#CONT_Contenedor_Invisible_Header
+		#CONT_Titulo
+			p.Icono1.icon-html5 Estandarizaci&oacute;n para HTML
+		#CONT_Estructura_Carpetas
+			#CONT_Contenido
+				p.CL_Titulo_Contenedor.icon-html5.CL_Alerta_5 Estandarizaci&oacute;n
+					span Etiquetas
+				.CL_Bloques.Grid_Contenedor
+					li.Grid_Item.Base-100-tablet-
+						p.icon-html5.CL_Txt_1.CL_Alerta_5 Para contenedores
+						span.CL_TXT_Descripcion.icon-alerta2 CONT_Nombre_Variable
+						p.CL_Txt_1 ------------------------------
+
+						span.CL_TXT_Descripcion.icon-alerta2 Si el nombre posee mas de dos palabras, separarla por _ y la siguiente letra ponerla en Mayuscula
+					li.Grid_Item.Base-100-tablet-
+						p.icon-html5.CL_Txt_1.CL_Alerta_5 SECTION.ng_show
+						span.CL_TXT_Descripcion.icon-alerta2 SC_Nombre_Variable
+
+						p.CL_Txt_1 ------------------------------
+
+						span.CL_TXT_Descripcion.icon-alerta2 Si el nombre posee mas de dos palabras, separarla por _ y la siguiente letra ponerla en Mayuscula
+					li.Grid_Item.Base-100-tablet-
+						p.icon-html5.CL_Txt_1.CL_Alerta_5 CLASES
+						span.CL_TXT_Descripcion.icon-alerta2 CL_Nombre_Variable
+						p.CL_Txt_1 ------------------------------
+
+						span.CL_TXT_Descripcion.icon-alerta2 Si el nombre posee mas de dos palabras, separarla por _ y la siguiente letra ponerla en Mayuscula
+						p.CL_Txt_1 ------------------------------
+						span.CL_TXT_Descripcion.icon-alerta2  Si la clase es un contenedor:
+
+						span.CL_TXT_Descripcion.icon-alerta2  CL_CONT_Nombre_Variable
+
+						p.CL_Txt_1 ------------------------------
+						span.CL_TXT_Descripcion.icon-alerta2  Si la clase es un texto:
+
+						span.CL_TXT_Descripcion.icon-alerta2  CL_TXT_Nombre_Variable
+
+						p.CL_Txt_1 ------------------------------
+						span.CL_TXT_Descripcion.icon-alerta2  Si un input posee clase:
+
+						span.CL_TXT_Descripcion.icon-alerta2  CL_INPUT_Nombre:
+					li.Grid_Item.Base-100-tablet-
+						p.icon-html5.CL_Txt_1.CL_Alerta_5 FORMULARIOS
+						span.CL_TXT_Descripcion.icon-alerta2 FORM_Nombre_Variable
+						p.CL_Txt_1 ------------------------------
+
+						span.CL_TXT_Descripcion.icon-alerta2 Si el nombre posee mas de dos palabras, separarla por _ y la siguiente letra ponerla en Mayuscula
+					li.Grid_Item.Base-100-tablet-
+						p.icon-html5.CL_Txt_1.CL_Alerta_5 ID
+						span.CL_TXT_Descripcion.icon-alerta2 ID_Nombre_Variable
+						p.CL_Txt_1 ------------------------------
+
+						span.CL_TXT_Descripcion.icon-alerta2 Si el nombre posee mas de dos palabras, separarla por _ y la siguiente letra ponerla en Mayuscula
+					li.Grid_Item.Base-100-tablet-
+						p.icon-html5.CL_Txt_1.CL_Alerta_5 ID INPUT PARA LABELS
+						span.CL_TXT_Descripcion.icon-alerta2 ID_INPUT_Nombre_Variable
+						p.CL_Txt_1 ------------------------------
+
+						span.CL_TXT_Descripcion.icon-alerta2 Si el nombre posee mas de dos palabras, separarla por _ y la siguiente letra ponerla en Mayuscula
+
+	//sesion Base de datos
+	section.ng_show#SC_Sass.Grid_Contenedor.Base-100.web-80.abcenter( ng-if="DB == true")
+		#CONT_Contenedor_Invisible_Header
+		#CONT_Titulo
+			p.Icono1.icon-database Estandarizaci&oacute;n para BASE DE DATOS
+		#CONT_Estructura_Carpetas
+			#CONT_Contenido
+				
+				.CL_Bloques.Grid_Contenedor
+					p.CL_Titulo_Contenedor.icon-database.CL_Alerta_5 Estandarizaci&oacute;n
+						span Nombres
+					li.Grid_Item.Base-100-tablet-
+						p.icon-database.CL_Txt_1.CL_Alerta_5 Tablas
+
+						span.CL_TXT_Descripcion.icon-alerta2 TBL_Nombre_Tabla
+						p.CL_Txt_1 ------------------------------
+
+						span.CL_TXT_Descripcion.icon-alerta2 Si el nombre posee mas de dos palabras, separarla por _ y la siguiente letra ponerla en Mayuscula
+					li.Grid_Item.Base-100-tablet-
+						p.icon-database.CL_Txt_1.CL_Alerta_5 Primary key
+						span.CL_TXT_Descripcion.icon-alerta2 PK_ID_Nombre: si el campo es un id 
+						p.CL_Txt_1 ------------------------------
+
+						span.CL_TXT_Descripcion.icon-alerta2 Si el nombre posee mas de dos palabras, separarla por _ y la siguiente letra ponerla en Mayuscula
+					li.Grid_Item.Base-100-tablet-
+						p.icon-database.CL_Txt_1.CL_Alerta_5 Foreing key
+						span.CL_TXT_Descripcion.icon-alerta2 FK_ID_Nombre
+						p.CL_Txt_1 ------------------------------
+
+						span.CL_TXT_Descripcion.icon-alerta2 Si el nombre posee mas de dos palabras, separarla por _ y la siguiente letra ponerla en Mayuscula
+					li.Grid_Item.Base-100-tablet-
+						p.icon-database.CL_Txt_1.CL_Alerta_5 ID
+						span.CL_TXT_Descripcion.icon-alerta2 ID_Nombre
+						p.CL_Txt_1 ------------------------------
+
+						span.CL_TXT_Descripcion.icon-alerta2 Si el nombre posee mas de dos palabras, separarla por _ y la siguiente letra ponerla en Mayuscula
+					li.Grid_Item.Base-100-tablet-
+						p.icon-database.CL_Txt_1.CL_Alerta_5 Tabla detalle
+						span.CL_TXT_Descripcion.icon-alerta2 TBL_DLL_Nombre_Tabla
+						p.CL_Txt_1 ------------------------------
+
+						span.CL_TXT_Descripcion.icon-alerta2 Si el nombre posee mas de dos palabras, separarla por _ y la siguiente letra ponerla en Mayuscula
+	//sesion diseño
+	section.ng_show#SC_Sass(ng-if="Diseno == true")
+		#CONT_Contenedor_Invisible_Header
+		#CONT_Titulo
+			p.Icono1.icon-design Ayudas para el diseño
+		#CONT_Estructura_Carpetas
+			#CONT_Contenido.Grid_Contenedor.abcenter.Base-100.web-85
+				.CL_Bloques.Grid_Contenedor
+					li.CL_Diseno
+						p.CL_Titulo_Contenedor.icon-design Etiquetas
+							span UI Elements
+						p.icon.design.CL_Alerta_5.Padding-10.CL_Titulo_Grid GRID LAYOUT
+						
+
+						.Grid_Contenedor
+							.Color.Grid_Total .Grid_Total 
+							.Color.Grid_Item.Base-40.web-10  
+							.Color.Grid_Item.Base-5.web-75 
+							.Color.Grid_Item.Base-45.web-10
+							.Color.Grid_Item.Base-30.web-10 
+							.Color.Grid_Item.Base-40.web-75 
+							.Color.Grid_Item.Base-70.web-80 
+							.Color2.Grid_Item.Base-15
+							.Color2.Grid_Item.Base-100
+							
+
+							
+						.Grid_Contenedor.abcenter
+							
+							.Grid_Total
+								.icon.design.CL_Alerta_5.Grid_Contenedor.Padding-10
+									p.CL_Txt_1 ¿Como usarlo?
+									ul.Base-100
+										li.CL_TXT_Descripcion se manejan tres tipos de clases:
+										
+										li.CL_TXT_Descripcion <i class="CL_TXT_I">.Grid_Contenedor</i> esta clase se usa solamente  en el contenedor padre o contenedor principal de los elementos, posee ya las propiedades:<i class="CL_TXT_I"> display-flex</i> y <i class="CL_TXT_I">flex-wrap:wrap</i>, por defecto ocupara el 100% del contenedor en que se encuentre
+										
+										li.CL_TXT_Descripcion <i class="CL_TXT_I">.Grid_Item</i> este es el item o contenedor hijo, posee la propiedad widht:100% por defecto
+										
+										li.CL_TXT_Descripcion <i class="CL_TXT_I">.Grid_Total</i> esta clase lo que nos permite es indicarle a un elemento que ocupe el 100% del contenedor en el que se encuentra
+								.icon.design.CL_Alerta_5.Padding-10
+									p.CL_Txt_1 ¿Cual es el orden para usar estas etiquetas?
+									ul.Base-100
+										li.CL_TXT_Descripcion Al manejar el concepto de  <i class="CL_TXT_I">Flex-box</i> utilizaremos la clase <i class="CL_TXT_I">.Grid_Contenedor</i> en los contenedores de la informaci&oacute;n que queremeos mostrar.
+										li.CL_TXT_Descripcion las etiquetas <i class="CL_TXT_I">.Grid_Item</i> o <i class="CL_TXT_I">.Grid_Total</i> en los elementos que se encontraran dentro del contenedor padre o contenedor principal de nuestra informaci&oacute;n
+								p.icon.design.CL_Alerta_5.Padding-10 ¿TENGA EN CUENTA?
+								p.CL_TXT_Descripcion cuando se usa la propiedad  <i class="CL_TXT_I">display:flex</i> en un item o hijo, este pasa a ser un contenedor padre, flex-box permite la multiple creacion de contenedores padres he hijos, (Esto no lo hace Grid_Layout) por defecto es una estructura que se maneja en flex-box
+								.icon.design.CL_Alerta_5
+									p.Padding-10 ¿Que etiqueta usar para agregar la clase?
+									p.CL_TXT_Descripcion al manejarce el concepto de contenedor e hijo se utilizaran como estandar de maquetacion, los #div, a estos #div se les agregara la propiedad correspondiente por medio de una clase 
+
+									p.CL_TXT_Descripcion <i class="CL_TXT_I">.Base:</i> para poder especificar cuanto queremos que un contenedor ocupe de tamaño usamos esta clase, debemos de indicar el tamaño que queremos para el contenedor, el tamaño se da de 5% en 5% hasta 100%, se especifica cuanto queremos ocupar con el contenedor añadiendole un guion medio (-) y el valor, ademas se le puede agregar a la clase  <i class="CL_TXT_I">.Grid_Contenedor</i>  para asi indicar el tamaño de un contenedor padre o un contenedor hijo, Ejemplo:
+									ul
+										li.CL_TXT_Descripcion  <i class="CL_TXT_I">.Grid_Item.Base-20 </i> ocupara el  20% 
+										li.CL_TXT_Descripcion  <i class="CL_TXT_I">.Grid_Item.Base-10 </i> ocupara el 10%
+										li.CL_TXT_Descripcion  <i class="CL_TXT_I">.Grid_Item.Base-15 </i> ocupara el 15%
+										li.CL_TXT_Descripcion  <i class="CL_TXT_I">.Grid_Contenedor.Base-15 </i> ocupara el 15%
+										li.CL_TXT_Descripcion  <i class="CL_TXT_I">.Grid_Contenedor.Base-15 </i> ocupara el 15%
+							.Grid_Item.Base-100
+								p.icon.design.CL_Txt_1 
+								p.icon.design.CL_Alerta_5.Padding-10 ¿Como puedo definir otro tipo de valor ademas de medidas de 5 en 5?
+								p.CL_TXT_Descripcion  Para poderlo hacer se manejan medidas en fracciones: tercios, sextos y octavos 
+								.Grid_Contenedor
+									.Grid_Total
+										p.CL_TXT_Descripcion  <i class="CL_TXT_I">.Grid_Item.Base-2-6</i>  ocupara el   33.33333% 
+								.Grid_Contenedor
+									.Grid_Total
+										p.CL_TXT_Descripcion  <i class="CL_TXT_I">.Grid_Item.Base-3-8</i>  ocupara el   37.5%
+								.Grid_Contenedor
+									.Grid_Total
+										p.CL_TXT_Descripcion  <i class="CL_TXT_I">.Grid_Item.Base-4-8</i>  ocupara el   62.5% 
+								.Grid_Contenedor
+									.Grid_Total
+										p.CL_TXT_Descripcion  <i class="CL_TXT_I">.Grid_Item.Base-6-8</i>  ocupara el   75%
+							.Grid_Item.Base-100
+								.CL_Alerta_5.Padding-10
+									p Breakpoints
+									p.CL_TXT_Descripcion Los breakpoint son los puntos en que se activan las media querys de la pagina web, estos puntos estan definidos por 4 nombres
+									ul
+										li movil
+										li tablet
+										li web
+										li hd
+									p.CL_TXT_Descripcion para poder indicar a que resolucion quieres que se haga visible y cambie de tamaño un elemento, normalmente lo tienes que hacer creando un archivo css en en cual indiques el punto del media query y luego agregar los estilos que quieres que obtenga el elemento.
+									p.CL_TXT_Descripcion con Grid_Layout puedes indicar a que breackpoint quieres que un contenedor sea visible o cambie de tamaño y algunas otras propiedades como las de Flex-box y padding. Ejemplo:
+									ul
+										li tablet-50
+										li web-100
+										li movil-30
+										li movil-distribute
+										li tablet-abcenter
+										li movil-justify
+										li padding-tablet
+										li padding-movil
+									p.CL_TXT_Descripcion Ademas  podemos agregar un padding determinado, agregando la clase Padding seguido por un guion medio (-) y el valor del padding, los valores se dan de 5px en 5px hasta 100px Ejemplo:
+									ul
+										li .Padding-5
+										li .Padding-50
+										li .Padding-80
+									p.CL_TXT_Descripcion As&iacute; podras indicar a que tipo de resolucion quieres que cambie de tamaño un elemento en la web, sin necesidad de tener que crear el estilos ni la mediaquery correspondiente.
+								.CL_Alerta_5.Padding-10 !Nota¡
+									p.CL_TXT_Descripcion La propiedad <i class="CL_TXT_I">.Grid_Item</i> posee en sus propiedades un
+									ul
+										li padding-left:10px;
+										li paddign-right:10px;
+									p.CL_TXT_Descripcion Esto se hace para poder lograr una separacion entre los elementos y asi no obtener una agrupacion de contenedores sin separaciones, pero si llega un punto en el que quieres quitarle el padding al elemento puedes usar la propiedad <i class="CL_TXT_I">.No_Paddding</i> esta quitara el padding del elemento item
+									p.CL_TXT_Descripcion Ademas de esto puedes usar la propiedad <i class="CL_TXT_I">.Padding </i> con los breakpoints para asi indicar a que resoluci&oacute;n quieres que se separen algunos elementos Ejemplo:
+									ul
+										li .Padding-tablet 
+										li .Padding-web
+										li .Padding-movil
+										li .Padding-hd
+
+
+							.Grid_Total.Grid_Contenedor
+								p.CL_Alerta_5.Padding-10 Gri_Layout +  Propiedades Flex-Box
+								p.CL_TXT_Descripcion.CL_Alerta_5.Padding-10 Las siguientes propiedades se agregan por medio de una clase, estas aplicaran las propiedades correspondientes. 
+								.Grid_Item.Base-100.tablet-50
+									.CL_Alerta_5.Padding-10
+										p.Grid_Total <i class="CL_TXT_I">.justify</i>
+										p Propiedades que usa : 
+										ul
+											li justify-content: space-between;
+											li  display: flex;
+											li  flex-wrap: wrap;
+
+								.Grid_Item.Base-100.tablet-50
+									.CL_Alerta_5.Padding-10
+										p.Grid_Total <i class="CL_TXT_I">.distributed</i>
+										p Propiedades que usa : 
+										ul
+											li display: flex;
+											li flex-wrap: wrap;
+											li justify-content: space-around;
+
+								.Grid_Item.Base-100.tablet-50
+									.CL_Alerta_5.Padding-10
+										p.Grid_Total <i class="CL_TXT_I">.main_center</i>
+										p Propiedades que usa : 
+										ul
+											li justify-content: center;
+											li  display: flex;
+											li flex-wrap: wrap;
+
+								.Grid_Item.Base-100.tablet-50
+									.CL_Alerta_5.Padding-10
+										p.Grid_Total <i class="CL_TXT_I">.main_start</i>
+										p Propiedades que usa : 
+										ul
+											li justify-content: flex-start;
+											li  display: flex;
+											li  flex-wrap: wrap;
+
+								.Grid_Item.Base-100.tablet-50
+									.CL_Alerta_5.Padding-10
+										p.Grid_Total <i class="CL_TXT_I">.main_end</i>
+										p Propiedades que usa : 
+										ul
+											li justify-content: flex-end;
+											li display: flex;
+											li flex-wrap: wrap;
+
+								.Grid_Item.Base-100.tablet-50
+									.CL_Alerta_5.Padding-10
+										p.Grid_Total <i class="CL_TXT_I">.cross_start</i>
+										p Propiedades que usa : 
+										ul
+											li align-items: flex-start;
+											li align-content: flex-start;
+											li  display: flex;
+											li flex-wrap: wrap;
+
+								.Grid_Item.Base-100.tablet-50
+									.CL_Alerta_5.Padding-10
+										p.Grid_Total <i class="CL_TXT_I">.cross_center</i>
+										p Propiedades que usa : 
+										ul
+											li align-items: center;
+											li align-content: center;
+											li display: flex;
+											li flex-wrap: wrap;
+
+								.Grid_Item.Base-100.tablet-50
+									.CL_Alerta_5.Padding-10
+										p.Grid_Total <i class="CL_TXT_I">.cross_end</i>
+										p Propiedades que usa : 
+										ul
+											li align-items: flex-end;
+											li align-content: flex-end;
+
+
+								.Grid_Item.Base-100.tablet-50
+									.CL_Alerta_5.Padding-10
+										p.Grid_Total <i class="CL_TXT_I">.reverse</i>
+										p Propiedades que usa : 
+										ul
+											li flex-direction: row-reverse;
+											li display: flex;
+											li flex-wrap: wrap;
+
+								.Grid_Item.Base-100.tablet-50
+									.CL_Alerta_5.Padding-10
+										p.Grid_Total <i class="CL_TXT_I">.column</i>
+										p Propiedades que usa : 
+										ul
+											li flex-direction: column;
+											li display: flex;
+											li flex-wrap: wrap;
+
+								.Grid_Item.Base-100.tablet-50
+									.CL_Alerta_5.Padding-10
+										p.Grid_Total <i class="CL_TXT_I">.column_reverse</i>
+										p Propiedades que usa : 
+										ul
+											li flex-direction: column-reverse;
+								.Grid_Item.Base-100.tablet-50
+									.CL_Alerta_5.Padding-10
+										p.Grid_Total <i class="CL_TXT_I">.abcenter</i>
+										p Propiedades que usa : 
+										ul
+											li justify-content: center;
+											li align-items: center;
+							.Grid_Contenedor
+								.Grid_Total.No_Padding
+									.CL_Alerta_5.Padding-10
+										p Manejando Grid_Layoud con los Breakpoints
+										p.CL_TXT_Descripcion Con grid_Layout podemos agregar propiedades de tamaño para distribuir nuestro contenido, o podemos agregar propiedades Flex-Box para posicionar en ciertas posiciones los elementos, pero ademas de esto nos permite indicar a que tipo de resolucion queremos que se vean ciertos elementos de la web, esto se logra con los Breakpoints
+										ul
+											li movil
+											li web
+											li hd
+											li tablet
+										p.CL_TXT_Descripcion Agregando el nombre del Breakpoint seguido por un guion medio (-) y el tamaño que queremos que ocupe el elemento, obtenemos una adaptacion responsiv sencilla y rapida Ejemplo:
+										p.Grid_Total <i class="CL_TXT_I">.tablet-50</i>
+										p.Grid_Total <i class="CL_TXT_I">.hd-95</i>
+										p.Grid_Total <i class="CL_TXT_I">.web-100</i>
+										p.Grid_Total <i class="CL_TXT_I">.movil-10</i>
+										p.CL_TXT_Descripcion.CL_Alerta_5.Padding-10 ¿Como ocultar o mostrar elementos de acuerdo a la resoluci&oacute;n de la pantalla?
+										ul
+											li.Grid_Total .Visible 
+											li.Grid_Total .Invisible
+										p.CL_TXT_Descripcion Estas dos propiedades nos permiten ocultar o mostrar elementos, y al combinarlas con los breakpoints podremos indicar a que resolucion queremos que se vea un elemento en especifico Ejemplo:
+										p.Grid_Total <i class="CL_TXT_I">.visible-web</i>
+										p.Grid_Total <i class="CL_TXT_I">.invisible-movil</i>
+										p.Grid_Total <i class="CL_TXT_I">.visible-tablet</i>
+										p.Grid_Total <i class="CL_TXT_I">.invisible-hd</i>
+										
+
+
+
+					li.CL_Diseno
+						p.icon-design.CL_Txt_1 Botones
+
+						.CL_Alerta_2.Padding-10
+							p Uso:
+							ul
+								li Clases:.Btn_Estilo_(1,2,3,4,5,6)
+							
+								li Clases:.Btn_Estilo_1-(1,2,3,4,5,6) 
+
+						a.Btn_Estilo_1.icon-login Defaul
+						a.Btn_Estilo_2.icon-login Defaul
+						a.Btn_Estilo_3.icon-login Defaul
+						a.Btn_Estilo_4.icon-login Defaul
+						a.Btn_Estilo_5.icon-login Defaul
+						a.Btn_Estilo_6.icon-login Defaul
+						a.Btn_Estilo_7.icon-login Defaul
+
+						a.Btn_Estilo_1_1.icon-login Defaul
+						a.Btn_Estilo_2_2.icon-login Defaul
+						a.Btn_Estilo_3_3.icon-login Defaul
+						a.Btn_Estilo_4_4.icon-login Defaul
+						a.Btn_Estilo_5_5.icon-login Defaul
+						a.Btn_Estilo_6_6.icon-login Defaul
+						a.Btn_Estilo_7_7.icon-login Defaul
+
+					li.CL_Diseno
+						p.icon-design.CL_Txt_1 Radio botton
+						.CL_Alerta_2.Padding-10
+							p Uso:
+							ul
+								li Clases:.RadioBtn_1(1,2,3,4,5,6) para los estilos del label
+								li Clase: .Btn_Radio para el input, este se ocultara y se dejara el label
+							p Revizar elementos hijos necesarios.
+						section.ng_show#SC_Genero
+							input#ID_INPUT_Hombre.Btn_Radio(name="sexo"  type="radio"  )
+							label.RadioBtn_1(for="ID_INPUT_Hombre") Hombre
+							input#ID_INPUT_Mujer.Btn_Radio(name="sexo"  type="radio"  )
+							label.RadioBtn_1(for="ID_INPUT_Mujer") Mujer
+						section.ng_show#SC_Genero
+							input#ID_INPUT_Hombre2.Btn_Radio(name="sexo"  type="radio"  )
+							label.RadioBtn_2(for="ID_INPUT_Hombre2") Hombre
+							input#ID_INPUT_Mujer2.Btn_Radio(name="sexo"  type="radio"  )
+							label.RadioBtn_2(for="ID_INPUT_Mujer2") Mujer
+						section.ng_show#SC_Genero
+							input#ID_INPUT_Hombre3.Btn_Radio(name="sexo"  type="radio"  )
+							label.RadioBtn_3(for="ID_INPUT_Hombre3") Hombre
+							input#ID_INPUT_Mujer3.Btn_Radio(name="sexo"  type="radio"  )
+							label.RadioBtn_3(for="ID_INPUT_Mujer3") Mujer
+
+					li.CL_Diseno
+						p.icon.design.CL_Txt_1 Select
+						.CL_Alerta_2.Padding-10
+							p Uso:
+							ul
+								li Clases:.Select_1(1,2,3,4,5,6)
+							p Revizar elementos hijos necesarios.
+						select.Select_1(name="" value="Bello" required)
+							option(value="Bello") Bello
+							option(value="Antioquia") Antioquia
+						select.Select_2(name="" value="Bello" required)
+							option(value="Bello") Bello
+							option(value="Antioquia") Antioquia
+						select.Select_3(name="" value="Bello" required)
+							option(value="Bello") Bello
+							option(value="Antioquia") Antioquia
+
+					li.CL_Diseno
+						p.icon.design.CL_Txt_1 Boton circular
+						.CL_Alerta_2.Padding-10
+							p Uso:
+							ul
+								li Clases:.Btn_Circular_1(1,2,3,4,5,6)
+							p Revizar elementos hijos necesarios. !Nota¡: Hay que agregarle al contenedor en que se encuentre el boton un Position:realitve, para que el boton tome como posicion de referencia la del contenedor en que se encuentra, si no se hace esto, el boton se saldra del contenedor.
+						.Btn_Circular_1
+							p.icon-chat
+							p.CL_TXT_Info_Btn Nuevo mensaje
+						.Btn_Circular_2
+							p.icon-chat
+							p.CL_TXT_Info_Btn Nuevo mensaje	
+						.Btn_Circular_3
+							p.icon-chat
+							p.CL_TXT_Info_Btn Nuevo mensaje	
+					li.CL_Diseno
+						p.icon.design.CL_Txt_1 Buscador
+						.CL_Alerta_2.Padding-10
+							p Uso:
+							ul
+								li Clases:.CL_Buscar(1,2,3,4,5,6)
+							p Revizar elementos hijos necesarios 
+
+						.CL_Contenedor_Buscador
+							input.CL_Buscar#BuscarOrden(type="text", name="" placeholder="Buscar producto" ng-model="buscar_producto")
+							label.icon-buscar.CL_Icono_Buscar(for="BuscarOrden")
+					li.CL_Diseno
+						p.icon_design.CL_Txt_1 Enlaces
+						.CL_Alerta_2.Padding-10
+							p Uso:
+							ul
+								li Clases:.CL_TXT_Enlace_(1,2,3,4,5,6)
+						a.CL_TXT_Enlace_1 Crear cuenta
+						a.CL_TXT_Enlace_2 Crear cuenta
+						a.CL_TXT_Enlace_3 Crear cuenta
+						a.CL_TXT_Enlace_4 Crear cuenta
+						a.CL_TXT_Enlace_5 Crear cuenta
+						a.CL_TXT_Enlace_6 Crear cuenta
+					li.CL_Diseno
+						p.icon_design.CL_Txt_1 Textos
+						.CL_Alerta_2.Padding-10
+							p Uso:
+							ul
+								li Clases:.CL_TXT_Texto_(1,2,3,4,5,6)
+						a.CL_TXT_Texto_1 Crear cuenta
+						a.CL_TXT_Texto_2 Crear cuenta
+						a.CL_TXT_Texto_3 Crear cuenta
+						a.CL_TXT_Texto_4 Crear cuenta
+						a.CL_TXT_Texto_5 Crear cuenta
+						a.CL_TXT_Texto_6 Crear cuenta
+
+					li.CL_Diseno
+						p.icon.design.CL_Txt_1 Tablas
+						.CL_Alerta_2.Padding-10
+							p Uso:
+							ul
+								li Clases:.Tabla_Estilo_1(1,2,3,4,5,6)
+							p Revizar elementos hijos necesarios
+						.Tabla_Estilo_1
+							table
+								thead
+									tr
+										th.Imagen 
+										th ID
+										th Producto
+										th Precio
+										th Cantidad
+										th Subtotal
+								tbody
+									tr
+										td.CL_Imagen
+											img(src="http://lorempixel.com/90/90/")
+										td 1
+										td Ejemplo1
+										td 1500$
+										td 15
+										td 3000$
+									tr
+										td.CL_Imagen
+											img(src="http://lorempixel.com/90/90/")
+										td 1
+										td Ejemplo1
+										td 1500$
+										td 15
+										td 3000$
+									tr
+										td.CL_Imagen
+											img(src="http://lorempixel.com/90/90/")
+										td 1
+										td Ejemplo1
+										td 1500$
+										td 15
+										td 3000$
+									tr
+										td.CL_Imagen
+											img(src="http://lorempixel.com/90/90/")
+										td 1
+										td Ejemplo1
+										td 1500$
+										td 15
+										td 3000$
+
+
+									tr
+										td
+										td
+										td
+										td
+										td.CL_TXT_TotalEnvio Total
+										td.CL_TXT_TotalEnvio 3000$
+							.CL_Botones_Enviar
+								.Btn_Estilo_3.icon-agregar3 Enviar
+								.Btn_Estilo_4.icon-actualizar(ng-click="BL_Ver_Envio_Orden =! BL_Ver_Envio_Orden") Modificar orden
+						.Tabla_Estilo_2
+							table
+								thead
+									tr
+										th.Imagen 
+										th ID
+										th Producto
+										th Precio
+										th Cantidad
+										th Subtotal
+								tbody
+									tr
+										td.CL_Imagen
+											img(src="http://lorempixel.com/90/90/")
+										td 1
+										td Ejemplo1
+										td 1500$
+										td 15
+										td 3000$
+									tr
+										td.CL_Imagen
+											img(src="http://lorempixel.com/90/90/")
+										td 1
+										td Ejemplo1
+										td 1500$
+										td 15
+										td 3000$
+									tr
+										td.CL_Imagen
+											img(src="http://lorempixel.com/90/90/")
+										td 1
+										td Ejemplo1
+										td 1500$
+										td 15
+										td 3000$
+									tr
+										td.CL_Imagen
+											img(src="http://lorempixel.com/90/90/")
+										td 1
+										td Ejemplo1
+										td 1500$
+										td 15
+										td 3000$
+
+
+
+									tr
+										td
+										td
+										td
+										td
+										td.CL_TXT_TotalEnvio Total
+										td.CL_TXT_TotalEnvio 3000$
+							.CL_Botones_Enviar
+								.Btn_Estilo_3.icon-agregar3 Enviar
+								.Btn_Estilo_4.icon-actualizar(ng-click="BL_Ver_Envio_Orden =! BL_Ver_Envio_Orden") Modificar orden
+						.Tabla_Estilo_3
+							table
+								thead
+									tr
+										th.Imagen 
+										th ID
+										th Producto
+										th Precio
+										th Cantidad
+										th Subtotal
+								tbody
+									tr
+										td.CL_Imagen
+											img(src="http://lorempixel.com/90/90/")
+										td 1
+										td Ejemplo1
+										td 1500$
+										td 15
+										td 3000$
+									tr
+										td.CL_Imagen
+											img(src="http://lorempixel.com/90/90/")
+										td 1
+										td Ejemplo1
+										td 1500$
+										td 15
+										td 3000$
+									tr
+										td.CL_Imagen
+											img(src="http://lorempixel.com/90/90/")
+										td 1
+										td Ejemplo1
+										td 1500$
+										td 15
+										td 3000$
+									tr
+										td.CL_Imagen
+											img(src="http://lorempixel.com/90/90/")
+										td 1
+										td Ejemplo1
+										td 1500$
+										td 15
+										td 3000$
+
+
+									tr
+										td
+										td
+										td
+										td
+										td.CL_TXT_TotalEnvio Total
+										td.CL_TXT_TotalEnvio 3000$
+							.CL_Botones_Enviar
+								.Btn_Estilo_3.icon-agregar3 Enviar
+								.Btn_Estilo_4.icon-actualizar(ng-click="BL_Ver_Envio_Orden =! BL_Ver_Envio_Orden") Modificar orden
+						.Tabla_Estilo_4
+							table
+								thead
+									tr
+										th.Imagen 
+										th ID
+										th Producto
+										th Precio
+								tbody
+									tr
+										td.CL_Imagen
+											img(src="http://lorempixel.com/90/90/")
+										td 1
+										td Ejemplo1
+										td 1500$
+									tr
+										td.CL_Imagen
+											img(src="http://lorempixel.com/90/90/")
+										td 1
+										td Ejemplo1
+										td 1500$
+									tr
+										td.CL_Imagen
+											img(src="http://lorempixel.com/90/90/")
+										td 1
+										td Ejemplo1
+										td 1500$
+									tr
+										td.CL_Imagen
+											img(src="http://lorempixel.com/90/90/")
+										td 1
+										td Ejemplo1
+										td 1500$
+
+
+
+									tr
+										td
+										td
+										td.CL_TXT_TotalEnvio Total
+										td.CL_TXT_TotalEnvio 3000$
+							.CL_Botones_Enviar
+								.Btn_Estilo_3.icon-agregar3 Enviar
+								.Btn_Estilo_4.icon-actualizar(ng-click="BL_Ver_Envio_Orden =! BL_Ver_Envio_Orden") Modificar orden
+					
+					li.CL_Diseno
+						p.icon.design.CL_Txt_1 Imagenes
+						.CL_Alerta_2.Padding-10
+							p Uso:
+							ul
+								li Clases:.CL_Imagen_(1,2,3,4,5,6)
+						img.CL_Imagen_1(src="http://lorempixel.com/90/90/")
+						img.CL_Imagen_2(src="http://lorempixel.com/90/90/")
+						img.CL_Imagen_3(src="http://lorempixel.com/90/90/")
+						img.CL_Imagen_4(src="http://lorempixel.com/90/90/")
+					li.CL_Diseno
+						p.icon.design.CL_Txt_1 Alertas
+						.CL_Alerta_2.Padding-10
+							p Uso:
+							ul
+								li Clases:.CL_Alerta_(1,2,3,4,5,6)
+								li Nota: Agregar paddign: .Padding-10(20,30,40)
+
+						p.CL_Alerta_5.Padding-10 Texto de prueba para la alerta
+						p.CL_Alerta_2.Padding-10 Texto de prueba para la alerta
+						p.CL_Alerta_3.Padding-10 Texto de prueba para la alerta
+						p.CL_Alerta_4.Padding-10 Texto de prueba para la alerta
+						p.CL_Alerta_5.Padding-10 Texto de prueba para la alerta
+						p.CL_Alerta_6.Padding-10 Texto de prueba para la alerta
+
+
+					li.CL_Diseno
+						p.icon.design.CL_Txt_1 Checkbox
+						.CL_ALerta_2.Padding-10
+							
+						.CL_Check_Box_1
+							input#INPUT_Chek_Recordatorio.Btn_CheckBox(type="checkbox")
+							.CL_Check_Box_Remplazo
+							label.CL_TXT_Chek_Box_Remplazo(for="INPUT_Chek_Recordatorio") Recordar mis datos
+
+

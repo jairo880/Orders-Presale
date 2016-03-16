@@ -1,0 +1,127 @@
+section#SC_Modulo_Chat(ng-if="dato.AOBJ_Datos_Usuario[0].FK_ID_Rol == 3 || dato.AOBJ_Datos_Usuario[0].FK_ID_Rol == 5 ")
+	//SESION  MENSAJES/CHAT	(importado desde Modulo_Chat.php)				
+	section#SC_Mensajes(ng-init="BL_Btns_Ver_Mensajes = true")
+		#CONT_Invisible(ng-click="FN_Mensaje_Desplegar(false,false,false,false,false)" ng-show="BL_Ver_Mensajes == true")
+			.CL_Cerrar_Modal.CL_Transparente
+		#CONT_Mensajes(ng-class="{CL_Tamano_Dtll:BL_Mensajes_Visibles == true , CL_Tamano_Chat:BL_DesplegarChat_ContConver == true}" ng-show="BL_Ver_Mensajes == true")
+			
+			#CONT_Header_Info
+				p.Enlace.icon-atras-1( ng-click="FN_Mensaje_Desplegar(true,false,false,false,false)" ng-show="BL_Mensajes_Visibles == true")                         
+				p.CL_TXT_Texto_3.center.icon-comments-o.Grid_Contenedor.Base-100.abcenter(ng-show="BL_Mensajes_Visibles == false") Mensajes recibidos
+				p.CL_TXT_Texto_3.center.icon-commenting-o.Grid_Contenedor.Base-100.abcenter(ng-show="BL_ContenidoMensaje == true") Mensaje de: {{TXT_Nombre_Usuario_Dtll}}
+				p.CL_TXT_Texto_3.center.icon-mensaje.Grid_Contenedor.Base-100.abcenter(ng-show="BL_DesplegarChat_ContConver == true") Chat
+				p.CL_TXT_Texto_3.center.icon-mensaje.Grid_Contenedor.Base-100.abcenter(ng-show="BL_DesplegarChat_Nuevo_Mensaje == true") Nuevo mensaje
+
+
+				p.CL_Eliminar_1_1(title="Cerrar Men&uacute; de notificaciones" ng-click="FN_Mensaje_Desplegar(false,false,false,false,false)") 
+			//MENSAJES RECIBIDOS
+			section#SC_Mensajes_Recibidos(ng-show="BL_Mensajes_Visibles == false")
+				#CONT_Mensajes_Recibidos(ng-show="BL_Mensajes_Visibles == false")
+					.CL_Mensaje.ng_repeat_anim1(ng-repeat="Mensajes_usuario in dato.AOBJ_Mensajes_Lista")
+
+						.CL_Imagen_Usuario
+							img( ng-click="FN_Ver_Contenido_Mensaje($index);FN_Mensaje_Desplegar(true,true,true,false,false)" ng-src="{{Mensajes_usuario.URL_Imagen_Usuario_Mensaje}}")
+						.CL_Mensaje_Texto
+							p.CL_TXT_Nombre_Usuario( ng-click="FN_Ver_Contenido_Mensaje($index);FN_Mensaje_Desplegar(true,true,true,false,false)") {{Mensajes_usuario.TXT_Nombre_Usuario}}
+							p.CL_TXT_Mensaje_Usuario(ng-click="FN_Ver_Contenido_Mensaje($index);FN_Mensaje_Desplegar(true,true,true,false,false)") {{Mensajes_usuario.TXT_Mensaje}}
+							p.CL_TXT_Hora_Mensaje {{Mensajes_usuario.DATE_Hora_Envio | date:'longDate'}}
+							.CL_Eliminar_Contenido(ng-click="FN_Eliminar_Mensaje_Recibido($index)")
+								p.icon-cancelar2
+					#CONT_Mensaje_Producto(ng-show="(dato.AOBJ_Mensajes_Lista).length == 0")
+						#CONT_Figura
+							span
+							span
+							span
+							span
+						.CL_TXT_Mensaje  No hay mensajes
+
+			#CONT_Mensaje_Completo(ng-show="BL_ContenidoMensaje == true")
+
+				.CL_Mensaje_Dtll
+
+					.CL_Imagen_Usuario_Mensaje_Dtll
+						img(ng-src="{{URL_Imagen_Usuario_Dtll}}")
+					.CL_Cont_Info_Dtll
+						p.CL_Nombre_Usuario_Dtll {{TXT_Nombre_Usuario_Dtll}}
+						p.CL_Mensaje_Usuario_Dtll {{TXT_Mensaje_Usuario_Dtll}}
+						p.CL_Hora_Mensaje_Dtll fecha:{{DATE_Hora_Mensaje_Dtll | date:'longDate'}}
+					.Btn_Estilo_5( ng-click="FN_Mensaje_Desplegar(true,true,false,true,false)") Responder
+			//SECCION DE CHAT CONVERSACION	
+			section#CONT_Mensajes_Converzacion(ng-show="BL_DesplegarChat_ContConver == true")
+				#CONT_Chat(ng-show="BL_DesplegarChat_ContConver == true")
+					.CL_Cabezera_Mensaje
+						img(ng-src="{{URL_Imagen_Usuario_Dtll}}")
+						p {{TXT_Nombre_Usuario_Dtll}}
+					.CL_Cotenido_Chat
+						.CL_Mensajes(ng-repeat="Mensajes_Chat in dato.AOBJ_Mensajes")
+							div(ng-class="{CL_MensajeUsuaio_Destinatario:Mensajes_Chat.BL_Tipo == true , CL_MensajeUsuario_Remitente:Mensajes_Chat.BL_Tipo == false}")
+								.CL_Imagen_Usuario
+									img(ng-src="{{Mensajes_Chat.URL_Imagen_Usuario}}")
+								div(ng-class="{CL_Textomensaje_Destinatario:Mensajes_Chat.BL_Tipo == true , CL_Textomensaje_Remitente:Mensajes_Chat.BL_Tipo == false}")
+									p {{Mensajes_Chat.TXT_Mensaje}}
+									span(ng-class="{CL_Destinatario:Mensajes_Chat.BL_Tipo == true , CL_Remitente:Mensajes_Chat.BL_Tipo == false}")
+									.CL_Hora_Mensaje {{Mensajes_Chat.DATE_Fecha_Mensaje | date:'fullDate'}}
+						#CONT_Bottom
+							#CONT_Estado_Escribiendo(ng-show="NGM_TXT_Text_Area_Mensaje.length > 0")
+								.CL_Efecto_Cargando
+									span
+									span
+									span
+								p#PosicionInicial Escribiendo
+
+					.CL_Envio_Mensaje
+						form(ng-submit="FN_Enviar_Mensaje(dato.AOBJ_Mensajes[0].URL_Imagen_Usuario,NGM_TXT_Text_Area_Mensaje,dato.AOBJ_Mensajes[0].BL_Tipo)")
+
+							input(type="text", name="name", value="" placeholder="Escribir una respuesta..." ng-model="NGM_TXT_Text_Area_Mensaje" ng-minlength="1" )
+							input.Btn_Estilo_2.Visble.Invisible-web(type="submit" value="Enviar")
+							p.Invisible.Visible-web Pulsa enter para enviar tu mensaje 
+
+			//SESION DE NUEVO MENSAJE
+			section#CONT_Nuevo_Mensaje(ng-show="BL_DesplegarChat_Nuevo_Mensaje == true")
+				.CL_Nuevo_Mensaje(ng-show="BL_DesplegarChat_Nuevo_Mensaje == true")
+					.CL_Cotenido_Chat
+						.CL_Administradores_Disponibles
+							.CL_Usuario_Admin(ng-repeat="Usuario_Amdmin in dato.AOBJ_Administradores_Usuario")
+								img(ng-src="{{Usuario_Amdmin.URL_Imagen_Usuario}}")
+								p.CL_Nombre_Admin {{Usuario_Amdmin.TXT_Nombre_Usuario}}
+								p.CL_Tiempo_Activo Ultima vez activo :{{Usuario_Amdmin.DATE_Tiempo_Activo | date:'shortTime'}}
+
+							.CL_Mensaje_Admin
+								p Dejanos tu duda o prolblema  y te responderemos los mas pronto
+							#CONT_Mensaje_Producto(ng-show="(dato.AOBJ_Administradores_Usuario).length == 0")
+								#CONT_Figura
+									span
+									span
+									span
+									span
+								.CL_TXT_Mensaje  No hay administradores disponibles por el momento.
+
+
+						.CL_Mensajes(ng-repeat="Nuevo_Chat in dato.AOBJ_Nueva_Conversacion_Chat")
+							div(ng-class="{CL_MensajeUsuaio_Destinatario:Nuevo_Chat.BL_Tipo == true , CL_MensajeUsuario_Remitente:Nuevo_Chat.BL_Tipo == false}")
+								.CL_Imagen_Usuario
+									img(ng-src="{{Nuevo_Chat.URL_Imagen_Usuario}}")
+								div(ng-class="{CL_Textomensaje_Destinatario:Nuevo_Chat.BL_Tipo == true , CL_Textomensaje_Remitente:Nuevo_Chat.BL_Tipo == false}")
+									p {{Nuevo_Chat.TXT_Mensaje}}
+									span(ng-class="{CL_Destinatario:Nuevo_Chat.BL_Tipo == true , CL_Remitente:Nuevo_Chat.BL_Tipo == false}")
+									.CL_Hora_Mensaje {{Nuevo_Chat.DATE_Fecha_Mensaje | date:'fullDate'}}
+						#CONT_Bottom
+							#CONT_Estado_Escribiendo(ng-show="Mensaje_Nuevo.length > 0")
+								.CL_Efecto_Cargando
+									span
+									span
+									span
+								p#PosicionInicialNuevoMensaje Escribiendo
+
+					.CL_Envio_Mensaje
+						form(ng-submit="FN_Iniciar_Conversacion_Nuevo_Mensaje(Mensaje_Nuevo)")
+
+							input(type="text", name="name", value="" placeholder="Escribir una respuesta..." ng-model="Mensaje_Nuevo" ng-minlength="1" )
+							input.Btn_Estilo_2.Visble.Invisible-web(type="submit" value="Enviar")
+						p.Invisible.Visible-web Pulsa enter para enviar tu mensaje 
+
+
+	//Boton para desplegar chat
+	.Btn_Circular_2.bottom-30( ng-click="FN_Mensaje_Desplegar(true,true,false,false,true)")
+					p.icon-chat
+					p.CL_TXT_Info_Btn Nuevo mensaje	

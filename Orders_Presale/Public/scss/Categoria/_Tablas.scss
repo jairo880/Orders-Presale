@@ -1,0 +1,167 @@
+@mixin MX_Tablas_Estilo() {
+
+    %PH_TABLA
+    {
+        border: 1px solid #E0E0E0;
+        background-color: #fff;
+        height: auto;
+        width:100%;
+        margin-bottom: 50px;
+        padding-bottom: 150px;
+        z-index:5;
+
+        @include desde(tablet) {
+            width: -moz-max-content;
+            width:max-content;
+        }
+        & table {
+            width: 100%;
+            background-color: transparent;
+            border-spacing: 0;
+            @include MX_Box-Sizing(border-box);
+            @include Text_nav1(12px,rgba($Color_11,.7),100,center);
+        }
+        & th {
+            font-weight: bold;
+        }
+        & th.Imagen
+        {
+            width: 60px;
+        }
+        
+        & td,
+        & th {
+            text-align: left;
+            border-bottom: solid 1px #EEE;
+            padding: 5px;
+            border-collapse: collapse;
+            border-spacing: 0;
+            @include MX_Box-Sizing(border-box);
+        }
+        & tbody > tr:nth-child(2n+1) {
+            background-color: #FAFAFA;
+        }
+        & tbody tr:hover
+        {
+            background:rgba($Color_21,.1);
+        }
+        & td {
+            padding: 10px 5px;
+            @include MX_Box-Sizing(border-box);
+        }
+        & td select
+        {
+            width:auto;
+        }
+        & td input {
+            width: auto;
+            padding: 5px 0 5px 10px;
+            box-shadow: none;
+            border: solid 1px #eee;
+            @include MX_Box-Sizing(border-box);
+
+            &:disabled 
+            {
+                background:transparent;
+                border:none;
+            }
+        }
+        & td.CL_TXT_TotalEnvio {
+            font-weight: bold;
+        }
+        & td.CL_Imagen {
+            width: 50px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        & td.CL_Imagen_Grande 
+        {
+            width: 100px;
+            height:100px;
+        }
+        & td.CL_Imagen_Grande  img
+        {
+            border-radius: 0%;
+            max-width: 100%;
+            height: 100%;
+        }
+        & td.CL_Imagen img {
+            border-radius: 50%;
+            max-width: 100%;
+            height: 100%;
+        }
+        & th.CL_Imagen {
+            width: 50px;
+        }
+        & .CL_Botones_Enviar {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 5px;
+        }
+    }
+    .Tabla_Estilo_1 {
+        @extend %PH_TABLA;
+    }
+
+    .Tabla_Estilo_2 {
+        @extend %PH_TABLA;
+
+        & table
+        {
+            & td,
+            & th {
+                border: solid 1px #EEE;
+            }
+            & td.CL_Imagen {
+                border:none;
+            }
+
+        }
+    }
+    .Tabla_Estilo_3 {
+        @extend %PH_TABLA;
+
+        & table
+        {
+
+            & td.CL_Imagen {
+                border:none;
+            }
+            & td,
+            & th {
+                border: solid 1px transparent;
+            }
+
+            & tbody > tr:nth-child(2n+1) {
+                background-color: rgba(153, 204, 153, 0.2);
+            }
+            & tbody > tr:nth-child(3n) {
+                background-color:rgba(160, 153, 204, 0.2);
+            }
+
+        }
+    }
+    .Tabla_Estilo_4 {
+        @extend %PH_TABLA;
+
+        & table
+        {
+            & td.CL_Imagen {
+                border:none;
+            }
+            & td,
+            & th {
+                border: solid 1px transparent;
+            }
+
+            & tbody > tr:nth-child(2n+1) {
+                background-color:rgba(102, 153, 204, 0.2);
+            }
+            & tbody > tr:nth-child(3n) {
+                background-color: rgba(193, 204, 153, 0.2);
+            }
+        }
+    }
+}

@@ -1,0 +1,2 @@
+Esta carpeta contendra los archivos .jade que se usan para crear los archivos .html de la pagina
+

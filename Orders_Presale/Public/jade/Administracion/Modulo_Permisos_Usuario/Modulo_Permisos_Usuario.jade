@@ -1,0 +1,59 @@
+title {{dato.AOBJ_Datos_Usuario[0].Nombre_Usuario}} | Gestion de permisos de los usuarios
+link(rel="stylesheet" href!="<?php echo URL;?>public/css/Templates/Administracion/Modulo_Permisos_Usuario/Modulo_Permisos_Usuario.css")
+//sesion Estructura
+
+section#SC_Modulo_Permisos_Usuario
+	main#CONT_Modulo_Permisos_Usuario(ng-init="FN_Listar_Modulo_Permisos_Usuario(1)")
+		#CONT_Contenedor_Invisible_Header
+		.Grid_Contenedor.Base-100(ng-init="BL_Vistas = 1")
+			.CL_Alerta_6.Grid_Contenedor.abcenter.Padding-10 Opciones
+			.CL_Alerta_7.Grid_Contenedor.abcenter.Pading-5
+				.Btn_Estilo_1(ng-click="PM.Nombre_Vista = ''; PM.Url_Vista = '';PM.FK_ID_Rol = '';FN_Listar_Modulo_Permisos_Usuario(1)") Vistas Administrador
+				.Btn_Estilo_5(ng-click="PM.Nombre_Vista = ''; PM.Url_Vista = '';PM.FK_ID_Rol = '';FN_Listar_Modulo_Permisos_Usuario(2)") Vistas Empleado Administrador
+				.Btn_Estilo_6(ng-click="PM.Nombre_Vista = ''; PM.Url_Vista = '';PM.FK_ID_Rol = '';FN_Listar_Modulo_Permisos_Usuario(3)") Vistas Cliente 
+			.Grid_Contenedor.Base-100(ng-show="BL_Vistas == 1")
+				.CL_Alerta_1.Grid_Contenedor.abcenter.Padding-10 Vistas Administrador
+				.Grid_Contenedor.Base-30
+					.CL_Alerta_5.Grid_Contenedor.abcenter.Padding-5 Registrar nueva vista
+					form.Grid_Contenedor.column.abcenter.Base-100(name="Registro_Vista_Administrador",ng-submit="FN_Registrar_Permiso_Usuario(PM)")
+						input.Input_Estilo_1(type="number",required,ng-model="PM.FK_ID_Rol")
+						label.CL_TXT_Texto_3 Nombre vista
+						input.Input_Estilo_1(required,maxlength="150",minlength="5",type="text" name="Nombre_Vista",ng-model="PM.Nombre_Vista")
+						//Mensaje de validacion
+						div#CONT_Mensaje_Validacion(ng-show="!Registro_Vista_Administrador.Nombre_Vista.$valid && !Registro_Vista_Administrador.$pristine && !Registro_Vista_Administrador.Nombre_Vista.$error.required")
+							p.icon-alerta1 La cantidad de caracteres es muy corta
+						label.CL_TXT_Texto_3 Url vista
+						textarea.Textarea_Estilo_1(required,maxlength="150",minlength="5",type="text" name="Url_Vista" ng-model="PM.Url_Vista")
+						//Mensaje de validacion
+						div#CONT_Mensaje_Validacion(ng-show="!Registro_Vista_Administrador.Url_Vista.$valid && !Registro_Vista_Administrador.$pristine && !Registro_Vista_Administrador.Url_Vista.$error.required")
+							p.icon-alerta1 La cantidad de caracteres es muy corta
+						input.Btn_Estilo_1(ng-disabled="!Registro_Vista_Administrador.$valid ",type="submit" value="Registrar vista")
+				.Grid_Contenedor.Base-50.CL_Tabla_Permisos
+					.Tabla_Estilo_1
+						table
+							thead
+								tr
+									th Id vista
+									th Nombre vista
+									th Url vista
+									th Modificar
+									th Eliminar
+									
+							tbody(ng-init="BL_Edicion_Datos = false")
+								tr(ng-repeat="Permisos in AOBJ_Lista_Permisos_Usuario")
+									th
+										{{Permisos.PK_ID_Vista}}
+									th
+										input(type="text" ng-model="Permisos.Nombre_Vista",ng-disabled="BL_Edicion_Datos == false")
+									th
+										textarea( ng-model="Permisos.Url_Vista",ng-disabled="BL_Edicion_Datos == false")
+									th
+										.Btn_Estilo_5(ng-click="BL_Edicion_Datos = true",ng-class="{Invisible:BL_Edicion_Datos == true, Visible: BL_Edicion_Datos == false}") Editar
+										.Btn_Estilo_3(ng-click="FN_Modificar_Permiso_Usuario($index);BL_Edicion_Datos = false",ng-class="{Invisible:BL_Edicion_Datos == false, Visible: BL_Edicion_Datos == true}") Guardar
+
+									th
+										.Btn_Estilo_2(ng-click="FN_Eliminar_Permiso_Usuario($index)") Eliminar
+
+									
+								
+		
