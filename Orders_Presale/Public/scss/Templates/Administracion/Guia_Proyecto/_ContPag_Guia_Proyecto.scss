@@ -263,4 +263,18 @@
     }
 
 }
+#Ejemplo_Registro
+{
+    background-color: $Color_25;
+    padding-top: 50px;
+    @include MX_Box-Sizing(border-box);
+
+    & #FORM_Registro_Ejemplo
+    {
+        @include MX_Box_Shadow(0px, 0px, 1px, 0px,rgba(0,0,0,5/10));
+        background-color: $Color_6;
+        margin-bottom: 50px;
+
+    }
+}
 }

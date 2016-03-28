@@ -18,10 +18,10 @@
                 $scope.Categoria_Creada = " ";
                 $scope.Categoria_Creada += formData.Nombre_Categoria;
 
-                if (Respuesta == "La categoria ya existe")
+                if (Respuesta == "La categoria a registrar ya se encuentra registrada")
                 {
                     //_*mensaje de Alerta
-                    $scope.Mensaje = "Nombre de categoria en uso, Ingresa otro nombre";
+                    $scope.Mensaje = "El nombre de la categoria ya se encuentra en uso, ingresa un nombre diferente";
                     Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
                 }
 
@@ -101,12 +101,12 @@
              var Respuesta = (res); 
              if(Respuesta == 'true')
              {
-                  $scope.Mensaje = "Actualizo la informacion";
+                  $scope.Mensaje = "Los datos han sido actualizados";
                 Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
             }
             if(Respuesta == 'false')
              {
-                  $scope.Mensaje = "No Actualizo la informacion";
+                  $scope.Mensaje = "No se modifico ningun dato de la categoria";
                 Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
             }
 

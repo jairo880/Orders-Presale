@@ -187,8 +187,8 @@
         </div>
       </div>
     </section>
-    <section id="CONT_C_Estado_Cuenta" class="Grid_Total">			
-      <div id="C_Estado_Cuenta" ng-show="Datos_Tipo == 4" class="CL_Alerta_5 Grid_Total Grid_Contenedor abcenter">
+    <section id="CONT_C_Estado_Cuenta" class="Grid_Total Grid_Contenedor abcenter">			
+      <div id="C_Estado_Cuenta" ng-show="Datos_Tipo == 4" class="CL_Alerta_5 Base-100 tablet-60 Grid_Contenedor abcenter">
         <div id="CONT_BNT_Inhabilitar_cuenta" class="Padding-50">
           <p>¿Inhabilitar cuenta?</p>
           <button ng-click="FN_Inhabilitar_Estado_Cuenta()" class="Btn_Estilo_2">Inhabilitar Cuenta</button>

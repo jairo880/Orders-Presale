@@ -2,7 +2,7 @@
 <title>{{dato.AOBJ_Datos_Usuario[0].Nombre_Usuario}} | Guia proyecto</title>
 <link rel="stylesheet" href="<?php echo URL;?>public/css/Templates/Administracion/Guia_Proyecto/Guia_Proyecto.css"/>
 <!--sesion Estructura-->
-<main id="CONT_Principal_Guia" ng-init="FN_Ver_Elemento_Guia(1)">
+<main id="CONT_Principal_Guia" ng-init="FN_Ver_Elemento_Guia(7)">
   <section id="SC_Guia_Estructura" ng-if="Estructura == true" class="ng_show Grid_Contenedor Base-100 web-80 abcenter">
     <div id="CONT_Contenedor_Invisible_Header"></div>
     <div id="CONT_Titulo">
@@ -1110,6 +1110,111 @@
           </li>
         </div>
       </div>
+    </div>
+  </section>
+  <!--sesion diseño-->
+  <section id="Ejemplo_Registro" ng-if="Conexion == true" class="ng_show">
+    <div class="CL_Alerta_1 Padding-10">Ejemplo de crud PHP + Angular + Mysql</div>
+    <div ng-controller="Controlador_Ejemplo_Crud" class="Grid_Contenedor distributed">
+      <div id="FORM_Registro_Ejemplo" ng-init="FN_Listar_Ejemplo()" class="Grid_Item Base-30 abcenter Grid_Contenedor">
+        <div class="Grid_Item Base-80 Padding-5">
+          <form name="Ejemplo_Registro" ng-submit="FN_Registrar_Ejemplo(Ejemplo)">
+            <div class="Padding-10 Grid_Contenedor abcenter"> 
+              <p class="CL_Icono_3">{{ Ejemplo.Nombre_Usuario_Ejemplo | limitTo : 1 : 0}}</p>
+            </div>
+            <label for="Nombre_Usuario_Ejemplo" class="CL_TXT_Texto_3">Nombre</label>
+            <input id="Nombre_Usuario_Ejemplo" maxlength="15" minlength="3" name="Nombre_Usuario_Ejemplo" ng-model="Ejemplo.Nombre_Usuario_Ejemplo" type="text" required="required" class="Input_Estilo_1"/>
+            <!--Mensaje de validacion-->
+            <div id="CONT_Mensaje_Validacion" ng-show="!Ejemplo_Registro.$pristine &amp;&amp; Ejemplo_Registro.Nombre_Usuario_Ejemplo.$error.required">
+              <p class="icon-key">Ingresa un nombre</p>
+            </div>
+            <div id="CONT_Mensaje_Validacion" ng-show="!Ejemplo_Registro.Nombre_Usuario_Ejemplo.$valid &amp;&amp; !Ejemplo_Registro.$pristine &amp;&amp; !Ejemplo_Registro. Nombre_Usuario_Ejemplo.$error.required ">
+              <p class="icon-login">La cantidad de caracteres es muy corta</p>
+            </div>
+            <label for="Contrasenia_Ejemplo" class="CL_TXT_Texto_3">Contraseña</label>
+            <input id="Contrasenia_Ejemplo" maxlength="15" minlength="3" name="Contrasenia_Ejemplo" ng-model="Ejemplo.Contrasenia_Ejemplo" type="password" required="required" class="Input_Estilo_1"/>
+            <!--Mensaje de validacion-->
+            <div id="CONT_Mensaje_Validacion" ng-show="!Ejemplo_Registro.$pristine &amp;&amp; Ejemplo_Registro.Contrasenia_Ejemplo.$error.required">
+              <p class="icon-key">Ingresa una contraseña</p>
+            </div>
+            <div id="CONT_Mensaje_Validacion" ng-show="!Ejemplo_Registro.Contrasenia_Ejemplo.$valid &amp;&amp; !Ejemplo_Registro.$pristine &amp;&amp; !Ejemplo_Registro.Contrasenia_Ejemplo.$error.required ">
+              <p class="icon-login">La cantidad de caracteres es muy corta</p>
+            </div>
+            <input ng-disabled="!Ejemplo_Registro.$valid" type="submit" value="Registrar" class="Btn_Estilo_1"/>
+            <button ng-click="Ejemplo.Nombre_Usuario_Ejemplo = ''; Ejemplo.Contrasenia_Ejemplo = ''" class="Btn_Estilo_5">Limpiar</button>
+          </form>
+        </div>
+      </div>
+      <div id="FORM_Registro_Ejemplo" class="Grid_Item Base-40">
+        <div class="Grid_Contenedor Padding-5">
+          <div class="Grid_Item Base-50">
+            <div class="CL_Contenedor_Buscador">
+              <input id="BuscarOrden" type="text" name="" placeholder="Buscar usuario" ng-model="Buscador_Usuario" class="CL_Buscar"/>
+              <label for="BuscarOrden" class="icon-buscar CL_Icono_Buscar"></label>
+            </div>
+          </div>
+          <div ng-click="FN_Listar_Ejemplo()" class="Btn_Estilo_7">Consultar</div>
+        </div>
+        <form name="Form_Lista" ng-init="BL_Edicion_Datos = false" class="Grid_Contenedor abcenter">
+          <div class="Tabla_Estilo_3">
+            <table>
+              <thead>
+                <tr>
+                  <th class="Imagen"> </th>
+                  <th>Nombre </th>
+                  <th>Contraseña</th>
+                  <th> </th>
+                  <th> </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="Lista_Ejemplo in AOBJ_Lista_Ejemplo | filter:Buscador_Usuario">
+                  <td class="CL_Imagen">
+                    <p class="CL_Icono_3">{{ Lista_Ejemplo.Nombre_Usuario_Ejemplo | limitTo : 1 : 0}}</p>
+                  </td>
+                  <th>
+                    <input name="Nombre_Usuario_Ejemplo{{$index}}" ng-disabled="BL_Edicion_Datos == false" maxlength="15" minlength="3" required="required" ng-model="Lista_Ejemplo.Nombre_Usuario_Ejemplo" class="Input_Tabla"/>
+                    <!--Mensaje de validacion-->
+                    <div id="CONT_Mensaje_Validacion" ng-show="!Form_Lista.$pristine &amp;&amp; Form_Lista.Nombre_Usuario_Ejemplo{{$index}}.$error.required">
+                      <p class="icon-key">Ingresa un nombre</p>
+                    </div>
+                    <div id="CONT_Mensaje_Validacion" ng-show="!Form_Lista.Nombre_Usuario_Ejemplo{{$index}}.$valid &amp;&amp; !Form_Lista.$pristine &amp;&amp; !Form_Lista. Nombre_Usuario_Ejemplo{{$index}}.$error.required ">
+                      <p class="icon-login">La cantidad de caracteres es muy corta </p>
+                    </div>
+                  </th>
+                  <th>
+                    <input name="Contrasenia_Ejemplo{{$index}}" ng-disabled="BL_Edicion_Datos == false" maxlength="15" minlength="3" required="required" ng-model="Lista_Ejemplo.Contrasenia_Ejemplo" class="Input_Tabla"/>
+                    <!--Mensaje de validacion-->
+                    <div id="CONT_Mensaje_Validacion" ng-show="!Form_Lista.$pristine &amp;&amp; Form_Lista.Contrasenia_Ejemplo{{$index}}.$error.required">
+                      <p class="icon-key">Ingresa un nombre</p>
+                    </div>
+                    <div id="CONT_Mensaje_Validacion" ng-show="!Form_Lista.Contrasenia_Ejemplo{{$index}}.$valid &amp;&amp; !Form_Lista.$pristine &amp;&amp; !Form_Lista. Contrasenia_Ejemplo{{$index}}.$error.required ">
+                      <p class="icon-login">La cantidad de caracteres es muy corta </p>
+                    </div>
+                  </th>
+                  <td class="CL_Tbl_Icon">
+                    <button ng-disabled="!Form_Lista.$valid" ng-class="{Invisible:BL_Edicion_Datos == false, Visible: BL_Edicion_Datos == true}" ng-click="BL_Edicion_Datos =!BL_Edicion_Datos; FN_Modificar_Ejemplo($index)" value="Actualizar" class="CL_TXT_Pri_Btn relative icon-actualizar"><span class="CL_TXT_Info_Btn">Actualizar</span></button>
+                    <div ng-class="{Invisible:BL_Edicion_Datos == true, Visible: BL_Edicion_Datos == false}" ng-click="BL_Edicion_Datos =!BL_Edicion_Datos" class="icon-lapiz CL_TXT_Pri_Btn relative"><span class="CL_TXT_Info_Btn">Editar </span></div>
+                  </td>
+                  <td class="CL_Tbl_Icon">
+                    <div ng-click="FN_Eliminar_Ejemplo($index)" class="icon-cancelar2 CL_TXT_Pri_Btn relative"><span class="CL_TXT_Info_Btn">Eliminar</span></div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div ng-show="(AOBJ_Lista_Ejemplo |filter:Buscador_Usuario:Lista_Ejemplo.Nombre_Usuario_Ejemplo).length == 0" class="CL_Alerta_2 ng_repeat_anim1 Grid_Contenedor abcenter">
+            <div class="CL_TXT_Texto_3 Base-100 Grid_Item abcenter Padding-10">No se han encontrado usuarios</div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="Grid_Contenedor CL_Alerta_5 abcenter column">Archivos utilizados
+      <ul>
+        <li class="icon-file">Controlador_Ejemplo.js, se encuentra en la carpeta Public/js/Angular/Controladores</li>
+        <li class="icon-file">Modulo_Ejemplo_Crud.php, se encuentra en la carpeta Aplication/controller/Modulo/</li>
+        <li class="icon-file">M_Ejemplo_Crud.php, se encuentra en la carpeta Aplication/model</li>
+      </ul>
     </div>
   </section>
 </main>

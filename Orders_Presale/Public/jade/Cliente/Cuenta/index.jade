@@ -187,8 +187,8 @@ section#SC_Cuenta
 						#CONT_Btn_Perfil_Fondo(ng-show="BL_Ver_Cont == true")
 							a.icon-agregar1.Btn_Estilo_1( ng-click="VerEdiImagen = false;dato.FN_Moificar_Imagenen_Usuario(2,0);FN_Actualizar_Datos_Tabla_Cliente()")  Seleccionar
 							a.icon-cancelar1.Btn_Estilo_5(ng-click="VerEdiImagen = false") Cancelar
-		section#CONT_C_Estado_Cuenta.Grid_Total			
-			#C_Estado_Cuenta.CL_Alerta_5.Grid_Total.Grid_Contenedor.abcenter(ng-show="Datos_Tipo == 4")
+		section#CONT_C_Estado_Cuenta.Grid_Total.Grid_Contenedor.abcenter			
+			#C_Estado_Cuenta.CL_Alerta_5.Base-100.tablet-60.Grid_Contenedor.abcenter(ng-show="Datos_Tipo == 4")
 				#CONT_BNT_Inhabilitar_cuenta.Padding-50
 					p ¿Inhabilitar cuenta?
 					button.Btn_Estilo_2(ng-click="FN_Inhabilitar_Estado_Cuenta()") Inhabilitar Cuenta

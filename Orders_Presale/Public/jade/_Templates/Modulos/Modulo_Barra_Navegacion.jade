@@ -73,27 +73,12 @@ section#SC_Modulo_Barra_Navegacion
 											span.CL_Cantidad  {{dato.NUM_Cantidad_Productos_En_Orden}}
 								//Elemento visible solo para Administradores
 								div(ng-if="dato.AOBJ_Datos_Usuario[0].FK_ID_Rol == 1")
-									li
-										a.CL_Btn_Enlace.icon-bulb(href!="<?php echo URL; ?>Error/Error")
-											span.CL_TXT_Nav Error 404
+									
 									li.ng_repeat_anim1
 										a.CL_Btn_Enlace.icon-bulb(href!="<?php echo URL; ?>Administracion/Guia_Proyecto")
 											span.CL_TXT_Nav Guia proyecto
-									li.ng_repeat_anim1
-										a.CL_Btn_Enlace.icon-administracion(href!="<?php echo URL; ?>Administracion/Guia_Proyecto")
-											span.CL_TXT_Nav Administracion Inicio
-							//Elemento visible solo para Administradores
-							section#CONT_SC_Paginas(ng-if="dato.AOBJ_Datos_Usuario[0].FK_ID_Rol == 1")
+									
 								
-								//- li
-								//- 	a.CL_Btn_Enlace.icon-users(ng-click="BL_Gestion_Cuentas_Usuario = ! BL_Gestion_Cuentas_Usuario;BL_Guia = false")
-								//- 		span.CL_TXT_Nav Gestion Cuentas usuario
-								//- li
-								//- 	a.CL_Btn_Enlace.icon-settings(ng-click="BL_Gestion_Cuentas_Usuario=false;BL_Gestion_Administrativa = ! BL_Gestion_Administrativa;BL_Guia = false")
-								//- 		span.CL_TXT_Nav Gestion Administrativa
-								li
-									a.CL_Btn_Enlace.icon-settings(href!="<?php echo URL; ?>Administracion/Inicio_Administracion/Modulo_Permisos_Usuario")
-										span.CL_TXT_Nav Modulo Permisos usuario
 								
 							//Elemento visible solo para Administradores
 							section#CONT_SC_Paginas(ng-if="BL_Guia == true ")
@@ -122,6 +107,9 @@ section#SC_Modulo_Barra_Navegacion
 
 											a.CL_Btn_Enlace.icon-database(ng-click="FN_Ver_Elemento_Guia(6)")
 												span.CL_TXT_Nav Base de datos
+										li
+											a.CL_Btn_Enlace.icon-feed-rss-2(ng-click="FN_Ver_Elemento_Guia(7)")
+												span.CL_TXT_Nav CRUD ejemplo
 
 
 							//Elemento visible solo para administradores
@@ -135,9 +123,7 @@ section#SC_Modulo_Barra_Navegacion
 									li
 										a.CL_Btn_Enlace.icon-users(href!="<?php echo URL; ?>Administracion/Inicio_Administracion/Consultar_Usuarios")
 											span.CL_TXT_Nav Consultar usuarios registrados
-									li
-										a.CL_Btn_Enlace.icon-galeria1(href!="<?php echo URL; ?>Administracion/Inicio_Administracion/Modulo_Gestion_De_Contenido")
-											span.CL_TXT_Nav Modulo gestion de contenido
+									
 							//Elemento visible solo para Administradores
 							section#CONT_SC_Herramientas(ng-if="dato.AOBJ_Datos_Usuario[0].FK_ID_Rol == 1")
 								div
@@ -147,15 +133,27 @@ section#SC_Modulo_Barra_Navegacion
 
 									li
 										a.CL_Btn_Enlace.icon-puzzle-piece(href!="<?php echo URL; ?>Administracion/Inicio_Administracion/Modulo_Producto")
-											span.CL_TXT_Nav Modulo producto
+											span.CL_TXT_Nav M&oacute;dulo producto
 							
 									li
 										a.CL_Btn_Enlace.icon-puzzle-piece(href!="<?php echo URL; ?>Administracion/Inicio_Administracion/Modulo_Promociones")
-											span.CL_TXT_Nav Modulo promociones
+											span.CL_TXT_Nav M&oacute;dulo promociones
 									li
-										a.CL_Btn_Enlace.icon-list-add(href!="<?php echo URL; ?>Administracion/Inicio_Administracion/Modulo_Categoria")
-											span.CL_TXT_Nav Modulo Categoria
+										a.CL_Btn_Enlace.icon-puzzle-piece(href!="<?php echo URL; ?>Administracion/Inicio_Administracion/Modulo_Categoria")
+											span.CL_TXT_Nav M&oacute;dulo categoria
+									li
+										a.CL_Btn_Enlace.icon-puzzle-piece(href!="<?php echo URL; ?>Administracion/Inicio_Administracion/Modulo_Gestion_De_Contenido")
+											span.CL_TXT_Nav M&oacute;dulo gestion de contenido
 							
+							//Elemento visible solo para Administradores
+							section#CONT_SC_Paginas(ng-if="dato.AOBJ_Datos_Usuario[0].FK_ID_Rol == 1")
+								
+								li
+									a.CL_Btn_Enlace.icon-puzzle-piece(href!="<?php echo URL; ?>Administracion/Inicio_Administracion/Modulo_Permisos_Usuario")
+										span.CL_TXT_Nav M&oacute;dulo permisos usuario
+								li
+									a.CL_Btn_Enlace.icon-exclamation(href!="<?php echo URL; ?>Error/Error")
+										span.CL_TXT_Nav Error 404
 	//SESION OPCIONES PERFIL
 	section#SC_Opciones_Perfil
 		#CONT_Invisible(ng-click="BL_Opciones_Cuenta =! BL_Opciones_Cuenta" ng-show="BL_Opciones_Cuenta == true")

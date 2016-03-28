@@ -108,7 +108,7 @@ document.getElementById("Body_Web_Page").addEventListener("load",MostrarSlider()
                       <div class="CL_ContOpiniones Grid_Item Grid_Contenedor abcenter Base-100 tablet-100 web-30">
                         <div class="Grid_Item Grid_Contenedor abcenter">
                           <div class="CL_Precio">
-                            <p>${{LisProduct.Valor_Unitario | currency}}</p>
+                            <p>{{LisProduct.Valor_Unitario | currency}}</p>
                           </div>
                           <div class="CL_Datos_Valoracion"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span></div>
                           <div title="Ver las opiniones de otros usuarios" ng-click="FN_Ver_Comentarios_Producto(LisProduct.PK_ID_Producto)" class="icon-comentarios Btn_Estilo_5">Ver comentarios</div>

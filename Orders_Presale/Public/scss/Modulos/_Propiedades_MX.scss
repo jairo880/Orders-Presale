@@ -144,7 +144,7 @@
 @mixin MX_Estilo_Imagen() {
     %PH_Imagen
     {
-        max-width: 100%;
+        max-width: 100% !important;
         height: auto;
         margin: 10px;
         &:hover
@@ -180,55 +180,49 @@
 @mixin MX_Estilo_Icono() {
     %PH_Icono
     {
-        width:60px;
-        height: 60px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color:$Color_6;
-        font-family: 'Ubuntu', sans-serif;
-        font-size: 40px;
-        text-transform: uppercase;
-        @include MX_Box_Shadow(0px, 0px, 1px, 0px,rgba(0,0,0,5/10));
+       width:50px;
+       height: 50px;
+       font-size: 30px;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       color:$Color_6;
+       font-family: 'Ubuntu', sans-serif;
+       text-transform: uppercase;
+       @include MX_Box_Shadow(0px, 0px, 1px, 0px,rgba(0,0,0,5/10));
+       @include MX_Bor_Radius(50%,0);
 
 
-        &:hover
-        {
-            opacity: 0.8;
-        }
+       &:hover
+       {
+        opacity: 0.8;
     }
+}
 
-    .CL_Icono_1
-    {
-        @include MX_Bor_Radius(50%,0);
-        @extend %PH_Icono;
-        background-color: $Color_24;
-        width:50px;
-        height: 50px;
-        font-size: 30px;
+.CL_Icono_1
+{
+    @extend %PH_Icono;
+    background-color: $Color_24;
+    
 
-    }
-    .CL_Icono_2
-    {
-        @include MX_Bor_Radius(5%,0);
-        @extend %PH_Icono;
-        background-color: $Color_5;
+}
+.CL_Icono_2
+{
+    @extend %PH_Icono;
+    background-color: $Color_5;
 
-    }
-    .CL_Icono_3
-    {
-        @include MX_Bor_Radius(2%,0);
-        padding: 3px;
-        border:solid 1px $Color_7;
-        @extend %PH_Icono;
-        background-color: $Color_11;
+}
+.CL_Icono_3
+{
+   
+    @extend %PH_Icono;
+    background-color: $Color_11;
 
-    }
-    .CL_Icono_4
-    {
-        @include MX_Bor_Radius(0px,0);
-        @extend %PH_Icono;
-        background-color: $Color_16;
+}
+.CL_Icono_4
+{
+    @extend %PH_Icono;
+    background-color: $Color_12;
 
-    }
+}
 }

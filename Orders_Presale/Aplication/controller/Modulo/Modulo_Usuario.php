@@ -203,15 +203,15 @@ public function FN_Habilitar_Estado_Cuenta_Usuario_Login()
      }
 
       //_*Variables usadas para no tener que recorrer un foreach para sacar los datos, estos datos se pueden sacar al igual de la variable Aobj_Datos_Usuario
-      Sesion::setValue('Nombre_Usuario',$Nombre_Usuario);
-      Sesion::setValue('Contrasenia',$Contrasenia);
-      Sesion::setValue('PK_ID_Usuario',$PK_ID_Usuario);
-      Sesion::setValue('Estado_Cuenta',$Estado_Cuenta);
-      Sesion::setValue('FK_ID_Rol',$FK_ID_Rol);
+     Sesion::setValue('Nombre_Usuario',$Nombre_Usuario);
+     Sesion::setValue('Contrasenia',$Contrasenia);
+     Sesion::setValue('PK_ID_Usuario',$PK_ID_Usuario);
+     Sesion::setValue('Estado_Cuenta',$Estado_Cuenta);
+     Sesion::setValue('FK_ID_Rol',$FK_ID_Rol);
 
       //Como la cuenta ya se encuentra activada no necesito volver a verificar el estado de la cuenta, paso a guardar directamente los datos del usuario en la variable de sesion 
      Sesion::setValue('Aobj_Datos_Usuario',$Respuesta_Consulta_Cuenta);
- 
+
      echo json_encode($Respuesta_Consulta_Cuenta);
    }else {
     //Si no se pudo habilitar la cuenta
@@ -263,6 +263,12 @@ public function FN_Listar_Modulo_Permisos_Usuario()
     $Lista_Permisos = $this->_Mdl_Usuario->FN_Listar_Modulo_Permisos_Usuario($Tipo_Listar);
     echo json_encode($Lista_Permisos);
   }
+}
+//Funcion para listar los roles registrados en el sistema
+public function FN_Listar_Roles_Usuarios()
+{
+  $Lista_Roles = $this->_Mdl_Usuario->FN_Listar_Roles_Usuarios();
+  echo json_encode($Lista_Roles);
 }
 //Funcion para Registrar  permisos  de los usuarios, esta funcion la ejecuta solo un administrador
 public function FN_Registrar_Permiso_Usuario()

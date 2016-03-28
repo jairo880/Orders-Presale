@@ -2,7 +2,7 @@
 
     %PH_TABLA
     {
-        border: 1px solid #E0E0E0;
+        margin-top: 10px;
         background-color: #fff;
         height: auto;
         width:100%;
@@ -10,23 +10,60 @@
         padding-bottom: 150px;
         z-index:5;
 
-        @include desde(tablet) {
-            width: -moz-max-content;
-            width:max-content;
-        }
+       
         & table {
             width: 100%;
             background-color: transparent;
             border-spacing: 0;
             @include MX_Box-Sizing(border-box);
-            @include Text_nav1(12px,rgba($Color_11,.7),100,center);
+            @include Text_nav1(13px,rgba($Color_11,.7),600,center);
         }
         & th {
             font-weight: bold;
         }
-        & th.Imagen
+        & th.Imagen, & td.Imagen
         {
-            width: 60px;
+            width: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            @include MX_Box-Sizing(border-box);
+
+        }
+
+        & td.CL_Tam_Texarea
+        {
+            width: 180px;
+        }
+
+        & td.CL_Tbl_Icon, & th.CL_Tbl_Icon
+        {
+            width: 20px;
+            color: $Color_3;
+            width: 20px;
+            color: #000;
+            padding: 10px;
+            @include MX_Box-Sizing(border-box);
+            font-size: 18px;
+            &:hover{
+                color:rgba($Color_3,.5);
+            }
+            & button
+
+            {
+                border:none;
+                background-color: none;
+                background: none;
+                cursor: pointer;
+
+                &:disabled {
+                    opacity: 0.6;
+                    cursor: default;
+                } 
+            }
+
+
         }
         
         & td,
@@ -36,6 +73,7 @@
             padding: 5px;
             border-collapse: collapse;
             border-spacing: 0;
+            width: -moz-min-content;
             @include MX_Box-Sizing(border-box);
         }
         & tbody > tr:nth-child(2n+1) {
@@ -46,15 +84,16 @@
             background:rgba($Color_21,.1);
         }
         & td {
-            padding: 10px 5px;
+            padding: 6px 2px;
             @include MX_Box-Sizing(border-box);
         }
         & td select
         {
             width:auto;
         }
-        & td input {
-            width: auto;
+        & td input.Input_Tabla {
+            max-width: 100px;
+            min-width: 70px;
             padding: 5px 0 5px 10px;
             box-shadow: none;
             border: solid 1px #eee;
@@ -70,7 +109,7 @@
             font-weight: bold;
         }
         & td.CL_Imagen {
-            width: 50px;
+            width: 60px;
             height: 60px;
             display: flex;
             align-items: center;

@@ -43,6 +43,7 @@
   <script src="<?php echo URL; ?>public/js/Angular/Controladores/Administracion/Controlador_Producto.js"></script>
   <script src="<?php echo URL; ?>public/js/Angular/Controladores/Administracion/Modulo_Categoria.js"></script>
   <script src="<?php echo URL; ?>public/js/Angular/Controladores/Administracion/Modulo_Promociones.js"></script>
+  <script src="<?php echo URL; ?>public/js/Angular/Controladores/Administracion/Controlador_Ejemplo_Crud.js"></script>
 </footer></section>
 <body/>
 <html/>

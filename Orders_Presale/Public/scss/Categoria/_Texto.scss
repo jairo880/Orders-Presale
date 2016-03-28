@@ -451,7 +451,7 @@ font-family: 'Merriweather Sans', sans-serif;
     color: #558b2f;
     background-color: #f1f8e9;
     border-color: #c5e1a5;
-    border-left: solid 6px #558b2f;
+    // border-left: solid 6px #558b2f;
     @extend %PH_Alerta;
     & p
     {
@@ -465,7 +465,7 @@ font-family: 'Merriweather Sans', sans-serif;
     color: #00838f;
     background-color: #e0f7fa;
     border-color: #80deea;
-    border-left: solid 6px #00838f;
+    // border-left: solid 6px #00838f;
     @extend %PH_Alerta;
     & p
     {
@@ -479,7 +479,7 @@ font-family: 'Merriweather Sans', sans-serif;
     color: #826430;
     background-color: #efe1b3;;
     border-color: #dfb56c;
-    border-left: solid 6px #826430;
+    // border-left: solid 6px #826430;
     @extend %PH_Alerta;
     & p
     {
@@ -493,7 +493,7 @@ font-family: 'Merriweather Sans', sans-serif;
     color: #fff;
     background-color: #c26565;
     border-color: #953b39;
-    border-left: solid 6px #953b39;
+    // border-left: solid 6px #953b39;
     @extend %PH_Alerta;
     & p
     {
@@ -508,7 +508,7 @@ font-family: 'Merriweather Sans', sans-serif;
     color: $Color_12;
     background-color: #FAFAFA;
     border-color: #EFEFEF;
-    border-left: solid 6px $Color_12;
+    // border-left: solid 6px $Color_12;
     @extend %PH_Alerta;
     & p
     {

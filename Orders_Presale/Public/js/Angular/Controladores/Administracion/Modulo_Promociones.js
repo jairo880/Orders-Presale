@@ -82,7 +82,7 @@
 				}
 				if(Respuesta == 'false')
 				{
-					$scope.Mensaje = "Ocurrió un error al actualizar los datos";
+					$scope.Mensaje = "No se han modificado datos de la promoción";
 					Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
 				}
 

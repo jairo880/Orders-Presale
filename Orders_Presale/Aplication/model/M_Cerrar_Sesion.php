@@ -2,9 +2,6 @@
 
 
 
-//REQUIERO EL ARCHIVO Controlador_Sesion QUE POSEE LOS METODOS PARA LA SESION
-require APP.'controller/Modulo/Controlador_Sesion.php';
-
 
 
 
@@ -30,6 +27,10 @@ class M_Cerrar_Sesion extends Controller
   */
   public function FN_Cerrar_Sesion()
   {
+    //REQUIERO EL ARCHIVO Controlador_Sesion QUE POSEE LOS METODOS PARA LA SESION
+    require APP.'controller/Modulo/Controlador_Sesion.php';
+
+
     /*Inicializa la Sessión para reconocer las variables $_SESSIÓN Iniciadas con Nombre de Usuario y Contraseñas */
     
     Sesion::init();
@@ -44,12 +45,12 @@ class M_Cerrar_Sesion extends Controller
       // session_destroy();
       /*Eliminamos la Sessión o el historial o cache de la sesión*/
       session_unset();
-
-
       return true;
       
 
 
     }
   }
+ 
+  //*****
 }

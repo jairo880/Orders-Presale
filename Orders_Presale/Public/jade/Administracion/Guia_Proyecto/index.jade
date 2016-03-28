@@ -1,8 +1,7 @@
 title {{dato.AOBJ_Datos_Usuario[0].Nombre_Usuario}} | Guia proyecto
 link(rel="stylesheet" href!="<?php echo URL;?>public/css/Templates/Administracion/Guia_Proyecto/Guia_Proyecto.css")
 //sesion Estructura
-main#CONT_Principal_Guia(ng-init="FN_Ver_Elemento_Guia(1)")
-
+main#CONT_Principal_Guia(ng-init="FN_Ver_Elemento_Guia(7)")
 	section.ng_show#SC_Guia_Estructura.Grid_Contenedor.Base-100.web-80.abcenter(ng-if="Estructura == true")
 		#CONT_Contenedor_Invisible_Header
 		#CONT_Titulo
@@ -570,6 +569,9 @@ main#CONT_Principal_Guia(ng-init="FN_Ver_Elemento_Guia(1)")
 						p.CL_Txt_1 ------------------------------
 
 						span.CL_TXT_Descripcion.icon-alerta2 Si el nombre posee mas de dos palabras, separarla por _ y la siguiente letra ponerla en Mayuscula
+
+		
+
 	//sesion diseño
 	section.ng_show#SC_Sass(ng-if="Diseno == true")
 		#CONT_Contenedor_Invisible_Header
@@ -1191,5 +1193,84 @@ main#CONT_Principal_Guia(ng-init="FN_Ver_Elemento_Guia(1)")
 							input#INPUT_Chek_Recordatorio.Btn_CheckBox(type="checkbox")
 							.CL_Check_Box_Remplazo
 							label.CL_TXT_Chek_Box_Remplazo(for="INPUT_Chek_Recordatorio") Recordar mis datos
+	//sesion diseño
+	section.ng_show#Ejemplo_Registro(ng-if="Conexion == true")
+		.CL_Alerta_1.Padding-10 Ejemplo de crud PHP + Angular + Mysql
+		.Grid_Contenedor.distributed(ng-controller="Controlador_Ejemplo_Crud")
+			.Grid_Item.Base-30.abcenter.Grid_Contenedor#FORM_Registro_Ejemplo(ng-init="FN_Listar_Ejemplo()")
+				.Grid_Item.Base-80.Padding-5
+					form(name="Ejemplo_Registro",ng-submit="FN_Registrar_Ejemplo(Ejemplo)")
+						.Padding-10.Grid_Contenedor.abcenter 
+							p.CL_Icono_3 {{ Ejemplo.Nombre_Usuario_Ejemplo | limitTo : 1 : 0}}
+						label.CL_TXT_Texto_3(for="Nombre_Usuario_Ejemplo") Nombre
+						input.Input_Estilo_1#Nombre_Usuario_Ejemplo(maxlength="15",minlength="3",name="Nombre_Usuario_Ejemplo",ng-model="Ejemplo.Nombre_Usuario_Ejemplo",type="text",required)
+
+						//Mensaje de validacion
+						div#CONT_Mensaje_Validacion(ng-show="!Ejemplo_Registro.$pristine && Ejemplo_Registro.Nombre_Usuario_Ejemplo.$error.required")
+							p.icon-key Ingresa un nombre
+						div#CONT_Mensaje_Validacion(ng-show="!Ejemplo_Registro.Nombre_Usuario_Ejemplo.$valid && !Ejemplo_Registro.$pristine && !Ejemplo_Registro. Nombre_Usuario_Ejemplo.$error.required ")
+							p.icon-login La cantidad de caracteres es muy corta
+						label.CL_TXT_Texto_3(for="Contrasenia_Ejemplo") Contraseña
+						input.Input_Estilo_1#Contrasenia_Ejemplo(maxlength="15",minlength="3",name="Contrasenia_Ejemplo",ng-model="Ejemplo.Contrasenia_Ejemplo",type="password",required)
+						//Mensaje de validacion
+						div#CONT_Mensaje_Validacion(ng-show="!Ejemplo_Registro.$pristine && Ejemplo_Registro.Contrasenia_Ejemplo.$error.required")
+							p.icon-key Ingresa una contraseña
+						div#CONT_Mensaje_Validacion(ng-show="!Ejemplo_Registro.Contrasenia_Ejemplo.$valid && !Ejemplo_Registro.$pristine && !Ejemplo_Registro.Contrasenia_Ejemplo.$error.required ")
+							p.icon-login La cantidad de caracteres es muy corta
+						input.Btn_Estilo_1(ng-disabled="!Ejemplo_Registro.$valid",type="submit" value="Registrar") 
+						button.Btn_Estilo_5(ng-click="Ejemplo.Nombre_Usuario_Ejemplo = ''; Ejemplo.Contrasenia_Ejemplo = ''") Limpiar
+			.Grid_Item.Base-40#FORM_Registro_Ejemplo
+				.Grid_Contenedor.Padding-5
+					.Grid_Item.Base-50
+						.CL_Contenedor_Buscador
+							input.CL_Buscar#BuscarOrden(type="text", name="" placeholder="Buscar usuario" ng-model="Buscador_Usuario")
+							label.icon-buscar.CL_Icono_Buscar(for="BuscarOrden")
+					.Btn_Estilo_7(ng-click="FN_Listar_Ejemplo()") Consultar
+				form.Grid_Contenedor.abcenter(name="Form_Lista",ng-init="BL_Edicion_Datos = false")
+					.Tabla_Estilo_3
+						table
+							thead
+								tr
+									th.Imagen 
+									th Nombre 
+									th Contraseña
+									th 
+									th 
+							tbody
+								tr(ng-repeat="Lista_Ejemplo in AOBJ_Lista_Ejemplo | filter:Buscador_Usuario")
+									td.CL_Imagen
+										p.CL_Icono_3 {{ Lista_Ejemplo.Nombre_Usuario_Ejemplo | limitTo : 1 : 0}}
+									
+									th
+										input.Input_Tabla(name="Nombre_Usuario_Ejemplo{{$index}}",ng-disabled="BL_Edicion_Datos == false",maxlength="15",minlength="3",required,ng-model="Lista_Ejemplo.Nombre_Usuario_Ejemplo")
+										//Mensaje de validacion
+										div#CONT_Mensaje_Validacion(ng-show="!Form_Lista.$pristine && Form_Lista.Nombre_Usuario_Ejemplo{{$index}}.$error.required")
+											p.icon-key Ingresa un nombre
+										div#CONT_Mensaje_Validacion(ng-show="!Form_Lista.Nombre_Usuario_Ejemplo{{$index}}.$valid && !Form_Lista.$pristine && !Form_Lista. Nombre_Usuario_Ejemplo{{$index}}.$error.required ")
+											p.icon-login La cantidad de caracteres es muy corta 
+									th
+										input.Input_Tabla(name="Contrasenia_Ejemplo{{$index}}",ng-disabled="BL_Edicion_Datos == false",maxlength="15",minlength="3",required,ng-model="Lista_Ejemplo.Contrasenia_Ejemplo")
+										//Mensaje de validacion
+										div#CONT_Mensaje_Validacion(ng-show="!Form_Lista.$pristine && Form_Lista.Contrasenia_Ejemplo{{$index}}.$error.required")
+											p.icon-key Ingresa un nombre
+										div#CONT_Mensaje_Validacion(ng-show="!Form_Lista.Contrasenia_Ejemplo{{$index}}.$valid && !Form_Lista.$pristine && !Form_Lista. Contrasenia_Ejemplo{{$index}}.$error.required ")
+											p.icon-login La cantidad de caracteres es muy corta 
+									td.CL_Tbl_Icon
+										button.CL_TXT_Pri_Btn.relative.icon-actualizar(ng-disabled="!Form_Lista.$valid",ng-class="{Invisible:BL_Edicion_Datos == false, Visible: BL_Edicion_Datos == true}" ng-click="BL_Edicion_Datos =!BL_Edicion_Datos; FN_Modificar_Ejemplo($index)" value="Actualizar")
+											span.CL_TXT_Info_Btn Actualizar
+										.icon-lapiz.CL_TXT_Pri_Btn.relative(ng-class="{Invisible:BL_Edicion_Datos == true, Visible: BL_Edicion_Datos == false}" ng-click="BL_Edicion_Datos =!BL_Edicion_Datos")
+											span.CL_TXT_Info_Btn Editar 
+
+									td.CL_Tbl_Icon
+										.icon-cancelar2.CL_TXT_Pri_Btn.relative(ng-click="FN_Eliminar_Ejemplo($index)")
+											span.CL_TXT_Info_Btn Eliminar
+					.CL_Alerta_2.ng_repeat_anim1.Grid_Contenedor.abcenter(ng-show="(AOBJ_Lista_Ejemplo |filter:Buscador_Usuario:Lista_Ejemplo.Nombre_Usuario_Ejemplo).length == 0")
+						.CL_TXT_Texto_3.Base-100.Grid_Item.abcenter.Padding-10 No se han encontrado usuarios
+		.Grid_Contenedor.CL_Alerta_5.abcenter.column Archivos utilizados
+			ul
+				li.icon-file Controlador_Ejemplo.js, se encuentra en la carpeta Public/js/Angular/Controladores
+				li.icon-file Modulo_Ejemplo_Crud.php, se encuentra en la carpeta Aplication/controller/Modulo/
+				li.icon-file M_Ejemplo_Crud.php, se encuentra en la carpeta Aplication/model
+
 
 

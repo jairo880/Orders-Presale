@@ -44,14 +44,8 @@
               </div>
               <!--Elemento visible solo para Administradores-->
               <div ng-if="dato.AOBJ_Datos_Usuario[0].FK_ID_Rol == 1">
-                <li><a href="<?php echo URL; ?>Error/Error" class="CL_Btn_Enlace icon-bulb"><span class="CL_TXT_Nav">Error 404</span></a></li>
                 <li class="ng_repeat_anim1"><a href="<?php echo URL; ?>Administracion/Guia_Proyecto" class="CL_Btn_Enlace icon-bulb"><span class="CL_TXT_Nav">Guia proyecto</span></a></li>
-                <li class="ng_repeat_anim1"><a href="<?php echo URL; ?>Administracion/Guia_Proyecto" class="CL_Btn_Enlace icon-administracion"><span class="CL_TXT_Nav">Administracion Inicio</span></a></li>
               </div>
-            </section>
-            <!--Elemento visible solo para Administradores-->
-            <section id="CONT_SC_Paginas" ng-if="dato.AOBJ_Datos_Usuario[0].FK_ID_Rol == 1">
-              <li><a href="<?php echo URL; ?>Administracion/Inicio_Administracion/Modulo_Permisos_Usuario" class="CL_Btn_Enlace icon-settings"><span class="CL_TXT_Nav">Modulo Permisos usuario</span></a></li>
             </section>
             <!--Elemento visible solo para Administradores-->
             <section id="CONT_SC_Paginas" ng-if="BL_Guia == true ">
@@ -62,6 +56,7 @@
                 <li><a ng-click="FN_Ver_Elemento_Guia(4)" class="CL_Btn_Enlace icon-angular"><span class="CL_TXT_Nav">Angular.js</span></a></li>
                 <li><a ng-click="FN_Ver_Elemento_Guia(5)" class="CL_Btn_Enlace icon-html5"><span class="CL_TXT_Nav">HTML</span></a></li>
                 <li><a ng-click="FN_Ver_Elemento_Guia(6)" class="CL_Btn_Enlace icon-database"><span class="CL_TXT_Nav">Base de datos</span></a></li>
+                <li><a ng-click="FN_Ver_Elemento_Guia(7)" class="CL_Btn_Enlace icon-feed-rss-2"><span class="CL_TXT_Nav">CRUD ejemplo</span></a></li>
               </div>
             </section>
             <!--Elemento visible solo para administradores-->
@@ -70,17 +65,22 @@
                 <p class="CL_TXT_Detalle">Opciones</p>
                 <li><a href="<?php echo URL; ?>Administracion/Inicio_Administracion/Registrar_Nuevo_Usuario" class="CL_Btn_Enlace icon-registrarme"><span class="CL_TXT_Nav">Registrar usuario nuevo</span></a></li>
                 <li><a href="<?php echo URL; ?>Administracion/Inicio_Administracion/Consultar_Usuarios" class="CL_Btn_Enlace icon-users"><span class="CL_TXT_Nav">Consultar usuarios registrados</span></a></li>
-                <li><a href="<?php echo URL; ?>Administracion/Inicio_Administracion/Modulo_Gestion_De_Contenido" class="CL_Btn_Enlace icon-galeria1"><span class="CL_TXT_Nav">Modulo gestion de contenido</span></a></li>
               </div>
             </section>
             <!--Elemento visible solo para Administradores-->
             <section id="CONT_SC_Herramientas" ng-if="dato.AOBJ_Datos_Usuario[0].FK_ID_Rol == 1">
               <div>
                 <p class="CL_TXT_Detalle">Opciones</p>
-                <li><a href="<?php echo URL; ?>Administracion/Inicio_Administracion/Modulo_Producto" class="CL_Btn_Enlace icon-puzzle-piece"><span class="CL_TXT_Nav">Modulo producto</span></a></li>
-                <li><a href="<?php echo URL; ?>Administracion/Inicio_Administracion/Modulo_Promociones" class="CL_Btn_Enlace icon-puzzle-piece"><span class="CL_TXT_Nav">Modulo promociones</span></a></li>
-                <li><a href="<?php echo URL; ?>Administracion/Inicio_Administracion/Modulo_Categoria" class="CL_Btn_Enlace icon-list-add"><span class="CL_TXT_Nav">Modulo Categoria</span></a></li>
+                <li><a href="<?php echo URL; ?>Administracion/Inicio_Administracion/Modulo_Producto" class="CL_Btn_Enlace icon-puzzle-piece"><span class="CL_TXT_Nav">M&oacute;dulo producto</span></a></li>
+                <li><a href="<?php echo URL; ?>Administracion/Inicio_Administracion/Modulo_Promociones" class="CL_Btn_Enlace icon-puzzle-piece"><span class="CL_TXT_Nav">M&oacute;dulo promociones</span></a></li>
+                <li><a href="<?php echo URL; ?>Administracion/Inicio_Administracion/Modulo_Categoria" class="CL_Btn_Enlace icon-puzzle-piece"><span class="CL_TXT_Nav">M&oacute;dulo categoria</span></a></li>
+                <li><a href="<?php echo URL; ?>Administracion/Inicio_Administracion/Modulo_Gestion_De_Contenido" class="CL_Btn_Enlace icon-puzzle-piece"><span class="CL_TXT_Nav">M&oacute;dulo gestion de contenido</span></a></li>
               </div>
+            </section>
+            <!--Elemento visible solo para Administradores-->
+            <section id="CONT_SC_Paginas" ng-if="dato.AOBJ_Datos_Usuario[0].FK_ID_Rol == 1">
+              <li><a href="<?php echo URL; ?>Administracion/Inicio_Administracion/Modulo_Permisos_Usuario" class="CL_Btn_Enlace icon-puzzle-piece"><span class="CL_TXT_Nav">M&oacute;dulo permisos usuario</span></a></li>
+              <li><a href="<?php echo URL; ?>Error/Error" class="CL_Btn_Enlace icon-exclamation"><span class="CL_TXT_Nav">Error 404</span></a></li>
             </section>
           </ul>
         </nav>

@@ -36,71 +36,96 @@
      */
      function Controlador_Principal($scope, Fabrica, $timeout, $interval, $location, $anchorScroll, $http)
      {
-        $scope.Diseno = true;
+        $scope.Diseno = false;
         $scope.DB = false;
         $scope.Html = false;
         $scope.Angular = false;
         $scope.Sass = false;
         $scope.Estructura = false;
         $scope.BL_Guia = false;
+        $scope.Conexion = true;
+
 
         $scope.FN_Ver_Elemento_Guia = function(Tipo_Visible)
         {
             if(Tipo_Visible == 1){
-             $scope.Diseno = true;
-             $scope.DB = false;
-             $scope.Html = false;
-             $scope.Angular = false;
-             $scope.Sass = false;
-             $scope.Estructura = false;
-             $scope.BL_Guia = true;
-         }
-         if(Tipo_Visible == 2){
-             $scope.Diseno = false;
-             $scope.DB = false;
-             $scope.Html = false;
-             $scope.Angular = false;
-             $scope.Sass = false;
-             $scope.Estructura = true;
-             $scope.BL_Guia = true;
-         }
-         if(Tipo_Visible == 3){
-             $scope.Diseno = false;
-             $scope.DB = false;
-             $scope.Html = false;
-             $scope.Angular = false;
-             $scope.Sass = true;
-             $scope.Estructura = false;
-             $scope.BL_Guia = true;
-         }
-         if(Tipo_Visible == 4){
-             $scope.Diseno = false;
-             $scope.DB = false;
-             $scope.Html = false;
-             $scope.Angular = true;
-             $scope.Sass = false;
-             $scope.Estructura = false;
-             $scope.BL_Guia = true;
-         }
-         if(Tipo_Visible == 5){
-             $scope.Diseno = false;
-             $scope.DB = false;
-             $scope.Html = true;
-             $scope.Angular = false;
-             $scope.Sass = false;
-             $scope.Estructura = false;
-             $scope.BL_Guia = true;
-         }
-         if(Tipo_Visible == 6){
-             $scope.Diseno = false;
-             $scope.DB = true;
-             $scope.Html = false;
-             $scope.Angular = false;
-             $scope.Sass = false;
-             $scope.Estructura = false;
-             $scope.BL_Guia = true;
-         }
-     };
+               $scope.Diseno = true;
+               $scope.DB = false;
+               $scope.Html = false;
+               $scope.Angular = false;
+               $scope.Sass = false;
+               $scope.Estructura = false;
+               $scope.BL_Guia = true;
+               $scope.Conexion = false;
+
+           }
+           if(Tipo_Visible == 2){
+               $scope.Diseno = false;
+               $scope.DB = false;
+               $scope.Html = false;
+               $scope.Angular = false;
+               $scope.Sass = false;
+               $scope.Estructura = true;
+               $scope.BL_Guia = true;
+               $scope.Conexion = false;
+
+           }
+           if(Tipo_Visible == 3){
+               $scope.Diseno = false;
+               $scope.DB = false;
+               $scope.Html = false;
+               $scope.Angular = false;
+               $scope.Sass = true;
+               $scope.Estructura = false;
+               $scope.BL_Guia = true;
+               $scope.Conexion = false;
+
+           }
+           if(Tipo_Visible == 4){
+               $scope.Diseno = false;
+               $scope.DB = false;
+               $scope.Html = false;
+               $scope.Angular = true;
+               $scope.Sass = false;
+               $scope.Estructura = false;
+               $scope.BL_Guia = true;
+               $scope.Conexion = false;
+
+           }
+           if(Tipo_Visible == 5){
+               $scope.Diseno = false;
+               $scope.DB = false;
+               $scope.Html = true;
+               $scope.Angular = false;
+               $scope.Sass = false;
+               $scope.Estructura = false;
+               $scope.BL_Guia = true;
+               $scope.Conexion = false;
+
+           }
+           if(Tipo_Visible == 6){
+               $scope.Diseno = false;
+               $scope.DB = true;
+               $scope.Html = false;
+               $scope.Angular = false;
+               $scope.Sass = false;
+               $scope.Estructura = false;
+               $scope.BL_Guia = true;
+               $scope.Conexion = false;
+
+           }
+           if(Tipo_Visible == 7){
+               $scope.Diseno = false;
+               $scope.DB = false;
+               $scope.Html = false;
+               $scope.Angular = false;
+               $scope.Sass = false;
+               $scope.Estructura = false;
+               $scope.BL_Guia = true;
+               $scope.Conexion = true;
+
+           }
+       };
         //_*variable para vissualizrar entre slider o producto
         $scope.BL_Contenedor_Estado = false;
 
@@ -618,8 +643,18 @@
       }
 
 
+      if (Tipo_Funcion == 6)
+      {
+        $scope.BL_Ver_Confirmacion = !$scope.BL_Ver_Confirmacion;
+        if (Confirmacion === true)
+        {
 
-  };
+            $scope.FN_Eliminar_Permiso_Usuario($scope.NUM_Eliminar_Posicion);
+        }
+    }
+    
+
+};
   //_*************************************************************
   //_**************************************************************
   //_*********************************Producto***********************
@@ -769,8 +804,8 @@ $scope.FN_Recuperar_contrasenia = function (formData) {
 };
 $scope.FN_Habilitar_Estado_Cuenta_Usuario_Login = function(){
 
-   $http.post(url + 'Modulo/Modulo_Usuario/FN_Habilitar_Estado_Cuenta_Usuario_Login')
-   .success(function (res) {
+ $http.post(url + 'Modulo/Modulo_Usuario/FN_Habilitar_Estado_Cuenta_Usuario_Login')
+ .success(function (res) {
     var ResultadoFuncion = (res);
 
     if(ResultadoFuncion!= 'false' && ResultadoFuncion != 'Cuenta_Cancelada')//_*el ctrl retorna un bool, si este es true ejecuta la funcion mensaje
@@ -804,7 +839,7 @@ $scope.FN_Habilitar_Estado_Cuenta_Usuario_Login = function(){
 
 
 })
-   .error(function (res, status) {
+ .error(function (res, status) {
     alerta('error', null, res);
 }); 
 };
@@ -916,6 +951,8 @@ $scope.FN_Cerrar_Sesion = function(){
             $scope.Mensaje="La sessión se cerró correctamente";
             Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje,100);
             $scope.FN_Capturar_Datos_Usuario_Iniciado();
+
+            $http.post(url + 'Modulo/Modulo_Verificar_Permisos/Verificar_Permisos');
         }
         if(ResultadoFuncion=='false'){
             $scope.Mensaje="No se pudo cerrar Sessión";
@@ -947,32 +984,32 @@ $scope.FN_Cerrar_Sesion = function(){
             if(tipo == 'Nombre_No_Actualizado')
             {
                                     //mensaje de Alerta
-                                    $scope.Mensaje = "No se ha modificado ninguna información del usuario" + " " + Fabrica.objeto.AOBJ_Datos_Usuario[0].Nombre_Usuario;
+                                    $scope.Mensaje = "Los datos del usuario " + " " + Fabrica.objeto.AOBJ_Datos_Usuario[0].Nombre_Usuario + "ya se encuentran actualizados";
 
                                     Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
                                     //Ejecuto la funcion listar para asi mostrar los cambios generados en la base de datos
                                 }
                                 if (tipo == 'Usuario_Existente'){
                                       //mensaje de Alerta
-                                      $scope.Mensaje = "El nombre de usuario ya se encuentra en uso ";
+                                      $scope.Mensaje = "El nombre de usuario ya se encuentra en uso, ingresa otro nombre ";
 
                                       Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
                                     //Ejecuto la funcion listar para asi mostrar los cambios generados en la base de datos
                                 }
 
-                                if (tipo == 'true')//el ctrl retorna un bool, si este es true ejecuta la funcion mensaje
+                                if (tipo == 'true')
                                 {
 
                                     //mensaje de Alerta
-                                    $scope.Mensaje = "Datos actualizados del usuario" + " " + Fabrica.objeto.AOBJ_Datos_Usuario[0].Nombre_Usuario;
+                                    $scope.Mensaje = "Los datos del usuario " + " " + Fabrica.objeto.AOBJ_Datos_Usuario[0].Nombre_Usuario  + " " + "han sido actualizados";
 
                                     Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
                                     //Ejecuto la funcion listar para asi mostrar los cambios generados en la base de datos
                                 }
-                                if (tipo == 'false')//el ctrl retorna un bool, si este es true ejecuta la funcion mensaje
+                                if (tipo == 'false')
                                 {
                                     //mensaje de Alerta
-                                    $scope.Mensaje = "No se ha modificado ninguna información del usuario" + " " + Fabrica.objeto.AOBJ_Datos_Usuario[0].Nombre_Usuario;
+                                    $scope.Mensaje = "Los datos del usuario " + " " + Fabrica.objeto.AOBJ_Datos_Usuario[0].Nombre_Usuario  + " " + "ya se encuentran actualizados";
                                     Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
                                 }
 
@@ -999,8 +1036,8 @@ $scope.FN_Cerrar_Sesion = function(){
 
 
 
-                                if (tipo == 'true')//el ctrl retorna un bool, si este es true ejecuta la funcion mensaje
-                                {
+                if (tipo == 'true')
+                {
 
                                     //mensaje de Alerta
                                     $scope.Mensaje = "Tu contraseña ha sido actualizada";
@@ -1008,7 +1045,7 @@ $scope.FN_Cerrar_Sesion = function(){
                                     Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
                                     //Ejecuto la funcion listar para asi mostrar los cambios generados en la base de datos
                                 }
-                                if (tipo == 'false')//el ctrl retorna un bool, si este es true ejecuta la funcion mensaje
+                                if (tipo == 'false')
                                 {
                                     //mensaje de Alerta
                                     $scope.Mensaje = "No se ha actualiado la contraseña, verifica que la contraseña actual sea correcta";
@@ -1125,7 +1162,7 @@ $scope.FN_Cerrar_Sesion = function(){
                 if(Respuesta == '_Sesion_No_Iniciada')
                 {
                       //mensaje de AlertaN
-                      $scope.Mensaje = "Inicia sesion para poder publicar un comnetario";
+                      $scope.Mensaje = "Inicia sesion para poder publicar un comentario";
                       Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
                   }
                   else if(Respuesta == 'Comentario_Registrado')
@@ -1213,18 +1250,18 @@ $scope.FN_Cerrar_Sesion = function(){
               }
               else if(Respuesta == 'false')
               {
-               $scope.Mensaje = "Ha ocurrido un error al valorar el comentario";
-               Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+                 $scope.Mensaje = "Ha ocurrido un error al valorar el comentario";
+                 Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
 
-           }
-           else
-           {
-               $scope.Mensaje = "Ha ocurrido un error al valorar el comentario";
-               Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+             }
+             else
+             {
+                 $scope.Mensaje = "Ha ocurrido un error al valorar el comentario";
+                 Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
 
-           }
+             }
 
-       })
+         })
             .error(function (res, status) {
                 alerta('error', null, res);
             });
@@ -1376,7 +1413,7 @@ $scope.FN_Cerrar_Sesion = function(){
                  else
                  {
                       //mensaje de AlertaN
-                      $scope.Mensaje = "Ha ocurrido un error al actualizar los datos de la imagen";
+                      $scope.Mensaje = "Los datos se encuentran actualizados";
                       Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
 
                   }
@@ -1408,7 +1445,7 @@ $scope.FN_Cerrar_Sesion = function(){
                  else
                  {
                       //mensaje de AlertaN
-                      $scope.Mensaje = "Ha ocurrido un error al actualizar los datos de la imagen";
+                      $scope.Mensaje = "Los datos se encuentran actualizados";
                       Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
 
                   }
@@ -1519,9 +1556,9 @@ $scope.AOBJ_Lista_Permisos_Usuario= [];
 $scope.Tipo_Lista_Seleccionado = 0; 
 $scope.FN_Listar_Modulo_Permisos_Usuario = function (Tipo_Listar)
 {
-   $scope.Tipo_Lista = '';
-   if(Tipo_Listar == 1)
-   {
+ $scope.Tipo_Lista = '';
+ if(Tipo_Listar == 1)
+ {
     $scope.Tipo_Lista = {
         Tipo_Listar: 1
     };
@@ -1529,7 +1566,7 @@ $scope.FN_Listar_Modulo_Permisos_Usuario = function (Tipo_Listar)
 }
 if(Tipo_Listar == 2)
 {
- $scope.Tipo_Lista = {
+   $scope.Tipo_Lista = {
     Tipo_Listar: 2
 };
 $scope.Tipo_Lista_Seleccionado = Tipo_Listar;
@@ -1552,6 +1589,21 @@ $http.post(url + 'Modulo/Modulo_Usuario/FN_Listar_Modulo_Permisos_Usuario',$scop
 };
 
 
+
+$scope.AOBJ_Lista_Roles= [];
+$scope.FN_Listar_Roles_Usuarios= function ()
+{
+
+    $http.get(url + 'Modulo/Modulo_Usuario/FN_Listar_Roles_Usuarios')
+    .success(function (res) {
+        $scope.AOBJ_Lista_Roles = res;
+
+    })
+    .error(function (res, status) {
+        alerta('error', null, res);
+    });
+};
+
 $scope.FN_Registrar_Permiso_Usuario = function (Datos)
 {
 
@@ -1564,6 +1616,10 @@ $scope.FN_Registrar_Permiso_Usuario = function (Datos)
             $scope.Mensaje = "Vista registrada correctamente ";
             Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
             $scope.FN_Listar_Modulo_Permisos_Usuario($scope.Tipo_Lista_Seleccionado);
+            $scope.PM.FK_ID_Rol = '';
+            $scope.PM.Nombre_Vista = '';
+            $scope.PM.Url_Vista = '';
+
         }
         if (Respuesta == 'false')
         {
@@ -1615,13 +1671,13 @@ $scope.FN_Modificar_Permiso_Usuario = function (Posicion_Permiso)
 
         if (Respuesta == 'true')
         {
-            $scope.Mensaje = "Permiso modificado correctamente ";
+            $scope.Mensaje = "Permiso actualizado correctamente ";
             Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
             $scope.FN_Listar_Modulo_Permisos_Usuario($scope.Tipo_Lista_Seleccionado);
         }
         if (Respuesta == 'false')
         {
-            $scope.Mensaje = "Error al modificar el permiso";
+            $scope.Mensaje = "No se han modificado datos del permiso solicitado";
             Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
         }
 

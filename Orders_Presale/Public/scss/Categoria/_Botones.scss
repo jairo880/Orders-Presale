@@ -34,17 +34,17 @@
         }
         @include desde(tablet) {
             font-size: 11px;
-            padding: 7px 10px;
+            padding: 9px 10px;
 
         }
         @include desde(web) {
             font-size: 13px;
-            padding: 7px 11px;
+            padding: 9px 11px;
 
         }
         @include desde(Hd) {
             font-size: 15px;
-            padding: 7px 10px;
+            padding: 9px 10px;
 
         }
 
@@ -76,7 +76,7 @@
     .Btn_Estilo_5 {
         color: #455A64;
         background-color: #FAFAFA;
-        border-color: #455A64;
+        border-color: #F1F2F4;
         @extend %PH_Btn_Estilo_General;
     }
     .Btn_Estilo_6 {
@@ -479,7 +479,7 @@
 
 
     }
-     .Btn_Circular_4
+    .Btn_Circular_4
     {
         color: $Color_6;
         background-color: $Color_24;
@@ -513,11 +513,12 @@
         @include MX_Box-Sizing(border-box);
         @include MX_Box_Shadow(0px, 0px, 1px, 0px,rgba(0,0,0,3/10));
         @include MX_Bor_Radius(3px,0);
+        @include MX_Animacion_Normal(2/10, ease, 2/10);
 
         &:focus
         {
-            border:1px solid $Color_21;
-            @include MX_Box_Shadow(0px,0px, 5px, 0px, $Color_21);
+            border:1px solid $Color_2;
+            @include MX_Box_Shadow(0px,0px, 5px, 0px, rgba($Color_3,.6));
         }
 
 
@@ -528,7 +529,7 @@
         top: 2px;
         right: 40px;
         cursor: pointer;
-        color: $Color_3;
+        color: rgba($Color_3,.6);
         font-size: 20px;
     }
 

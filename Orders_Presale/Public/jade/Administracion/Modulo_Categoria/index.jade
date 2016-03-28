@@ -5,72 +5,86 @@ section#SC_Registrar_Categoria(ng-controller="Controlador_Registro_Categoria")
 	main#CONT_Categoria
 		#CONT_Contenedor_Invisible_Header
 		#CONT_Registro_Categoria
-			.CONT_Registro_Categoria.Grid_Contenedor.Base-100.abcenter
-				.CL_Alerta_6.Padding-5.justify(ng-init="BL_Categoria_Opcion = 2;Listar_Categorias()")
-					p(ng-show="BL_Categoria_Opcion == 2") Registrar categoria
-					p(ng-show="BL_Categoria_Opcion == 1") Consultar Categorias
-					.Grid_Item.Base-15.No_Padding.abcenter.Grid_Contenedor
-						.Btn_Estilo_5.icon-list-1(ng-show="BL_Categoria_Opcion == 1",ng-click="Listar_Categorias()") Listar Categorias
-				.Grid_Contenedor.Grid_Total.abcenter.Padding-10
-					.Btn_Estilo_7.icon-agregar-producto(ng-click="BL_Categoria_Opcion = 2") Agregar nueva categoria
-					.Btn_Estilo_5.icon-list-1(ng-click="BL_Categoria_Opcion = 1") Categorias
+			.Grid_Contenedor.Base-80.Padding-10.main_end.cross_end(ng-init="Listar_Categorias();BL_Categoria_Opcion = 1")
+				.Grid_Item.Base-30
+					p.ng_show.CL_TXT_Texto_4(ng-show="BL_Categoria_Opcion == 2") Registrar categoria
+					p.ng_show.CL_TXT_Texto_4(ng-show="BL_Categoria_Opcion == 1") Consultar Categorias
+				.Grid_Item.Base-30(ng-show="BL_Categoria_Opcion == 1" )
+					.CL_Contenedor_Buscador
+						input.CL_Buscar#BuscarCategoria(type="text", name="" placeholder="Buscar categoria" ng-model="Buscar_Categoria")
+						label.icon-buscar.CL_Icono_Buscar(for="BuscarCategoria")
+				.Btn_Estilo_5.icon-list-1(ng-click="BL_Categoria_Opcion = 1") Categorias
+				.Btn_Estilo_1.icon-plus(ng-click="BL_Categoria_Opcion = 2") Nueva categoria
 
-				form#FORM_Registro_Categoria.Grid_Contenedor.main_start.Base-100.tablet-40.ng_show.Padding-10.column(name="Form_Registro_Categoria" ng-submit="FN_Registrar_Categoria(RC)" ng-show="BL_Categoria_Opcion == 2")
-					.Grid_Contenedor.abcenter.Base-100
-						p.CL_Icono_1 {{ RC.Nombre_Categoria | limitTo : 1 : 0}}
-					.Grid_Contenedor.Base-70.column
-						label.CL_TXT_Texto_3(for="#Nombre_Categoria") Nombre de la categoria
-						input#Nombre_Categoria.Input_Estilo_1(maxlength="30",minlength="6",type="text",name="Nombre_Categoria",ng-model="RC.Nombre_Categoria",placeholder="Ingresa el nombre de la categoria",required)
-						//Mensaje de validacion
-						div#CONT_Mensaje_Validacion(ng-show="!Form_Registro_Categoria.$pristine && Form_Registro_Categoria.Nombre_Categoria.$error.required ")
-							p.icon-login Ingresa un nombre para la categoria
-						div#CONT_Mensaje_Validacion(ng-show="!Form_Registro_Categoria.Nombre_Categoria.$valid && !Form_Registro_Categoria.$pristine && !Form_Registro_Categoria.Nombre_Categoria.$error.required")
-							p.icon-login La cantidad de caracteres es muy corta
+			form#FORM_Registro_Categoria.Grid_Contenedor.main_start.Base-90.tablet-40.ng_show.Padding-10.column(name="Form_Registro_Categoria" ng-submit="FN_Registrar_Categoria(RC)" ng-show="BL_Categoria_Opcion == 2")
+				.Grid_Contenedor.abcenter.Base-90
+					p.CL_Icono_1 {{ RC.Nombre_Categoria | limitTo : 1 : 0}}
+				.Grid_Contenedor.Base-70.column
+					label.CL_TXT_Texto_3(for="#Nombre_Categoria") Nombre de la categoria
+					input#Nombre_Categoria.Input_Estilo_1(maxlength="30",minlength="6",type="text",name="Nombre_Categoria",ng-model="RC.Nombre_Categoria",placeholder="Ingresa el nombre de la categoria",required)
+					//Mensaje de validacion
+					div#CONT_Mensaje_Validacion(ng-show="!Form_Registro_Categoria.$pristine && Form_Registro_Categoria.Nombre_Categoria.$error.required ")
+						p.icon-login Ingresa un nombre para la categoria
+					div#CONT_Mensaje_Validacion(ng-show="!Form_Registro_Categoria.Nombre_Categoria.$valid && !Form_Registro_Categoria.$pristine && !Form_Registro_Categoria.Nombre_Categoria.$error.required")
+						p.icon-login La cantidad de caracteres es muy corta
 
-						label.CL_TXT_Texto_3(for="#Descripcion") Descripcion
-						textarea#Descripcion.Textarea_Estilo_1(minlength="10",maxlength="100" ,type="text",name="Descripcion",ng-model="RC.Descripcion",placeholder="Ingrese la Descripcion de la categoria",required)
-						//Mensaje de validacion
-						div#CONT_Mensaje_Validacion(ng-show="!Form_Registro_Categoria.$pristine && Form_Registro_Categoria.Descripcion.$error.required ")
-							p.icon-login Ingresa una descripci&oacute;n para la categoria
-						div#CONT_Mensaje_Validacion(ng-show="!Form_Registro_Categoria.Descripcion.$valid && !Form_Registro_Categoria.$pristine && !Form_Registro_Categoria.Descripcion.$error.required")
-							p.icon-login La cantidad de caracteres es muy corta
-					.Grid_Contenedor.Padding-10.justify.Base-70
-						input.Btn_Estilo_1#submit(type="submit",ng-disabled="!Form_Registro_Categoria.$valid" value="Registrar categoria" )
-						a.Btn_Estilo_5(ng-click="FN_Limpiar_Formulario()" ) Limpiar formulario
+					label.CL_TXT_Texto_3(for="#Descripcion") Descripcion
+					textarea#Descripcion.Textarea_Estilo_1(minlength="10",maxlength="100" ,type="text",name="Descripcion",ng-model="RC.Descripcion",placeholder="Ingrese la Descripcion de la categoria",required)
+					//Mensaje de validacion
+					div#CONT_Mensaje_Validacion(ng-show="!Form_Registro_Categoria.$pristine && Form_Registro_Categoria.Descripcion.$error.required ")
+						p.icon-login Ingresa una descripci&oacute;n para la categoria
+					div#CONT_Mensaje_Validacion(ng-show="!Form_Registro_Categoria.Descripcion.$valid && !Form_Registro_Categoria.$pristine && !Form_Registro_Categoria.Descripcion.$error.required")
+						p.icon-login La cantidad de caracteres es muy corta
+				.Grid_Contenedor.Padding-10.justify.Base-70
+					input.Btn_Estilo_1#submit(type="submit",ng-disabled="!Form_Registro_Categoria.$valid" value="Registrar categoria" )
+					a.Btn_Estilo_5(ng-click="FN_Limpiar_Formulario()" ) Limpiar formulario
 	#CONT_Categorias.ng_show(ng-show="BL_Categoria_Opcion == 1")
-		.Grid_Contenedor.Base-100.abcenter.Padding-10
-			.Tabla_Estilo_1.relative.Grid_Item.Base-50
-						table
-							thead
-								tr
-									th.Imagen
-															
-									th Nombre categoria
-									th Descripcion
-									
-									th Editar Categoria
-									th Eliminar
+		.Grid_Contenedor.Base-90.abcenter.Padding-10
+			form.Grid_Contenedor.abcenter(name="Form_Categoria")
+				.Tabla_Estilo_3.relative.Grid_Item.Base-50
+							table
+								thead
+									tr
+										th.Imagen
+										th Nombre
+										th Descripcion
+										th.CL_Tbl_Icon 
+										th.CL_Tbl_Icon
 
 
-							tbody(ng-init="BL_Edicion_Datos = false")
-								tr(ng-repeat="Categoria in AOBJ_Lista_Categorias_Registradas ")
-									td
-										p.CL_Icono_1 {{ Categoria.Nombre_Categoria | limitTo : 1 : 0}}
-									
-									td 
-										textarea#Nombre_Categoria.Input_Estilo_1(maxlength="100" ,type="text",name="Nombre_Categoria",ng-model="Categoria.Nombre_Categoria" ng-disabled="BL_Edicion_Datos == false" )
-									
-									
-									td
-										textarea#Descripcion.Textarea_Estilo_1(maxlength="200" ,name="Descripcion",ng-model="Categoria.Descripcion" ng-disabled="BL_Edicion_Datos == false" )
-									
-									
-									td  
-										.Btn_Estilo_3.icon-actualizar(ng-class="{Invisible:BL_Edicion_Datos == false, Visible: BL_Edicion_Datos == true}" ng-click="BL_Edicion_Datos =!BL_Edicion_Datos; FN_Modificar_Datos_Categoria($index)") Guardar
-										.Btn_Estilo_5.icon-lapiz(ng-class="{Invisible:BL_Edicion_Datos == true, Visible: BL_Edicion_Datos == false}" ng-click="BL_Edicion_Datos =!BL_Edicion_Datos") Editar
+								tbody(ng-init="BL_Edicion_Datos = false")
+									tr(ng-repeat="Categoria in AOBJ_Lista_Categorias_Registradas | filter:Buscar_Categoria:Categoria.Nombre_Categoria")
+										td.Imagen
+											p.CL_Icono_1 {{ Categoria.Nombre_Categoria | limitTo : 1 : 0}}
+										
+										td.CL_Tam_Texarea
+											textarea.Textarea_Estilo_1(maxlength="30",minlength="6",type="text",name="Nombre_Categoria{{$index}}",ng-model="Categoria.Nombre_Categoria" ng-disabled="BL_Edicion_Datos == false",required )
+											//Mensaje de validacion
+											div#CONT_Mensaje_Validacion(ng-show="!Form_Categoria.$pristine && Form_Categoria.Nombre_Categoria{{$index}}.$error.required")
+												p.icon-key Ingresa un descripcion
+											div#CONT_Mensaje_Validacion(ng-show="!Form_Categoria.Nombre_Categoria{{$index}}.$valid && !Form_Categoria.$pristine && !Form_Categoria.Nombre_Categoria{{$index}}.$error.required ")
+												p.icon-login La cantidad de caracteres es muy corta
+										
+										
+										td.CL_Tam_Texarea
+											textarea.Textarea_Estilo_1(minlength="10",maxlength="100",name="Descripcion{{$index}}",ng-model="Categoria.Descripcion" ng-disabled="BL_Edicion_Datos == false",required )
+											//Mensaje de validacion
 
-									td 
-										.Btn_Estilo_2.icon-cancelar2(ng-click="FN_Eliminar_Categoria($index)") Eliminar
+											div#CONT_Mensaje_Validacion(ng-show="!Form_Categoria.$pristine && Form_Categoria.Descripcion{{$index}}.$error.required")
+												p.icon-key Ingresa un descripcion
+											div#CONT_Mensaje_Validacion(ng-show="!Form_Categoria.Descripcion{{$index}}.$valid && !Form_Categoria.$pristine && !Form_Categoria.Descripcion{{$index}}.$error.required ")
+												p.icon-login La cantidad de caracteres es muy corta
+										
+										
+										td.CL_Tbl_Icon
+											button.CL_TXT_Pri_Btn.relative.icon-actualizar(ng-disabled="!Form_Categoria.$valid",ng-class="{Invisible:BL_Edicion_Datos == false, Visible: BL_Edicion_Datos == true}" ng-click="BL_Edicion_Datos =!BL_Edicion_Datos; FN_Modificar_Datos_Categoria($index)" value="Actualizar")
+												span.CL_TXT_Info_Btn Actualizar
+											.icon-lapiz.CL_TXT_Pri_Btn.relative(ng-class="{Invisible:BL_Edicion_Datos == true, Visible: BL_Edicion_Datos == false}" ng-click="BL_Edicion_Datos =!BL_Edicion_Datos")
+												span.CL_TXT_Info_Btn Editar 
+
+										td.CL_Tbl_Icon
+											.icon-cancelar2.CL_TXT_Pri_Btn.relative(ng-click="FN_Eliminar_Categoria($index)")
+												span.CL_TXT_Info_Btn Eliminar
 		.Grid_Contenedor
 			.Btn_Circular_3.bottom-30(ng-click="Listar_Categorias()")
 					p.icon-list-1

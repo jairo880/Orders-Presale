@@ -335,6 +335,14 @@ public function FN_Listar_Modulo_Permisos_Usuario($Tipo_Listar)
   return $query->fetchAll();
 }
 
+public function FN_Listar_Roles_Usuarios()
+{
+  $sql = "CALL `spListarRol_usuario`();";
+  $query = $this->db->prepare($sql);
+  $query->execute();
+
+  return $query->fetchAll();
+}
 public function FN_Registrar_Permiso_Usuario(
   $Nombre_Vista,
   $Url_Vista,

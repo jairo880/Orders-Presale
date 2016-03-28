@@ -1594,3 +1594,54 @@ UPDATE `tbl_vista_usuario` SET `Url_Vista` = $Url_Vista, `Nombre_Vista` = $Nombr
 WHERE `PK_ID_Vista` =  $PK_ID_Vista;
 END !
 DELIMITER ; 
+
+
+    -- ================== REGISTRAR EJEMPLO_CRUD ================= --
+
+    DROP PROCEDURE IF EXISTS spRegistrarEjemplo_crud;
+    DELIMITER !
+    CREATE PROCEDURE spRegistrarEjemplo_crud(IN $Nombre_Usuario_Ejemplo varchar(45), IN $Contrasenia_Ejemplo varchar(45))
+    BEGIN
+    INSERT INTO `tbl_ejemplo_crud`(`Nombre_Usuario_Ejemplo`, `Contrasenia_Ejemplo`) VALUES ($Nombre_Usuario_Ejemplo, $Contrasenia_Ejemplo);
+    END !
+    DELIMITER ;
+
+    -- ================== MODIFICAR EJEMPLO_CRUD ================= --
+
+    DROP PROCEDURE IF EXISTS spModificarEjemplo_crud;
+    DELIMITER !
+    CREATE PROCEDURE spModificarEjemplo_crud(IN $PK_ID_Usuario_Ejemplo INT, IN $Nombre_Usuario_Ejemplo varchar(45), IN $Contrasenia_Ejemplo varchar(45))
+    BEGIN
+    UPDATE `tbl_ejemplo_crud` SET `Nombre_Usuario_Ejemplo` = $Nombre_Usuario_Ejemplo, `Contrasenia_Ejemplo` = $Contrasenia_Ejemplo WHERE `PK_ID_Usuario_Ejemplo` = $PK_ID_Usuario_Ejemplo;
+    END !
+    DELIMITER ;
+
+    -- =================== ELIMINAR EJEMPLO_CRUD ================= --
+
+    DROP PROCEDURE IF EXISTS spEliminarEjemplo_crud;
+    DELIMITER !
+    CREATE PROCEDURE spEliminarEjemplo_crud(IN $PK_ID_Usuario_Ejemplo INT)
+    BEGIN
+    DELETE FROM `tbl_ejemplo_crud` WHERE `PK_ID_Usuario_Ejemplo` = $PK_ID_Usuario_Ejemplo;
+    END !
+    DELIMITER ;
+
+    -- =================== CONSULTAR EJEMPLO_CRUD ================ --
+
+    DROP PROCEDURE IF EXISTS spConsultarEjemplo_crud;
+    DELIMITER !
+    CREATE PROCEDURE spConsultarEjemplo_crud(IN $PK_ID_Usuario_Ejemplo INT)
+    BEGIN
+    SELECT * FROM `tbl_ejemplo_crud` WHERE `PK_ID_Usuario_Ejemplo` = $PK_ID_Usuario_Ejemplo;
+    END !
+    DELIMITER ;
+
+    -- ==================== LISTAR EJEMPLO_CRUD ================== --
+
+    DROP PROCEDURE IF EXISTS spListarEjemplo_crud;
+    DELIMITER !
+    CREATE PROCEDURE spListarEjemplo_crud()
+    BEGIN
+    SELECT * FROM `tbl_ejemplo_crud`;
+    END !
+    DELIMITER ;

@@ -15,7 +15,7 @@
  SET IdAuto = (
 
    SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE
-   TABLE_SCHEMA = 'bds_allop'
+   TABLE_SCHEMA = 'Orders_Presale'
    AND TABLE_NAME = 'tbl_cuenta'
    );
 
@@ -56,7 +56,7 @@
  SET IdAuto_Producto = (
 
    SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE
-   TABLE_SCHEMA = 'bds_allop'
+   TABLE_SCHEMA = 'Orders_Presale'
    AND TABLE_NAME = 'tbl_vista_usuario'
    );
 

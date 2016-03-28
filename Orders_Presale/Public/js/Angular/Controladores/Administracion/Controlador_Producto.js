@@ -50,6 +50,7 @@
     //Variables para guardar los id necesarios para posteriormente realizar un registro en dtll_promocion_producto
     $scope.PK_ID_Producto = 0;
     $scope.FK_ID_Promocion = 0;
+    $scope.Nombre_Producto = '';
      //Variable usada para capturar la posicion del producto seleccionado para ver las promociones
      $scope.Posicion_Producto = 0;
      $scope.FN_Registrar_Dll_Producto_Promocion = function (Posicion_Promocion_Producto){
@@ -192,6 +193,7 @@
             $scope.AOBJ_Lista_Promociones_Producto = res;
             //Capturo el id del producto que fue seleccionado para ver las promociones
             $scope.PK_ID_Producto = $scope.AOBJ_Listar_Productos[Posicion_Producto].PK_ID_Producto;
+            $scope.Nombre_Producto = $scope.AOBJ_Listar_Productos[Posicion_Producto].Nombre_Producto;
 
           })
 
