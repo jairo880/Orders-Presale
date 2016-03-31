@@ -175,26 +175,49 @@
         @include MX_Bor_Radius(0px,0);
         @extend %PH_Imagen;
     }
+    .CL_Imagen_Icono_1
+    {
+        height: 40px;
+        width: 40px ;
+        @include MX_Bor_Radius(50%,0);
+        @extend %PH_Imagen;
+    }
+    .CL_Imagen_Icono_2
+    {
+        height: 45px;
+        width: 45px;
+        @include MX_Bor_Radius(50%,0);
+        @extend %PH_Imagen;
+    }
+    .CL_Imagen_Icono_3
+    {
+        height: 50px;
+        width: 50px;
+        @include MX_Bor_Radius(50%,0);
+        @extend %PH_Imagen;
+    }
+
+
 }
 
 @mixin MX_Estilo_Icono() {
     %PH_Icono
     {
-       width:50px;
-       height: 50px;
-       font-size: 30px;
-       display: flex;
-       align-items: center;
-       justify-content: center;
-       color:$Color_6;
-       font-family: 'Ubuntu', sans-serif;
-       text-transform: uppercase;
-       @include MX_Box_Shadow(0px, 0px, 1px, 0px,rgba(0,0,0,5/10));
-       @include MX_Bor_Radius(50%,0);
+     width:50px;
+     height: 50px;
+     font-size: 30px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     color:$Color_6;
+     font-family: 'Ubuntu', sans-serif;
+     text-transform: uppercase;
+     @include MX_Box_Shadow(0px, 0px, 1px, 0px,rgba(0,0,0,5/10));
+     @include MX_Bor_Radius(50%,0);
 
 
-       &:hover
-       {
+     &:hover
+     {
         opacity: 0.8;
     }
 }
@@ -214,7 +237,7 @@
 }
 .CL_Icono_3
 {
-   
+
     @extend %PH_Icono;
     background-color: $Color_11;
 

@@ -4,8 +4,7 @@ section#SC_Contenido_Pagina
 	main#CONT_Reg_Contenido_Pagina
 		#CONT_Contenedor_Invisible_Header
 		#CONT_Registro(ng-controller="Controlador_Registro_Usuario_Administracion")
-			#CONT_R_Titulo
-				img(ng-src="{{dato.AOBJ_Datos_Usuario[0].Imagen_Usuario}}")
+			
 				
 
 			form#FORM_Registro.Grid_Contenedor.main_start(name="Form_Registro_Cliente" ng-submit="Registrar(RN)"  )
@@ -13,7 +12,7 @@ section#SC_Contenido_Pagina
 					.Grid_Total
 						p.CL_Alerta_5.Padding-10 Seleccione el tipo de usuario que desea registrar
 					.Grid_Total 
-						select.Select_1(ng-model="RN.Tipo_Registro",name="Tipo_Registro",value="Cliente",ng-init="Registro_Cliente = false;BL_Datos_Form_Usuario = false" required)
+						select.Select_1.Base-30(ng-model="RN.Tipo_Registro",name="Tipo_Registro",value="Cliente",ng-init="Registro_Cliente = false;BL_Datos_Form_Usuario = false" required)
 							option(value="3" ng-click="FN_No_Posee_Empresa(2)") Cliente
 							option(value="2" ng-click="FN_No_Posee_Empresa(1);Pregunta_Datos_Empresa = false") Empleado
 							option(value="0" ng-click="Registro_Cliente = false;BL_Datos_Form_Usuario = false;Pregunta_Datos_Empresa = false") Ninguno

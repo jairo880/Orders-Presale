@@ -3,82 +3,156 @@ link(rel="stylesheet" href!="<?php echo URL;?>public/css/Templates/Administracio
 //sesion Estructura
 main#CONT_Principal_Modulo_Gestion_De_Contenido.Grid_Contenedor(ng-init="FN_Listar_Imagen_Perfil()")
 	#CONT_Contenedor_Invisible_Header(ng-init="BL_Imagenes_Perfil = true;BL_Imagenes_Portada = false")
-	.CL_Alerta_5.Grid_Contenedor.Base-90.Padding-10.main_end.cross_end
-		.Base-60.cross_end.Grid_Contenedor
-			p.CL_TXT_Texto_4 Gestion de conteneido, Imagenes de usuarios
-		
-		.Btn_Estilo_7.icon-file-image(ng-click="BL_Imagenes_Portada = true;BL_Imagenes_Perfil = false;Port.URL_Imagen_Portada = ''; FN_Listar_Imagen_Portada()") Imagenes de portada
-		.Btn_Estilo_5.icon-file-image(ng-click="BL_Imagenes_Perfil = true;BL_Imagenes_Portada = false;Port.URL_Imagen_Perfil = '';FN_Listar_Imagen_Perfil()") Imagenes de perfil	
-	.Base-100.web-30.abcenter.Padding-10
-		form.Grid_Contenedor.abcenter.reverse.column.ng_show(ng-show="BL_Imagenes_Portada == true",ng-submit="FN_Registrar_Imagen_Portada(Port)" name="Formulario_Portada")
-			.CL_Alerta_5.Padding-5 Portada
-			.Grid_Item.Base-100.ng_show.abcenter.Grid_Contenedor(ng-show="Formulario_Portada.$valid")
-				img.CL_Imagen_3.CL_Imagen_Nueva(ng-src="{{Port.URL_Imagen_Portada}}")
-			.Grid_Item.Base-100.Padding-10.Grid_Contenedor
-				textarea.Textarea_Estilo_1(type="text",ng-model="Port.URL_Imagen_Portada" required)
-				input.Btn_Estilo_1(type="submit" value="Registrar")
-				.Btn_Estilo_5(ng-click="Port.URL_Imagen_Portada = ''; FN_Registrar_Imagen_Portada();") Cancelar
-		form.Grid_Contenedor.abcenter.reverse.column.ng_show(ng-show="BL_Imagenes_Perfil == true",ng-submit="FN_Registrar_Imagen_Perfil(Port)" name="Formulario_Perfil" )
-			.CL_Alerta_5.Padding-5 Perfil
-			.Grid_Item.Base-100.ng_show.abcenter.Grid_Contenedor(ng-show="Formulario_Perfil.$valid")
-				img.CL_Imagen_3.CL_Imagen_Nueva(ng-src="{{Port.URL_Imagen_Perfil}}")
-			.Grid_Item.Base-100.Padding-10.Grid_Contenedor
-				textarea.Textarea_Estilo_1(type="text",ng-model="Port.URL_Imagen_Perfil" required)
-				input.Btn_Estilo_1(type="submit" value="Registrar")
-				.Btn_Estilo_5(ng-click="Port.URL_Imagen_Perfil = ''; FN_Registrar_Imagen_Portada();") Cancelar
+	
+	
 	.CONT_Gestion_De_Contenido.Grid_Total.abcenter.Grid_Contenedor.Padding-10.Base-100.web-60
-		.CONT_Gestion_De_Contenido_Tabla.Grid_Contenedor.Base-100.Padding-10
-			.Tabla_Estilo_3(ng-init="BL_Activar_Edicion = false",ng-if="BL_Imagenes_Perfil == true")
-				table
-					thead
-						tr
-							th.Imagen
-							th Url de la imagen
-							th 
-							th 
-					tbody
-						tr(ng-repeat="Imagenes in dato.AOBJ_Imagenes_Perfil_Usuario_Avatars")
-							td.CL_Imagen_Grande
-								img(ng-src="{{Imagenes.URL_Imagen_Usuario}}")
-							td.CL_Tam_Texarea
-								textarea.Textarea_Estilo_1(ng-disabled="BL_Activar_Edicion == false",ng-model="Imagenes.URL_Imagen_Usuario") {{Imagenes.URL_Imagen_Usuario}}
+		
+	.Tablero_Trabajo_1
+			.Grid_Contenedor.Base-100.abcenter.CL_CONT_Principal_Tablero_Trabajo()
+				.Grid_Contenedor.Base-90.CL_CONT_Tablero_Trabajo()
+					.Grid_Contenedor.Base-30.cross_start.CL_CONT_Tablero
+						.CL_Cabezera_Tablero_Trabajo.Grid_Contenedor.Base-100
+							.Grid_Item.Base-20
+								img.CL_Imagen_Icono_2(ng-src="{{dato.AOBJ_Datos_Usuario[0].Imagen_Usuario}}")
 						
-							td.CL_Tbl_Icon
-								.icon-lapiz.CL_TXT_Pri_Btn.relative(ng-class="{Invisible:BL_Activar_Edicion == true, Visible: BL_Activar_Edicion == false}",ng-click="BL_Activar_Edicion=!BL_Activar_Edicion")
-									span.CL_TXT_Info_Btn Editar
-								.icon-actualizar.CL_TXT_Pri_Btn.relative(ng-class="{Invisible:BL_Activar_Edicion == false, Visible: BL_Activar_Edicion == true}",ng-click="BL_Activar_Edicion=!BL_Activar_Edicion; FN_Modificar_Productos($index);FN_Modificar_Imagen($index,1)")
-									span.CL_TXT_Info_Btn Actualizar 
-							td.CL_Tbl_Icon
-								.icon-cancelar3.CL_TXT_Pri_Btn.relative(ng-click="FN_Eliminar($index,1)")
-									span.CL_TXT_Info_Btn Eliminar 
-				
-
-			.Tabla_Estilo_3(ng-init="BL_Activar_Edicion = false",ng-if="BL_Imagenes_Portada == true")
-				table
-					thead
-						tr
-							th.Imagen 
-							th Url de la imagen
-							th 
-							th 
-					tbody
-						tr(ng-repeat="Imagenes in dato.AOBJ_Imagenes_Usuario_Fondo_Perfil")
+						.Grid_Contenedor.Base-100.cross_start.CL_CONT_Tablero_Trabajo_1
+							.Grid_Contenedor.Base-90.CL_Informacion_Tablero_1.cross_start
+								
+								.Base-100.abcenter
+									form.Grid_Contenedor.abcenter.reverse.column.ng_show(ng-show="BL_Imagenes_Portada == true",ng-submit="FN_Registrar_Imagen_Portada(Port)" name="Formulario_Portada")
+										.CL_Alerta_5.Padding-5 Registro de portada
+										.Grid_Item.Base-100.ng_show.abcenter.Grid_Contenedor(ng-show="Formulario_Portada.$valid")
+											img.CL_Imagen_3.CL_Imagen_Nueva(ng-src="{{Port.URL_Imagen_Portada}}")
+										label.CL_TXT_Texto_3 Url de la imagen
+										.Grid_Item.Base-100.Padding-10.Grid_Contenedor
+											textarea.Textarea_Estilo_1(type="text",ng-model="Port.URL_Imagen_Portada" required)
+											input.Btn_Estilo_1(type="submit" value="Registrar")
+											.Btn_Estilo_5(ng-click="Port.URL_Imagen_Portada = ''; FN_Registrar_Imagen_Portada();") Cancelar
+									form.Grid_Contenedor.abcenter.reverse.column.ng_show(ng-show="BL_Imagenes_Perfil == true",ng-submit="FN_Registrar_Imagen_Perfil(Port)" name="Formulario_Perfil" )
+										.CL_Alerta_5.Padding-5 Registro imagen perfil
+										.Grid_Item.Base-100.ng_show.abcenter.Grid_Contenedor(ng-show="Formulario_Perfil.$valid")
+											img.CL_Imagen_3.CL_Imagen_Nueva(ng-src="{{Port.URL_Imagen_Perfil}}")
+										.Grid_Item.Base-100.Padding-10.Grid_Contenedor
+											label.CL_TXT_Texto_3 Url de la imagen
+											textarea.Textarea_Estilo_1(type="text",ng-model="Port.URL_Imagen_Perfil" required)
+											input.Btn_Estilo_1(type="submit" value="Registrar")
+											.Btn_Estilo_5(ng-click="Port.URL_Imagen_Perfil = ''; FN_Registrar_Imagen_Portada();") Cancelar
+									
+							//Por si se usa un filtro
+							.CL_Alerta_5.ng_repeat_anim1.Grid_Contenedor(ng-show="(Lista_Datos_Ejemplo |filter:Buscar:Item).length == 0")
+								.CL_TXT_Texto_3.Base-100.abcenter.Grid_Contenedor
+									p Dato no encontrado
+					.Grid_Contenedor.Base-70.cross_start.CL_CONT_Tablero_Trabajo_2
+						.CL_Cabezera_Tablero_Trabajo.Grid_Contenedor.Base-100
 							
-							td.CL_Imagen_Grande
-								img(ng-src="{{Imagenes.URL_Imagen_Portada}}")
-							td.CL_Tam_Texarea
-								textarea.Textarea_Estilo_1(ng-disabled="BL_Activar_Edicion == false",ng-model="Imagenes.URL_Imagen_Portada") {{Imagenes.URL_Imagen_Portada}}
-						
-							td.CL_Tbl_Icon
-								.CL_TXT_Pri_Btn.relative.icon-lapiz(ng-class="{Invisible:BL_Activar_Edicion == true, Visible: BL_Activar_Edicion == false}",ng-click="BL_Activar_Edicion=!BL_Activar_Edicion")
-									span.CL_TXT_Info_Btn Editar
-								.CL_TXT_Pri_Btn.relative.icon-actualizar(ng-class="{Invisible:BL_Activar_Edicion == false, Visible: BL_Activar_Edicion == true}",ng-click="BL_Activar_Edicion=!BL_Activar_Edicion; FN_Modificar_Productos($index);FN_Modificar_Imagen($index,2)")
-									span.CL_TXT_Info_Btn Actualizar
-							td.CL_Tbl_Icon
-								.CL_TXT_Pri_Btn.relative.icon-cancelar3(ng-click="FN_Eliminar($index,2)")
-									span.CL_TXT_Info_Btn Eliminar
-				
+							.Grid_Item.Base-100.Grid_Contenedor.abcenter
+								.CL_TXT_Texto_4 Gestion de conteneido, Imagenes de usuarios
+						.Grid_Contenedor.abcenter
+							.Grid_Contenedor.Base-95
+								.CL_Alerta_5.Grid_Contenedor
+									.Grid_Item.Base-100.Grid_Contenedor.abcenter
+										.Grid_Contenedor.Base-100.Padding-10
+											.Grid_Item.Base-40
+												.Btn_Estilo_7.icon-file-image(ng-click="BL_Imagenes_Portada = true;BL_Imagenes_Perfil = false;Port.URL_Imagen_Portada = ''; FN_Listar_Imagen_Portada()") Imagenes de portada
+											.Grid_Item.Base-40
+												.Btn_Estilo_5.icon-file-image(ng-click="BL_Imagenes_Perfil = true;BL_Imagenes_Portada = false;Port.URL_Imagen_Perfil = '';FN_Listar_Imagen_Perfil()") Imagenes de perfil
+											.Base-20.abcenter.Grid_Contenedor
+												.CL_Contenedor_Buscador.Base-100
+													input.CL_Buscar#BuscarImagen(type="text", name="" placeholder="Buscar " ng-model="Buscar")
+													label.icon-buscar.CL_Icono_Buscar(for="BuscarImagen")
+								.Grid_Contenedor
+									.CONT_Gestion_De_Contenido_Tabla.Grid_Contenedor.Base-100.Padding-10
+										.Tabla_Estilo_3(ng-init="BL_Activar_Edicion = false",ng-if="BL_Imagenes_Perfil == true")
+											table
+												thead
+													tr
+														th.Imagen
+														th Url de la imagen
+														th 
+														th 
+												.Grid_Contenedor.abcenter.CON_Paginacion
+													.Grid_Contenedor.Base-10
+														p.CL_TXT_Texto_2 Pag&iacute;na: {{currentPage}}
+													.Grid_Contenedor.Base-20
+														input.Input_Estilo_1.No_Margin(type="number",min="1",max="100",ng-model="pageSize")
+													
+													dir-pagination-controls.Base-60.cross_end.Grid_Contenedor(boundary-links="true")
+														p.CL_TXT_Texto_3 {{currentPage}}
+														ul.main_end.CL_Paginacion_1.Grid_Contenedor(ng-if="1 < pages.length || !autoHide" )
+															li(ng-if="boundaryLinks" ng-class="{ Paginacion_Disabled : pagination.current == 1 }")
+																a(href="" ng-click="setCurrent(1)") &laquo;
+															li(ng-if="directionLinks" ng-class="{ Paginacion_Disabled : pagination.current == 1 }")
+																a(href="" ng-click="setCurrent(pagination.current - 1)") &lsaquo;
+															li(ng-repeat="pageNumber in pages track by tracker(pageNumber, $index)" ng-class="{ active : pagination.current == pageNumber, Paginacion_Disabled : pageNumber == '...' }") {{ pageNumber }}
+															li(ng-if="directionLinks" ng-class="{ Paginacion_Disabled : pagination.current == pagination.last }")
+																a(href="" ng-click="setCurrent(pagination.current + 1)") &rsaquo;
+															li(ng-if="boundaryLinks"  ng-class="{ Paginacion_Disabled : pagination.current == pagination.last }")
+																a(href="" ng-click="setCurrent(pagination.last)") &raquo;
+												tbody
+													tr(dir-paginate="Imagenes in dato.AOBJ_Imagenes_Perfil_Usuario_Avatars | filter:Buscar | itemsPerPage: pageSize" current-page="currentPage")
+														td.CL_Imagen_Grande
+															img(ng-src="{{Imagenes.URL_Imagen_Usuario}}")
+														td.CL_Tam_Texarea
+															textarea.Textarea_Estilo_1(ng-disabled="BL_Activar_Edicion == false",ng-model="Imagenes.URL_Imagen_Usuario") {{Imagenes.URL_Imagen_Usuario}}
+													
+														td.CL_Tbl_Icon
+															.icon-lapiz.CL_TXT_Pri_Btn.relative(ng-class="{Invisible:BL_Activar_Edicion == true, Visible: BL_Activar_Edicion == false}",ng-click="BL_Activar_Edicion=!BL_Activar_Edicion")
+																span.CL_TXT_Info_Btn Editar
+															.icon-actualizar.CL_TXT_Pri_Btn.relative(ng-class="{Invisible:BL_Activar_Edicion == false, Visible: BL_Activar_Edicion == true}",ng-click="BL_Activar_Edicion=!BL_Activar_Edicion; FN_Modificar_Productos($index);FN_Modificar_Imagen($index,1)")
+																span.CL_TXT_Info_Btn Actualizar 
+														td.CL_Tbl_Icon
+															.icon-cancelar3.CL_TXT_Pri_Btn.relative(ng-click="FN_Eliminar($index,1)")
+																span.CL_TXT_Info_Btn Eliminar 
+										.CL_Alerta_5.ng_repeat_anim1.Grid_Contenedor(ng-show="(AOBJ_Imagenes_Perfil_Usuario_Avatars |filter:Buscar:Imagenes.URL_Imagen_Usuario).length == 0")
+											.CL_TXT_Texto_3.Base-100.abcenter.Grid_Contenedor
+												p Imagen no encontrada	
 
-			
+										.Tabla_Estilo_3(ng-init="BL_Activar_Edicion = false",ng-if="BL_Imagenes_Portada == true")
+											table
+												thead
+													tr
+														th.Imagen 
+														th Url de la imagen
+														th 
+														th
+												.Grid_Contenedor.abcenter.CON_Paginacion
+													.Grid_Contenedor.Base-10
+														p.CL_TXT_Texto_2 Pag&iacute;na: {{currentPage}}
+													.Grid_Contenedor.Base-20
+														input.Input_Estilo_1.No_Margin(type="number",min="1",max="100",ng-model="pageSize")
+													
+													dir-pagination-controls.Base-60.cross_end.Grid_Contenedor(boundary-links="true")
+														p.CL_TXT_Texto_3 {{currentPage}}
+														ul.main_end.CL_Paginacion_1.Grid_Contenedor(ng-if="1 < pages.length || !autoHide" )
+															li(ng-if="boundaryLinks" ng-class="{ Paginacion_Disabled : pagination.current == 1 }")
+																a(href="" ng-click="setCurrent(1)") &laquo;
+															li(ng-if="directionLinks" ng-class="{ Paginacion_Disabled : pagination.current == 1 }")
+																a(href="" ng-click="setCurrent(pagination.current - 1)") &lsaquo;
+															li(ng-repeat="pageNumber in pages track by tracker(pageNumber, $index)" ng-class="{ active : pagination.current == pageNumber, Paginacion_Disabled : pageNumber == '...' }") {{ pageNumber }}
+															li(ng-if="directionLinks" ng-class="{ Paginacion_Disabled : pagination.current == pagination.last }")
+																a(href="" ng-click="setCurrent(pagination.current + 1)") &rsaquo;
+															li(ng-if="boundaryLinks"  ng-class="{ Paginacion_Disabled : pagination.current == pagination.last }")
+																a(href="" ng-click="setCurrent(pagination.last)") &raquo; 
+												tbody
+													tr(dir-paginate="Imagenes in dato.AOBJ_Imagenes_Usuario_Fondo_Perfil | filter:Buscar | itemsPerPage: pageSize")
+														
+														td.CL_Imagen_Grande
+															img(ng-src="{{Imagenes.URL_Imagen_Portada}}")
+														td.CL_Tam_Texarea
+															textarea.Textarea_Estilo_1(ng-disabled="BL_Activar_Edicion == false",ng-model="Imagenes.URL_Imagen_Portada") {{Imagenes.URL_Imagen_Portada}}
+													
+														td.CL_Tbl_Icon
+															.CL_TXT_Pri_Btn.relative.icon-lapiz(ng-class="{Invisible:BL_Activar_Edicion == true, Visible: BL_Activar_Edicion == false}",ng-click="BL_Activar_Edicion=!BL_Activar_Edicion")
+																span.CL_TXT_Info_Btn Editar
+															.CL_TXT_Pri_Btn.relative.icon-actualizar(ng-class="{Invisible:BL_Activar_Edicion == false, Visible: BL_Activar_Edicion == true}",ng-click="BL_Activar_Edicion=!BL_Activar_Edicion; FN_Modificar_Productos($index);FN_Modificar_Imagen($index,2)")
+																span.CL_TXT_Info_Btn Actualizar
+														td.CL_Tbl_Icon
+															.CL_TXT_Pri_Btn.relative.icon-cancelar3(ng-click="FN_Eliminar($index,2)")
+																span.CL_TXT_Info_Btn Eliminar
+											
 
-				
+										
+
+										.CL_Alerta_5.ng_repeat_anim1.Grid_Contenedor(ng-show="(AOBJ_Imagenes_Usuario_Fondo_Perfil |filter:Buscar:Imagenes.URL_Imagen_Portada).length == 0")
+											.CL_TXT_Texto_3.Base-100.abcenter.Grid_Contenedor
+												p Imagen no encontrada

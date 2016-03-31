@@ -225,9 +225,8 @@ INSERT INTO `tbl_vista_usuario` (`PK_ID_Vista`, `Nombre_Vista`, `Url_Vista`) VAL
 (10, 'Opciones Cuenta', 'Cliente/Cuenta'),
 (11, 'Opciones Cuenta', 'Cliente/Cuenta'),
 (12, 'Opciones Cuenta', 'Cliente/Cuenta'),
-(13, 'Error', 'Error/Error');
-
-
+(13, 'Error', 'Error/Error'),
+(14, 'Modulo Cotizacion', 'Administracion/Inicio_Administracion/Modulo_Cotizacion');
 -- --------------------------------------------------------
 
 --
@@ -247,4 +246,6 @@ INSERT INTO `tbl_permisos_usuario` (`PK_ID_Permisos_Usuario`, `FK_ID_Rol`, `FK_I
 (11, 1, 10),
 (12, 2, 11),
 (13, 3, 12),
-(14, 3, 13);
+(14, 3, 13),
+(15, 1, 14);
+

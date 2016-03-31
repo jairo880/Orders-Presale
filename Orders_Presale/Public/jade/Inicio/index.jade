@@ -58,14 +58,14 @@ section#SC_Contenido_Pagina(ng-init="BL_Buscador_Productos = true")
 				#CONT_Contenido.Grid_Contenedor.abcenter
 
 					
-					#CONT_Productos.Grid_Item.Base-95.distributed(ng-controller="Controlador_Registro_Producto" ng-init="FN_Listar_Productos()")
+					#CONT_Productos.Grid_Contenedor.Base-100.distributed(ng-controller="Controlador_Registro_Producto" ng-init="FN_Listar_Productos()")
 						#CONT_Buscador_Prouctos.Grid_Contenedor.abcenter(ng-show="BL_Buscador_Productos == true && BL_Ver_Buscador == true")
 							.CL_Contenedor_Buscador( ng-init="buscar;BL_Ver_Buscador_Producto = true")
 								input.CL_Buscar#BuscarProducto(maxlength="15",type="search", name="buscar" placeholder="Buscar producto" ng-model="buscar")
 								label.icon-buscar.CL_Icono_Buscar(for="BuscarProducto")
 						.Grid-Total.abcenter.Grid_Contenedor.CL_Alerta_5
 							p.icon-retweet.CL_TXT_Enlace_4(title="Actualizar la lista de productos actuales",ng-click="FN_Listar_Productos()")
-						#CONT_P_Productos.ng_repeat_amiacion_1.Grid_Contenedor.Base-100.web-90.abcenter(ng-hide="LisProduct.Estado_Producto == 'Inhabilitado'",ng-class="{'CL_Producto_No_Agregado':LisProduct.BL_Estado_Producto, 'CL_Producto_Agregado': ! LisProduct.BL_Estado_Producto}" ng-repeat="LisProduct in dato.AOBJ_Productos_Principal |  filter:buscar:LisProduct.Nombre_Producto ")
+						#CONT_P_Productos.ng_repeat_anim1.Grid_Contenedor.Base-100.web-90.abcenter(ng-hide="LisProduct.Estado_Producto == 'Inhabilitado'",ng-class="{'CL_Producto_No_Agregado':LisProduct.BL_Estado_Producto, 'CL_Producto_Agregado': ! LisProduct.BL_Estado_Producto}" ng-repeat="LisProduct in dato.AOBJ_Productos_Principal |  filter:buscar:LisProduct.Nombre_Producto ")
 							.Grid_Item.Base-100.web-50
 								.CL_P_Imagen.Grid_Contenedor.Base-100.abcenter
 									img.CL_Imagen_3(ng-src="{{LisProduct.Ruta_Imagen_Producto}}" )
@@ -92,7 +92,7 @@ section#SC_Contenido_Pagina(ng-init="BL_Buscador_Productos = true")
 									.Base-100.tablet-100
 										.CL_ValoracionProducto.Grid_Contenedor.justify
 											
-											.CL_ContOpiniones.Grid_Item.Grid_Contenedor.abcenter.Base-100.tablet-100.web-30
+											.CL_ContOpiniones.Grid_Item.Grid_Contenedor.abcenter.Base-100.tablet-100.web-40
 												.Grid_Item.Grid_Contenedor.abcenter
 													.CL_Precio
 														p {{LisProduct.Valor_Unitario | currency}}
@@ -102,7 +102,7 @@ section#SC_Contenido_Pagina(ng-init="BL_Buscador_Productos = true")
 														span.icon-star
 														span.icon-star
 														span.icon-star
-													.icon-comentarios.Btn_Estilo_5(title="Ver las opiniones de otros usuarios" ng-click="FN_Ver_Comentarios_Producto(LisProduct.PK_ID_Producto)") Ver comentarios
+													.icon-comentarios.Btn_Estilo_5(title="Ver las opiniones de otros usuarios" ng-click="FN_Ver_Comentarios_Producto(LisProduct.PK_ID_Producto)") Comentarios
 											.Grid_Item.Base-100.tablet-100.web-50.Grid_Contenedor.No.Padding
 												.CL_TotalProducto.CL_Alerta_5.Padding-5.Grid_Contenedor
 													p.CL_TXT_Texto_3 Subtotal:

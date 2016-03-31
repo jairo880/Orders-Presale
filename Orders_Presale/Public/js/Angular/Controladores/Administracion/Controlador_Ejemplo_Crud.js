@@ -5,12 +5,6 @@
 	{
 		
 
-
-
-
-		
-
-		
 		//Ejemplo registro 
 		$scope.FN_Registrar_Ejemplo = function (formData){
 			$http.post(url + 'Modulo/Modulo_Ejemplo_Crud/FN_Registrar_Ejemplo', formData)
@@ -22,24 +16,23 @@
 				if(respuesta == 'true'){
 
 					$scope.Mensaje = "Registro correcto";
-					Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+					Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Finalizado');
 					$scope.FN_Listar_Ejemplo();
 
 
 					$scope.Ejemplo.Nombre_Usuario_Ejemplo = ''; 
-					$scope.Ejemplo.Contrasenia_Ejemplo = ''
+					$scope.Ejemplo.Contrasenia_Ejemplo = '';
 				}
 				if(respuesta == 'false'){
 					$scope.Mensaje = "Error al registrar";
-					Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+					Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Error');
 				}
 
 
 			})
 			.error(function(res, status){
 				console.log(res,status);
-				$scope.Mensaje = "No se pudo ejecutar la función FN_Registrar_Ejemplo";
-				Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+				
 
 			});
 		};
@@ -56,8 +49,7 @@
 			})
 			.error(function (res, status) {
 				console.log(res,status);
-				$scope.Mensaje = "No se pudo ejecutar la función FN_Listar_Ejemplo ";
-				Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+				
 			});
 		};
 
@@ -73,19 +65,18 @@
 				var respuesta = (res); 
 				if(respuesta == 'true'){
 					$scope.Mensaje = "Registro eliminado";
-					Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+					Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Finalizado');
 					$scope.FN_Listar_Ejemplo();
 				}
 
 				if(respuesta == 'false'){
 					$scope.Mensaje = "Error al eliminar el registro";
-					Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+					Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Error');
 				}
 			})
 			.error(function (res, status) {
 				console.log(res,status);
-				$scope.Mensaje = "No se pudo ejecutar la función FN_Eliminar_Ejemplo ";
-				Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+				
 			});
 		};
 		//Ejemplo Modificar
@@ -100,22 +91,21 @@
 				if(Respuesta == 'true')
 				{
 					$scope.Mensaje = "Se actualizaron los datos correctamente";
-					Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+					Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Finalizado');
 					$scope.FN_Listar_Ejemplo();
 
 				}
 				if(Respuesta == 'false')
 				{
 					$scope.Mensaje = "Los datos se encuentran actualizados";
-					Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+					Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Info');
 				}
 
 			})
 
 			.error(function(res, status){
 				console.log(res,status);
-				$scope.Mensaje = "No se pudo ejecutar la función FN_Modificar_Ejemplo ";
-				Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+				
 
 			});
 		};

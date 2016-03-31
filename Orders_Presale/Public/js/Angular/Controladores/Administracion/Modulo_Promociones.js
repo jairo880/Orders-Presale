@@ -28,21 +28,26 @@
 				var respuesta = (res); 
 				if(respuesta == 'true'){
 					$scope.Mensaje = "Promocion eliminada correctamente";
-					Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+					Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Finalizado');
 					$scope.Consultar_Promociones();
 				}
 
 				if(respuesta == 'false'){
 					$scope.Mensaje = "Error al eliminar promocion";
-					Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+					Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Error');
 				}
 				
 
 			})
+			.error(function(res, status){
+				console.log(res,status);
+				
+
+			});
 
 			
 			
-		}
+		};
 
 
 		
@@ -53,12 +58,12 @@
 				var Respuesta = (res);
 				if (Respuesta == 'true') {
 					$scope.Mensaje = "Promocion enviada exitosamente";
-					Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+					Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Finalizado');
 				}
 				else
 				{
-					$scope.Mensaje = "Ha ocurrido un error al intentar enviar la promocion";
-					Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+					$scope.Mensaje = "Eror al enviar la promoción";
+					Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Error');
 				}
 			})
 			.error(function (res, status) {
@@ -78,20 +83,19 @@
 				if(Respuesta == 'true')
 				{
 					$scope.Mensaje = "Se actualizaron los datos correctamente";
-					Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+					Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Finalizado');
 				}
 				if(Respuesta == 'false')
 				{
 					$scope.Mensaje = "No se han modificado datos de la promoción";
-					Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+					Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Info');
 				}
 
 			})
 
 			.error(function(res, status){
 				console.log(res,status);
-				$scope.Mensaje = "No se pudo ejecutar la función Modificar Datos Promociones";
-				Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+				
 
 			});
 		};
@@ -110,16 +114,21 @@
 
 
 					$scope.Mensaje = "Promocion registrada correctamente";
-					Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+					Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Finalizado');
 				}
 				if(respuesta == 'false'){
-					$scope.Mensaje = "Error al registrar";
-					Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+					$scope.Mensaje = "Error al registrar la promoción";
+					Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Error');
 				}
 
 
 			})
-		}
+			.error(function(res, status){
+				console.log(res,status);
+				
+
+			});
+		};
 
 
 		$scope.FN_Limpiar_Formulario = function ()
@@ -129,7 +138,7 @@
 			$scope.RP.Fecha_Inicio = '';
 			$scope.RP.Fecha_Fin = '';
 
-		}
+		};
 
 	}
 

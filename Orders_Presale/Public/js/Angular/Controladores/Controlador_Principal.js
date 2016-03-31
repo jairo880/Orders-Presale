@@ -1,5 +1,5 @@
 (function () {
-    'use strict';
+  'use strict';
     /*
      La directiva use strict es una directiva que no supone una instrucción de código,
      sino que indica el modo en que el navegador debe ejecutar el código JavaScript.
@@ -34,98 +34,130 @@
      ejemplo:
      $timeout(callAtTimeout, 1000);
      */
-     function Controlador_Principal($scope, Fabrica, $timeout, $interval, $location, $anchorScroll, $http)
+     function Controlador_Principal($localStorage,$sessionStorage,$scope, Fabrica, $timeout, $interval, $location, $anchorScroll, $http)
      {
-        $scope.Diseno = false;
-        $scope.DB = false;
-        $scope.Html = false;
-        $scope.Angular = false;
-        $scope.Sass = false;
-        $scope.Estructura = false;
-        $scope.BL_Guia = false;
-        $scope.Conexion = true;
+      $scope.Diseno = false;
+      $scope.DB = false;
+      $scope.Html = false;
+      $scope.Angular = false;
+      $scope.Sass = false;
+      $scope.Estructura = false;
+      $scope.BL_Guia = false;
+      $scope.Conexion = true;
+      $scope.Cuerpo_Tabla = true;
+      //variables para el paginate con angular
+      $scope.currentPage = 1;
+      //
+      $scope.pageSize = 5;
 
 
-        $scope.FN_Ver_Elemento_Guia = function(Tipo_Visible)
-        {
-            if(Tipo_Visible == 1){
-               $scope.Diseno = true;
-               $scope.DB = false;
-               $scope.Html = false;
-               $scope.Angular = false;
-               $scope.Sass = false;
-               $scope.Estructura = false;
-               $scope.BL_Guia = true;
-               $scope.Conexion = false;
 
-           }
-           if(Tipo_Visible == 2){
-               $scope.Diseno = false;
-               $scope.DB = false;
-               $scope.Html = false;
-               $scope.Angular = false;
-               $scope.Sass = false;
-               $scope.Estructura = true;
-               $scope.BL_Guia = true;
-               $scope.Conexion = false;
+      $scope.FN_Ver_Elemento_Guia = function(Tipo_Visible)
+      {
+        if(Tipo_Visible == 1){
+           $scope.Diseno = true;
+           $scope.DB = false;
+           $scope.Html = false;
+           $scope.Angular = false;
+           $scope.Sass = false;
+           $scope.Estructura = false;
+           $scope.BL_Guia = true;
+           $scope.Conexion = false;
+           $scope.Cuerpo_Tabla = false;
 
-           }
-           if(Tipo_Visible == 3){
-               $scope.Diseno = false;
-               $scope.DB = false;
-               $scope.Html = false;
-               $scope.Angular = false;
-               $scope.Sass = true;
-               $scope.Estructura = false;
-               $scope.BL_Guia = true;
-               $scope.Conexion = false;
 
-           }
-           if(Tipo_Visible == 4){
-               $scope.Diseno = false;
-               $scope.DB = false;
-               $scope.Html = false;
-               $scope.Angular = true;
-               $scope.Sass = false;
-               $scope.Estructura = false;
-               $scope.BL_Guia = true;
-               $scope.Conexion = false;
+       }
+       if(Tipo_Visible == 2){
+           $scope.Diseno = false;
+           $scope.DB = false;
+           $scope.Html = false;
+           $scope.Angular = false;
+           $scope.Sass = false;
+           $scope.Estructura = true;
+           $scope.BL_Guia = true;
+           $scope.Conexion = false;
+           $scope.Cuerpo_Tabla = false;
 
-           }
-           if(Tipo_Visible == 5){
-               $scope.Diseno = false;
-               $scope.DB = false;
-               $scope.Html = true;
-               $scope.Angular = false;
-               $scope.Sass = false;
-               $scope.Estructura = false;
-               $scope.BL_Guia = true;
-               $scope.Conexion = false;
 
-           }
-           if(Tipo_Visible == 6){
-               $scope.Diseno = false;
-               $scope.DB = true;
-               $scope.Html = false;
-               $scope.Angular = false;
-               $scope.Sass = false;
-               $scope.Estructura = false;
-               $scope.BL_Guia = true;
-               $scope.Conexion = false;
+       }
+       if(Tipo_Visible == 3){
+           $scope.Diseno = false;
+           $scope.DB = false;
+           $scope.Html = false;
+           $scope.Angular = false;
+           $scope.Sass = true;
+           $scope.Estructura = false;
+           $scope.BL_Guia = true;
+           $scope.Conexion = false;
+           $scope.Cuerpo_Tabla = false;
 
-           }
-           if(Tipo_Visible == 7){
-               $scope.Diseno = false;
-               $scope.DB = false;
-               $scope.Html = false;
-               $scope.Angular = false;
-               $scope.Sass = false;
-               $scope.Estructura = false;
-               $scope.BL_Guia = true;
-               $scope.Conexion = true;
 
-           }
-       };
+       }
+       if(Tipo_Visible == 4){
+           $scope.Diseno = false;
+           $scope.DB = false;
+           $scope.Html = false;
+           $scope.Angular = true;
+           $scope.Sass = false;
+           $scope.Estructura = false;
+           $scope.BL_Guia = true;
+           $scope.Conexion = false;
+           $scope.Cuerpo_Tabla = false;
+
+
+       }
+       if(Tipo_Visible == 5){
+           $scope.Diseno = false;
+           $scope.DB = false;
+           $scope.Html = true;
+           $scope.Angular = false;
+           $scope.Sass = false;
+           $scope.Estructura = false;
+           $scope.BL_Guia = true;
+           $scope.Conexion = false;
+           $scope.Cuerpo_Tabla = false;
+
+
+       }
+       if(Tipo_Visible == 6){
+           $scope.Diseno = false;
+           $scope.DB = true;
+           $scope.Html = false;
+           $scope.Angular = false;
+           $scope.Sass = false;
+           $scope.Estructura = false;
+           $scope.BL_Guia = true;
+           $scope.Conexion = false;
+           $scope.Cuerpo_Tabla = false;
+
+
+       }
+       if(Tipo_Visible == 7){
+           $scope.Diseno = false;
+           $scope.DB = false;
+           $scope.Html = false;
+           $scope.Angular = false;
+           $scope.Sass = false;
+           $scope.Estructura = false;
+           $scope.BL_Guia = true;
+           $scope.Conexion = true;
+           $scope.Cuerpo_Tabla = false;
+
+
+       }
+       if(Tipo_Visible == 8){
+           $scope.Diseno = false;
+           $scope.DB = false;
+           $scope.Html = false;
+           $scope.Angular = false;
+           $scope.Sass = false;
+           $scope.Estructura = false;
+           $scope.BL_Guia = true;
+           $scope.Conexion = false;
+           $scope.Cuerpo_Tabla = true;
+
+       }
+   };
         //_*variable para vissualizrar entre slider o producto
         $scope.BL_Contenedor_Estado = false;
 
@@ -167,6 +199,8 @@
         $scope.BL_Datos_Usuario_Empresa = false;
         //_*para login
         $scope.BL_Login_Recup = true;
+        //_*Para las ordenes enviadas
+        $scope.BL_Ordenes_Enviadas = false;
 
         //_*variables para los botones login y cerrar sesion
         $scope.Bl_Btn_Login_Iniciar_Sesion = true;
@@ -217,25 +251,25 @@
 
          $scope.Fn_Crear_Lista = function ()
          {
-            if ($scope.NMG_TXT_Nombre_Lista === 'Ejm:Orden del lunes')
+          if ($scope.NMG_TXT_Nombre_Lista === 'Ejm:Orden del lunes')
+          {
+            if ($scope.NUM_Numero_Lista <= 0)
             {
-                if ($scope.NUM_Numero_Lista <= 0)
-                {
-                    $scope.NUM_Numero_Lista = 1;
-                }
-                $scope.NMG_TXT_Nombre_Lista = 'Orden #' + $scope.NUM_Numero_Lista;
-            }
+              $scope.NUM_Numero_Lista = 1;
+          }
+          $scope.NMG_TXT_Nombre_Lista = 'Orden #' + $scope.NUM_Numero_Lista;
+      }
             //_*creo una variable en la cual guardo los datos a ingresar en el arrray 
             var Crear_Nueva_Lista =
             {
-                Id_Lista: $scope.NUM_Numero_Lista,
-                TXT_Nombre_Lista: $scope.NMG_TXT_Nombre_Lista,
-                BL_Expandido: false,
-                BL_Contenido: false,
-                NUM_Cantidad_Productos: 0,
-                Sub_Total_Orden: 0
+              Id_Lista: $scope.NUM_Numero_Lista,
+              TXT_Nombre_Lista: $scope.NMG_TXT_Nombre_Lista,
+              BL_Expandido: false,
+              BL_Contenido: false,
+              NUM_Cantidad_Productos: 0,
+              Sub_Total_Orden: 0
 
-            };
+          };
             //_*creo el nuevo objeto para guardar los datos de la orden
             Crear_Nueva_Lista.Articulos_Productos = [];
             //_*agrego el objeto
@@ -261,7 +295,6 @@
          */
          $scope.FN_Agregar_Productos_A_Lista = function (Id_Lista_Ingresado)
          {
-
             //_*Si no hay productos agregados no permitira pasar
             if (Fabrica.objeto.NUM_Cantidad_Productos_En_Orden > 0)
             {
@@ -287,13 +320,13 @@
                             //_*si se agrego un producto en la lista cambio el estado para saber si esta lleno
                             $scope.AOBJ_Listas_Creadas[j].BL_Contenido = !$scope.AOBJ_Listas_Creadas[j].BL_Contenido;
                             //_*LLamo la funcio con la que muestro mensajes de alerta, paso el texto que queiro mostrar y el tiempo de duracion para el mensaje
-                            $scope.Mensaje = "Productos agregados a la Orden" + " " + $scope.AOBJ_Listas_Creadas[j].TXT_Nombre_Lista;
-                            Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+                            $scope.Mensaje = "Productos agregados a la lista";
+                            Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Info');
                         }
                         else
                         {
-                            $scope.Mensaje = "La lista " + $scope.AOBJ_Listas_Creadas[j].TXT_Nombre_Lista + " ya posee prouctos.";
-                            Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+                            $scope.Mensaje = "La lista ya posee prouctos.";
+                            Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Alerta');
                         }
                     }
                 }
@@ -302,12 +335,12 @@
             }
             else
             {
-                $scope.Mensaje = "No has agregado productos a tu orden.";
-                Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+              $scope.Mensaje = "No has agregado productos a tu orden.";
+              Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Info');
 
-            }
+          }
 
-        };
+      };
         //_*Funcio para actualizar el precio sub total de una orden creada
 
         /*
@@ -324,33 +357,33 @@
          */
          $scope.FN_Actualziar_Datos_Lista = function (Id_Lista_Ingresado)
          {
-            for (var i = 0; i < $scope.AOBJ_Listas_Creadas.length; i++)
+          for (var i = 0; i < $scope.AOBJ_Listas_Creadas.length; i++)
+          {
+            if ($scope.AOBJ_Listas_Creadas[i].Id_Lista == Id_Lista_Ingresado)
             {
-                if ($scope.AOBJ_Listas_Creadas[i].Id_Lista == Id_Lista_Ingresado)
-                {
-                    $scope.AOBJ_Listas_Creadas[i].Sub_Total_Orden = 1;
+              $scope.AOBJ_Listas_Creadas[i].Sub_Total_Orden = 1;
 
-                    for (var K = 0; K < $scope.AOBJ_Listas_Creadas[i].Articulos_Productos.length; K++) {
-                        $scope.AOBJ_Listas_Creadas[i].Articulos_Productos[K].NUM_Costo = 1;
-                    }
-
-                }
-
+              for (var K = 0; K < $scope.AOBJ_Listas_Creadas[i].Articulos_Productos.length; K++) {
+                $scope.AOBJ_Listas_Creadas[i].Articulos_Productos[K].NUM_Costo = 1;
             }
 
-            for (var j = 0; j < $scope.AOBJ_Listas_Creadas.length; j++) {
-                if ($scope.AOBJ_Listas_Creadas[j].Id_Lista == Id_Lista_Ingresado)
-                {
-                    for (var e = 0; e < $scope.AOBJ_Listas_Creadas[j].Articulos_Productos.length; e++) {
-                        $scope.AOBJ_Listas_Creadas[j].Sub_Total_Orden += $scope.AOBJ_Listas_Creadas[j].Articulos_Productos[e].NUM_Cantidad * $scope.AOBJ_Listas_Creadas[j].Articulos_Productos[e].Valor_Unitario;
-                        $scope.AOBJ_Listas_Creadas[j].Articulos_Productos[e].NUM_Costo += $scope.AOBJ_Listas_Creadas[j].Articulos_Productos[e].NUM_Cantidad * $scope.AOBJ_Listas_Creadas[j].Articulos_Productos[e].Valor_Unitario;
-                    }
-                }
-            }
+        }
 
-        };
+    }
 
-        $scope.VerProductosEnLista = function (Posicion_Lista) {
+    for (var j = 0; j < $scope.AOBJ_Listas_Creadas.length; j++) {
+        if ($scope.AOBJ_Listas_Creadas[j].Id_Lista == Id_Lista_Ingresado)
+        {
+          for (var e = 0; e < $scope.AOBJ_Listas_Creadas[j].Articulos_Productos.length; e++) {
+            $scope.AOBJ_Listas_Creadas[j].Sub_Total_Orden += $scope.AOBJ_Listas_Creadas[j].Articulos_Productos[e].NUM_Cantidad * $scope.AOBJ_Listas_Creadas[j].Articulos_Productos[e].Valor_Unitario;
+            $scope.AOBJ_Listas_Creadas[j].Articulos_Productos[e].NUM_Costo += $scope.AOBJ_Listas_Creadas[j].Articulos_Productos[e].NUM_Cantidad * $scope.AOBJ_Listas_Creadas[j].Articulos_Productos[e].Valor_Unitario;
+        }
+    }
+}
+
+};
+
+$scope.VerProductosEnLista = function (Posicion_Lista) {
             //_*para visualizar los productos de la lista
             $scope.AOBJ_Listas_Creadas[Posicion_Lista].BL_Expandido = !$scope.AOBJ_Listas_Creadas[Posicion_Lista].BL_Expandido;
         };
@@ -365,89 +398,101 @@
         $scope.FN_Opciones_Cuenta_Header = function ()
 
         {
-            $scope.BL_Ver_Mensajes = false;
-            $scope.BL_Ver_Orden = false;
-            $scope.BL_Contenedor_Notificaciones = false;
-            $scope.Bl_Menu_Desplegado = false;
-            $scope.BL_Ver_Menu = false;
-            $scope.BL_Scroll_Body = false;
+          $scope.BL_Ver_Mensajes = false;
+          $scope.BL_Ver_Orden = false;
+          $scope.BL_Contenedor_Notificaciones = false;
+          $scope.Bl_Menu_Desplegado = false;
+          $scope.BL_Ver_Menu = false;
+          $scope.BL_Scroll_Body =! $scope.BL_Scroll_Body;
+          $scope.BL_Opciones_Cuenta =! $scope.BL_Opciones_Cuenta;
+          $scope.BL_Ordenes_Enviadas = false;
+          
 
 
-        };
-        $scope.FN_Login = function ()
+      };
+      $scope.FN_Login = function ()
 
-        {
+      {
 
-            $scope.BL_Contenedor_Login = !$scope.BL_Contenedor_Login;
-            $scope.BL_Ver_Menu = false;
-            $scope.BL_Ver_Mensajes = false;
-            $scope.BL_Contenedor_Notificaciones = false;
-            $scope.BL_Ver_Orden = false;
-            $scope.BL_Opciones_Cuenta = false;
-            $scope.Bl_Menu_Desplegado = false;
-            $scope.BL_Scroll_Body = false;
+          $scope.BL_Contenedor_Login = !$scope.BL_Contenedor_Login;
+          $scope.BL_Ver_Menu = false;
+          $scope.BL_Ver_Mensajes = false;
+          $scope.BL_Contenedor_Notificaciones = false;
+          $scope.BL_Ver_Orden = false;
+          $scope.BL_Opciones_Cuenta = false;
+          $scope.Bl_Menu_Desplegado = false;
+          $scope.BL_Scroll_Body =! $scope.BL_Scroll_Body;
+          $scope.BL_Ordenes_Enviadas = false;
+          
 
-        };
-        $scope.FN_Orden = function ()
+      };
+      $scope.FN_Orden = function ()
 
-        {
+      {
 
-            $scope.BL_Ver_Mensajes = false;
-            $scope.BL_Contenedor_Notificaciones = false;
-            $scope.BL_Ver_Orden = !$scope.BL_Ver_Orden;
-            $scope.BL_Opciones_Cuenta = false;
-            $scope.Bl_Menu_Desplegado = false;
-            $scope.BL_Ver_Menu = false;
-            $scope.BL_Scroll_Body = false;
+          $scope.BL_Ver_Mensajes = false;
+          $scope.BL_Contenedor_Notificaciones = false;
+          $scope.BL_Ver_Orden = !$scope.BL_Ver_Orden;
+          $scope.BL_Opciones_Cuenta = false;
+          $scope.Bl_Menu_Desplegado = false;
+          $scope.BL_Ver_Menu = false;
+          $scope.BL_Scroll_Body =! $scope.BL_Scroll_Body;
+          $scope.BL_Ordenes_Enviadas = false;
+          
 
-        };
+      };
 
-        $scope.FN_Menu = function ()
+      $scope.FN_Menu = function ()
 
-        {
+      {
 
-            $scope.BL_Ver_Orden = false;
-            $scope.BL_Ver_Mensajes = false;
-            $scope.BL_Contenedor_Notificaciones = false;
-            $scope.BL_Opciones_Cuenta = false;
-            $scope.BL_Ver_Menu = !$scope.BL_Ver_Menu;
-            $scope.Bl_Menu_Desplegado = !$scope.Bl_Menu_Desplegado;
-        };
+          $scope.BL_Ver_Orden = false;
+          $scope.BL_Ver_Mensajes = false;
+          $scope.BL_Contenedor_Notificaciones = false;
+          $scope.BL_Opciones_Cuenta = false;
+          $scope.BL_Ver_Menu = !$scope.BL_Ver_Menu;
+          $scope.Bl_Menu_Desplegado = !$scope.Bl_Menu_Desplegado;
+          $scope.BL_Ordenes_Enviadas = false;
+          
+      };
 
-        $scope.FN_Notificacion = function ()
+      $scope.FN_Notificacion = function ()
 
-        {
+      {
 
-            $scope.BL_Ver_Mensajes = false;
-            $scope.BL_Ver_Orden = false;
-            $scope.BL_Contenedor_Notificaciones = !$scope.BL_Contenedor_Notificaciones;
-            $scope.BL_Opciones_Cuenta = false;
-            $scope.BL_Ver_Menu = false;
-            $scope.Bl_Menu_Desplegado = false;
+          $scope.BL_Ver_Mensajes = false;
+          $scope.BL_Ver_Orden = false;
+          $scope.BL_Contenedor_Notificaciones = !$scope.BL_Contenedor_Notificaciones;
+          $scope.BL_Opciones_Cuenta = false;
+          $scope.BL_Ver_Menu = false;
+          $scope.Bl_Menu_Desplegado = false;
+          $scope.BL_Ordenes_Enviadas = false;
 
 
-        };
+
+      };
         //_* funcion para ocultar el contenedor especifico del chat
         $scope.FN_Mensaje_Desplegar = function (Principal, MensajesRecibidos, MensajesDtll, ChatConversacion, NuevoCatConversacion)
 
         {
-            if (Principal == false)
-            {
-                $scope.BL_Scroll_Body = false;
+          if (Principal == false)
+          {
+            $scope.BL_Scroll_Body =! $scope.BL_Scroll_Body;
 
-            }
-            if (Principal == true)
-            {
-                $scope.BL_Scroll_Body = true;
+        }
+        if (Principal == true)
+        {
+            $scope.BL_Scroll_Body =! $scope.BL_Scroll_Body;
 
-            }
-            $scope.BL_Ver_Menu = false;
-            $scope.BL_Contenedor_Notificaciones = false;
-            $scope.BL_Ver_Orden = false;
-            $scope.BL_Opciones_Cuenta = false;
-            $scope.Bl_Menu_Desplegado = false;
-            $scope.BL_Opciones_Cuenta = false;
-            $scope.Bl_Menu_Desplegado = false;
+        }
+        $scope.BL_Ver_Menu = false;
+        $scope.BL_Contenedor_Notificaciones = false;
+        $scope.BL_Ver_Orden = false;
+        $scope.BL_Opciones_Cuenta = false;
+        $scope.Bl_Menu_Desplegado = false;
+        $scope.BL_Opciones_Cuenta = false;
+        $scope.Bl_Menu_Desplegado = false;
+        $scope.BL_Ordenes_Enviadas = false;
             //_*contenedor principal donde estan los Mensajes
             $scope.BL_Ver_Mensajes = Principal;
             //_*Mensajes principales del menu mensajes
@@ -461,14 +506,50 @@
 
         };
 
+          //Funcion para visualizar el contenedor de ls ordenes enviadas
+          $scope.FN_Ordenes_Enviadas = function(Tipo_Desplegar)
+          {
+             $scope.BL_Ver_Mensajes = false;
+             $scope.BL_Ver_Orden = false;
+             $scope.BL_Contenedor_Notificaciones = false;
+             $scope.BL_Opciones_Cuenta = false;
+             $scope.BL_Ver_Menu = false;
+             $scope.Bl_Menu_Desplegado = false;
+             $scope.BL_Ordenes_Enviadas = true;
+             $scope.BL_Scroll_Body =! $scope.BL_Scroll_Body;
+           //1 Para cerrar el desplegable
+           if(Tipo_Desplegar == 1)
+           {
+               $scope.BL_Ordenes_Enviadas =! $scope.BL_Ordenes_Enviadas;
+           }
+            //2 Para listar las ordenes que tenga el usuario
+            if(Tipo_Desplegar == 2)
+            {
+               if($scope.BL_Ordenes_Enviadas)
+               {
+                  $scope.FN_Listar_Ordenes_Enviadas();
+                  $scope.BL_Lista_Ordenes_Enviadas = true;
+                  $scope.BL_Detalle_Orden_Enviada = false;
+
+              }
+          }
+         //3 Para ver los detalles de la orden enviada
+         if(Tipo_Desplegar == 3)
+         {
+          $scope.BL_Lista_Ordenes_Enviadas = false;
+          $scope.BL_Detalle_Orden_Enviada = true;
+            //esta funcion se ejecuara al mismo tiempo que la  FN_Listar_Detalles_Ordene_Enviada();
+        }
+    };
+
 
         //_*esta es la funcion que usa el slider para pasar de posicion, le mando la posicion actual del elementos
         //_*clikeado y asi se a cual imagen pasar
         $scope.FN_Pasar_Slider = function (num)
         {
-            var Posicion = num - 1;
-            SliderPos(Posicion);
-        };
+          var Posicion = num - 1;
+          SliderPos(Posicion);
+      };
 
 
         //_********************************************************
@@ -479,7 +560,6 @@
         //_* que se calcula en el input de la vista y el estado con el cual se si ya fue o no agregado el producto
         $scope.FN_Agregar_Productos = function (id_ing)
         {
-            console.log(id_ing);
             //_******Llamo la funcion declarada en la fabrica
             Fabrica.objeto.FN_Agregar_Productos(id_ing);
 
@@ -492,27 +572,27 @@
         $scope.FN_Eliminar_Producto = function (id_ing)
         {
 
-            Fabrica.objeto.FN_Eliminar_Producto(id_ing);
+          Fabrica.objeto.FN_Eliminar_Producto(id_ing);
 
 
 
-        };
+      };
         //_*actualizar datos recibe dos parametros la posicion del objeto y el totalProducto
         //_*esta funcion se ejecuta cada vez que cambiemos el valor de la cantiad de unidades del producto
         //_*se encarga de actualizar la cantidad de producto en el contenedor de la orden
         $scope.FN_Actualizar_Datos = function (TipoActualizar, id_ing)
         {
 
-            Fabrica.objeto.FN_Actualizar_Datos(TipoActualizar, id_ing);
+          Fabrica.objeto.FN_Actualizar_Datos(TipoActualizar, id_ing);
 
-        };
+      };
         //_*calcular total tansolo llama a la funcion calcular total de la fabrica y esta se encarga de
         //_*resetear el total de la orden y volver a calcular cuanto es que se lleba en la orden
         $scope.FN_Calcular_Total = function ()
         {
 
-            Fabrica.objeto.FN_Calcular_Total();
-        };
+          Fabrica.objeto.FN_Calcular_Total();
+      };
 
 
         //_*************************************Eliminar**************
@@ -544,115 +624,126 @@
             //_*Eliminar producto de orden
             if (Tipo_Funcion == 1)
             {
-                $scope.BL_Ver_Confirmacion = !$scope.BL_Ver_Confirmacion;
-                if (Confirmacion === true)
-                {
+              $scope.BL_Ver_Confirmacion = !$scope.BL_Ver_Confirmacion;
+              if (Confirmacion === true)
+              {
 
-                    Fabrica.objeto.FN_Confirmacion_Alerta();
-                    $scope.BL_Ver_Confirmacion = false;
-                    $scope.TXT_Texto_Confirmacion = '';
-                }
+                Fabrica.objeto.FN_Confirmacion_Alerta();
+                $scope.BL_Ver_Confirmacion = false;
+                $scope.TXT_Texto_Confirmacion = '';
             }
+        }
 
             //_*Eliminar lista de producto
 
 
             if (Tipo_Funcion == 2)
             {
-                $scope.BL_Ver_Confirmacion = !$scope.BL_Ver_Confirmacion;
-                if (Confirmacion === true)
+              $scope.BL_Ver_Confirmacion = !$scope.BL_Ver_Confirmacion;
+              if (Confirmacion === true)
+              {
+                $scope.AOBJ_Listas_Creadas.splice(Posicion, 1);
+                if ($scope.NUM_Numero_Lista > 0)
                 {
-                    $scope.AOBJ_Listas_Creadas.splice(Posicion, 1);
-                    if ($scope.NUM_Numero_Lista > 0)
-                    {
-                        $scope.NUM_Numero_Lista -= 1;
-                        $scope.NUM_Cantidad_Listas -= 1;
-                    }
-                    $scope.BL_Ver_Confirmacion = false;
-                    $scope.TXT_Texto_Confirmacion = '';
-
-                }
-            }
-            if (Tipo_Funcion == 3)
-            {
-                $scope.BL_Ver_Confirmacion = !$scope.BL_Ver_Confirmacion;
-                if (Confirmacion === true)
-                {
-                    for (var i = 0; i <= $scope.NUM_Numero_Lista; i++) {
-                        $scope.AOBJ_Listas_Creadas.splice(i, $scope.NUM_Numero_Lista);
-                        if ($scope.NUM_Numero_Lista >= 0)
-                        {
-                            $scope.NUM_Numero_Lista -= $scope.NUM_Numero_Lista;
-                            $scope.NUM_Cantidad_Listas = 0;
-                        }
-                    }
-                    $scope.BL_Ver_Confirmacion = false;
-                    $scope.TXT_Texto_Confirmacion = '';
-
-                }
-
-            }
-
-            if (Tipo_Funcion == 4)
-            {
-                $scope.BL_Ver_Confirmacion = !$scope.BL_Ver_Confirmacion;
-                if (Confirmacion === true)
-                {
-                  $scope.BL_Ver_Confirmacion = false;
-                  $scope.TXT_Texto_Confirmacion = '';
-                  $scope.FN_Habilitar_Estado_Cuenta_Usuario_Login();
+                  $scope.NUM_Numero_Lista -= 1;
+                  $scope.NUM_Cantidad_Listas -= 1;
               }
-          }
+              $scope.BL_Ver_Confirmacion = false;
+              $scope.TXT_Texto_Confirmacion = '';
 
-          if (Tipo_Funcion == 5)
-          {
-            $scope.BL_Ver_Confirmacion = !$scope.BL_Ver_Confirmacion;
-            if (Confirmacion === true)
-            {
-
-              var DatosUsuario = Fabrica.objeto.AOBJ_Datos_Usuario[0];
-
-              $http.post( url + 'Modulo/Modulo_Usuario/FN_Inhabilitar_Estado_Cuenta', DatosUsuario)
-
-              .success(function(res){
-
-                var Respuesta = (res);
-
-
-                if (Respuesta == 'true'){
-                  $scope.FN_Cerrar_Sesion();
-                  $scope.BL_Ver_Confirmacion = false;
-                  $scope.TXT_Texto_Confirmacion = '';
-              }else if (Respuesta == 'false'){
-
-                $scope.Mensaje = "La cuenta no se pudo cancelar la cuenta";
-                Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
-                $scope.BL_Ver_Confirmacion = false;
-                $scope.TXT_Texto_Confirmacion = '';
-            }
-
-        })
-
-              .error(function(res, status){
-
-                alert("Error al ejecutar la funcion inhabilitar");
-                console.log(res, status);
-
-            });
           }
       }
-
-
-      if (Tipo_Funcion == 6)
+      if (Tipo_Funcion == 3)
       {
-        $scope.BL_Ver_Confirmacion = !$scope.BL_Ver_Confirmacion;
-        if (Confirmacion === true)
-        {
-
-            $scope.FN_Eliminar_Permiso_Usuario($scope.NUM_Eliminar_Posicion);
+          $scope.BL_Ver_Confirmacion = !$scope.BL_Ver_Confirmacion;
+          if (Confirmacion === true)
+          {
+            for (var i = 0; i <= $scope.NUM_Numero_Lista; i++) {
+              $scope.AOBJ_Listas_Creadas.splice(i, $scope.NUM_Numero_Lista);
+              if ($scope.NUM_Numero_Lista >= 0)
+              {
+                $scope.NUM_Numero_Lista -= $scope.NUM_Numero_Lista;
+                $scope.NUM_Cantidad_Listas = 0;
+            }
         }
+        $scope.BL_Ver_Confirmacion = false;
+        $scope.TXT_Texto_Confirmacion = '';
+
     }
-    
+
+}
+
+if (Tipo_Funcion == 4)
+{
+  $scope.BL_Ver_Confirmacion = !$scope.BL_Ver_Confirmacion;
+  if (Confirmacion === true)
+  {
+    $scope.BL_Ver_Confirmacion = false;
+    $scope.TXT_Texto_Confirmacion = '';
+    $scope.FN_Habilitar_Estado_Cuenta_Usuario_Login();
+}
+}
+
+if (Tipo_Funcion == 5)
+{
+  $scope.BL_Ver_Confirmacion = !$scope.BL_Ver_Confirmacion;
+  if (Confirmacion === true)
+  {
+
+    var DatosUsuario = Fabrica.objeto.AOBJ_Datos_Usuario[0];
+
+    $http.post( url + 'Modulo/Modulo_Usuario/FN_Inhabilitar_Estado_Cuenta', DatosUsuario)
+
+    .success(function(res){
+
+      var Respuesta = (res);
+
+
+      if (Respuesta == 'true'){
+        $scope.FN_Cerrar_Sesion();
+        $scope.BL_Ver_Confirmacion = false;
+        $scope.TXT_Texto_Confirmacion = '';
+    }else if (Respuesta == 'false'){
+
+        $scope.Mensaje = "La cuenta no se pudo";
+        Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Error');
+        $scope.BL_Ver_Confirmacion = false;
+        $scope.TXT_Texto_Confirmacion = '';
+    }
+
+})
+
+    .error(function(res, status){
+
+      console.log(res, status);
+
+  });
+}
+}
+
+//Confirmacion para eliminar un permiso de las vistas
+if (Tipo_Funcion == 6)
+{
+  $scope.BL_Ver_Confirmacion = !$scope.BL_Ver_Confirmacion;
+  if (Confirmacion === true)
+  {
+
+    $scope.FN_Eliminar_Permiso_Usuario($scope.NUM_Eliminar_Posicion);
+}
+}
+
+
+//Confirmacion para eliminar una orden
+if (Tipo_Funcion == 7)
+{
+  $scope.BL_Ver_Confirmacion = !$scope.BL_Ver_Confirmacion;
+  if (Confirmacion === true)
+  {
+
+    $scope.FN_Eliminar_Orden_Enviada($scope.NUM_Eliminar_Posicion);
+}
+}
+
 
 };
   //_*************************************************************
@@ -714,17 +805,17 @@ $scope.FN_Ver_Contenido_Mensaje = function (PosicionMensaje)
 {
 
 
-    $scope.URL_Imagen_Usuario_Dtll = Fabrica.objeto.AOBJ_Mensajes_Lista[PosicionMensaje].URL_Imagen_Usuario_Mensaje;
-    $scope.TXT_Nombre_Usuario_Dtll = Fabrica.objeto.AOBJ_Mensajes_Lista[PosicionMensaje].TXT_Nombre_Usuario;
-    $scope.TXT_Mensaje_Usuario_Dtll = Fabrica.objeto.AOBJ_Mensajes_Lista[PosicionMensaje].TXT_Mensaje;
-    $scope.DATE_Hora_Mensaje_Dtll = Fabrica.objeto.AOBJ_Mensajes_Lista[PosicionMensaje].DATE_Hora_Envio;
+  $scope.URL_Imagen_Usuario_Dtll = Fabrica.objeto.AOBJ_Mensajes_Lista[PosicionMensaje].URL_Imagen_Usuario_Mensaje;
+  $scope.TXT_Nombre_Usuario_Dtll = Fabrica.objeto.AOBJ_Mensajes_Lista[PosicionMensaje].TXT_Nombre_Usuario;
+  $scope.TXT_Mensaje_Usuario_Dtll = Fabrica.objeto.AOBJ_Mensajes_Lista[PosicionMensaje].TXT_Mensaje;
+  $scope.DATE_Hora_Mensaje_Dtll = Fabrica.objeto.AOBJ_Mensajes_Lista[PosicionMensaje].DATE_Hora_Envio;
 
 };
 //_*funcion para eliminar el mensaje seleccionado por el usario
 $scope.FN_Eliminar_Mensaje_Recibido = function (IndexPosicion)
 {
-    Fabrica.objeto.FN_Eliminar_Mensaje_Recibido(IndexPosicion);
-    $scope.FN_Cargar_Datos_Usuario(2);
+  Fabrica.objeto.FN_Eliminar_Mensaje_Recibido(IndexPosicion);
+  $scope.FN_Cargar_Datos_Usuario(2);
 
 };
 //_*FN_Cargar_Datos_Usuario simplemente recorre un array hasta el limite de el objeto indicado,
@@ -733,25 +824,29 @@ $scope.FN_Eliminar_Mensaje_Recibido = function (IndexPosicion)
 $scope.FN_Cargar_Datos_Usuario = function (Tipo)
 
 {
+    $scope.Mensaje_Usuario_C1 = "";
+    $scope.Mensaje_Usuario_C2 = "";
 
-    for (var i = 0; i <= Fabrica.objeto.AOBJ_Mensajes_Lista.length; i++) {
-        Fabrica.objeto.NUM_CantidadMensajeUsuario = i;
-    }
-    for (var k = 0; k <= Fabrica.objeto.AOBJ_Estado_Notificaciones.length; k++) {
-        Fabrica.objeto.NUM_CantidadNotificaciones = k;
-    }
-    Fabrica.objeto.AOBJ_Mensaje_Alerta[1].TXT_Mensaje = 'Tienes' + ' ' + Fabrica.objeto.NUM_CantidadMensajeUsuario + ' ' + ' Mensajes Pendientes';
-    Fabrica.objeto.AOBJ_Mensaje_Alerta[2].TXT_Mensaje = 'Tienes' + ' ' + Fabrica.objeto.NUM_CantidadNotificaciones + ' ' + ' Notificaciones Pendientes';
+  for (var i = 0; i <= Fabrica.objeto.AOBJ_Mensajes_Lista.length; i++) {
+    Fabrica.objeto.NUM_CantidadMensajeUsuario = i ;
+}
+for (var k = 0; k <= Fabrica.objeto.AOBJ_Notificaciones_Usuario.length; k++) {
+    Fabrica.objeto.NUM_CantidadNotificaciones =  k;
+}
+$scope.Mensaje_Usuario_C1 = 'Tienes' + ' ' + Fabrica.objeto.NUM_CantidadMensajeUsuario + ' ' + ' Mensajes Pendientes';
+$scope.Mensaje_Usuario_C2 = 'Tienes' + ' ' + Fabrica.objeto.NUM_CantidadNotificaciones + ' ' + ' Notificaciones Pendientes';
 
-    if (Tipo == 1)
-    {
-        $timeout(Fabrica.objeto.FN_Mensaje_Alerta, 5000);
-    }
-    if (Tipo == 2) {
-        $timeout(Fabrica.objeto.FN_Mensaje_Alerta, 700);
+if (Tipo == 1)
+{
+    Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje_Usuario_C1, 5000,'Negro');
+    Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje_Usuario_C2, 5000,'Negro');
+}
+if (Tipo == 2) {
+    Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje_Usuario_C1, 300,'Negro');
+    Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje_Usuario_C2, 500,'Negro');
 
 
-    }
+}
 
 
 
@@ -759,8 +854,18 @@ $scope.FN_Cargar_Datos_Usuario = function (Tipo)
 //_*funcion para eliminar la notificacion selecionada por el usaurio
 $scope.FN_Eliminar_Notificacion = function (IndexPosicion)
 {
-    Fabrica.objeto.FN_Eliminar_Notificacion(IndexPosicion);
-    $scope.FN_Cargar_Datos_Usuario(2);
+  var Datos = Fabrica.objeto.AOBJ_Notificaciones_Usuario[IndexPosicion];
+  //_*Mando por medio de post los datos que manda el formualrio, los datos se encuentran en Formdata.
+  $http.post(url + 'Modulo/Modulo_Usuario/FN_Eliminar_Notificacion', Datos)
+    //_*cuando finalice la peticion
+    .success(function (res)
+    {
+      $scope.FN_Listar_Notificaciones();
+  })
+    .error(function (res, status) {
+      console.log(res,status);
+
+  });
 
 };
 //_*FUNCION RECUPERAR CONTRASEÑA
@@ -771,8 +876,8 @@ $scope.FN_Recuperar_contrasenia = function (formData) {
     //_*cuando finalice la peticion
     .success(function (res)
     {
-        var tipo = (res);
-        alert(tipo);
+      var tipo = (res);
+      alert(tipo);
         //_* alert(tipo);
         if (tipo == 'true')//_*el ctrl retorna un bool, si este es true ejecuta la funcion mensaje
         {
@@ -780,7 +885,7 @@ $scope.FN_Recuperar_contrasenia = function (formData) {
             //_*mensaje de finalizacion
             $scope.Mensaje = "Solicitud de recuperación enviada";
 
-            Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+            Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Finalizado');
             $scope.RC.Correo = '';
         }
         if (tipo == 'false')//_*el ctrl retorna un bool, si este es true ejecuta la funcion mensaje
@@ -788,16 +893,16 @@ $scope.FN_Recuperar_contrasenia = function (formData) {
             //_*mensaje de finalizacion
 
             $scope.Mensaje = "Correo electronico no encontrado";
-            Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+            Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Error');
         }
 
     })
     .error(function (res, status) {
 
 
-        console.log(res,status);
+      console.log(res,status);
 
-    });
+  });
 
 
 
@@ -817,7 +922,7 @@ $scope.FN_Habilitar_Estado_Cuenta_Usuario_Login = function(){
 
         //_*mensaje de alerta         
         $scope.Mensaje = "Bienvenido " + " " + Fabrica.objeto.AOBJ_Datos_Usuario[0].Nombre_Usuario;
-        Fabrica.objeto.FN_Crear_Mensaje( $scope.Mensaje,100);
+        Fabrica.objeto.FN_Crear_Mensaje( $scope.Mensaje,100, 'Info');
 
         //_*variable para el boton iniciar sesion
         $scope.Bl_Btn_Login_Iniciar_Sesion = false;
@@ -826,21 +931,22 @@ $scope.FN_Habilitar_Estado_Cuenta_Usuario_Login = function(){
         //_*variable para el modal de login
         $scope.BL_Contenedor_Login = false;
         //_*variable para el scroll del body
-        $scope.BL_Scroll_Body = false;
+        $scope.BL_Scroll_Body =! $scope.BL_Scroll_Body;
         //_* $scope.BL_Login_Recup = false;
 
     }
     if(ResultadoFuncion=='false')//_*el ctrl retorna un bool, si este es true ejecuta la funcion mensaje
     {
-        $scope.Mensaje = "No se pudo Inciar Sessión, Verifique que sus datos sean correctos";
-        Fabrica.objeto.FN_Crear_Mensaje( $scope.Mensaje,200);
-    }
+      $scope.Mensaje = "No se pudo Inciar Sessión, Verifique que sus datos sean correctos";
+      Fabrica.objeto.FN_Crear_Mensaje( $scope.Mensaje,200);
+  }
 
 
 
 })
  .error(function (res, status) {
-    alerta('error', null, res);
+        console.log('error', null, res);
+
 }); 
 };
 
@@ -850,14 +956,14 @@ $scope.PK_ID_Usuario = 0;
 $scope.FN_Iniciar_Sesion = function(formData)
 {
 
-    $http.post(url + 'Modulo/Modulo_Usuario/FN_Iniciar_Sesion', formData)
-    .success(function(res){
-        var ResultadoFuncion = res;
+  $http.post(url + 'Modulo/Modulo_Usuario/FN_Iniciar_Sesion', formData)
+  .success(function(res){
+    var ResultadoFuncion = res;
 
-        if(ResultadoFuncion == 'Cuenta_Cancelada')
-        {
-            $scope.FN_Confirmacion_Alerta(4,0,false,'¿Tu cuenta se encuntra inhabilitada deseas habilitarla de nuevo?');
-        }
+    if(ResultadoFuncion == 'Cuenta_Cancelada')
+    {
+      $scope.FN_Confirmacion_Alerta(4,0,false,'¿Tu cuenta se encuntra inhabilitada deseas habilitarla de nuevo?');
+  }
 
 
 
@@ -871,7 +977,7 @@ $scope.FN_Iniciar_Sesion = function(formData)
 
             //_*mensaje de alerta         
             $scope.Mensaje = "Bienvenido " + " " + Fabrica.objeto.AOBJ_Datos_Usuario[0].Nombre_Usuario;
-            Fabrica.objeto.FN_Crear_Mensaje( $scope.Mensaje,100);
+            Fabrica.objeto.FN_Crear_Mensaje( $scope.Mensaje,100, 'Finalizado');
 
             $scope.LG.Contrasenia = '';
             $scope.LG.Usuario_Nombre ='';
@@ -883,90 +989,92 @@ $scope.FN_Iniciar_Sesion = function(formData)
             //_*variable para el modal de login
             $scope.BL_Contenedor_Login = false;
             //_*variable para el scroll del body
-            $scope.BL_Scroll_Body = false;
+            $scope.BL_Scroll_Body =! $scope.BL_Scroll_Body;
             //_* $scope.BL_Login_Recup = false;
 
         }
         if(ResultadoFuncion=='false')//_*el ctrl retorna un bool, si este es true ejecuta la funcion mensaje
         {
-            $scope.Mensaje = "No se pudo Inciar Sessión, Verifique que sus datos sean correctos";
-            Fabrica.objeto.FN_Crear_Mensaje( $scope.Mensaje,200);
-        }
+          $scope.Mensaje = "No se pudo Inciar Sessión, Verifique que sus datos sean correctos";
+          Fabrica.objeto.FN_Crear_Mensaje( $scope.Mensaje,200);
+      }
 
 
-    })
+  })
 
-    .error(function (res , status) {
+  .error(function (res , status) {
 
-        alert(res);
-        console.log(res,status);
-    });
+    alert(res);
+    console.log(res,status);
+});
 };
 
 $scope.FN_Cerrar_Sesion = function(){
-    $http.post(url + 'Modulo/Modulo_CerrarSesion/FN_Cerrar_Sesion')
-    .success(function(res){
-        var ResultadoFuncion = res;
+  $http.post(url + 'Modulo/Modulo_CerrarSesion/FN_Cerrar_Sesion')
+  .success(function(res){
+    var ResultadoFuncion = res;
 
-        if (ResultadoFuncion=='true'){
-            $scope.Bl_Btn_Login_Iniciar_Sesion = true;
-            $scope.Bl_Btn_Login_Cerrrar_Sesion = false;
+    if (ResultadoFuncion=='true'){
+      $scope.Bl_Btn_Login_Iniciar_Sesion = true;
+      $scope.Bl_Btn_Login_Cerrrar_Sesion = false;
 
-            var Datos_Defecto =
-            [{
-                Nombre_Usuario: 'Usuario',
-                Imagen_Usuario: 'https://dl.dropboxusercontent.com/u/232442887/Allop/img/avatars/avatar11_big.png',
-                Fondo_Perfil_Usuario: 'https://dl.dropboxusercontent.com/u/232442887/Allop/img/wallpapers/papers.co-mo66-old-car-forest-vintage-flare-nature-carl-kadysz-2880x1800.jpg',
-                Estado_Cuenta: 'En uso',
-                Disponibilidad: 'Activo',
-                PK_ID_Usuario: '0',
-                Correo_Electronico: '',
-                FK_ID_Rol: 5,
+      var Datos_Defecto =
+      [{
+        Nombre_Usuario: 'Usuario',
+        Imagen_Usuario: 'https://dl.dropboxusercontent.com/u/232442887/Allop/img/avatars/avatar11_big.png',
+        Fondo_Perfil_Usuario: 'https://dl.dropboxusercontent.com/u/232442887/Allop/img/wallpapers/papers.co-mo66-old-car-forest-vintage-flare-nature-carl-kadysz-2880x1800.jpg',
+        Estado_Cuenta: 'En uso',
+        Disponibilidad: 'Activo',
+        PK_ID_Usuario: '0',
+        Correo_Electronico: '',
+        FK_ID_Rol: 5,
 
-                //_*Datos de la tabla cliente y/o empleado
-                PK_ID_Usuario_Persona: '',
-                FK_ID_Cuenta: '',
-                Nombre: '',
-                Segundo_Nombre: '',
-                Apellido: '',
-                Segundo_Apellido:'',
-                Municipio:'',
-                Fecha_Nacimiento:'',
-                Telefono_Celular:'',
-                Sexo:'',
-                Tipo_Cliente: '',
-                //_*Datos de la tabla establecimiento para los datos del cliente
-                PK_ID_Establecimiento: '',
-                Nombre_Establecimiento: '',
-                Nombre_Encargado: '',
-                Nit: '',
-                Telefono_Establecimiento: '',
-                Direccion_Establecimiento: '',
-                Municipio_Establecimiento: '',
-                FK_ID_Usuario: ''
-            }];
-            Fabrica.objeto.AOBJ_Datos_Usuario = Datos_Defecto;
+            //_*Datos de la tabla cliente y/o empleado
+            PK_ID_Usuario_Persona: '',
+            FK_ID_Cuenta: '',
+            Nombre: '',
+            Segundo_Nombre: '',
+            Apellido: '',
+            Segundo_Apellido:'',
+            Municipio:'',
+            Fecha_Nacimiento:'',
+            Telefono_Celular:'',
+            Sexo:'',
+            Tipo_Cliente: '',
+            //_*Datos de la tabla establecimiento para los datos del cliente
+            PK_ID_Establecimiento: '',
+            Nombre_Establecimiento: '',
+            Nombre_Encargado: '',
+            Nit: '',
+            Telefono_Establecimiento: '',
+            Direccion_Establecimiento: '',
+            Municipio_Establecimiento: '',
+            FK_ID_Usuario: ''
+        }];
+        Fabrica.objeto.AOBJ_Datos_Usuario = Datos_Defecto;
+              //Elimino los productos que halla tenido agregados en la orden del localstorage
+              delete $localStorage.Datos_Productos;
 
-            /*Si el resultado del controlador es verdadero lo que quiere decir que destruyó la sesion correctamente*/
-            $scope.Mensaje="La sessión se cerró correctamente";
-            Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje,100);
-            $scope.FN_Capturar_Datos_Usuario_Iniciado();
+              /*Si el resultado del controlador es verdadero lo que quiere decir que destruyó la sesion correctamente*/
+              $scope.Mensaje="La sessión se cerró correctamente";
+              Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje,100, 'Finalizado');
+              $scope.FN_Capturar_Datos_Usuario_Iniciado();
 
-            $http.post(url + 'Modulo/Modulo_Verificar_Permisos/Verificar_Permisos');
+              window.location = url;
+            // $http.post(url + 'Modulo/Modulo_Verificar_Permisos');
         }
         if(ResultadoFuncion=='false'){
             $scope.Mensaje="No se pudo cerrar Sessión";
-            Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje,100);
+            Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje,100, 'Error');
 
             
 
         }
     })
 
-    .error(function(){
-        $scope.Mensaje="No se pudo ejecutar la función Cerrar Sessión";
-        $scope.objeto.FN_Crear_Mensaje($scope.Mensaje,100);
-    });
+  .error(function(res,status){
+   console.log(res,stats);
+});
 };
 
 //_***********************************************************************
@@ -981,19 +1089,19 @@ $scope.FN_Cerrar_Sesion = function(){
           .success(function (res) {
             var tipo = (res);
 
-            if(tipo == 'Nombre_No_Actualizado')
-            {
+                                if(tipo == 'Nombre_No_Actualizado')
+                                {
                                     //mensaje de Alerta
                                     $scope.Mensaje = "Los datos del usuario " + " " + Fabrica.objeto.AOBJ_Datos_Usuario[0].Nombre_Usuario + "ya se encuentran actualizados";
 
-                                    Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+                                    Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Info');
                                     //Ejecuto la funcion listar para asi mostrar los cambios generados en la base de datos
                                 }
                                 if (tipo == 'Usuario_Existente'){
                                       //mensaje de Alerta
                                       $scope.Mensaje = "El nombre de usuario ya se encuentra en uso, ingresa otro nombre ";
 
-                                      Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+                                      Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Alerta');
                                     //Ejecuto la funcion listar para asi mostrar los cambios generados en la base de datos
                                 }
 
@@ -1003,19 +1111,20 @@ $scope.FN_Cerrar_Sesion = function(){
                                     //mensaje de Alerta
                                     $scope.Mensaje = "Los datos del usuario " + " " + Fabrica.objeto.AOBJ_Datos_Usuario[0].Nombre_Usuario  + " " + "han sido actualizados";
 
-                                    Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+                                    Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Finalizado');
                                     //Ejecuto la funcion listar para asi mostrar los cambios generados en la base de datos
                                 }
                                 if (tipo == 'false')
                                 {
                                     //mensaje de Alerta
                                     $scope.Mensaje = "Los datos del usuario " + " " + Fabrica.objeto.AOBJ_Datos_Usuario[0].Nombre_Usuario  + " " + "ya se encuentran actualizados";
-                                    Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+                                    Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Error');
                                 }
 
                             })
           .error(function (res, status) {
-            alerta('error', null, res);
+                console.log('error', null, res);
+
         });
 
       };
@@ -1032,30 +1141,30 @@ $scope.FN_Cerrar_Sesion = function(){
 
             $http.post(url + 'Modulo/Modulo_Recuperar_Contrasenia/FN_Actualizar_Contrasenia', formData)
             .success(function (res) {
-                var tipo = (res);
+              var tipo = (res);
 
 
 
-                if (tipo == 'true')
-                {
+              if (tipo == 'true')
+              {
 
                                     //mensaje de Alerta
                                     $scope.Mensaje = "Tu contraseña ha sido actualizada";
-
-                                    Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+                                    Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Finalizado');
                                     //Ejecuto la funcion listar para asi mostrar los cambios generados en la base de datos
                                 }
                                 if (tipo == 'false')
                                 {
                                     //mensaje de Alerta
                                     $scope.Mensaje = "No se ha actualiado la contraseña, verifica que la contraseña actual sea correcta";
-                                    Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+                                    Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Error');
                                 }
 
                             })
             .error(function (res, status) {
-                alerta('error', null, res);
-            });
+                  console.log('error', null, res);
+
+          });
 
         };
 
@@ -1064,30 +1173,36 @@ $scope.FN_Cerrar_Sesion = function(){
 
             $http.post(url + 'Modulo/Modulo_Usuario/FN_Capturar_Datos_Usuario_Iniciado')
             .success(function (res) {
-                var tipo = (res);
-                if(tipo == 'Cuenta_Cancelada')
-                {
-                    $scope.FN_Cerrar_Sesion();
-                }
-                if(tipo != 'false')
-                {
+              var tipo = (res);
+              if(tipo == 'Cuenta_Cancelada')
+              {
+                $scope.FN_Cerrar_Sesion();
+            }
+            if(tipo != 'false')
+            {
 
-                    Fabrica.objeto.AOBJ_Datos_Usuario= res ;
-                    $scope.Bl_Btn_Login_Iniciar_Sesion = false;
-                    $scope.Bl_Btn_Login_Cerrrar_Sesion = true;
-                }
+                Fabrica.objeto.AOBJ_Datos_Usuario= res ;
+                $scope.Bl_Btn_Login_Iniciar_Sesion = false;
+                $scope.Bl_Btn_Login_Cerrrar_Sesion = true;
 
-                if(tipo == 'false')
+                if(Fabrica.objeto.AOBJ_Datos_Usuario[0].FK_ID_Rol  == 3)
                 {
-                  var Datos_Defecto =
-                  [{
-                    Nombre_Usuario: 'Usuario',
-                    Imagen_Usuario: 'https://dl.dropboxusercontent.com/u/232442887/Allop/img/avatars/avatar11_big.png',
-                    Fondo_Perfil_Usuario: 'https://dl.dropboxusercontent.com/u/232442887/Allop/img/wallpapers/papers.co-mo66-old-car-forest-vintage-flare-nature-carl-kadysz-2880x1800.jpg',
-                    Estado_Cuenta: 'Activo',
-                    Disponibilidad: 'Activo',
-                    PK_ID_Usuario: '0',
-                    Correo_Electronico: '',
+                  $scope.FN_Listar_Notificaciones();
+              }
+
+          }
+
+          if(tipo == 'false')
+          {
+            var Datos_Defecto =
+            [{
+              Nombre_Usuario: 'Usuario',
+              Imagen_Usuario: 'https://dl.dropboxusercontent.com/u/232442887/Allop/img/avatars/avatar11_big.png',
+              Fondo_Perfil_Usuario: 'https://dl.dropboxusercontent.com/u/232442887/Allop/img/wallpapers/papers.co-mo66-old-car-forest-vintage-flare-nature-carl-kadysz-2880x1800.jpg',
+              Estado_Cuenta: 'Activo',
+              Disponibilidad: 'Activo',
+              PK_ID_Usuario: '0',
+              Correo_Electronico: '',
 
                 //_*Datos de la tabla cliente y/o empleado
                 FK_ID_Rol: 5,                 
@@ -1114,29 +1229,76 @@ $scope.FN_Cerrar_Sesion = function(){
             }];
             Fabrica.objeto.AOBJ_Datos_Usuario = Datos_Defecto;
             $scope.Bl_Btn_Login_Iniciar_Sesion = true;
-            $scope.Bl_Btn_Login_Cerrrar_Sesion = false;  
+            $scope.Bl_Btn_Login_Cerrrar_Sesion = false;
+
+
         }
     })
 
             .error(function (res, status) {
-                alerta('error', null, res);
-            });
+                  console.log('error', null, res);
+
+          });
 
             
             
         };
+        $scope.FN_Listar_Notificaciones = function()
+        {
+            $http.get(url + 'Modulo/Modulo_Usuario/FN_Listar_Notificaciones')
+            .success(function (res){
+              Fabrica.objeto.AOBJ_Notificaciones_Usuario= res;
+              $scope.FN_Cargar_Datos_Usuario(1);   
+          })
+            
 
-        //_*Modulo de comentarios para los prouctos
+            .error(function(res, status){
+
+            });
+        };
+
+        //_*Modulo de comentarios para los productos
         $scope.BL_Comentario = false;
         //_*Esta variable contendra el PK_ID_Producto por si el usuario desea registrar un comentario
-        //tendre guardao en que porducto  esta ubicado y a que FK asociare el comentario
+        //_*tendre guardao en que porducto  esta ubicado y a que FK asociare el comentario
         $scope.PK_ID_Producto_Seleccionado = 0;
-        
+        //_* esta funcion se vio necesaria, ya que para desplegar las opciones de un comentario, no se podia 
+        //_*hacer uso de ng-click ya que al poseer ng-if se debe llamar una funcion para poder ejercer cambios
+        $scope.Num_Posicion_Comentario = 0;
+        $scope.BL_Edicion_Datos_Comentario = false;
+
+        $scope.FN_Ver_Opciones_Comentario = function(Elemento)
+        {
+          Fabrica.objeto.AOBJ_Comentarios_Producto[Elemento].BL_Opciones_Comentario =! Fabrica.objeto.AOBJ_Comentarios_Producto[Elemento].BL_Opciones_Comentario ;
+      };
+
+      $scope.FN_Editar_Comentario = function(Elemento,Tipo_Accion)
+      {   
+            //Funcion que solo desplegara las opciones de ediccion, esta funcion se ejectuta cuando
+            // se clickea sobre  el textarea, por ello tansolo hago que cuando se clickee cambie a true, 
+            // si usara la accion 2, cada vez que se clickee el textarea se ocultaria o visualizaria las opciones 
+            if(Tipo_Accion == 1)
+            {
+
+              $scope.BL_Edicion_Datos_Comentario = true;
+                //esta parte se usa para cuando se de en la opcion editar pero del desplegable de opciones
+                Fabrica.objeto.AOBJ_Comentarios_Producto[Elemento].BL_Opciones_Comentario = false;
+            }
+            //Funcion que servira para ocultar las opciones de edicion
+            if(Tipo_Accion ==2)
+            {
+
+              $scope.BL_Edicion_Datos_Comentario =! $scope.BL_Edicion_Datos_Comentario;
+                // si se cancelo la edicion de vuelvo a listar los comentarios para tenerlos actualizados
+                $scope.FN_Ver_Comentarios_Producto($scope.PK_ID_Producto_Seleccionado);
+            }
+            $scope.Num_Posicion_Comentario = Elemento;
+        };
         $scope.FN_Ver_Comentarios_Producto = function(PK_ID_Producto)
         {
             $scope.BL_Comentario = true;//Visualizo el modal de comentarios
 
-            $scope.BL_Scroll_Body = false;
+            $scope.BL_Scroll_Body =! $scope.BL_Scroll_Body;
             $scope.BL_Ver_Menu = false;
             $scope.Bl_Menu_Desplegado = false;
 
@@ -1146,11 +1308,16 @@ $scope.FN_Cerrar_Sesion = function(){
             .success(function (res) {
                 //variable en la que guardo los datos debueltos por php por medio de json_encode
                 Fabrica.objeto.AOBJ_Comentarios_Producto = res;
+                for (var i = 0; i < Fabrica.objeto.AOBJ_Comentarios_Producto.length; i++) {
+                  Fabrica.objeto.AOBJ_Comentarios_Producto[i].BL_Opciones_Comentario = false;
 
-            })
+              }
+
+          })
             .error(function (res, status) {
-                alerta('error', null, res);
-            });
+                  console.log('error', null, res);
+
+          });
         };
         $scope.FN_Registrar_Nuevo_Comentario = function(Nuevo_Comentario)
         {
@@ -1158,18 +1325,18 @@ $scope.FN_Cerrar_Sesion = function(){
             var Comentario = Nuevo_Comentario;
             $http.post(url + 'Modulo/Modulo_Producto/FN_Registrar_Nuevo_Comentario', Comentario)
             .success(function (res) {
-                var Respuesta = (res); 
-                if(Respuesta == '_Sesion_No_Iniciada')
-                {
+              var Respuesta = (res); 
+              if(Respuesta == '_Sesion_No_Iniciada')
+              {
                       //mensaje de AlertaN
                       $scope.Mensaje = "Inicia sesion para poder publicar un comentario";
-                      Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+                      Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Alerta');
                   }
                   else if(Respuesta == 'Comentario_Registrado')
                   {
                         //mensaje de AlertaN
-                        $scope.Mensaje = "Tu comentario ha sido publicado";
-                        Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+                        // $scope.Mensaje = "Tu comentario ha sido publicado";
+                        // Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Finalizado');
                         $scope.FN_Ver_Comentarios_Producto($scope.PK_ID_Producto_Seleccionado);
                         $scope.N.Comentario = "";
 
@@ -1178,14 +1345,15 @@ $scope.FN_Cerrar_Sesion = function(){
                     {
                       //mensaje de AlertaN
                       $scope.Mensaje = "Ha ocurrido un error al publicar tu comentario";
-                      Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+                      Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Error');
                       $scope.FN_Ver_Comentarios_Producto($scope.PK_ID_Producto_Seleccionado);
                   }
 
               })
             .error(function (res, status) {
-                alerta('error', null, res);
-            });
+                  console.log('error', null, res);
+
+          });
         };
 
         $scope.FN_Eliminar_Comentario =  function(PK_ID_Comentario)
@@ -1193,12 +1361,12 @@ $scope.FN_Cerrar_Sesion = function(){
 
             $http.post(url + 'Modulo/Modulo_Producto/FN_Eliminar_Comentario', PK_ID_Comentario)
             .success(function (res) {
-                var Respuesta = (res); 
-                if(Respuesta == 'Comentario_Eliminado')
-                {
-                      //mensaje de AlertaN
-                      $scope.Mensaje = "comentario eliminado";
-                      Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+              var Respuesta = (res); 
+              if(Respuesta == 'Comentario_Eliminado')
+              {
+                      // //mensaje de AlertaN
+                      // $scope.Mensaje = "comentario eliminado";
+                      // Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Finalizado');
                       $scope.FN_Ver_Comentarios_Producto($scope.PK_ID_Producto_Seleccionado);
                   }
 
@@ -1206,14 +1374,15 @@ $scope.FN_Cerrar_Sesion = function(){
                   {
                       //mensaje de AlertaN
                       $scope.Mensaje = "Ha ocurrido un error al eliminar tu comentario";
-                      Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+                      Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Error');
 
                   }
 
               })
             .error(function (res, status) {
-                alerta('error', null, res);
-            });
+                  console.log('error', null, res);
+
+          });
         };
 
 
@@ -1225,47 +1394,48 @@ $scope.FN_Cerrar_Sesion = function(){
             console.log(Datos_Comentario);
             $http.post(url + 'Modulo/Modulo_Producto/FN_Valoracion_Comentario', Datos_Comentario)
             .success(function (res) {
-                var Respuesta = (res); 
-                if(Respuesta == '_Sesion_No_Iniciada')
-                {
-                    $scope.Mensaje = "Inicia sesión para poder valorar este comentario";
-                    Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
-                }
-                else if(Respuesta == 'Valoracion_Agregada')
-                {
-
-                  $scope.Mensaje = "Le has dado me gusta a el comentario";
-                  Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
-                  $scope.FN_Ver_Comentarios_Producto($scope.PK_ID_Producto_Seleccionado);
-              }
-
-              else if(Respuesta == 'Valoracion_Removida')
+              var Respuesta = (res); 
+              if(Respuesta == '_Sesion_No_Iniciada')
               {
+                $scope.Mensaje = "Inicia sesión para poder valorar este comentario";
+                Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Alerta');
+            }
+            else if(Respuesta == 'Valoracion_Agregada')
+            {
 
-                  $scope.Mensaje = "Has removido tu like del comentario";
-                  Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
-                  $scope.FN_Ver_Comentarios_Producto($scope.PK_ID_Producto_Seleccionado);
+                // $scope.Mensaje = "Le has dado me gusta a el comentario";
+                // Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Finalizado');
+                $scope.FN_Ver_Comentarios_Producto($scope.PK_ID_Producto_Seleccionado);
+            }
+
+            else if(Respuesta == 'Valoracion_Removida')
+            {
+
+                // $scope.Mensaje = "Has removido tu like del comentario";
+                // Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Finalizado');
+                $scope.FN_Ver_Comentarios_Producto($scope.PK_ID_Producto_Seleccionado);
 
 
-              }
-              else if(Respuesta == 'false')
-              {
-                 $scope.Mensaje = "Ha ocurrido un error al valorar el comentario";
-                 Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+            }
+            else if(Respuesta == 'false')
+            {
+             $scope.Mensaje = "Ha ocurrido un error al valorar el comentario";
+             Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Error');
 
-             }
-             else
-             {
-                 $scope.Mensaje = "Ha ocurrido un error al valorar el comentario";
-                 Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+         }
+         else
+         {
+             $scope.Mensaje = "Ha ocurrido un error al valorar el comentario";
+             Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Error');
 
-             }
+         }
 
-         })
+     })
             .error(function (res, status) {
-                alerta('error', null, res);
-            });
-        }
+                  console.log('error', null, res);
+
+          });
+        };
 
 
 
@@ -1274,13 +1444,15 @@ $scope.FN_Cerrar_Sesion = function(){
             var Comentario = Fabrica.objeto.AOBJ_Comentarios_Producto[Posicion_Comentario];
             $http.post(url + 'Modulo/Modulo_Producto/FN_Modificar_Comentario', Comentario)
             .success(function (res) {
-                var Respuesta = (res); 
-                if(Respuesta == 'true')
-                {
-                      //mensaje de AlertaN
-                      $scope.Mensaje = "comentario actualizado";
-                      Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+              var Respuesta = (res); 
+              if(Respuesta == 'true')
+              {
+                      // //mensaje de AlertaN
+                      // $scope.Mensaje = "comentario actualizado";
+                      // Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Finalizado');
                       $scope.FN_Ver_Comentarios_Producto($scope.PK_ID_Producto_Seleccionado);
+                      //oculto el menu de opciones de ediccion
+                      $scope.BL_Edicion_Datos_Comentario = false;
                   }
 
 
@@ -1288,15 +1460,16 @@ $scope.FN_Cerrar_Sesion = function(){
                   {
                       //mensaje de AlertaN
                       $scope.Mensaje = "Ha ocurrido un error al actualizar tu comentario";
-                      Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+                      Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Error');
 
                   }
 
               })
             .error(function (res, status) {
-                alerta('error', null, res);
-            });
-        }
+                  console.log('error', null, res);
+
+          });
+        };
 
 
 
@@ -1306,72 +1479,72 @@ $scope.FN_Cerrar_Sesion = function(){
         $scope.FN_Registrar_Imagen_Portada = function(formData){
             $http.post(url + 'Administracion/Administracion/FN_Registrar_Imagen_Portada', formData)
             .success(function (res){
-                var Respuesta = (res);
-                if(Respuesta == 'true'){
-                    $scope.Mensaje = "La imagen de portada ha sido registrada.";
-                    Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
-                    $scope.FN_Listar_Imagen_Portada();
-                    $scope.Port.URL_Imagen_Portada = "";
+              var Respuesta = (res);
+              if(Respuesta == 'true'){
+                $scope.Mensaje = "La imagen de portada ha sido registrada.";
+                Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Finalizado');
+                $scope.FN_Listar_Imagen_Portada();
+                $scope.Port.URL_Imagen_Portada = "";
 
-                }
-                else if(Respuesta == 'Imagen_Encontrada'){
-                    $scope.Mensaje = "La imagen ya se encuentra registrada.";
-                    Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
-                    $scope.FN_Listar_Imagen_Perfil();
+            }
+            else if(Respuesta == 'Imagen_Encontrada'){
+                $scope.Mensaje = "La imagen ya se encuentra registrada.";
+                Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Info');
+                $scope.FN_Listar_Imagen_Perfil();
 
-                }else{
-                  $scope.Mensaje = "Ha ocurrido un error al registrar la imagen";
-                  Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
-              }
-          })
+            }else{
+                $scope.Mensaje = "Ha ocurrido un error al registrar la imagen";
+                Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Error');
+            }
+        })
 
             .error(function(res, status){
 
             });
-        }
+        };
 
         $scope.FN_Registrar_Imagen_Perfil = function(formData){
             $http.post(url + 'Administracion/Administracion/FN_Registrar_Imagen_Perfil', formData)
             .success(function (res){
-                var Respuesta = (res);
-                if(Respuesta == 'true'){
-                    $scope.Mensaje = "La imagen de perfil ha sido registrada.";
-                    Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
-                    $scope.FN_Listar_Imagen_Perfil();
-                    $scope.Port.URL_Imagen_Perfil = "";
+              var Respuesta = (res);
+              if(Respuesta == 'true'){
+                $scope.Mensaje = "La imagen de perfil ha sido registrada.";
+                Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Finalizado');
+                $scope.FN_Listar_Imagen_Perfil();
+                $scope.Port.URL_Imagen_Perfil = "";
 
 
-                }
-                else if(Respuesta == 'Imagen_Encontrada'){
-                    $scope.Mensaje = "La imagen ya se encuentra registrada.";
-                    Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
-                    $scope.FN_Listar_Imagen_Perfil();
+            }
+            else if(Respuesta == 'Imagen_Encontrada'){
+                $scope.Mensaje = "La imagen ya se encuentra registrada.";
+                Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Info');
+                $scope.FN_Listar_Imagen_Perfil();
 
-                }
-                else {
-                  $scope.Mensaje = "Ha ocurrido un error al registrar la imagen";
-                  Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
-              }
-          })
+            }
+            else {
+                $scope.Mensaje = "Ha ocurrido un error al registrar la imagen";
+                Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Finalizado');
+            }
+        })
 
 
             .error(function(res, status){
 
             });
-        }
+        };
 
         $scope.FN_Listar_Imagen_Portada = function(){
 
             $http.get(url + 'Administracion/Administracion/FN_Listar_Imagen_Portada')
             .success(function (res){
-                Fabrica.objeto.AOBJ_Imagenes_Usuario_Fondo_Perfil= res;
-            })
+              Fabrica.objeto.AOBJ_Imagenes_Usuario_Fondo_Perfil= res;
+          })
             
 
             .error(function(res, status){
 
             });
-        }
+        };
         $scope.FN_Listar_Imagen_Perfil = function(){
             $http.get(url + 'Administracion/Administracion/FN_Listar_Imagen_Perfil')
             .success(function (res){
@@ -1384,7 +1557,7 @@ $scope.FN_Cerrar_Sesion = function(){
             .error(function(res, status){
 
             });
-        }
+        };
 
         $scope.FN_Modificar_Imagen =  function(Posicion_Imagen,Tipo_Modificacion)
         {
@@ -1392,39 +1565,34 @@ $scope.FN_Cerrar_Sesion = function(){
             {
 
 
-                var Datos_Imagen = Fabrica.objeto.AOBJ_Imagenes_Perfil_Usuario_Avatars[Posicion_Imagen];
-                $http.post(url + 'Administracion/Administracion/FN_Modificar_Imagen_Perfil', Datos_Imagen)
-                .success(function (res) {
-                    var Respuesta = (res); 
-                    if(Respuesta == 'true')
-                    {
+              var Datos_Imagen = Fabrica.objeto.AOBJ_Imagenes_Perfil_Usuario_Avatars[Posicion_Imagen];
+              $http.post(url + 'Administracion/Administracion/FN_Modificar_Imagen_Perfil', Datos_Imagen)
+              .success(function (res) {
+                var Respuesta = (res); 
+                if(Respuesta == 'true')
+                {
                       //mensaje de AlertaN
                       $scope.Mensaje = "Datos de la imagen perfil actualizados";
-                      Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+                      Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Finalizado');
                       $scope.FN_Listar_Imagen_Perfil();
                   }
                   else if(Respuesta == 'false')
                   {
                      //mensaje de AlertaN
                      $scope.Mensaje = "Los datos se encuentran actualizados";
-                     Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+                     Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Info');
                  }
 
-                 else
-                 {
-                      //mensaje de AlertaN
-                      $scope.Mensaje = "Los datos se encuentran actualizados";
-                      Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
-
-                  }
+                
 
               })
-                .error(function (res, status) {
-                    alerta('error', null, res);
-                });
-            }
-            if(Tipo_Modificacion == 2)
-            {
+              .error(function (res, status) {
+                    console.log('error', null, res);
+
+            });
+          }
+          if(Tipo_Modificacion == 2)
+          {
               var Datos_Imagen_Portada = Fabrica.objeto.AOBJ_Imagenes_Usuario_Fondo_Perfil[Posicion_Imagen];
               $http.post(url + 'Administracion/Administracion/FN_Modificar_Imagen_Portada', Datos_Imagen_Portada)
               .success(function (res) {
@@ -1433,26 +1601,21 @@ $scope.FN_Cerrar_Sesion = function(){
                 {
                       //mensaje de AlertaN
                       $scope.Mensaje = "Datos de la imagen portada actualizados";
-                      Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+                      Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Finalizado');
                       $scope.FN_Listar_Imagen_Portada();
                   }
                   else if(Respuesta == 'false')
                   {
                      //mensaje de AlertaN
                      $scope.Mensaje = "Los datos se encuentran actualizados";
-                     Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+                     Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Info');
                  }
-                 else
-                 {
-                      //mensaje de AlertaN
-                      $scope.Mensaje = "Los datos se encuentran actualizados";
-                      Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
-
-                  }
+                 
 
               })
               .error(function (res, status) {
-                alerta('error', null, res);
+                    console.log('error', null, res);
+
             });
           }
       };
@@ -1464,33 +1627,34 @@ $scope.FN_Cerrar_Sesion = function(){
         {
 
 
-            var Datos_Imagen = Fabrica.objeto.AOBJ_Imagenes_Perfil_Usuario_Avatars[Posicion_Imagen];
-            $http.post(url + 'Administracion/Administracion/FN_Eliminar_Imagen_Usuario', Datos_Imagen)
-            .success(function (res) {
-                var Respuesta = (res); 
-                if(Respuesta == 'true')
-                {
+          var Datos_Imagen = Fabrica.objeto.AOBJ_Imagenes_Perfil_Usuario_Avatars[Posicion_Imagen];
+          $http.post(url + 'Administracion/Administracion/FN_Eliminar_Imagen_Usuario', Datos_Imagen)
+          .success(function (res) {
+            var Respuesta = (res); 
+            if(Respuesta == 'true')
+            {
 
-                  $scope.Mensaje = "La imagen se ha eliminado correctamente";
-                  Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
-                  $scope.FN_Listar_Imagen_Perfil();
-              }
+              $scope.Mensaje = "La imagen se ha eliminado correctamente";
+              Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Finalizado');
+              $scope.FN_Listar_Imagen_Perfil();
+          }
 
-              else
-              {
+          else
+          {
 
-                  $scope.Mensaje = "Ha ocurrido un error al intentar eliminar la imagen perfil";
-                  Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+              $scope.Mensaje = "Error al eliminar la imagen de perfil";
+              Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Error');
 
-              }
+          }
 
-          })
-            .error(function (res, status) {
-                alerta('error', null, res);
-            });
-        }
-        if(Tipo_Eliminacion == 2)
-        {
+      })
+          .error(function (res, status) {
+                console.log('error', null, res);
+
+        });
+      }
+      if(Tipo_Eliminacion == 2)
+      {
           var Datos_Imagen = Fabrica.objeto.AOBJ_Imagenes_Usuario_Fondo_Perfil[Posicion_Imagen];
           $http.post(url + 'Administracion/Administracion/FN_Eliminar_Imagen_Portada', Datos_Imagen)
           .success(function (res) {
@@ -1499,24 +1663,25 @@ $scope.FN_Cerrar_Sesion = function(){
             {
                       //mensaje de AlertaN
                       $scope.Mensaje = "La imagen se ha eliminado correctamente";
-                      Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+                      Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Finalizado');
                       $scope.FN_Listar_Imagen_Portada();
                   }
 
                   else
                   {
                       //mensaje de AlertaN
-                      $scope.Mensaje = "Ha ocurrido un error al intentar eliminar la imagen portada";
-                      Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+                      $scope.Mensaje = "Erro al eliminar la imagen de portada";
+                      Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Error');
 
                   }
 
               })
           .error(function (res, status) {
-            alerta('error', null, res);
+                console.log('error', null, res);
+
         });
       }
-  }
+  };
 //Función para inhabilitar cuenta... Se hace con un solo botón ya que si está logeado es por que la cuenta está Activa o Habilitada.
 
 $scope.FN_Inhabilitar_Estado_Cuenta = function(){
@@ -1532,18 +1697,19 @@ pero se ejecuta cumpliendo la misma función*/
 
 function Controlador_Consultar_Promociones($scope,$http, Fabrica)
 {
-    $scope.AOBJ_Consultar_Promociones  = [];
+  $scope.AOBJ_Consultar_Promociones  = [];
 };
 
 $scope.Consultar_Promociones = function ()
 {
-    $http.get(url + 'Modulo/Modulo_Promociones/FN_Consultar_Promociones')
-    .success(function(res) {
-        $scope.AOBJ_Consultar_Promociones  = res;
-    })
-    .error(function (res, status) {
-        alerta('error', null, res);
-    });
+  $http.get(url + 'Modulo/Modulo_Promociones/FN_Consultar_Promociones')
+  .success(function(res) {
+    $scope.AOBJ_Consultar_Promociones  = res;
+})
+  .error(function (res, status) {
+        console.log('error', null, res);
+
+});
 };
 
 
@@ -1556,10 +1722,10 @@ $scope.AOBJ_Lista_Permisos_Usuario= [];
 $scope.Tipo_Lista_Seleccionado = 0; 
 $scope.FN_Listar_Modulo_Permisos_Usuario = function (Tipo_Listar)
 {
- $scope.Tipo_Lista = '';
- if(Tipo_Listar == 1)
- {
-    $scope.Tipo_Lista = {
+   $scope.Tipo_Lista = '';
+   if(Tipo_Listar == 1)
+   {
+      $scope.Tipo_Lista = {
         Tipo_Listar: 1
     };
     $scope.Tipo_Lista_Seleccionado = Tipo_Listar;
@@ -1567,24 +1733,25 @@ $scope.FN_Listar_Modulo_Permisos_Usuario = function (Tipo_Listar)
 if(Tipo_Listar == 2)
 {
    $scope.Tipo_Lista = {
-    Tipo_Listar: 2
-};
-$scope.Tipo_Lista_Seleccionado = Tipo_Listar;
+      Tipo_Listar: 2
+  };
+  $scope.Tipo_Lista_Seleccionado = Tipo_Listar;
 }
 if(Tipo_Listar == 3)
 {
-    $scope.Tipo_Lista = {
-        Tipo_Listar: 3
-    };
-    $scope.Tipo_Lista_Seleccionado  = Tipo_Listar;   
+  $scope.Tipo_Lista = {
+    Tipo_Listar: 3
+};
+$scope.Tipo_Lista_Seleccionado  = Tipo_Listar;   
 }
 $http.post(url + 'Modulo/Modulo_Usuario/FN_Listar_Modulo_Permisos_Usuario',$scope.Tipo_Lista)
 .success(function (res) {
-    $scope.AOBJ_Lista_Permisos_Usuario = res;
+  $scope.AOBJ_Lista_Permisos_Usuario = res;
 
 })
 .error(function (res, status) {
-    alerta('error', null, res);
+      console.log('error', null, res);
+
 });
 };
 
@@ -1594,106 +1761,260 @@ $scope.AOBJ_Lista_Roles= [];
 $scope.FN_Listar_Roles_Usuarios= function ()
 {
 
-    $http.get(url + 'Modulo/Modulo_Usuario/FN_Listar_Roles_Usuarios')
-    .success(function (res) {
-        $scope.AOBJ_Lista_Roles = res;
+  $http.get(url + 'Modulo/Modulo_Usuario/FN_Listar_Roles_Usuarios')
+  .success(function (res) {
+    $scope.AOBJ_Lista_Roles = res;
 
-    })
-    .error(function (res, status) {
-        alerta('error', null, res);
-    });
+})
+  .error(function (res, status) {
+        console.log('error', null, res);
+
+});
 };
 
 $scope.FN_Registrar_Permiso_Usuario = function (Datos)
 {
 
-    $http.post(url + 'Modulo/Modulo_Usuario/FN_Registrar_Permiso_Usuario',Datos)
-    .success(function (res) {
-        var Respuesta = (res);
-        console.log(Respuesta);
-        if (Respuesta == 'true')
-        {
-            $scope.Mensaje = "Vista registrada correctamente ";
-            Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
-            $scope.FN_Listar_Modulo_Permisos_Usuario($scope.Tipo_Lista_Seleccionado);
-            $scope.PM.FK_ID_Rol = '';
-            $scope.PM.Nombre_Vista = '';
-            $scope.PM.Url_Vista = '';
+  $http.post(url + 'Modulo/Modulo_Usuario/FN_Registrar_Permiso_Usuario',Datos)
+  .success(function (res) {
+    var Respuesta = (res);
+    console.log(Respuesta);
+    if (Respuesta == 'true')
+    {
+      $scope.Mensaje = "Vista registrada correctamente ";
+      Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Finalizado');
+      $scope.FN_Listar_Modulo_Permisos_Usuario($scope.Tipo_Lista_Seleccionado);
+      $scope.PM.FK_ID_Rol = '';
+      $scope.PM.Nombre_Vista = '';
+      $scope.PM.Url_Vista = '';
 
-        }
-        if (Respuesta == 'false')
-        {
-            $scope.Mensaje = "Error al registrar la vista";
-            Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
-        }
+  }
+  if (Respuesta == 'false')
+  {
+      $scope.Mensaje = "Error al registrar la vista";
+      Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Error');
+  }
 
-    })
-    .error(function (res, status) {
-        alerta('error', null, res);
-    });
+})
+  .error(function (res, status) {
+        console.log('error', null, res);
+
+});
 };
 
 $scope.FN_Eliminar_Permiso_Usuario = function (Posicion_Permiso)
 {
-    var Datos = $scope.AOBJ_Lista_Permisos_Usuario[Posicion_Permiso]
-    $http.post(url + 'Modulo/Modulo_Usuario/FN_Eliminar_Permiso_Usuario',Datos)
-    .success(function (res) {
+  var Datos = $scope.AOBJ_Lista_Permisos_Usuario[Posicion_Permiso]
+  $http.post(url + 'Modulo/Modulo_Usuario/FN_Eliminar_Permiso_Usuario',Datos)
+  .success(function (res) {
 
-        var Respuesta = (res);
-        console.log(Respuesta);
+    var Respuesta = (res);
+    console.log(Respuesta);
 
-        if (Respuesta == 'true')
-        {
-            $scope.Mensaje = "Permiso de vista eliminado correctamente ";
-            Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
-            $scope.FN_Listar_Modulo_Permisos_Usuario($scope.Tipo_Lista_Seleccionado);
-        }
-        if (Respuesta == 'false')
-        {
-            $scope.Mensaje = "Error al eliminar la vista";
-            Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
-        }
+    if (Respuesta == 'true')
+    {
+      $scope.Mensaje = "Permiso de vista eliminado correctamente ";
+      Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Finalizado');
+      $scope.FN_Listar_Modulo_Permisos_Usuario($scope.Tipo_Lista_Seleccionado);
+  }
+  if (Respuesta == 'false')
+  {
+      $scope.Mensaje = "Error al eliminar la vista";
+      Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Error');
+  }
 
-    })
-    .error(function (res, status) {
-        alerta('error', null, res);
-    });
+})
+  .error(function (res, status) {
+        console.log('error', null, res);
+
+});
 };
 
 $scope.FN_Modificar_Permiso_Usuario = function (Posicion_Permiso)
 {
-    var Datos = $scope.AOBJ_Lista_Permisos_Usuario[Posicion_Permiso]
-    $http.post(url + 'Modulo/Modulo_Usuario/FN_Modificar_Permiso_Usuario',Datos)
+  var Datos = $scope.AOBJ_Lista_Permisos_Usuario[Posicion_Permiso]
+  $http.post(url + 'Modulo/Modulo_Usuario/FN_Modificar_Permiso_Usuario',Datos)
+  .success(function (res) {
+
+    var Respuesta = (res);
+    console.log(Respuesta);
+
+    if (Respuesta == 'true')
+    {
+      $scope.Mensaje = "Permiso actualizado correctamente ";
+      Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Finalizado');
+      $scope.FN_Listar_Modulo_Permisos_Usuario($scope.Tipo_Lista_Seleccionado);
+  }
+  if (Respuesta == 'false')
+  {
+      $scope.Mensaje = "No se han modificado datos del permiso solicitado";
+      Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Info');
+  }
+
+})
+  .error(function (res, status) {
+    console.log('error', null, res);
+});
+};
+
+
+//
+// $scope.Direccion_Entrega = "";
+// $scope.Telefono_Entrega = "";
+$scope.FN_Envio_Orden = function (Tipo_Accion,Datos_De_Entrega)
+{
+
+
+  if(Tipo_Accion == 1){
+
+    //La primera opcion es para verificar si el usuario ha iniciado sesion
+
+
+    $http.post(url + 'Modulo/Modulo_Usuario/FN_Verificacion_Sesion')
     .success(function (res) {
-
-        var Respuesta = (res);
-        console.log(Respuesta);
-
-        if (Respuesta == 'true')
-        {
-            $scope.Mensaje = "Permiso actualizado correctamente ";
-            Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
-            $scope.FN_Listar_Modulo_Permisos_Usuario($scope.Tipo_Lista_Seleccionado);
-        }
-        if (Respuesta == 'false')
-        {
-            $scope.Mensaje = "No se han modificado datos del permiso solicitado";
-            Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
-        }
-
-    })
+      var Respuesta = (res);
+      if(Respuesta == '_Sesion_No_Iniciada')
+      {
+        $scope.Mensaje = "Inicia sesión para poder enviar la orden actual";
+        Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Info');
+    }
+    if(Respuesta == '_Sesion_Iniciada')
+    {
+     $scope.BL_Scroll_Body = true;
+     $scope.BL_Ver_Envio_Orden =! $scope.BL_Ver_Envio_Orden;
+     $scope.BL_Datos_Envio_Producto = true;
+       // $scope.Direccion_Entrega = Fabrica.objeto.AOBJ_Datos_Usuario[0].Direccion_Establecimiento;
+       // $scope.Telefono_Entrega = Fabrica.objeto.AOBJ_Datos_Usuario[0].Telefono_Establecimiento;
+   }
+})
     .error(function (res, status) {
-        alerta('error', null, res);
-    });
+          console.log('error', null, res);
+
+  });
+}
+if(Tipo_Accion == 2)
+{
+    //Opcion para enviar la orden
+    $http.post(url + 'Modulo/Modulo_Usuario/FN_Envio_Orden_Guardado_Datos_Productos', Fabrica.objeto.AOBJ_Productos)
+    .success(function (res) {
+      var Respuesta = (res);
+      if(Respuesta == 'Orden_Guardada')
+      {
+        //Luego de guardar los datos de la orden paso a manar los atos necesarios para realizar un registro en
+        //la tabla  tbl_Cotizacion_Producto, la cual necesita los datos Direccion,Telefono
+
+
+        console.log(Datos_De_Entrega);
+        $http.post(url + 'Modulo/Modulo_Usuario/FN_Envio_Orden', Datos_De_Entrega)
+        .success(function (res) {
+          var Respuesta = (res);
+          if(Respuesta == 'true')
+          {
+             $scope.Mensaje = "Tú orden ha sido enviada";
+             Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Finalizado');
+             $scope.BL_Ver_Envio_Orden =! $scope.BL_Ver_Envio_Orden;
+             $scope.BL_Datos_Envio_Producto =! $scope.BL_Datos_Envio_Producto;
+         }
+         else
+         {
+             $scope.Mensaje = "Ha ocurrido un error al enviar la orden";
+             Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Error');
+         }
+     })
+        .error(function (res, status) {
+              console.log('error', null, res);
+      });
+    }
+    if(Respuesta == 'No_Hay_Datos')
+    {
+     $scope.Mensaje = "Error al iniciar el proceso de envio de orden";
+     Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Error');
+     $scope.BL_Scroll_Body = true;
+     $scope.BL_Ver_Envio_Orden =! $scope.BL_Ver_Envio_Orden;
+     $scope.BL_Datos_Envio_Producto = true;
+ }
+})
+    .error(function (res, status) {
+          console.log('error', null, res);
+
+  });
+}
+if(Tipo_Accion == 3)
+{
+    $scope.BL_Ver_Envio_Orden =! $scope.BL_Ver_Envio_Orden;
+    $scope.BL_Datos_Envio_Producto =! $scope.BL_Datos_Envio_Producto;
+
+}
 };
 
 
 
 
+$scope.AOBJ_Lista_Ordenes_Enviadas= [];
+$scope.FN_Listar_Ordenes_Enviadas = function ()
+{
+
+  $http.post(url + 'Modulo/Modulo_Usuario/FN_Listar_Ordenes_Enviadas')
+  .success(function (res) {
+    $scope.AOBJ_Lista_Ordenes_Enviadas = res;
+
+})
+  .error(function (res, status) {
+        console.log('error', null, res);
+
+});
+};
 
 
+$scope.AOBJ_Lista_Detalles_Ordenes_Enviadas= [];
+$scope.Total_Orden_Enviada = 0;
+
+$scope.FN_Listar_Detalles_Ordene_Enviada = function (Posicion_Lista)
+{
+  $scope.Total_Orden_Enviada = 0;
+  var Datos = $scope.AOBJ_Lista_Ordenes_Enviadas[Posicion_Lista];
+  $http.post(url + 'Modulo/Modulo_Usuario/FN_Listar_Detalles_Ordene_Enviada',Datos)
+  .success(function (res) {
+    $scope.AOBJ_Lista_Detalles_Ordenes_Enviadas = res;
 
 
+    for (var i = 0; i < $scope.AOBJ_Lista_Detalles_Ordenes_Enviadas.length; i++) {
+      $scope.Total_Orden_Enviada += parseInt($scope.AOBJ_Lista_Detalles_Ordenes_Enviadas[i].Sub_Total);   
+  }
+
+})
+  .error(function (res, status) {
+        console.log('error', null, res);
+
+});
+};
+
+
+$scope.FN_Eliminar_Orden_Enviada = function (Posicion_Lista)
+{
+  $scope.Total_Orden_Enviada = 0;
+  var Datos = $scope.AOBJ_Lista_Ordenes_Enviadas[Posicion_Lista];
+  $http.post(url + 'Modulo/Modulo_Usuario/FN_Eliminar_Orden_Enviada',Datos)
+  .success(function (res) {
+     var Respuesta = (res);
+     if(Respuesta == 'true')
+     {
+        $scope.Mensaje = "Orden eliminada correctamente";
+        Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Finalizado');
+        $scope.FN_Listar_Ordenes_Enviadas();
+    }
+    else
+    {
+        $scope.Mensaje = "Ha ocurrido un error al eliminar la orden";
+        Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Error');
+    }
+
+})
+  .error(function (res, status) {
+        console.log('error', null, res);
+
+});
+};
 //_*********************************Variable con la que puedo hacer uso de los elementos de la fabrica, desde el html***********************
 //_*cabe rezaltar que caundo quiera llamar alguna variable del APP.JS desde el hyml debo de poner: dato.variable a solicitar
 //_* ya que .dato posee como ruta predeterminada el objeto donde estoy guardando mis elementos

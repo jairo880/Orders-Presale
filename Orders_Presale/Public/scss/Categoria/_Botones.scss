@@ -300,7 +300,7 @@
             content: 'J';
             color: $Color_12;
             font-size: 13px;
-            font-family: allop;
+            font-family: ordes-presale;
             position: absolute;
             top: 2px;
             left: 4px;
@@ -326,7 +326,7 @@
 
 //para los mensajes de notificaciones
 @mixin MX_Notificaciones_Estilos() {
-    .CL_Mensaje_Notificacion {
+    .CL_Estado_CONT {
         border-top: solid 1px $Color_2;
         border-bottom: solid 1px $Color_2;
         height: auto;
@@ -370,7 +370,7 @@
         }
 
 
-        .CL_Icono_Notificacion p {
+        .CL_Icono_Estado p {
             width: 33px;
             height: 33px;
             font-size: 16px;
@@ -545,4 +545,46 @@
     }
 
 
+}
+
+
+@mixin MX_Paginacion
+{
+    %PH_Paginacion
+    {
+
+     & li 
+     {
+        border:solid 1px $Color_2;
+        text-decoration: none;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        margin-left: -1px;
+        list-style:none;
+        cursor:pointer;
+        line-height: 1.42857143;
+        padding: 6px 12px;
+
+    }
+    & li a 
+    {
+        
+        color: #428bca;
+        
+    }
+
+    & li.Paginacion_Disabled
+    {
+        cursor: not-allowed;
+    }
+}
+.CON_Paginacion
+{
+ min-height: 70px;
+ max-height: 100px;
+}
+.CL_Paginacion_1
+{
+    @extend %PH_Paginacion;
+}
 }

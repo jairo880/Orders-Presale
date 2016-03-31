@@ -1,7 +1,9 @@
 title {{dato.AOBJ_Datos_Usuario[0].Nombre_Usuario}} | Guia proyecto
 link(rel="stylesheet" href!="<?php echo URL;?>public/css/Templates/Administracion/Guia_Proyecto/Guia_Proyecto.css")
+
+					
 //sesion Estructura
-main#CONT_Principal_Guia(ng-init="FN_Ver_Elemento_Guia(7)")
+main#CONT_Principal_Guia(ng-init="FN_Ver_Elemento_Guia(8)")
 	section.ng_show#SC_Guia_Estructura.Grid_Contenedor.Base-100.web-80.abcenter(ng-if="Estructura == true")
 		#CONT_Contenedor_Invisible_Header
 		#CONT_Titulo
@@ -11,13 +13,13 @@ main#CONT_Principal_Guia(ng-init="FN_Ver_Elemento_Guia(7)")
 				p.CL_Titulo_Contenedor.icon-folder.CL_Alerta_5 Carpetas principales
 					span Orders_Presale
 				.CL_Bloques.Grid_Contenedor
-					li.Grid_Item.Base-50-tablet-30
+					li.Grid_Item.Base-50.tablet-30
 						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 Application
 						span.CL_TXT_Descripcion.icon-alerta2 Lugar donde se encuentran todos los archivos que se encargan del back-end, ademas de las vistas de Orders_Presale
-					li.Grid_Item.Base-50-tablet-30
+					li.Grid_Item.Base-50.tablet-30
 						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 Bd_Orders_Presale
 						span.CL_TXT_Descripcion.icon-alerta2 Lugar donde se encuentran los archivos de la base de datos en Mysql, Procedimientos , insercciones, etc.
-					li.Grid_Item.Base-50-tablet-30
+					li.Grid_Item.Base-50.tablet-30
 						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 Public
 						span.CL_TXT_Descripcion.icon-alerta2 Lugar donde se encuentran los archivos Front-end
 		//
@@ -28,21 +30,21 @@ main#CONT_Principal_Guia(ng-init="FN_Ver_Elemento_Guia(7)")
 				p.CL_Titulo_Contenedor.icon-folder.CL_Alerta_5 Carpetas de 
 					span Application
 				.CL_Bloques.Grid_Contenedor
-					li.Grid_Item.Base-50-tablet-30
+					li.Grid_Item.Base-50.tablet-30
 						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 config
 						span.CL_TXT_Descripcion.icon-alerta2 Archivos <i class="icon-file"> .php </i>  para crear la conexi&oacute;n con la base de datos
 
 
-					li.Grid_Item.Base-50-tablet-30
+					li.Grid_Item.Base-50.tablet-30
 						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 controller
 						span.CL_TXT_Descripcion.icon-alerta2 Archivos <i class="icon-file"> .php </i>  parar cada pagina web, son controladores que cuando son ejecutados realizan determinada acci&oacute;n como: Pintar una vista, llamar funcion de CRUD
-					li.Grid_Item.Base-50-tablet-30
+					li.Grid_Item.Base-50.tablet-30
 						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 core
 						span.CL_TXT_Descripcion.icon-alerta2 Archivos <i class="icon-file"> .php </i>  para realizar las RUTAS AMIGABLES
-					li.Grid_Item.Base-50-tablet-30
+					li.Grid_Item.Base-50.tablet-30
 						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 model
 						span.CL_TXT_Descripcion.icon-alerta2 Archivos <i class="icon-file"> .php </i>  para CRUD
-					li.Grid_Item.Base-50-tablet-30
+					li.Grid_Item.Base-50.tablet-30
 						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 view
 						span.CL_TXT_Descripcion.icon-alerta2 Archivos <i class="icon-file"> .php </i>  Se encuentra una carpeta _templates, dentro de esta se encuentra el Header y Footer de la pagina web, se insertan en la vista por medio de require APP de php
 		//
@@ -53,21 +55,21 @@ main#CONT_Principal_Guia(ng-init="FN_Ver_Elemento_Guia(7)")
 				p.CL_Titulo_Contenedor.icon-folder.CL_Alerta_5 Archivos de 
 					span Bd_Orders_Presale
 				.CL_Bloques.Grid_Contenedor
-					li.Grid_Item.Base-100-tablet-
+					li.Grid_Item.Base-100.tablet-30
 						p.icon-file.CL_Txt_1.CL_Alerta_5.Padding-5 Orders_Presale_Funciones
 						span.CL_TXT_Descripcion.icon-alerta2 Archivos <i class="icon-file"> .sql </i>  para las funciones creadas
 
 
-					li.Grid_Item.Base-100-tablet-
+					li.Grid_Item.Base-100.tablet-30
 						p.icon-file.CL_Txt_1.CL_Alerta_5.Padding-5 Orders_Presale_Inser
 						span.CL_TXT_Descripcion.icon-alerta2 Archivos <i class="icon-file"> .sql </i>  para las inserciones de datos  de la base de datos
-					li.Grid_Item.Base-100-tablet-
+					li.Grid_Item.Base-100.tablet-30
 						p.icon-file.CL_Txt_1.CL_Alerta_5.Padding-5 Orders_Presale_Procedimientos
 						span.CL_TXT_Descripcion.icon-alerta2 Archivos <i class="icon-file"> .sql </i>  para los procedimientos de CRUD de la base de datos
-					li.Grid_Item.Base-100-tablet-
+					li.Grid_Item.Base-100.tablet-30
 						p.icon-file.CL_Txt_1.CL_Alerta_5.Padding-5 Bd_Orders_Presale
 						span.CL_TXT_Descripcion.icon-alerta2 Archivos <i class="icon-file"> .sql </i>  para la creacion de la Base de datos Orders_Presale
-					li.Grid_Item.Base-100-tablet-
+					li.Grid_Item.Base-100.tablet-30
 						p.icon-file.CL_Txt_1.CL_Alerta_5.Padding-5 Bds_Todo
 						span.CL_TXT_Descripcion.icon-alerta2 Archivos <i class="icon-file"> .sql </i>  Contiene todo lo anterior combinado para as&iacute; acelerar el trabajo de importacion.
 		//
@@ -78,13 +80,13 @@ main#CONT_Principal_Guia(ng-init="FN_Ver_Elemento_Guia(7)")
 				p.CL_Titulo_Contenedor.icon-folder.CL_Alerta_5 Carpetas de 
 					span Public
 				.CL_Bloques.Grid_Contenedor
-					li.Grid_Item.Base-50-tablet-30
+					li.Grid_Item.Base-50.tablet-30
 						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 css
 						span.CL_TXT_Descripcion.icon-alerta2 Archivos <i class="icon-file"> .css </i>  de las pag&iacute;nas web, cada pag&iacute;na posee un archivo <i class="icon-file"> .css </i> unico, ademas poseen sus propios Mediaquery, los cuales se encuentran en la carpeta <i class="icon-folder"> sass </i>
 						span.CL_TXT_Descripcion.icon-alerta2 Cada archivo  <i class="icon-file"> .css </i>  es generado por un archivo  <i class="icon-file"> .scss </i> ubicado en la carpeta <i class="icon-folder"> sass/Templates </i>
 
 
-					li.Grid_Item.Base-50-tablet-30
+					li.Grid_Item.Base-50.tablet-30
 						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 fonts
 
 						span.CL_TXT_Descripcion.icon-alerta2 Fuentes descargadas para usar en la pag&iacute;nas
@@ -92,23 +94,23 @@ main#CONT_Principal_Guia(ng-init="FN_Ver_Elemento_Guia(7)")
 						span.CL_TXT_Descripcion.icon-alerta2 Para usar un icono de Fontastic, es necesario agregarle a la etiqueta &ltp&gt  &lta&gt  &ltspan&gt &lti&gt. la clase <i>icon</i>+guion medio+<i>Nombre del icono</i>
 						span Ejemplo: &ltp class="icon-folder"&gt
 						span.CL_TXT_Descripcion.icon-alerta2 El uso de las fuentes de  Fontastic, reduce el peso del proyecto, por el motivo de que no se estan usando imagenes para los iconos, si no, una fuente que trae los iconos
-					li.Grid_Item.Base-50-tablet-30
+					li.Grid_Item.Base-50.tablet-30
 						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 img
 						span.CL_TXT_Descripcion.icon-alerta2 Imagenes usadas en la pag&iacute;na web, wallpapers, iconos, logotipos  etc.
 						span.CL_TXT_Descripcion.icon-alerta2 Ademas de las imagenes ubicadas en esta carpeta, en Orders_Presale se usan imagenes alojadas en <a target="_blank" class="icon-link" href="https://www.dropbox.com/home">Dropbox</a> para as&iacute; disminuir el peso del proyecto
 						span.CL_TXT_Descripcion.icon-alerta2 El link para encontrar las imagenes es: <a target="_blank" class="icon-link" href="https://www.dropbox.com/home/Public/Orders_Presale/img">https://www.dropbox.com/home/Public/Orders_Presale/img</a>
-					li.Grid_Item.Base-50-tablet-30
+					li.Grid_Item.Base-50.tablet-30
 						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 jade
 						span.CL_TXT_Descripcion.icon-alerta2 Archivos <i class="icon-file"> .jade </i> para generar los archivos <i class="icon-file"> .php </i> ubicados dentro de la carpeta:<i class="icon-folder"> Orders_Presale_Aplicacion_Sena\Application\view </i>
 						span.CL_TXT_Descripcion.icon-alerta2 La guia para usar jade puede encontrarse en su pagina oficial <a target="_blank" class="icon-link" href="http://jade-lang.com/reference/">jade-lang.com</a>
-					li.Grid_Item.Base-50-tablet-30
+					li.Grid_Item.Base-50.tablet-30
 						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 js
 						span.CL_TXT_Descripcion.icon-alerta2 Archivos <i class="icon-file"> .js </i>
 						span.CL_TXT_Descripcion.icon-alerta2 se podran encontrar los archivos <i class="icon-file"> .js </i> de Angular.js dentro de la carpeta:<i class="icon-folder"> js/Angular </i>
 						span.CL_TXT_Descripcion.icon-alerta2 La guia para usar Angular.js puede encontrarse en su pagina oficial <a target="_blank" class="icon-link" href="https://angularjs.org/">angularjs.org</a>
 						span.CL_TXT_Descripcion.icon-alerta2 se puede encontrar otra guia para usar Angular.js en: <a target="_blank" class="icon-link" href="https://mega.nz/#!Yd9SSRLA!2P2-X0mcBzAxc6bN1DqHSYSvmdijy0pc071JU9CMhDo">Mega</a> este archivo es un <i class="icon-file"> .iso </i> donde se encuentra una serie de videos
 						span.CL_TXT_Descripcion.icon-alerta2 se podran encontrar los archivos <i class="icon-file"> .js </i> de Javascript dentro de la carpeta:<i class="icon-folder"> js/Javascript </i>
-					li.Grid_Item.Base-50-tablet-30
+					li.Grid_Item.Base-50.tablet-30
 						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 scss
 						span.CL_TXT_Descripcion.icon-alerta2 Archivos <i class="icon-file"> .scss </i> para generar los archivos <i class="icon-file"> .css </i> de la web
 						span.CL_TXT_Descripcion.icon-alerta2 la pagina oficial de sass es: <a target="_blank" class="icon-link" href="http://sass-lang.com/">Sass-lang.com</a>
@@ -121,13 +123,13 @@ main#CONT_Principal_Guia(ng-init="FN_Ver_Elemento_Guia(7)")
 				p.CL_Titulo_Contenedor.icon-folder.CL_Alerta_5 Carpetas de 
 					span css
 				.CL_Bloques.Grid_Contenedor
-					li.Grid_Item.Base-50-tablet-30
+					li.Grid_Item.Base-50.tablet-30
 						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 Base_Orders_Presale
 						span.CL_TXT_Descripcion.icon-alerta2 Archivos <i class="icon-file"> .css </i> base, este archivo es el <i class="icon-file"> .css </i> base para todas las paginas web, de este se importan estilos de botones, formularios, textos, etc
-					li.Grid_Item.Base-50-tablet-30
+					li.Grid_Item.Base-50.tablet-30
 						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 img
 						span.CL_TXT_Descripcion.icon-alerta2 carpeta <i class="icon-folder">img</i> donde se encuentran las imagenes usadas desde los archivos <i class="icon-file"> .css </i>
-					li.Grid_Item.Base-50-tablet-30
+					li.Grid_Item.Base-50.tablet-30
 						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 Templates
 						span.CL_TXT_Descripcion.icon-alerta2 carpeta <i class="icon-folder">Templates</i> donde se encuentran los diferentes  archivos  <i class="icon-file"> .css </i> de las paginas web, cada archivo se encuentra dentro de su carpeta correspondiente.
 		//
@@ -138,13 +140,13 @@ main#CONT_Principal_Guia(ng-init="FN_Ver_Elemento_Guia(7)")
 				p.CL_Titulo_Contenedor.icon-folder.CL_Alerta_5 Carpetas de 
 					span Angular
 				.CL_Bloques.Grid_Contenedor
-					li.Grid_Item.Base-50-tablet-30
+					li.Grid_Item.Base-50.tablet-30
 						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 Controladores
 						span.CL_TXT_Descripcion.icon-alerta2 dentro de esta carpeta se encuentran los controladores creados para las paginas web.
-					li.Grid_Item.Base-50-tablet-30
+					li.Grid_Item.Base-50.tablet-30
 						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 Librerias
 						span.CL_TXT_Descripcion.icon-alerta2 dentro de esta carpeta se encuentran las diferentes librerias importadas para Angular.js
-					li.Grid_Item.Base-50-tablet-30
+					li.Grid_Item.Base-50.tablet-30
 						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 Modulos
 						span.CL_TXT_Descripcion.icon-alerta2 dentro de esta carpeta se encuentran los modulos creados para las paginas web.
 		//
@@ -155,19 +157,19 @@ main#CONT_Principal_Guia(ng-init="FN_Ver_Elemento_Guia(7)")
 				p.CL_Titulo_Contenedor.icon-folder.CL_Alerta_5 Carpetas de 
 					span scss
 				.CL_Bloques.Grid_Contenedor
-					li.Grid_Item.Base-50-tablet-30
+					li.Grid_Item.Base-50.tablet-30
 						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 Base_Orders_Presale
 						span.CL_TXT_Descripcion.icon-alerta2 Archivos basicos (Mediaquery, Variables, Archivo base de scss)
-					li.Grid_Item.Base-50-tablet-30
+					li.Grid_Item.Base-50.tablet-30
 						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 Categoria
 						span.CL_TXT_Descripcion.icon-alerta2 Estilos para los: Botones,inputs,textos, etc
-					li.Grid_Item.Base-50-tablet-30
+					li.Grid_Item.Base-50.tablet-30
 						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 Modulos
 						span.CL_TXT_Descripcion.icon-alerta2 Estilos para las Ventanas modales
-					li.Grid_Item.Base-50-tablet-30
+					li.Grid_Item.Base-50.tablet-30
 						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 Tema
 						span.CL_TXT_Descripcion.icon-alerta2 Estilos del Header/Footer.
-					li.Grid_Item.Base-50-tablet-30
+					li.Grid_Item.Base-50.tablet-30
 						p.icon-folder.CL_Txt_1.CL_Alerta_5.Padding-10 Templates
 						span.CL_TXT_Descripcion.icon-alerta2 Estilos de los Templates de las paginas
 	//sesion sass
@@ -180,19 +182,19 @@ main#CONT_Principal_Guia(ng-init="FN_Ver_Elemento_Guia(7)")
 				p.CL_Titulo_Contenedor.icon-css.CL_Alerta_5.Padding-5 Estandarizaci&oacute;n
 					span Mixin
 				.CL_Bloques.Grid_Contenedor
-					li.Grid_Item.Base-100-tablet-
+					li.Grid_Item.Base-100.tablet-30
 						p.icon-css.CL_Txt_1.CL_Alerta_5 Botones
 						span.CL_TXT_Descripcion.icon-alerta2 Nombre mixin: MX_Btn_Estilos
 						p.CL_Txt_1 ------------------------------
 
 						span.CL_TXT_Descripcion.icon-alerta2 Nombre de las clases: Btn_Estilo_(1,2,3,4,etc)
-					li.Grid_Item.Base-100-tablet-
+					li.Grid_Item.Base-100.tablet-30
 						p.icon-css.CL_Txt_1.CL_Alerta_5 Select
 						span.CL_TXT_Descripcion.icon-alerta2 Nombre mixin: MX_Select_Estilos
 						p.CL_Txt_1 ------------------------------
 
 						span.CL_TXT_Descripcion.icon-alerta2 Nombre de las clases: Select_(1,2,3,4,etc)
-					li.Grid_Item.Base-100-tablet-
+					li.Grid_Item.Base-100.tablet-30
 						p.icon-css.CL_Txt_1.CL_Alerta_5 Radio bottom
 						p.CL_Txt_1 ------------------------------
 
@@ -201,13 +203,13 @@ main#CONT_Principal_Guia(ng-init="FN_Ver_Elemento_Guia(7)")
 
 						span.CL_TXT_Descripcion.icon-alerta2 Nombre de las clases: RadioBtn_(1,2,3,4,etc)
 						span.CL_TXT_Descripcion.icon-alerta2 Tener en cuenta que el mixin posee una extructura, para aplicar los estilos, revizar como nombrar los elemento para poder aplicar el estilos correctamente
-					li.Grid_Item.Base-100-tablet-
+					li.Grid_Item.Base-100.tablet-30
 						p.icon-css.CL_Txt_1.CL_Alerta_5 Input
 						span.CL_TXT_Descripcion.icon-alerta2 Nombre mixin: MX_Input_Estilos
 						p.CL_Txt_1 ------------------------------
 
 						span.CL_TXT_Descripcion.icon-alerta2 Nombre de las clases: Input_Estilo_(1,2,3,4,etc)
-					li.Grid_Item.Base-100-tablet-
+					li.Grid_Item.Base-100.tablet-30
 						p.icon-css.CL_Txt_1.CL_Alerta_5 Tablas
 						p.CL_Txt_1 ------------------------------
 
@@ -216,7 +218,7 @@ main#CONT_Principal_Guia(ng-init="FN_Ver_Elemento_Guia(7)")
 
 						span.CL_TXT_Descripcion.icon-alerta2 Nombre de las clases: Tabla_Estilo_(1,2,3,4,etc)
 						span.CL_TXT_Descripcion.icon-alerta2 Tener en cuenta que el mixin posee una extructura, para aplicar los estilos, revizar como nombrar los elemento para poder aplicar el estilos correctamente
-					li.Grid_Item.Base-100-tablet-
+					li.Grid_Item.Base-100.tablet-30
 						p.icon-css.CL_Txt_1.CL_Alerta_5 Animaciones Regular
 						span.CL_TXT_Descripcion.icon-alerta2 Nombre mixin: MX_Animacion_Normal($Duracion1, $Tipo, $Duracion2)
 						p.CL_Txt_1 ------------------------------
@@ -231,7 +233,7 @@ main#CONT_Principal_Guia(ng-init="FN_Ver_Elemento_Guia(7)")
 						p.CL_Txt_1 ------------------------------
 
 						span.CL_TXT_Descripcion.icon-alerta2 Como llamarlo:  @include MX_Animacion_Normal(0.2, ease, 0.2);
-					li.Grid_Item.Base-100-tablet-
+					li.Grid_Item.Base-100.tablet-30
 						p.icon-css.CL_Txt_1.CL_Alerta_5 Animaciones Cubic_beizer
 
 						span.CL_TXT_Descripcion.icon-alerta2 Nombre mixin: MX_Cubic_beizer_Scale($Scale)
@@ -241,7 +243,7 @@ main#CONT_Principal_Guia(ng-init="FN_Ver_Elemento_Guia(7)")
 						p.CL_Txt_1 ------------------------------
 
 						span.CL_TXT_Descripcion.icon-alerta2 Como llamarlo: @include MX_Cubic_beizer_Scale(9/10);
-					li.Grid_Item.Base-100-tablet-
+					li.Grid_Item.Base-100.tablet-30
 						p.icon-css.CL_Txt_1.CL_Alerta_5 Animaciones Angular.js
 						span.CL_TXT_Descripcion.icon-alerta2 Nombre mixin: MX_Animaciones_Angular
 						p.CL_Txt_1 ------------------------------
@@ -259,7 +261,7 @@ main#CONT_Principal_Guia(ng-init="FN_Ver_Elemento_Guia(7)")
 						p.CL_Txt_1 ------------------------------
 
 						span.CL_TXT_Descripcion.icon-alerta2 Para angular se tienen algunas animaciones por defecto como lo son para la directiva ng-if, ng-repeat
-					li.Grid_Item.Base-100-tablet-
+					li.Grid_Item.Base-100.tablet-30
 						p.icon-css.CL_Txt_1.CL_Alerta_5 Fuentes descargadas
 						span.CL_TXT_Descripcion.icon-alerta2 Nombre mixin: MX_Fuentes_Web($Encarpetado_Fuentes)
 						p.CL_Txt_1 ------------------------------
@@ -268,7 +270,7 @@ main#CONT_Principal_Guia(ng-init="FN_Ver_Elemento_Guia(7)")
 						p.CL_Txt_1 ------------------------------
 
 						span.CL_TXT_Descripcion.icon-alerta2 Como llamarlo: @include MX_Fuentes_Web("../../../fonts/");
-					li.Grid_Item.Base-100-tablet-
+					li.Grid_Item.Base-100.tablet-30
 						p.icon-css.CL_Txt_1.CL_Alerta_5 Textos 
 						span.CL_TXT_Descripcion.icon-alerta2 Nombre mixin: Texto_Estilo_1($Tamaño_Fuente,$Color,$Font_Weight,$Aline)
 						p.CL_Txt_1 ------------------------------
@@ -289,21 +291,21 @@ main#CONT_Principal_Guia(ng-init="FN_Ver_Elemento_Guia(7)")
 						p.CL_Txt_1 ------------------------------
 
 						span.CL_TXT_Descripcion.icon-alerta2 Se poseen varios mixin para los estilos de texto, tansolo varia el numero del mixin Texto_Estilo_(1,2,3,4,etc)
-					li.Grid_Item.Base-100-tablet-
+					li.Grid_Item.Base-100.tablet-30
 						p.icon-css.CL_Txt_1.CL_Alerta_5 Barra de busqueda
 						span.CL_TXT_Descripcion.icon-alerta2 Nombre mixin: MX_Barra_Busqueda
 						p.CL_Txt_1 ------------------------------
 
 						span.CL_TXT_Descripcion.icon-alerta2 Como llamarlo: @include MX_Barra_Busqueda();
 						span.CL_TXT_Descripcion.icon-alerta2 Tener en cuenta que el mixin posee una extructura, para aplicar los estilos, revizar como nombrar los elemento para poder aplicar el estilos correctamente
-					li.Grid_Item.Base-100-tablet-
+					li.Grid_Item.Base-100.tablet-30
 						p.icon-css.CL_Txt_1.CL_Alerta_5 Boton circular 
 						span.CL_TXT_Descripcion.icon-alerta2 Nombre mixin: MX_Btn_Nuevo_Mensaje
 						p.CL_Txt_1 ------------------------------
 
 						span.CL_TXT_Descripcion.icon-alerta2 Como llamarlo: @include MX_Btn_Nuevo_Mensaje();
 						span.CL_TXT_Descripcion.icon-alerta2 Tener en cuenta que el mixin posee una extructura, para aplicar los estilos, revizar como nombrar los elemento para poder aplicar el estilos correctamente
-					li.Grid_Item.Base-100-tablet-
+					li.Grid_Item.Base-100.tablet-30
 						p.icon-css.CL_Txt_1.CL_Alerta_5 Botones notificacion
 
 						span.CL_TXT_Descripcion.icon-alerta2 Nombre mixin: MX_Notificaciones_Estilos
@@ -311,13 +313,13 @@ main#CONT_Principal_Guia(ng-init="FN_Ver_Elemento_Guia(7)")
 
 						span.CL_TXT_Descripcion.icon-alerta2 Como llamarlo: @include MX_Notificaciones_Estilos();
 						span.CL_TXT_Descripcion.icon-alerta2 Tener en cuenta que el mixin posee una extructura, para aplicar los estilos, revizar como nombrar los elemento para poder aplicar el estilos correctamente
-					li.Grid_Item.Base-100-tablet-
+					li.Grid_Item.Base-100.tablet-30
 						p.icon-css.CL_Txt_1.CL_Alerta_5 Box-shadow
 						span.CL_TXT_Descripcion.icon-alerta2 Nombre mixin: MX_Box_Shadow($x, $y, $blur, $opacidad, $Color)
 						p.CL_Txt_1 ------------------------------
 
 						span.CL_TXT_Descripcion.icon-alerta2 Como llamarlo: @include MX_Box_Shadow(0px,0px, 1px, 0px, rgba(0,0,0,6/10));
-					li.Grid_Item.Base-100-tablet-
+					li.Grid_Item.Base-100.tablet-30
 						p.icon-css.CL_Txt_1.CL_Alerta_5 Border-radius
 						span.CL_TXT_Descripcion.icon-alerta2 Nombre mixin: MX_Bor_Radius($Valor, $Tipo)
 						p.CL_Txt_1 ------------------------------
@@ -341,7 +343,7 @@ main#CONT_Principal_Guia(ng-init="FN_Ver_Elemento_Guia(7)")
 						p.CL_Txt_1 ------------------------------
 
 						span.CL_TXT_Descripcion.icon-alerta2 Como llamarlo: @include MX_Bor_Radius(2px,0);
-					li.Grid_Item.Base-100-tablet-
+					li.Grid_Item.Base-100.tablet-30
 						p.icon-css.CL_Txt_1.CL_Alerta_5 Box-sizing
 						span.CL_TXT_Descripcion.icon-alerta2 Nombre mixin: MX_Box-Sizing(TipoBox)
 						span.CL_TXT_Descripcion.icon-alerta2 Como llamarlo:  @include MX_Box-Sizing(border-box);
@@ -401,7 +403,7 @@ main#CONT_Principal_Guia(ng-init="FN_Ver_Elemento_Guia(7)")
 				p.CL_Titulo_Contenedor.icon-css.CL_Alerta_5.Padding-5 Estandarizaci&oacute;n
 					span Placeholder o Estilos fantasmas
 					.CL_Bloques.Grid_Contenedor
-						li.Grid_Item.Base-100-tablet-
+						li.Grid_Item.Base-100.tablet-30
 							p.icon-css.CL_Txt_1.CL_Alerta_5 Placeholder o Estilos Fantasmas
 							span.CL_TXT_Descripcion.icon-alerta2 Nombre Placeholder: %PH_Nombre
 		#CONT_Estructura_Carpetas
@@ -409,7 +411,7 @@ main#CONT_Principal_Guia(ng-init="FN_Ver_Elemento_Guia(7)")
 				p.CL_Titulo_Contenedor.icon-css.CL_Alerta_5.Padding-5 Estandarizaci&oacute;n
 					span Variables (Colores)
 					.CL_Bloques.Grid_Contenedor
-						li.Grid_Item.Base-100-tablet-
+						li.Grid_Item.Base-100.tablet-30
 							p.icon-css.CL_Txt_1.CL_Alerta_5 Colores
 							span.CL_TXT_Descripcion.icon-alerta2 Nombre Colores: $Color_(1,2,3,4,5,6,etc)
 	//sesion angular
@@ -422,44 +424,44 @@ main#CONT_Principal_Guia(ng-init="FN_Ver_Elemento_Guia(7)")
 				p.CL_Titulo_Contenedor.icon-angular.CL_Alerta_5 Estandarizaci&oacute;n
 					span Variables
 				.CL_Bloques.Grid_Contenedor
-					li.Grid_Item.Base-100-tablet-
+					li.Grid_Item.Base-100.tablet-30
 						p.icon-angular.CL_Txt_1.CL_Alerta_5 Boolean
 
 						span.CL_TXT_Descripcion.icon-alerta2 BL_Nombre_Variable
 						p.CL_Txt_1 ------------------------------
 						span.CL_TXT_Descripcion.icon-alerta2 Si el nombre posee mas de dos palabras, separarla por _ y la siguiente letra ponerla en Mayuscula
-					li.Grid_Item.Base-100-tablet-
+					li.Grid_Item.Base-100.tablet-30
 						p.icon-angular.CL_Txt_1.CL_Alerta_5 Numerica
 
 						span.CL_TXT_Descripcion.icon-alerta2 NUM_Nombre_Variable
 						p.CL_Txt_1 ------------------------------
 						span.CL_TXT_Descripcion.icon-alerta2 Si el nombre posee mas de dos palabras, separarla por _ y la siguiente letra ponerla en Mayuscula
-					li.Grid_Item.Base-100-tablet-
+					li.Grid_Item.Base-100.tablet-30
 						p.icon-angular.CL_Txt_1.CL_Alerta_5 CADENA DE TEXTO
 
 						span.CL_TXT_Descripcion.icon-alerta2 TXT_Nombre_Variable
 						p.CL_Txt_1 ------------------------------
 
 						span.CL_TXT_Descripcion.icon-alerta2 Si el nombre posee mas de dos palabras, separarla por _ y la siguiente letra ponerla en Mayuscula
-					li.Grid_Item.Base-100-tablet-
+					li.Grid_Item.Base-100.tablet-30
 						p.icon-angular.CL_Txt_1.CL_Alerta_5 URL
 						span.CL_TXT_Descripcion.icon-alerta2 URL_Nombre_Variable
 						p.CL_Txt_1 ------------------------------
 
 						span.CL_TXT_Descripcion.icon-alerta2 Si el nombre posee mas de dos palabras, separarla por _ y la siguiente letra ponerla en Mayuscula
-					li.Grid_Item.Base-100-tablet-
+					li.Grid_Item.Base-100.tablet-30
 						p.icon-angular.CL_Txt_1.CL_Alerta_5 ARRAY OBJETO
 						span.CL_TXT_Descripcion.icon-alerta2 AOBJ_Nombre_Variable
 						p.CL_Txt_1 ------------------------------
 
 						span.CL_TXT_Descripcion.icon-alerta2 Si el nombre posee mas de dos palabras, separarla por _ y la siguiente letra ponerla en Mayuscula
-					li.Grid_Item.Base-100-tablet-
+					li.Grid_Item.Base-100.tablet-30
 						p.icon-angular.CL_Txt_1.CL_Alerta_5 FECHA
 						span.CL_TXT_Descripcion.icon-alerta2 DATE_Nombre_Variable
 						p.CL_Txt_1 ------------------------------
 
 						span.CL_TXT_Descripcion.icon-alerta2 Si el nombre posee mas de dos palabras, separarla por _ y la siguiente letra ponerla en Mayuscula
-					li.Grid_Item.Base-100-tablet-
+					li.Grid_Item.Base-100.tablet-30
 						p.icon-angular.CL_Txt_1.CL_Alerta_5 FUNCIONES
 						span.CL_TXT_Descripcion.icon-alerta2 FN_Nombre_Variable
 						p.CL_Txt_1 ------------------------------
@@ -475,20 +477,20 @@ main#CONT_Principal_Guia(ng-init="FN_Ver_Elemento_Guia(7)")
 				p.CL_Titulo_Contenedor.icon-html5.CL_Alerta_5 Estandarizaci&oacute;n
 					span Etiquetas
 				.CL_Bloques.Grid_Contenedor
-					li.Grid_Item.Base-100-tablet-
+					li.Grid_Item.Base-100.tablet-30
 						p.icon-html5.CL_Txt_1.CL_Alerta_5 Para contenedores
 						span.CL_TXT_Descripcion.icon-alerta2 CONT_Nombre_Variable
 						p.CL_Txt_1 ------------------------------
 
 						span.CL_TXT_Descripcion.icon-alerta2 Si el nombre posee mas de dos palabras, separarla por _ y la siguiente letra ponerla en Mayuscula
-					li.Grid_Item.Base-100-tablet-
-						p.icon-html5.CL_Txt_1.CL_Alerta_5 SECTION.ng_show
+					li.Grid_Item.Base-100.tablet-30
+						p.icon-html5.CL_Txt_1.CL_Alerta_5 SECTION
 						span.CL_TXT_Descripcion.icon-alerta2 SC_Nombre_Variable
 
 						p.CL_Txt_1 ------------------------------
 
 						span.CL_TXT_Descripcion.icon-alerta2 Si el nombre posee mas de dos palabras, separarla por _ y la siguiente letra ponerla en Mayuscula
-					li.Grid_Item.Base-100-tablet-
+					li.Grid_Item.Base-100.tablet-30
 						p.icon-html5.CL_Txt_1.CL_Alerta_5 CLASES
 						span.CL_TXT_Descripcion.icon-alerta2 CL_Nombre_Variable
 						p.CL_Txt_1 ------------------------------
@@ -508,19 +510,19 @@ main#CONT_Principal_Guia(ng-init="FN_Ver_Elemento_Guia(7)")
 						span.CL_TXT_Descripcion.icon-alerta2  Si un input posee clase:
 
 						span.CL_TXT_Descripcion.icon-alerta2  CL_INPUT_Nombre:
-					li.Grid_Item.Base-100-tablet-
+					li.Grid_Item.Base-100.tablet-30
 						p.icon-html5.CL_Txt_1.CL_Alerta_5 FORMULARIOS
 						span.CL_TXT_Descripcion.icon-alerta2 FORM_Nombre_Variable
 						p.CL_Txt_1 ------------------------------
 
 						span.CL_TXT_Descripcion.icon-alerta2 Si el nombre posee mas de dos palabras, separarla por _ y la siguiente letra ponerla en Mayuscula
-					li.Grid_Item.Base-100-tablet-
+					li.Grid_Item.Base-100.tablet-30
 						p.icon-html5.CL_Txt_1.CL_Alerta_5 ID
 						span.CL_TXT_Descripcion.icon-alerta2 ID_Nombre_Variable
 						p.CL_Txt_1 ------------------------------
 
 						span.CL_TXT_Descripcion.icon-alerta2 Si el nombre posee mas de dos palabras, separarla por _ y la siguiente letra ponerla en Mayuscula
-					li.Grid_Item.Base-100-tablet-
+					li.Grid_Item.Base-100.tablet-30
 						p.icon-html5.CL_Txt_1.CL_Alerta_5 ID INPUT PARA LABELS
 						span.CL_TXT_Descripcion.icon-alerta2 ID_INPUT_Nombre_Variable
 						p.CL_Txt_1 ------------------------------
@@ -538,32 +540,32 @@ main#CONT_Principal_Guia(ng-init="FN_Ver_Elemento_Guia(7)")
 				.CL_Bloques.Grid_Contenedor
 					p.CL_Titulo_Contenedor.icon-database.CL_Alerta_5 Estandarizaci&oacute;n
 						span Nombres
-					li.Grid_Item.Base-100-tablet-
+					li.Grid_Item.Base-100.tablet-30
 						p.icon-database.CL_Txt_1.CL_Alerta_5 Tablas
 
 						span.CL_TXT_Descripcion.icon-alerta2 TBL_Nombre_Tabla
 						p.CL_Txt_1 ------------------------------
 
 						span.CL_TXT_Descripcion.icon-alerta2 Si el nombre posee mas de dos palabras, separarla por _ y la siguiente letra ponerla en Mayuscula
-					li.Grid_Item.Base-100-tablet-
+					li.Grid_Item.Base-100.tablet-30
 						p.icon-database.CL_Txt_1.CL_Alerta_5 Primary key
 						span.CL_TXT_Descripcion.icon-alerta2 PK_ID_Nombre: si el campo es un id 
 						p.CL_Txt_1 ------------------------------
 
 						span.CL_TXT_Descripcion.icon-alerta2 Si el nombre posee mas de dos palabras, separarla por _ y la siguiente letra ponerla en Mayuscula
-					li.Grid_Item.Base-100-tablet-
+					li.Grid_Item.Base-100.tablet-30
 						p.icon-database.CL_Txt_1.CL_Alerta_5 Foreing key
 						span.CL_TXT_Descripcion.icon-alerta2 FK_ID_Nombre
 						p.CL_Txt_1 ------------------------------
 
 						span.CL_TXT_Descripcion.icon-alerta2 Si el nombre posee mas de dos palabras, separarla por _ y la siguiente letra ponerla en Mayuscula
-					li.Grid_Item.Base-100-tablet-
+					li.Grid_Item.Base-100.tablet-30
 						p.icon-database.CL_Txt_1.CL_Alerta_5 ID
 						span.CL_TXT_Descripcion.icon-alerta2 ID_Nombre
 						p.CL_Txt_1 ------------------------------
 
 						span.CL_TXT_Descripcion.icon-alerta2 Si el nombre posee mas de dos palabras, separarla por _ y la siguiente letra ponerla en Mayuscula
-					li.Grid_Item.Base-100-tablet-
+					li.Grid_Item.Base-100.tablet-30
 						p.icon-database.CL_Txt_1.CL_Alerta_5 Tabla detalle
 						span.CL_TXT_Descripcion.icon-alerta2 TBL_DLL_Nombre_Tabla
 						p.CL_Txt_1 ------------------------------
@@ -583,7 +585,7 @@ main#CONT_Principal_Guia(ng-init="FN_Ver_Elemento_Guia(7)")
 					li.CL_Diseno
 						p.CL_Titulo_Contenedor.icon-design Etiquetas
 							span UI Elements
-						p.icon.design.CL_Alerta_5.Padding-10.CL_Titulo_Grid GRID LAYOUT
+						p.icon-design.CL_Alerta_5.Padding-10.CL_Titulo_Grid GRID LAYOUT
 						
 
 						.Grid_Contenedor
@@ -602,7 +604,7 @@ main#CONT_Principal_Guia(ng-init="FN_Ver_Elemento_Guia(7)")
 						.Grid_Contenedor.abcenter
 							
 							.Grid_Total
-								.icon.design.CL_Alerta_5.Grid_Contenedor.Padding-10
+								.icon-design.CL_Alerta_5.Grid_Contenedor.Padding-10
 									p.CL_Txt_1 ¿Como usarlo?
 									ul.Base-100
 										li.CL_TXT_Descripcion se manejan tres tipos de clases:
@@ -612,14 +614,14 @@ main#CONT_Principal_Guia(ng-init="FN_Ver_Elemento_Guia(7)")
 										li.CL_TXT_Descripcion <i class="CL_TXT_I">.Grid_Item</i> este es el item o contenedor hijo, posee la propiedad widht:100% por defecto
 										
 										li.CL_TXT_Descripcion <i class="CL_TXT_I">.Grid_Total</i> esta clase lo que nos permite es indicarle a un elemento que ocupe el 100% del contenedor en el que se encuentra
-								.icon.design.CL_Alerta_5.Padding-10
+								.icon-design.CL_Alerta_5.Padding-10
 									p.CL_Txt_1 ¿Cual es el orden para usar estas etiquetas?
 									ul.Base-100
 										li.CL_TXT_Descripcion Al manejar el concepto de  <i class="CL_TXT_I">Flex-box</i> utilizaremos la clase <i class="CL_TXT_I">.Grid_Contenedor</i> en los contenedores de la informaci&oacute;n que queremeos mostrar.
 										li.CL_TXT_Descripcion las etiquetas <i class="CL_TXT_I">.Grid_Item</i> o <i class="CL_TXT_I">.Grid_Total</i> en los elementos que se encontraran dentro del contenedor padre o contenedor principal de nuestra informaci&oacute;n
-								p.icon.design.CL_Alerta_5.Padding-10 ¿TENGA EN CUENTA?
+								p.icon-design.CL_Alerta_5.Padding-10 ¿TENGA EN CUENTA?
 								p.CL_TXT_Descripcion cuando se usa la propiedad  <i class="CL_TXT_I">display:flex</i> en un item o hijo, este pasa a ser un contenedor padre, flex-box permite la multiple creacion de contenedores padres he hijos, (Esto no lo hace Grid_Layout) por defecto es una estructura que se maneja en flex-box
-								.icon.design.CL_Alerta_5
+								.icon-design.CL_Alerta_5
 									p.Padding-10 ¿Que etiqueta usar para agregar la clase?
 									p.CL_TXT_Descripcion al manejarce el concepto de contenedor e hijo se utilizaran como estandar de maquetacion, los #div, a estos #div se les agregara la propiedad correspondiente por medio de una clase 
 
@@ -631,8 +633,8 @@ main#CONT_Principal_Guia(ng-init="FN_Ver_Elemento_Guia(7)")
 										li.CL_TXT_Descripcion  <i class="CL_TXT_I">.Grid_Contenedor.Base-15 </i> ocupara el 15%
 										li.CL_TXT_Descripcion  <i class="CL_TXT_I">.Grid_Contenedor.Base-15 </i> ocupara el 15%
 							.Grid_Item.Base-100
-								p.icon.design.CL_Txt_1 
-								p.icon.design.CL_Alerta_5.Padding-10 ¿Como puedo definir otro tipo de valor ademas de medidas de 5 en 5?
+								p.icon-design.CL_Txt_1 
+								p.icon-design.CL_Alerta_5.Padding-10 ¿Como puedo definir otro tipo de valor ademas de medidas de 5 en 5?
 								p.CL_TXT_Descripcion  Para poderlo hacer se manejan medidas en fracciones: tercios, sextos y octavos 
 								.Grid_Contenedor
 									.Grid_Total
@@ -873,7 +875,7 @@ main#CONT_Principal_Guia(ng-init="FN_Ver_Elemento_Guia(7)")
 							label.RadioBtn_3(for="ID_INPUT_Mujer3") Mujer
 
 					li.CL_Diseno
-						p.icon.design.CL_Txt_1 Select
+						p.icon-design.CL_Txt_1 Select
 						.CL_Alerta_2.Padding-10
 							p Uso:
 							ul
@@ -890,7 +892,7 @@ main#CONT_Principal_Guia(ng-init="FN_Ver_Elemento_Guia(7)")
 							option(value="Antioquia") Antioquia
 
 					li.CL_Diseno
-						p.icon.design.CL_Txt_1 Boton circular
+						p.icon-design.CL_Txt_1 Boton circular
 						.CL_Alerta_2.Padding-10
 							p Uso:
 							ul
@@ -906,7 +908,7 @@ main#CONT_Principal_Guia(ng-init="FN_Ver_Elemento_Guia(7)")
 							p.icon-chat
 							p.CL_TXT_Info_Btn Nuevo mensaje	
 					li.CL_Diseno
-						p.icon.design.CL_Txt_1 Buscador
+						p.icon-design.CL_Txt_1 Buscador
 						.CL_Alerta_2.Padding-10
 							p Uso:
 							ul
@@ -941,8 +943,8 @@ main#CONT_Principal_Guia(ng-init="FN_Ver_Elemento_Guia(7)")
 						a.CL_TXT_Texto_5 Crear cuenta
 						a.CL_TXT_Texto_6 Crear cuenta
 
-					li.CL_Diseno
-						p.icon.design.CL_Txt_1 Tablas
+					li.CL_Diseno(ng-controller="Controlador_Guia_Proyecto")
+						p.icon-design.CL_Txt_1 Tablas
 						.CL_Alerta_2.Padding-10
 							p Uso:
 							ul
@@ -952,215 +954,98 @@ main#CONT_Principal_Guia(ng-init="FN_Ver_Elemento_Guia(7)")
 							table
 								thead
 									tr
-										th.Imagen 
-										th ID
-										th Producto
-										th Precio
-										th Cantidad
-										th Subtotal
+										th # 
+										th #
+										th #
+										th #
+								
 								tbody
-									tr
-										td.CL_Imagen
-											img(src="http://lorempixel.com/90/90/")
-										td 1
-										td Ejemplo1
-										td 1500$
-										td 15
-										td 3000$
-									tr
-										td.CL_Imagen
-											img(src="http://lorempixel.com/90/90/")
-										td 1
-										td Ejemplo1
-										td 1500$
-										td 15
-										td 3000$
-									tr
-										td.CL_Imagen
-											img(src="http://lorempixel.com/90/90/")
-										td 1
-										td Ejemplo1
-										td 1500$
-										td 15
-										td 3000$
-									tr
-										td.CL_Imagen
-											img(src="http://lorempixel.com/90/90/")
-										td 1
-										td Ejemplo1
-										td 1500$
-										td 15
-										td 3000$
+									tr(dir-paginate="Ejemplo in Ejemplo_Array  | itemsPerPage: pageSize" current-page="currentPage")
+										td {{Ejemplo.NUM_ID_Mensaje}}
+										td {{Ejemplo.TXT_Nombre_Usuario}}
+
+										td {{Ejemplo.TXT_Mensaje}}
+
+										td {{Ejemplo.DATE_Hora_Envio}}
 
 
-									tr
-										td
-										td
-										td
-										td
-										td.CL_TXT_TotalEnvio Total
-										td.CL_TXT_TotalEnvio 3000$
-							.CL_Botones_Enviar
-								.Btn_Estilo_3.icon-agregar3 Enviar
-								.Btn_Estilo_4.icon-actualizar(ng-click="BL_Ver_Envio_Orden =! BL_Ver_Envio_Orden") Modificar orden
 						.Tabla_Estilo_2
 							table
 								thead
 									tr
-										th.Imagen 
-										th ID
-										th Producto
-										th Precio
-										th Cantidad
-										th Subtotal
+										th # 
+										th #
+										th #
+										th #
+								
 								tbody
-									tr
-										td.CL_Imagen
-											img(src="http://lorempixel.com/90/90/")
-										td 1
-										td Ejemplo1
-										td 1500$
-										td 15
-										td 3000$
-									tr
-										td.CL_Imagen
-											img(src="http://lorempixel.com/90/90/")
-										td 1
-										td Ejemplo1
-										td 1500$
-										td 15
-										td 3000$
-									tr
-										td.CL_Imagen
-											img(src="http://lorempixel.com/90/90/")
-										td 1
-										td Ejemplo1
-										td 1500$
-										td 15
-										td 3000$
-									tr
-										td.CL_Imagen
-											img(src="http://lorempixel.com/90/90/")
-										td 1
-										td Ejemplo1
-										td 1500$
-										td 15
-										td 3000$
+									tr(dir-paginate="Ejemplo in Ejemplo_Array  | itemsPerPage: pageSize" current-page="currentPage")
+										td {{Ejemplo.NUM_ID_Mensaje}}
+										td {{Ejemplo.TXT_Nombre_Usuario}}
+
+										td {{Ejemplo.TXT_Mensaje}}
+
+										td {{Ejemplo.DATE_Hora_Envio}}
 
 
-
-									tr
-										td
-										td
-										td
-										td
-										td.CL_TXT_TotalEnvio Total
-										td.CL_TXT_TotalEnvio 3000$
-							.CL_Botones_Enviar
-								.Btn_Estilo_3.icon-agregar3 Enviar
-								.Btn_Estilo_4.icon-actualizar(ng-click="BL_Ver_Envio_Orden =! BL_Ver_Envio_Orden") Modificar orden
 						.Tabla_Estilo_3
 							table
 								thead
 									tr
-										th.Imagen 
-										th ID
-										th Producto
-										th Precio
-										th Cantidad
-										th Subtotal
+										th # 
+										th #
+										th #
+										th #
+								
 								tbody
-									tr
-										td.CL_Imagen
-											img(src="http://lorempixel.com/90/90/")
-										td 1
-										td Ejemplo1
-										td 1500$
-										td 15
-										td 3000$
-									tr
-										td.CL_Imagen
-											img(src="http://lorempixel.com/90/90/")
-										td 1
-										td Ejemplo1
-										td 1500$
-										td 15
-										td 3000$
-									tr
-										td.CL_Imagen
-											img(src="http://lorempixel.com/90/90/")
-										td 1
-										td Ejemplo1
-										td 1500$
-										td 15
-										td 3000$
-									tr
-										td.CL_Imagen
-											img(src="http://lorempixel.com/90/90/")
-										td 1
-										td Ejemplo1
-										td 1500$
-										td 15
-										td 3000$
+									tr(dir-paginate="Ejemplo in Ejemplo_Array  | itemsPerPage: pageSize" current-page="currentPage")
+										td {{Ejemplo.NUM_ID_Mensaje}}
+										td {{Ejemplo.TXT_Nombre_Usuario}}
+
+										td {{Ejemplo.TXT_Mensaje}}
+
+										td {{Ejemplo.DATE_Hora_Envio}}
 
 
-									tr
-										td
-										td
-										td
-										td
-										td.CL_TXT_TotalEnvio Total
-										td.CL_TXT_TotalEnvio 3000$
-							.CL_Botones_Enviar
-								.Btn_Estilo_3.icon-agregar3 Enviar
-								.Btn_Estilo_4.icon-actualizar(ng-click="BL_Ver_Envio_Orden =! BL_Ver_Envio_Orden") Modificar orden
 						.Tabla_Estilo_4
 							table
 								thead
 									tr
-										th.Imagen 
-										th ID
-										th Producto
-										th Precio
+										th # 
+										th #
+										th #
+										th #
+								.Grid_Contenedor.abcenter.CON_Paginacion
+									.Grid_Contenedor.Base-10
+										p.CL_TXT_Texto_2 Pag&iacute;na: {{currentPage}}
+									.Grid_Contenedor.Base-5
+										input.Input_Estilo_1.No_Margin(type="number",min="1",max="100",ng-model="pageSize")
+									
+									dir-pagination-controls.Base-45.cross_end.Grid_Contenedor(boundary-links="true")
+										p.CL_TXT_Texto_3 {{currentPage}}
+										ul.main_end.CL_Paginacion_1.Grid_Contenedor(ng-if="1 < pages.length || !autoHide" )
+											li(ng-if="boundaryLinks" ng-class="{ Paginacion_Disabled : pagination.current == 1 }")
+												a(href="" ng-click="setCurrent(1)") &laquo;
+											li(ng-if="directionLinks" ng-class="{ Paginacion_Disabled : pagination.current == 1 }")
+												a(href="" ng-click="setCurrent(pagination.current - 1)") &lsaquo;
+											li(ng-repeat="pageNumber in pages track by tracker(pageNumber, $index)" ng-class="{ active : pagination.current == pageNumber, Paginacion_Disabled : pageNumber == '...' }") {{ pageNumber }}
+											li(ng-if="directionLinks" ng-class="{ Paginacion_Disabled : pagination.current == pagination.last }")
+												a(href="" ng-click="setCurrent(pagination.current + 1)") &rsaquo;
+											li(ng-if="boundaryLinks"  ng-class="{ Paginacion_Disabled : pagination.current == pagination.last }")
+												a(href="" ng-click="setCurrent(pagination.last)") &raquo;
 								tbody
-									tr
-										td.CL_Imagen
-											img(src="http://lorempixel.com/90/90/")
-										td 1
-										td Ejemplo1
-										td 1500$
-									tr
-										td.CL_Imagen
-											img(src="http://lorempixel.com/90/90/")
-										td 1
-										td Ejemplo1
-										td 1500$
-									tr
-										td.CL_Imagen
-											img(src="http://lorempixel.com/90/90/")
-										td 1
-										td Ejemplo1
-										td 1500$
-									tr
-										td.CL_Imagen
-											img(src="http://lorempixel.com/90/90/")
-										td 1
-										td Ejemplo1
-										td 1500$
+									tr(dir-paginate="Ejemplo in Ejemplo_Array  | itemsPerPage: pageSize" current-page="currentPage")
+										td {{Ejemplo.NUM_ID_Mensaje}}
+										td {{Ejemplo.TXT_Nombre_Usuario}}
+
+										td {{Ejemplo.TXT_Mensaje}}
+
+										td {{Ejemplo.DATE_Hora_Envio}}
 
 
-
-									tr
-										td
-										td
-										td.CL_TXT_TotalEnvio Total
-										td.CL_TXT_TotalEnvio 3000$
-							.CL_Botones_Enviar
-								.Btn_Estilo_3.icon-agregar3 Enviar
-								.Btn_Estilo_4.icon-actualizar(ng-click="BL_Ver_Envio_Orden =! BL_Ver_Envio_Orden") Modificar orden
 					
 					li.CL_Diseno
-						p.icon.design.CL_Txt_1 Imagenes
+						p.icon-design.CL_Txt_1 Imagenes
 						.CL_Alerta_2.Padding-10
 							p Uso:
 							ul
@@ -1170,7 +1055,7 @@ main#CONT_Principal_Guia(ng-init="FN_Ver_Elemento_Guia(7)")
 						img.CL_Imagen_3(src="http://lorempixel.com/90/90/")
 						img.CL_Imagen_4(src="http://lorempixel.com/90/90/")
 					li.CL_Diseno
-						p.icon.design.CL_Txt_1 Alertas
+						p.icon-design.CL_Txt_1 Alertas
 						.CL_Alerta_2.Padding-10
 							p Uso:
 							ul
@@ -1186,13 +1071,23 @@ main#CONT_Principal_Guia(ng-init="FN_Ver_Elemento_Guia(7)")
 
 
 					li.CL_Diseno
-						p.icon.design.CL_Txt_1 Checkbox
+						p.icon-design.CL_Txt_1 Checkbox
 						.CL_ALerta_2.Padding-10
 							
 						.CL_Check_Box_1
 							input#INPUT_Chek_Recordatorio.Btn_CheckBox(type="checkbox")
 							.CL_Check_Box_Remplazo
 							label.CL_TXT_Chek_Box_Remplazo(for="INPUT_Chek_Recordatorio") Recordar mis datos
+					li.CL_Diseno(ng-controller="Controlador_Guia_Proyecto")
+						p.icon-notificacion.CL_Txt_1 Notificaciones
+						.CL_ALerta_2.Padding-10
+							
+						.Btn_Estilo_5(ng-click="CrearAlert(1)") Finalizado
+						.Btn_Estilo_5(ng-click="CrearAlert(2)") Info
+						.Btn_Estilo_5(ng-click="CrearAlert(3)") Alerta
+						.Btn_Estilo_5(ng-click="CrearAlert(4)") Error
+						.Btn_Estilo_5(ng-click="CrearAlert(5)") Negro
+						.Btn_Estilo_5(ng-click="CrearAlert(6)") Blanco
 	//sesion diseño
 	section.ng_show#Ejemplo_Registro(ng-if="Conexion == true")
 		.CL_Alerta_1.Padding-10 Ejemplo de crud PHP + Angular + Mysql
@@ -1271,6 +1166,46 @@ main#CONT_Principal_Guia(ng-init="FN_Ver_Elemento_Guia(7)")
 				li.icon-file Controlador_Ejemplo.js, se encuentra en la carpeta Public/js/Angular/Controladores
 				li.icon-file Modulo_Ejemplo_Crud.php, se encuentra en la carpeta Aplication/controller/Modulo/
 				li.icon-file M_Ejemplo_Crud.php, se encuentra en la carpeta Aplication/model
+	section.ng_show#Ejemplo_Registro(ng-if="Cuerpo_Tabla == true")
+		.Tablero_Trabajo_1
+			.Grid_Contenedor.Base-100.abcenter.CL_CONT_Principal_Tablero_Trabajo()
+				.Grid_Contenedor.Base-90.CL_CONT_Tablero_Trabajo()
+					.Grid_Contenedor.Base-30.cross_start.CL_CONT_Tablero
+						.CL_Cabezera_Tablero_Trabajo.Grid_Contenedor.Base-100
+							.Grid_Item.Base-20
+								img.CL_Imagen_Icono_2(ng-src="{{dato.AOBJ_Datos_Usuario[0].Imagen_Usuario}}")
+						.Grid_Contenedor.CL_CONT_Buscador_Tablero_Trabajo.abcenter
+							.Grid_Contenedor.abcenter.Base-90
+								.CL_Contenedor_Buscador(ng-init="Buscar")
+									input.CL_Buscar#Buscar(maxlength="15",type="search", name="Buscar" placeholder="Buscar" ng-model="Buscar")
+									label.icon-buscar.CL_Icono_Buscar(for="Buscar")
+						.Grid_Contenedor.Base-100.cross_start.CL_CONT_Tablero_Trabajo_1
+							.Grid_Contenedor.Base-90.CL_Informacion_Tablero_1.cross_start
+								.CL_Alerta_1.Padding-10 Formulario, listas
+									
+							//Por si se usa un filtro
+							.CL_Alerta_5.ng_repeat_anim1.Grid_Contenedor(ng-show="(Lista_Datos_Ejemplo |filter:Buscar:Item).length == 0")
+								.CL_TXT_Texto_3.Base-100.abcenter.Grid_Contenedor
+									p Dato no encontrado
+					.Grid_Contenedor.Base-70.cross_start.CL_CONT_Tablero_Trabajo_2
+						.CL_Cabezera_Tablero_Trabajo.Grid_Contenedor.Base-100
+							
+							.Grid_Item.Base-100.Grid_Contenedor.abcenter
+								.CL_TXT_Texto_4 Titulo
+						.Grid_Contenedor.abcenter
+							.Grid_Contenedor.Base-95
+								.CL_Alerta_5.Grid_Contenedor
+									.Grid_Item.Base-20
+										img.CL_Imagen_Icono_1(ng-src="{{dato.AOBJ_Datos_Usuario[0].Imagen_Usuario}}")
+									.Grid_Item.Base-40.Grid_Contenedor.abcenter
+										.CL_TXT_Texto_4 Titulo
+									.Grid_Item.Base-40.relative
+										p.CL_Eliminar_1_1
+								.Grid_Contenedor
+									.CL_Alerta_1.Padding-10 Formulario, listas
+			
+
+script(language="javascript",src!="<?php echo URL; ?>public/js/Angular/Controladores/Administracion/Guia_Proyecto.js")							
 
 
 

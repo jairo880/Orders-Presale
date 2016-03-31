@@ -23,13 +23,13 @@
                 {
                     //_*mensaje de Alerta
                     $scope.Mensaje = "Nombre de usuario en uso, Ingresa otro nombre";
-                    Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+                    Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Finalizado');
                 }
                 if (tipo == "Correo_Existente")
                 {
                     //_*mensaje de Alerta
                     $scope.Mensaje = "El correo ya se encuentra en uso";
-                    Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+                    Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Info');
                 }
 
                 if (tipo == 'true')
@@ -74,7 +74,7 @@
                 {
                     //_*mensaje de Alerta
                     $scope.Mensaje = "Registro fallido, intentalo nuevamente.";
-                    Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+                    Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Error');
                 }
 
 
@@ -83,9 +83,7 @@
 
             })
             .error(function (res, status) {
-                //_*mensaje de Alerta
-                $scope.Mensaje = "Registro fallido, intentalo nuevamente.";
-                Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+                console.log(res,status);
             });
 
 

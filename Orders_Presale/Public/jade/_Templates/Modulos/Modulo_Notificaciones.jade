@@ -8,21 +8,18 @@ section#SC_Modulo_Notificaciones(ng-if="dato.AOBJ_Datos_Usuario[0].FK_ID_Rol == 
 			p.CL_TXT_Texto_3.icon-notificacion  Notificaciones 
 			p.CL_Eliminar_1_1(ng-click="FN_Notificacion()" title="Cerrar el menú de notificaciones") 
 			#CONT_Notificaciones_Conts
-				.CL_Mensaje_Notificacion.ng_repeat_anim1(ng-repeat="Notificaciones in dato.AOBJ_Estado_Notificaciones")
-					.CL_Icono_Notificacion
-						p(ng-class="{'CL_Estado_Confirmado icon-agregar3': Notificaciones.BL_Estado == 1,'CL_Estado_Cancelado icon-cancelado': Notificaciones.BL_Estado == 2,'CL_Estado_EnProgreso icon-actualizar': Notificaciones.BL_Estado == 3}")
+				.Grid-Total.abcenter.Grid_Contenedor.CL_Alerta_5
+					p.icon-retweet.CL_TXT_Enlace_4(title="Actualizar la lista de productos actuales",ng-click="FN_Listar_Notificaciones()")
+				.CL_Estado_CONT.ng_repeat_anim1(ng-repeat="Notificaciones in dato.AOBJ_Notificaciones_Usuario")
+					.CL_Icono_Estado
+						p(ng-class="{'CL_Estado_Confirmado icon-agregar3': Notificaciones.Estado_Pedido == 'Atendido','CL_Estado_Cancelado icon-cancelado': Notificaciones.Estado_Pedido == 'Cancelado','CL_Estado_EnProgreso icon-actualizar': Notificaciones.Estado_Pedido == 'En proceso'}")
 
 					.CL_Mensaje_Notificaciones
-						p Codigo orden:{{Notificaciones.NUM_ID_Notificacion}}
-						p Estado:{{Notificaciones.TXT_Nombre}}
-						p.CL_TXT_Tiempo_Estado {{Notificaciones.DATE_Hora | date:'longDate'}}
+						p Codigo orden:{{Notificaciones.FK_ID_Pedido}}
+						p Estado:{{Notificaciones.Estado_Pedido}}
+						p.CL_TXT_Tiempo_Estado {{Notificaciones.Fecha_Envio | date:'longDate'}}
 						.CL_Eliminar_Contenido(ng-click="FN_Eliminar_Notificacion($index)")
 							p.icon-cancelar2
-			#CONT_Mensaje_Producto(ng-show="(dato.AOBJ_Estado_Notificaciones).length == 0")
-				.IconoNoResult
-				#CONT_Figura
-					span
-					span
-					span
-					span
+			.CL_Alerta_5.Padding-5(ng-show="(dato.AOBJ_Notificaciones_Usuario).length == 0")
+				
 				.CL_TXT_Mensaje No hay notificaciones

@@ -1,8 +1,13 @@
 <?php 
-class  Modulo_Verificar_Permisos extends Application
+class  Modulo_Verificar_Permisos
 {
 	public function Verificar_Permisos() {
-		parent::__construct();
+		 header("location: ".URL." ");
 	} 
 }
 ?>
+
+
+
+
+

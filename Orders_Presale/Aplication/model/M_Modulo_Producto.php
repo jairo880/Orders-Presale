@@ -195,6 +195,7 @@ public function FN_Eliminar_Dll_Promocion_Producto($PK_ID_Promocion_Producto)
 public function FN_Ver_Comentarios_Producto(
   $PK_ID_Producto
   ){
+  $sql = "SET lc_time_names = 'es_ES'";
   $sql = "CALL `spJoin_Comentario_Cuenta`(?);";
   $query = $this->db->prepare($sql);
   $query->bindParam(1,$PK_ID_Producto);

@@ -5,239 +5,240 @@ section#SC_Contenido_Pagina_Productos(ng-init="FN_Listar_Productos();FN_Listar_C
 	#CONT_Contenedor_Invisible_Header
 	main#Contenido_Productos.Grid_Contenedor.abcenter
 
-		#Grid_Item.CL_Contenedor_Productos
+		#Grid_Item.Grid_Contenedor(ng-init="BL_Consultar_Producto = true;Edicion_Datos_Productos = false; BL_Registrar_Producto = false")
+			.Tablero_Trabajo_1.Grid_Contenedor(ng-show="BL_Consultar_Producto == true")
+				.Grid_Contenedor.Base-95.abcenter.CL_CONT_Principal_Tablero_Trabajo()
+					.Grid_Contenedor.Base-90.CL_CONT_Tablero_Trabajo()
+						.Grid_Contenedor.Base-30.cross_start.CL_CONT_Tablero
+							.CL_Cabezera_Tablero_Trabajo.Grid_Contenedor.Base-100
+								.Grid_Item.Base-20
+									img.CL_Imagen_Icono_2(ng-src="{{dato.AOBJ_Datos_Usuario[0].Imagen_Usuario}}")
+							.Grid_Contenedor.Base-100.cross_start.CL_CONT_Tablero_Trabajo_1
+								.Grid_Contenedor.Base-90.CL_Informacion_Tablero_1.cross_start
 
-			.CL_Alerta_5.Grid_Contenedor.Base-90.Padding-10.main_end.cross_end(ng-init="BL_Consultar_Producto = true;BL_Registrar_Producto = false")
-				.Grid_Item.Base-30
-					p.ng_show.CL_TXT_Texto_4(ng-show="BL_Registrar_Producto")  Registrar productos
-					p.ng_show.CL_TXT_Texto_4(ng-show="BL_Consultar_Producto",ng-click="FN_Listar_Productos")  Consultar productos
-				.Grid_Item.Base-30(ng-show="BL_Consultar_Producto")
-					.CL_Contenedor_Buscador
-						input.CL_Buscar#BuscarOrden(type="text", name="" placeholder="Buscar producto" ng-model="Buscador_Productos")
-						label.icon-buscar.CL_Icono_Buscar(for="BuscarOrden")
-				.Btn_Estilo_5(ng-click="FN_Listar_Productos();BL_Registrar_Producto = false; BL_Consultar_Producto = true") Productos
-				.Btn_Estilo_1.icon-plus(ng-click="BL_Registrar_Producto = true; BL_Consultar_Producto = false") Nuevo producto
+									///---
+									section.Grid-Item.ng_show.Base-100.abcenter(ng-show="BL_Registrar_Producto == true")
+										.CL_Alerta_5.relative.Padding-5
+											.CL_TXT_Texto_2 Registro de un producto
+											.CL_Eliminar_1_1(ng-click="BL_Registrar_Producto = false")
+										form#FORM_Registro.Grid_Contenedor.Padding-tablet.Base-100(name="Form_Registro_Producto" ng-submit="Registrar_Producto(RP)")
+												
+												.Grid_Item.Base-100.CL_Form_Registro_Producto
 
-			section.Grid-Item.ng_show.Base-100.abcenter(ng-show="BL_Registrar_Producto == true")
-				
+													label(for="Nombre_Producto") Nombre del producto
+													input#Nombre_Producto.Input_Estilo_1(maxlength="20",minlength="1",type="text",name="Nombre_Producto",ng-model="RP.Nombre_Producto",placeholder=" nombre del producto",required)
 
-				form#FORM_Registro.Grid_Contenedor.Padding-tablet.Base-90(name="Form_Registro_Producto" ng-submit="Registrar_Producto(RP)")
+													div#CONT_Mensaje_Validacion(ng-show="!Form_Registro_Producto.$pristine && Form_Registro_Producto.Nombre_Producto.$error.required")
+														p.icon-exclamation Este campo es obligatorio
 
+													label(for="Precio_Producto") Precio del producto
+													input#Precio_Producto.Input_Estilo_1(max="15",min="1" ,type="number",name="Precio_Producto",ng-model="RP.Precio_Producto",placeholder="Precio unitario del producto",required)
 
-					#CONT_Derecha.Grid_Contenedor.Base-100.distributed.movil-100.tablet-30
-						.Grid_Contenedor.abcenter
+													div#CONT_Mensaje_Validacion(ng-show="!Form_Registro_Producto.$pristine && Form_Registro_Producto.Precio_Producto.$error.required")
+														p.icon-exclamation Este campo es obligatorio
 
+													.CL_Alerta_5.Padding-5 Categoria del producto	
+													select.Select_1.Base-100(ng-model="RP.Categoria",name="Categoria",value="Categoria", required)
+														option(value="{{Categoria.PK_ID_Categoria}}",ng-repeat="Categoria in AOBJ_Lista_Categoria")
+															{{Categoria.Nombre_Categoria}}
+													
+													div#CONT_Mensaje_Validacion(ng-show="!Form_Registro_Producto.$pristine && Form_Registro_Producto.Categoria.$error.required")
+														p.icon-exclamation Este campo es obligatorio
 
-							.Grid_Item.Base-100
-
-								label(for="Nombre_Producto") Nombre del producto
-								input#Nombre_Producto.Input_Estilo_1(maxlength="20",minlength="1",type="text",name="Nombre_Producto",ng-model="RP.Nombre_Producto",placeholder=" nombre del producto",required)
-
-								div#CONT_Mensaje_Validacion(ng-show="!Form_Registro_Producto.$pristine && Form_Registro_Producto.Nombre_Producto.$error.required")
-									p.icon-exclamation Este campo es obligatorio
-
-							.Grid_Item.Base-100
-
-								label(for="Precio_Producto") Precio del producto
-								input#Precio_Producto.Input_Estilo_1(max="15",min="1" ,type="number",name="Precio_Producto",ng-model="RP.Precio_Producto",placeholder="Precio unitario del producto",required)
-
-								div#CONT_Mensaje_Validacion(ng-show="!Form_Registro_Producto.$pristine && Form_Registro_Producto.Precio_Producto.$error.required")
-									p.icon-exclamation Este campo es obligatorio
-							
-							.Grid_Item.Base-100
-
-
-
-								.CL_Alerta_5.Padding-5 Categoria del producto	
-								select.Select_1.Base-100(ng-model="RP.Categoria",name="Categoria",value="Categoria", required)
-									option(value="{{Categoria.PK_ID_Categoria}}",ng-repeat="Categoria in AOBJ_Lista_Categoria")
-										{{Categoria.Nombre_Categoria}}
-									option(value="2") No posee categoria
-								
-								div#CONT_Mensaje_Validacion(ng-show="!Form_Registro_Producto.$pristine && Form_Registro_Producto.Categoria.$error.required")
-									p.icon-exclamation Este campo es obligatorio
-
-							
-								
-					
-
-						
-					.Grid_Contenedor.cross_start.distributed.Base-100.tablet-70
-						#CONT_Derecha.Grid_Item.Base-100.tablet-50
-							label(for="#Descripcion_Producto") Descripción
-							textarea#Descripcion_Producto.Input_Estilo_1(type="text",name="Descripcion_Producto",ng-model="RP.Descripcion_Producto",placeholder="Descripciondel producto ",required)
-
-							div#CONT_Mensaje_Validacion(ng-show="!Form_Registro_Producto.$pristine && Form_Registro_Producto.Descripcion_Producto.$error.required")
-								p.icon-exclamation Este campo es obligatorio
-
-							label(for="Cantidad_Maxima") Cantidad Maxima de productos
-							input#Cantidad_Maxima.Input_Estilo_1(max="10",min="1",type="number",name="Cantidad_Maxima",ng-model="RP.Cantidad_Maxima",placeholder="Cantidad maxima del producto",required)
-
-							div#CONT_Mensaje_Validacion(ng-show="!Form_Registro_Producto.$pristine && Form_Registro_Producto.Cantidad_Maxima.$error.required")
-								p.icon-exclamation Este campo es obligatorio
-
-							label(for="Cantidad_Minima") Cantidad minima de productos
-							input#Cantidad_Minima.Input_Estilo_1(max="10",min="1",type="number",name="Cantidad_Minima",ng-model="RP.Cantidad_Minima",placeholder="Cantidad minima del producto",required)
-
-							div#CONT_Mensaje_Validacion(ng-show="!Form_Registro_Producto.$pristine && Form_Registro_Producto.Cantidad_Minima.$error.required")
-								p.icon-exclamation Este campo es obligatorio
-						#CONT_Izquierda.Grid_Item.Base-100.tablet-40
-
-							.CL_Alerta_5.Padding-5 URL de la imagen
-							input#Imagen_Producto.Input_Estilo_1(maxlength="100",minlength="10",type="url",name="Imagen_Producto",ng-model="RP.Imagen",placeholder="URL",required)
-							div#CONT_Mensaje_Validacion(ng-show="!Form_Registro_Producto.$pristine && Form_Registro_Producto.Imagen_Producto.$error.required")
-								p.icon-exclamation Este campo es obligatorio
-							.CL_Imagen_Producto_URL.Grid_Contenedor.Base-100.abcenter
-								img(ng-src="{{RP.Imagen }}")
-								div.Icon_Imagen.icon-image(ng-show="RP.Imagen == null")
-
-
-					div.Base-100
-						.CL_Alerta_5.Padding-10 Presentaci&oacute;n del producto
-						.CL_COTN_Producto.ng_repeat_anim1()
-
-
-							.CL_CONT_Imagen
-								img(ng-src="{{RP.Imagen }}")
-								div.Icon_Imagen.icon-image(ng-show="RP.Imagen == null")
-							.CONT_Informacion
-
-
-								.CONT_Info_Producto
-									.CL_Nombre_Producto
-										p.CL_TXT_Nombre Nombre: {{RP.Nombre_Producto}}
-
-										.CL_Precio
-											p Precio: {{RP.Precio_Producto}}
-								.CONT_Valoracion_Producto
-
-
-									.CL_Descripcion_Producto
-										p Descripci&oacute;n: {{RP.Descripcion_Producto}}
-									.CL_CONT_Opiniones
-										.CL_Datos_Valoracion.Grid_Cotenedor
-											span.icon-star.Grid_Item.Base-10
-											span.icon-star.Grid_Item.Base-10
-											span.icon-star.Grid_Item.Base-10
-											span.icon-star.Grid_Item.Base-10
-											span.icon-star.Grid_Item.Base-10
-										.icon-comentarios.Btn_Estilo_5(title="Ver las opiniones de otros usuarios" ng-click="Ver($index + 1)") Ver comentarios
-								.CL_Herramientas_Producto
-									.CL_Total_Producto
-										p Subtotal:
-										input.CL_Total_Input( type="text" placeholder="total" value="{{ 1500}}" disabled)
-									.CL_Opciones_Herramienta
-										.CL_Cantidad_Productos
-											.CL_CONT_Datos
-
-												input#ID_Input_Cantidad(max=" {{RP.Cantidad_Maxima}}",min=" {{RP.Cantidad_Minima}}",type="number")
-												p max {{RP.Cantidad_Maxima}}
-												p min {{RP.Cantidad_Minima}}
-
-							
-
-						
-
-							
-							
-
-
-
-						
-					.Grid_Contenedor.Grid-Item.abcenter.Padding-30
-						input.Btn_Estilo_1#submit(type="submit" ng-disabled="!Form_Registro_Producto.$valid " value="Registrar producto" )
-						a.Btn_Estilo_3(ng-click="FN_Limpiar_Formulario()" ) Limpiar formulario
-
-
-			section.ng_show.Base-100(ng-show="BL_Consultar_Producto == true")
-				form.CL_Tabla_Producto.Grid_Contenedor.abcenter(name="Form_Productos")
-					.Tabla_Estilo_2
-						table(ng-init="BL_Activar_Edicion=false")
-							thead
-								tr
-									th 
-									th Nombre 
-									th Precio
-									th Descripci&oacuten
-									th C.Minimas
-									th C.Maximas
-									th Categor&iacute;a
-									th Estado
-									th Imagen
-									th 
-									th 
-
-							tbody
-								tr.ng_repeat_amiacion_1(ng-repeat="ListarProductos in AOBJ_Listar_Productos | filter:Buscador_Productos:ListarProductos.Nombre_Producto")
-									td.Imagen.CL_Imagen
-										img(ng-src="{{ListarProductos.Ruta_Imagen_Producto}}")
-									
-									td 
-										input.Input_Tabla(name="Nombre_Producto{{$index}}",type="text",ng-model="ListarProductos.Nombre_Producto" ,ng-disabled="BL_Activar_Edicion == false",maxlength="30",minlength="5",required)
-										//Mensaje de validacion
-										div#CONT_Mensaje_Validacion(ng-show="!Form_Productos.$pristine && Form_Productos.Nombre_Producto{{$index}}.$error.required")
-											p.icon-key Ingresa un nombre
-										div#CONT_Mensaje_Validacion(ng-show="!Form_Productos.Nombre_Producto{{$index}}.$valid && !Form_Productos.$pristine && !Form_Productos.Nombre_Producto{{$index}}.$error.required ")
-											p.icon-login La cantidad de caracteres es muy corta
-
-									td
-										input.Input_Tabla(required,name="Valor_Unitario{{$index}}",type="text",value="{{ListarProductos.Valor_Unitario}}",ng-model="ListarProductos.Valor_Unitario" , ng-disabled="BL_Activar_Edicion == false" maxlength="4",minlength="1")
-										//Mensaje de validacion
-										div#CONT_Mensaje_Validacion(ng-show="!Form_Productos.$pristine && Form_Productos.Valor_Unitario{{$index}}.$error.required")
-											p.icon-key Ingresa un valor para el precio
-										div#CONT_Mensaje_Validacion(ng-show="!Form_Productos.Valor_Unitario{{$index}}.$valid && !Form_Productos.$pristine && !Form_Productos.Valor_Unitario{{$index}}.$error.required ")
-											p.icon-login La cantidad de caracteres es muy corta
-									td.CL_Tam_Texarea
-										textarea.Textarea_Estilo_1(name="Descripcion{{$index}}",type="text",ng-model="ListarProductos.Descripcion_Producto" ,required, ng-disabled="BL_Activar_Edicion == false" maxlength="150",minlength="5" )
-										//Mensaje de validacion
-										div#CONT_Mensaje_Validacion(ng-show="!Form_Productos.$pristine && Form_Productos.Descripcion{{$index}}.$error.required")
-											p.icon-key Ingresa un descripcion
-										div#CONT_Mensaje_Validacion(ng-show="!Form_Productos.Descripcion{{$index}}.$valid && !Form_Productos.$pristine && !Form_Productos.Descripcion{{$index}}.$error.required ")
-											p.icon-login La cantidad de caracteres es muy corta
-
-
-									td
-										input.Input_Tabla(name="Cant_Unid_Min{{$index}}",value="{{ListarProductos.Cant_Unid_Min}}",type="text",ng-model="ListarProductos.Cant_Unid_Min", ng-disabled="BL_Activar_Edicion == false" ,maxlength="6",minlength="2",required )
-										//Mensaje de validacion
-										div#CONT_Mensaje_Validacion(ng-show="!Form_Productos.$pristine && Form_Productos.Cant_Unid_Min{{$index}}.$error.required")
-											p.icon-key Ingresa un descripcion
-										div#CONT_Mensaje_Validacion(ng-show="!Form_Productos.Cant_Unid_Min{{$index}}.$valid && !Form_Productos.$pristine && !Form_Productos.Cant_Unid_Min{{$index}}.$error.required ")
-											p.icon-login La cantidad de caracteres es muy corta
-									td
-										input.Input_Tabla(name="Cant_Unid_Max{{$index}}",value="{{ListarProductos.Cant_Unid_Max}}",type="text",ng-model="ListarProductos.Cant_Unid_Max" , ng-disabled="BL_Activar_Edicion == false" maxlength="3",minlength="2",required )
-										//Mensaje de validacion
-										div#CONT_Mensaje_Validacion(ng-show="!Form_Productos.$pristine && Form_Productos.Cant_Unid_Max{{$index}}.$error.required")
-											p.icon-key Ingresa un descripcion
-										div#CONT_Mensaje_Validacion(ng-show="!Form_Productos.Cant_Unid_Max{{$index}}.$valid && !Form_Productos.$pristine && !Form_Productos.Cant_Unid_Max{{$index}}.$error.required ")
-											p.icon-login La cantidad de caracteres es muy corta
-									td
-										select.Select_1(ng-model="ListarProductos.FK_ID_Categoria"  ng-disabled="BL_Activar_Edicion == false")
-											option(value="{{Categoria.PK_ID_Categoria}}",ng-repeat="Categoria in AOBJ_Lista_Categoria") {{Categoria.Nombre_Categoria}}
-									td
-										select.Select_1(ng-model="ListarProductos.Estado_Producto"  ng-disabled="BL_Activar_Edicion == false")
-											option(value="Habilitado") Habilitado
-											option(value="Inhabilitado") Inhabilitado
-									td.CL_Tam_Texarea
-										textarea.Textarea_Estilo_1(ng-model="ListarProductos.Ruta_Imagen_Producto" ng-disabled="BL_Activar_Edicion == false") {{ListarProductos.Ruta_Imagen_Producto}}
-									td.CL_Tbl_Icon
-										p.CL_TXT_Pri_Btn.relative.icon-cancelado(ng-click="FN_Ver_Promociones();FN_Listar_Promocion_Producto($index)",tytle="Ver las promociones asociadas a este producto")
-											span.CL_TXT_Info_Btn Promociones
 											
-									td.CL_Tbl_Icon
-										.icon-lapiz.CL_TXT_Pri_Btn.relative(ng-class="{Invisible:BL_Activar_Edicion == true, Visible: BL_Activar_Edicion == false}",ng-click="BL_Activar_Edicion=!BL_Activar_Edicion")
-											span.CL_TXT_Info_Btn Editar
-										button.icon-actualizar.CL_TXT_Pri_Btn.relative(ng-disabled="!Form_Productos.$valid",ng-class="{Invisible:BL_Activar_Edicion == false, Visible: BL_Activar_Edicion == true}",ng-click="BL_Activar_Edicion=!BL_Activar_Edicion; FN_Modificar_Productos($index)" value="Actualizar")
-											span.CL_TXT_Info_Btn Actualizar 
-								
-							
-					.CL_Alerta_5.ng_repeat_anim1.Grid_Contenedor.abcenter(ng-show="(AOBJ_Listar_Productos |filter:Buscador_Productos:ListarProductos.Nombre_Producto).length == 0")
-						
-						.CL_TXT_Texto_3.Base-20.Grid_Item.abcenter.Padding-10 No se han encontrado productos
+													label(for="#Descripcion_Producto") Descripción
+													textarea#Descripcion_Producto.Input_Estilo_1(type="text",name="Descripcion_Producto",ng-model="RP.Descripcion_Producto",placeholder="Descripciondel producto ",required)
 
-					.Grid_Contenedor
-						.Btn_Circular_4.bottom-30(ng-click="FN_Listar_Productos()")
-							p.icon-list-1
-							p.CL_TXT_Info_Btn Listar productos
+													div#CONT_Mensaje_Validacion(ng-show="!Form_Registro_Producto.$pristine && Form_Registro_Producto.Descripcion_Producto.$error.required")
+														p.icon-exclamation Este campo es obligatorio
+
+													label(for="Cantidad_Maxima") Cantidad Maxima de productos
+													input#Cantidad_Maxima.Input_Estilo_1(max="10",min="1",type="number",name="Cantidad_Maxima",ng-model="RP.Cantidad_Maxima",placeholder="Cantidad maxima del producto",required)
+
+													div#CONT_Mensaje_Validacion(ng-show="!Form_Registro_Producto.$pristine && Form_Registro_Producto.Cantidad_Maxima.$error.required")
+														p.icon-exclamation Este campo es obligatorio
+
+													label(for="Cantidad_Minima") Cantidad minima de productos
+													input#Cantidad_Minima.Input_Estilo_1(max="10",min="1",type="number",name="Cantidad_Minima",ng-model="RP.Cantidad_Minima",placeholder="Cantidad minima del producto",required)
+
+													div#CONT_Mensaje_Validacion(ng-show="!Form_Registro_Producto.$pristine && Form_Registro_Producto.Cantidad_Minima.$error.required")
+														p.icon-exclamation Este campo es obligatorio
+
+													.CL_Alerta_5.Padding-5 URL de la imagen
+													input#Imagen_Producto.Input_Estilo_1(maxlength="100",minlength="10",type="url",name="Imagen_Producto",ng-model="RP.Imagen",placeholder="URL",required)
+													div#CONT_Mensaje_Validacion(ng-show="!Form_Registro_Producto.$pristine && Form_Registro_Producto.Imagen_Producto.$error.required")
+														p.icon-exclamation Este campo es obligatorio
+													.CL_Imagen_Producto_URL.Grid_Contenedor.Base-100.abcenter
+														img(ng-src="{{RP.Imagen }}")
+														div.Icon_Imagen.icon-image(ng-show="RP.Imagen == null")
+
+											.Grid_Contenedor.Grid-Item.abcenter.Padding-5
+												.Grid_Item.Base-50
+													input.Btn_Estilo_1#submit(type="submit" ng-disabled="!Form_Registro_Producto.$valid " value="Registrar" )
+												.Grid_Item.Base-50
+													a.Btn_Estilo_5(ng-click="FN_Limpiar_Formulario()" ) Limpiar 
+									///---
+									.CL_Alerta_5.Padding-5(ng-show="BL_Registrar_Producto == false && Edicion_Datos_Productos == false") 
+										p.CL_TXT_Texto_2 Selecciona un producto para ver su informaci&oacute;n
+									.CL_Alerta_5.Padding-10.relative(ng-show="Edicion_Datos_Productos == true") Datos del producto
+										.CL_Eliminar_1_1(ng-click="Edicion_Datos_Productos = false",ng-show="Edicion_Datos_Productos == true")
+									form.Grid_Contenedor.abcenter(name="Form_Productos_Ediccion" ng-show="Edicion_Datos_Productos == true")
+										.Grid_Contenedor.column.CL_Edicicion_Producto
+											///---
+											.Grid_Contenedor
+												label.CL_TXT_Texto_2 Nombre producto
+												input.Input_Estilo_1(name="Nombre_Producto",type="text",ng-model="Nombre_producto" ,maxlength="30",minlength="5",required)
+												//Mensaje de validacion
+												div#CONT_Mensaje_Validacion(ng-show="!Form_Productos_Ediccion.$pristine && Form_Productos_Ediccion.Nombre_Producto.$error.required")
+													p.icon-key Ingresa un nombre
+												div#CONT_Mensaje_Validacion(ng-show="!Form_Productos_Ediccion.Nombre_Producto.$valid && !Form_Productos_Ediccion.$pristine && !Form_Productos_Ediccion.Nombre_Producto.$error.required ")
+													p.icon-login La cantidad de caracteres es muy corta
+											///----
+											.Grid_Contenedor
+												label.CL_TXT_Texto_2 Precio
+												input.Input_Estilo_1(required,name="Valor_Unitario",type="text",value="{{Precio}}",ng-model="Precio" ,  maxlength="4",minlength="1")
+												//Mensaje de validacion
+												div#CONT_Mensaje_Validacion(ng-show="!Form_Productos_Ediccion.$pristine && Form_Productos_Ediccion.Valor_Unitario.$error.required")
+													p.icon-key Ingresa un valor para el precio
+												div#CONT_Mensaje_Validacion(ng-show="!Form_Productos_Ediccion.Valor_Unitario.$valid && !Form_Productos_Ediccion.$pristine && !Form_Productos_Ediccion.Valor_Unitario.$error.required ")
+													p.icon-login La cantidad de caracteres es muy corta
+											///----
+											.Grid_Contenedor
+												label.CL_TXT_Texto_2 Descripci&oacute;n
+												textarea.Textarea_Estilo_1(name="Descripcion",type="text",ng-model="Descripcion" ,required,  maxlength="150",minlength="5" )
+												//Mensaje de validacion
+												div#CONT_Mensaje_Validacion(ng-show="!Form_Productos_Ediccion.$pristine && Form_Productos_Ediccion.Descripcion.$error.required")
+													p.icon-key Ingresa un descripcion
+												div#CONT_Mensaje_Validacion(ng-show="!Form_Productos_Ediccion.Descripcion.$valid && !Form_Productos_Ediccion.$pristine && !Form_Productos_Ediccion.Descripcion.$error.required ")
+													p.icon-login La cantidad de caracteres es muy corta
+											///----
+											.Grid_Contenedor
+												label.CL_TXT_Texto_2 Cantidad minima
+												input.Input_Estilo_1(name="Cant_Unid_Min",value="{{Cantidad_Minima}}",type="text",ng-model="Cantidad_Minima", maxlength="6",minlength="2",required )
+												//Mensaje de validacion
+												div#CONT_Mensaje_Validacion(ng-show="!Form_Productos_Ediccion.$pristine && Form_Productos_Ediccion.Cant_Unid_Min.$error.required")
+													p.icon-key Ingresa un descripcion
+												div#CONT_Mensaje_Validacion(ng-show="!Form_Productos_Ediccion.Cant_Unid_Min.$valid && !Form_Productos_Ediccion.$pristine && !Form_Productos_Ediccion.Cant_Unid_Min.$error.required ")
+													p.icon-login La cantidad de caracteres es muy corta
+											///-----
+											.Grid_Contenedor
+												label.CL_TXT_Texto_2 Cantidad maxima
+												input.Input_Estilo_1(name="Cant_Unid_Max",value="{{Cantiad_Maxima}}",type="text",ng-model="Cantiad_Maxima" ,  maxlength="3",minlength="2",required )
+												//Mensaje de validacion
+												div#CONT_Mensaje_Validacion(ng-show="!Form_Productos_Ediccion.$pristine && Form_Productos_Ediccion.Cant_Unid_Max.$error.required")
+													p.icon-key Ingresa un descripcion
+												div#CONT_Mensaje_Validacion(ng-show="!Form_Productos_Ediccion.Cant_Unid_Max.$valid && !Form_Productos_Ediccion.$pristine && !Form_Productos_Ediccion.Cant_Unid_Max.$error.required ")
+													p.icon-login La cantidad de caracteres es muy corta
+											///-----
+											.Grid_Contenedor
+												label.CL_TXT_Texto_2 Url imagen produto
+												textarea.Textarea_Estilo_1(ng-model="Url_Imagen_Producto" ) {{Url_Imagen_Producto}}
+												.CL_Imagen_Producto_URL.Grid_Contenedor.Base-100.abcenter
+													img(ng-src="{{Url_Imagen_Producto}}")
+													
+											///--
+											.Grid_Contenedor
+												label.CL_TXT_Texto_2 Categoria
+												select.Select_1.Base-100(ng-model="FK_ID_Categoria")
+													option(value="{{Categoria.PK_ID_Categoria}}",ng-repeat="Categoria in AOBJ_Lista_Categoria") {{Categoria.Nombre_Categoria}}
+											///---
+											.Grid_Contenedor
+												label.CL_TXT_Texto_2 Estado
+												select.Select_1.Base-100(ng-model="Estado_Producto"  
+												)
+													option(value="Habilitado") Habilitado
+													option(value="Inhabilitado") Inhabilitado
+
+										.Grid_Contenedor
+											.Grid_Item.Base-50
+												button.Btn_Estilo_1(ng-disabled="!Form_Productos_Ediccion.$valid",ng-click="FN_Modificar_Productos()") Actualizar
+											.Grid_Item.Base-50
+												button.Btn_Estilo_5(ng-click="Edicion_Datos_Productos = false") Cancelar
+						.Grid_Contenedor.Base-70.cross_start.CL_CONT_Tablero_Trabajo_2
+							.CL_Cabezera_Tablero_Trabajo.Grid_Contenedor.Base-100
+								
+								.Grid_Item.Base-100.Grid_Contenedor.abcenter
+									.CL_TXT_Texto_4 Consultar productos
+							.Grid_Contenedor.abcenter
+								.Grid_Contenedor.Base-95
+									.CL_Alerta_5.Grid_Contenedor.Padding-5
+										
+										.Grid_Item.Base-100.Grid_Contenedor.abcenter
+											.Grid_Item.Base-30
+												.Btn_Estilo_5(ng-click="FN_Listar_Productos()") Consultar productos
+											.Grid_Item.Base-30
+												.Btn_Estilo_1.icon-plus(ng-click="BL_Registrar_Producto = true;Edicion_Datos_Productos = false") Nuevo producto
+											.Grid_Item.Base-40(ng-show="BL_Consultar_Producto")
+												.CL_Contenedor_Buscador
+													input.CL_Buscar#BuscarOrden(type="text", name="" placeholder="Buscar producto" ng-model="Buscar")
+													label.icon-buscar.CL_Icono_Buscar(for="BuscarOrden")
+										
+									.Grid_Contenedor
+										
+
+										section.ng_show.Base-100
+											
+											.Tabla_Estilo_2
+												table(ng-init="BL_Activar_Edicion=false")
+													thead
+														tr
+															th 
+															th Nombre 
+															th Categor&iacute;a
+															th Estado
+															th 
+															th 
+													.Grid_Contenedor.abcenter.CON_Paginacion
+														.Grid_Contenedor.Base-10
+															p.CL_TXT_Texto_2 Pag&iacute;na: {{currentPage}}
+														.Grid_Contenedor.Base-20
+															input.Input_Estilo_1.No_Margin(type="number",min="1",max="100",ng-model="pageSize")
+														
+														dir-pagination-controls.Base-45.cross_end.Grid_Contenedor(boundary-links="true")
+															p.CL_TXT_Texto_3 {{currentPage}}
+															ul.main_end.CL_Paginacion_1.Grid_Contenedor(ng-if="1 < pages.length || !autoHide" )
+																li(ng-if="boundaryLinks" ng-class="{ Paginacion_Disabled : pagination.current == 1 }")
+																	a(href="" ng-click="setCurrent(1)") &laquo;
+																li(ng-if="directionLinks" ng-class="{ Paginacion_Disabled : pagination.current == 1 }")
+																	a(href="" ng-click="setCurrent(pagination.current - 1)") &lsaquo;
+																li(ng-repeat="pageNumber in pages track by tracker(pageNumber, $index)" ng-class="{ active : pagination.current == pageNumber, Paginacion_Disabled : pageNumber == '...' }") {{ pageNumber }}
+																li(ng-if="directionLinks" ng-class="{ Paginacion_Disabled : pagination.current == pagination.last }")
+																	a(href="" ng-click="setCurrent(pagination.current + 1)") &rsaquo;
+																li(ng-if="boundaryLinks"  ng-class="{ Paginacion_Disabled : pagination.current == pagination.last }")
+																	a(href="" ng-click="setCurrent(pagination.last)") &raquo;
+													tbody
+														tr.ng_repeat_amiacion_1(dir-paginate="ListarProductos in AOBJ_Listar_Productos  | filter:Buscar | itemsPerPage: pageSize" current-page="currentPage")
+															td.Imagen.CL_Imagen
+																img(ng-src="{{ListarProductos.Ruta_Imagen_Producto}}")
+															
+															td 
+																input.Input_Tabla(type="text",value="{{ListarProductos.Nombre_Producto}}" ,ng-disabled="BL_Activar_Edicion == false")
+															
+															td
+																select.Select_1(ng-disabled="BL_Activar_Edicion == false",ng-model="ListarProductos.FK_ID_Categoria")
+																	option(value="{{Categoria.PK_ID_Categoria}}",ng-repeat="Categoria in AOBJ_Lista_Categoria") {{Categoria.Nombre_Categoria}}
+										
+															td
+																select.Select_1(ng-disabled="BL_Activar_Edicion == false",ng-model="ListarProductos.Estado_Producto")
+																	option(value="Habilitado") Habilitado
+																	option(value="Inhabilitado") Inhabilitado
+															td.CL_Tbl_Icon
+																p.CL_TXT_Pri_Btn.relative.icon-cancelado(ng-click="FN_Ver_Promociones();FN_Listar_Promocion_Producto($index)",tytle="Ver las promociones asociadas a este producto")
+																	span.CL_TXT_Info_Btn Promociones
+																	
+															td.CL_Tbl_Icon
+																.icon-lapiz.CL_TXT_Pri_Btn.relative( ng-click=" FN_Editar_Datos_Producto($index)")
+																	span.CL_TXT_Info_Btn Editar
+												.CL_Alerta_5.ng_repeat_anim1.Grid_Contenedor(ng-show="(AOBJ_Listar_Productos |filter:Buscar).length == 0")
+													.CL_TXT_Texto_3.Base-100.abcenter.Grid_Contenedor
+														p Producto no encontrado				
+														
+													
+											.CL_Alerta_5.ng_repeat_anim1.Grid_Contenedor.abcenter(ng-show="(AOBJ_Listar_Productos |filter:Buscador_Productos:ListarProductos.Nombre_Producto).length == 0")
+												
+												.CL_TXT_Texto_3.Base-20.Grid_Item.abcenter.Padding-10 No se han encontrado productos
+
+			
 	section#SC_Promociones_Producto(ng-show="BL_Promociones_Producto == true")
 		#CONT_Promocioens_Prodcuto.Grid_Contenedor.Base-100.abcenter()
 			#CONT_Invisible(ng-click="BL_Promociones_Producto = false")
@@ -250,8 +251,8 @@ section#SC_Contenido_Pagina_Productos(ng-init="FN_Listar_Productos();FN_Listar_C
 					.CL_Alerta_6.Padding-5.Grid_Contenedor.abcenter Promociones asociadas a este producto
 					.CL_CONT_Promociones.Grid_Contenedor.Base-100
 						.Grid_Item.Base-100.Grid_Contenedor.column()
-							.CL_Promociones_Listadas.Grid_Contenedor.justify(ng-repeat="Promociones in AOBJ_Lista_Promociones_Producto")
-								.Grid_Item.Base-60
+							.CL_Promociones_Listadas.Grid_Contenedor.reverse(ng-repeat="Promociones in AOBJ_Lista_Promociones_Producto")
+								.Grid_Item.Base-60.Grid_Contenedor.abcenter
 									label.CL_TXT_Texto_3 {{Promociones.Nombre_Promocion}}
 								.Grid_Item.Base-30
 									buttom.Btn_Estilo_7(ng-click="FN_Eliminar_Dll_Promocion_Producto($index)") Remover
@@ -260,17 +261,19 @@ section#SC_Contenido_Pagina_Productos(ng-init="FN_Listar_Productos();FN_Listar_C
 					.CL_Alerta_6.Padding-5.Grid_Contenedor.abcenter Promociones registradas
 					.CL_CONT_Promociones.Grid_Contenedor.Base-100
 						.Grid_Item.Base-100.Grid_Contenedor.column
-							.CL_Promociones_Listadas.Grid_Contenedor.justify(ng-repeat="Promociones in AOBJ_Lista_Promociones")
-								.Grid_Item.Base-35
-									label.CL_TXT_Texto_3 {{Promociones.Nombre_Promocion}}
-								.Grid_Item.Base-55.Grid_Contenedor.abcenter()
-									buttom.Btn_Estilo_1(ng-click="FN_Registrar_Dll_Producto_Promocion($index)") Agregar
-									buttom.Btn_Estilo_5.icon-eye(ng-class="{Invisible:BL_Dtll_Promocion == true, Visible: BL_Dtll_Promocion == false}",ng-init="BL_Dtll_Promocion = false" ng-click="BL_Dtll_Promocion =! BL_Dtll_Promocion") Detalle
-									buttom.Btn_Estilo_5.icon-eye-slash(ng-class="{Invisible:BL_Dtll_Promocion == false, Visible: BL_Dtll_Promocion == true}",ng-click="BL_Dtll_Promocion =! BL_Dtll_Promocion") Ocultar
+							.CL_Promociones_Listadas.Grid_Contenedor.reverse(ng-repeat="Promociones in AOBJ_Lista_Promociones")
+								.Grid_Item.Base-70.Grid_Contenedor.abcenter
+									label.CL_TXT_Texto_3.Grid_Contenedor.abcenter {{Promociones.Nombre_Promocion}}
+								.Grid_Item.Base-20.Grid_Contenedor.justify
+									a.icon-plus.CL_TXT_Pri_Btn.relative.Enlace(ng-click="FN_Registrar_Dll_Producto_Promocion($index)")
+										span.CL_TXT_Info_Btn Agregar
+									a.icon-eye.CL_TXT_Pri_Btn.relative.Enlace(ng-class="{Invisible:BL_Dtll_Promocion == true, Visible: BL_Dtll_Promocion == false}",ng-init="BL_Dtll_Promocion = false" ng-click="BL_Dtll_Promocion =! BL_Dtll_Promocion")
+										span.CL_TXT_Info_Btn Detalle
+									a.icon-eye-slash.CL_TXT_Pri_Btn.relative.Enlace(ng-class="{Invisible:BL_Dtll_Promocion == false, Visible: BL_Dtll_Promocion == true}",ng-click="BL_Dtll_Promocion =! BL_Dtll_Promocion")
+										span.CL_TXT_Info_Btn Ocultar
 									
-								.CL_Dll_Promocion.Grid_Item.Base-100.ng_show(ng_show="BL_Dtll_Promocion == true")
-									.CL_Alerta_7 {{Promociones.Nombre_Promocion}}
-									p {{Promociones.Descripcion}}
+								.CL_Alerta_1.CL_Dll_Promocion.Grid_Item.Base-100.ng_show(ng_show="BL_Dtll_Promocion == true")
+									p.CL_TXT_Texto_2 {{Promociones.Descripcion}}
 
 								
 

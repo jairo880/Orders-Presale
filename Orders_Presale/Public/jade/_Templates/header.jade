@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-html(lang="es" ng-app="AppAllop")
+html(lang="es" ng-app="AppOrders_Presale")
 
 
 	head
@@ -16,8 +16,10 @@ html(lang="es" ng-app="AppAllop")
 		script(src!="<?php echo URL;?>public/js/Angular/Librerias/angular.min.js")
 		script(src!="<?php echo URL;?>public/js/Angular/Librerias/angular-animate.js")
 		script(src!="<?php echo URL;?>public/js/Angular/Librerias/angular-locale_es-cl.js")
+		script(src!="<?php echo URL;?>public/js/Angular/Librerias/ngStorage.min.js")
+		script(src!="<?php echo URL;?>public/js/Angular/Librerias/dirPagination.js")
 		| <script>
-		| var app = angular.module("AppAllop", ['ngAnimate']);
+		| var app = angular.module("AppOrders_Presale", ['ngAnimate','ngStorage','angularUtils.directives.dirPagination']);
 		| var url = "<?=URL?>";
 		| </script>	
 		//- |	<?php 
@@ -35,7 +37,7 @@ html(lang="es" ng-app="AppAllop")
 		//- |	?>
 		//- | <?php echo Sesion::getValue('Nombre_Usuario'); ?>
 
-	| <body ng-init="FN_Capturar_Datos_Usuario_Iniciado()" id="Body_Web_Page"  ng-controller="Controlador_Principal"  ng-init="FN_Cargar_Datos_Usuario(1)" ng-class="{CL_Body_Scroll_Inactivo: BL_Scroll_Body, CL_Body_Scroll_Activo: ! BL_Scroll_Body }">
+	| <body ng-init="FN_Capturar_Datos_Usuario_Iniciado()" id="Body_Web_Page"  ng-controller="Controlador_Principal",ng-class="{CL_Body_Scroll_Inactivo: BL_Scroll_Body == true, CL_Body_Scroll_Activo:  BL_Scroll_Body == false}">
 	//Loading para la pagina web
 	#CONT_Loadig_Allop
 		p.CL_TXT_Loading Cargando 
@@ -44,7 +46,7 @@ html(lang="es" ng-app="AppAllop")
 			span
 			span
 			span
-	| <section id="CONT_Body" ng-class="{CL_Body_Menu_Desplegado:Bl_Menu_Desplegado, CL_Body_Menu_Oculto: ! Bl_Menu_Desplegado }">
+	| <section id="CONT_Body" ng-class="{CL_Body_Menu_Desplegado:Bl_Menu_Desplegado, CL_Body_Menu_Oculto: ! Bl_Menu_Desplegado, CL_Ordenes_Enviadas_Desplegado: BL_Ordenes_Enviadas == true }">
 	header#CONT_Header_Web_Page(ng-class="{CL_Header_Menu_Oculto: Bl_Menu_Desplegado, CL_Header_Menu_Desplegado: ! Bl_Menu_Desplegado}")
 		#CONT_Menu_Btn
 			.CL_Desplegar_Menu.CL_TXT_Pri_Btn.relative(ng-click="FN_Menu()" title="Menú" )
@@ -70,7 +72,7 @@ html(lang="es" ng-app="AppAllop")
 						span.CL_Btn_Contador {{dato.NUM_Cantidad_Productos_En_Orden}}
 						span.CL_TXT_Info_Btn Orden
 				//Elemento visible solo para usuarios y usuario sin iniciar sesion
-				.CL_Btn_Herramientas_Header.CL_TXT_Pri_Btn(ng-init="BL_Btns_Ver_Notificaciones = false"  ng-click="FN_Notificacion()" title="Desplegar menu de notificaciones",ng-if="dato.AOBJ_Datos_Usuario[0].FK_ID_Rol == 3 || dato.AOBJ_Datos_Usuario[0].FK_ID_Rol == 5")
+				.CL_Btn_Herramientas_Header.CL_TXT_Pri_Btn(ng-init="BL_Btns_Ver_Notificaciones = false"  ng-click="FN_Notificacion()" title="Desplegar menu de notificaciones",ng-if="dato.AOBJ_Datos_Usuario[0].FK_ID_Rol == 3 ")
 					div.CL_CONT_Contenedor_Btns_Opcion
 						p.icon-notificacion
 						span.CL_Btn_Contador  {{dato.NUM_CantidadNotificaciones}}
@@ -79,15 +81,20 @@ html(lang="es" ng-app="AppAllop")
 				
 
 				//Elemento visible solo para usuarios y usuario sin iniciar sesion
-				.CL_Btn_Herramientas_Header.CL_TXT_Pri_Btn(ng-init="BL_Btns_Ver_Mensajes = false"  ng-click="FN_Mensaje_Desplegar(true,false,false,false,false)" title="Desplegar menu de mensajes",ng-if="dato.AOBJ_Datos_Usuario[0].FK_ID_Rol == 3 || dato.AOBJ_Datos_Usuario[0].FK_ID_Rol == 5 ")
+				.CL_Btn_Herramientas_Header.CL_TXT_Pri_Btn(ng-init="BL_Btns_Ver_Mensajes = false"  ng-click="FN_Mensaje_Desplegar(true,false,false,false,false)" title="Desplegar menu de mensajes",ng-if="dato.AOBJ_Datos_Usuario[0].FK_ID_Rol == 3  ")
 					div.CL_CONT_Contenedor_Btns_Opcion
 						p.icon-mensaje
 						span.CL_Btn_Contador  {{dato.NUM_CantidadMensajeUsuario}}
 						span.CL_TXT_Info_Btn Mensajes
-				.CL_Btn_Herramientas_Header.CL_TXT_Pri_Btn(ng-click="FN_Opciones_Cuenta_Header(); BL_Opciones_Cuenta =! BL_Opciones_Cuenta" title="Desplegar opciones perfil",)
+				//Elemento visible solo para usuarios y usuario sin iniciar sesion
+				.CL_Btn_Herramientas_Header.CL_TXT_Pri_Btn(ng-init="BL_Btns_Ver_Ordenes_Enviadas = false"  ng-click="FN_Ordenes_Enviadas(2)" title="Desplegar menu de ordenes enviadas",ng-if="dato.AOBJ_Datos_Usuario[0].FK_ID_Rol == 3")
+					div.CL_CONT_Contenedor_Btns_Opcion
+						p.icon-check-clipboard-1
+						span.CL_TXT_Info_Btn Ordenes enviadas
+				.CL_Btn_Herramientas_Header.CL_TXT_Pri_Btn(ng-click="FN_Opciones_Cuenta_Header()" title="Desplegar opciones perfil",)
 					div.CL_CONT_Contenedor_Btns_Opcion
 						img.CL_Imagen_Usuario_Header(ng-src="{{dato.AOBJ_Datos_Usuario[0].Imagen_Usuario}}")
-						span.Estado_Usuario(ng-class="{Activo: dato.AOBJ_Datos_Usuario[0].Disponibilidad == 'Activo', Inactivo:  dato.AOBJ_Datos_Usuario[0].Disponibilidad == 'Inactivo'}" title="Disponibilidad actual de tu cuenta")
+						span.Estado_Usuario(ng-if="BL_Btns_Ver_Login == false;Bl_Btn_Login_Iniciar_Sesion == false",ng-class="{Activo: dato.AOBJ_Datos_Usuario[0].Disponibilidad == 'Activo', Inactivo:  dato.AOBJ_Datos_Usuario[0].Disponibilidad == 'Inactivo'}" title="Disponibilidad actual de tu cuenta")
 							p
 						span.CL_TXT_Info_Btn Cuenta
 						

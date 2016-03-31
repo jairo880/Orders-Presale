@@ -18,11 +18,11 @@
                 $scope.Categoria_Creada = " ";
                 $scope.Categoria_Creada += formData.Nombre_Categoria;
 
-                if (Respuesta == "La categoria a registrar ya se encuentra registrada")
+                if (Respuesta == "La categoria  ya se encuentra registrada")
                 {
                     //_*mensaje de Alerta
                     $scope.Mensaje = "El nombre de la categoria ya se encuentra en uso, ingresa un nombre diferente";
-                    Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+                    Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Info');
                 }
 
 
@@ -42,7 +42,7 @@
 
 
                     //_*mensaje de Alerta
-                    $scope.Mensaje = "¡La categoria" + " " + $scope.Categoria_Creada + " " + "Ha sido creada correctamente! ";
+                    $scope.Mensaje = "¡La categoria ha sido creada correctamente! ";
                     Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje);
                     $scope.Listar_Categorias();
 
@@ -54,7 +54,7 @@
                 {
                     //_*mensaje de Alerta
                     $scope.Mensaje = "Registro fallido, intentalo nuevamente.";
-                    Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+                    Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Error');
                 }
 
 
@@ -63,9 +63,7 @@
 
             })
             .error(function (res, status) {
-                //_*mensaje de Alerta
-                $scope.Mensaje = "Registro fallido, intentalo nuevamente.";
-                Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+                console.log(res,status);
             });
 
 
@@ -102,12 +100,12 @@
              if(Respuesta == 'true')
              {
                   $scope.Mensaje = "Los datos han sido actualizados";
-                Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+                Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Finalizado');
             }
             if(Respuesta == 'false')
              {
-                  $scope.Mensaje = "No se modifico ningun dato de la categoria";
-                Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+                  $scope.Mensaje = "Los datos se encuentran actualizados";
+                Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Info');
             }
 
 
@@ -115,7 +113,7 @@
             .error(function (res, status) {
                 alerta('error', null, res);
             });
-        }
+        };
 
 
 
@@ -146,18 +144,18 @@
                  var respuesta = (res); 
                  if(respuesta == 'true'){
                      $scope.Mensaje = "La categoria se ha eliminado correctamente";
-                     Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+                     Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Finalizado');
                       $scope.Listar_Categorias();
                  }else{
-                     $scope.Mensaje = "Ha ocurrido un error al intentar eliminar la categoria";
-                     Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+                     $scope.Mensaje = "Error al eliminar la categoria";
+                     Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Error');
                  }
              })
              .error(function (res, status) {
                 alerta('error', null, res);
             });    
 
-        }
+        };
 
 
 

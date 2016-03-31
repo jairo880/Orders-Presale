@@ -1,0 +1,1 @@
+c:/wamp/bin/php/php5.5.12/php.exe -q c:/wamp/www/Proyectos/OrdersPresale/Orders_Presale/Public/js/Javascript/Socket/Servidor_Socket/server.php

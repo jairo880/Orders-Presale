@@ -436,35 +436,186 @@ class M_Administracion {
 
   public function FN_Inhabilitar_Estado_Cuenta_Usuario(
    $PK_ID_Usuario
-      )
-    {
-     $sql = "CALL `spInhabilitarCuenta_Usuario`(?);";
-     $query = $this->db->prepare($sql);
-     $query->bindParam(1, $PK_ID_Usuario);
-     $query->execute();
+   )
+  {
+   $sql = "CALL `spInhabilitarCuenta_Usuario`(?);";
+   $query = $this->db->prepare($sql);
+   $query->bindParam(1, $PK_ID_Usuario);
+   $query->execute();
 
-     
-     if ($query->rowCount() > 0) {
+
+   if ($query->rowCount() > 0) {
+    return true;
+  }else {
+    return false;
+  }
+}
+public function FN_Habilitar_Estado_Cuenta_Usuario(
+ $PK_ID_Usuario
+ )
+{
+ $sql = "CALL `spHabilitarCuenta_Usuario`(?);";
+ $query = $this->db->prepare($sql);
+ $query->bindParam(1, $PK_ID_Usuario);
+ $query->execute();
+
+
+ if ($query->rowCount() > 0) {
+  return true;
+}else {
+  return false;
+}
+}
+
+public function FN_Listar_Ordenes_Usuario($PK_ID_Usuario) {
+
+  $sql = "CALL `spConsultarCotizacion_usuario`(?);";
+  $query = $this->db->prepare($sql);
+  $query->bindParam(1, $PK_ID_Usuario);
+  $query->execute();
+
+  return $query->fetchAll();
+}
+public function FN_Listar_Detalle_Ordene_Usuario($PK_ID_Cotizacion_Usuario) {
+
+  $sql = "CALL `spJoin_ConsultarDll_producto_cotizacion`(?);";
+  $query = $this->db->prepare($sql);
+  $query->bindParam(1, $PK_ID_Cotizacion_Usuario);
+  $query->execute();
+
+  return $query->fetchAll();
+}
+
+public function FN_Actualizar_Estado_Orden($Estado_Cotizacion,$PK_ID_Cotizacion_Usuario,$FK_ID_Usuario,$PK_ID_Cotizacion_Usuario) {
+
+
+//Este primer paso sirve para actualar la info de la orden y el estado de la notificacion 
+ $sql = "CALL `spModificarCotizacion_usuario_Estado`(?,?);";
+ $query = $this->db->prepare($sql);
+ $query->bindParam(1, $PK_ID_Cotizacion_Usuario);
+ $query->bindParam(2, $Estado_Cotizacion);
+ $query->execute();
+
+ if ($query->rowCount() > 0) {
+  $sql = "CALL `spModificarBuson_notificacion_usuario`(?,?,?);";
+  $query = $this->db->prepare($sql);
+  $query->bindParam(1, $FK_ID_Usuario);
+  $query->bindParam(2, $PK_ID_Cotizacion_Usuario);
+  $query->bindParam(3, $Estado_Cotizacion);
+  $query->execute();
+
+  if ($query->rowCount() > 0) {
+    return true;
+  }else {
+
+//Si no se pudo actualiza la notificacion es por que no existe una notificacion, asi que paso a crear la notificacion para el usuario
+       //
+    $sql = "SELECT `fnRegistrar_Notificacion`(?);";
+    $query = $this->db->prepare($sql);
+    $query->bindParam(1, $PK_ID_Cotizacion_Usuario);
+    $query->execute();
+
+    if ($query->rowCount() > 0) {
+      $Respuesta_Registro_tbl_Buson_Notificacion= $query->fetchColumn();
+      $sql = "CALL `spRegistrarDll_buson_notificacion_usuario`(?,?);";
+      $query = $this->db->prepare($sql);
+      $query->bindParam(1, $Respuesta_Registro_tbl_Buson_Notificacion);
+      $query->bindParam(2, $FK_ID_Usuario);
+      $query->execute();
+      if ($query->rowCount() > 0) {
+        //Si se a creado de nuevo la notificacion paso a atualizar nuevamente la info de  notificacion, para eso tansolo repito el primer proceso, con esto obtenemos, en el primer paso la actualizacion de los datos de la cotizacion y la notificacion, en el segundo paso se crea otra vez la notificacion ya que en el primer paso no se encontro ninguna notificacion a la cual cambiar su estado
+       //
+        $sql = "CALL `spModificarBuson_notificacion_usuario`(?,?,?);";
+        $query = $this->db->prepare($sql);
+        $query->bindParam(1, $FK_ID_Usuario);
+        $query->bindParam(2, $PK_ID_Cotizacion_Usuario);
+        $query->bindParam(3, $Estado_Cotizacion);
+        $query->execute();
+
+        if ($query->rowCount() > 0) {
+          return true;
+        }else {
+          return false;
+        }
+        //
+      }else
+      {
+        return false;
+      }
+    }else{
+      return false;
+    }
+
+    //
+  }
+}
+
+//Si el anterior paso no se ejecuto correctamente, es porque no se ha encontrado una notificacion a la cual cambiarle su estado, posiblemente halla sido eliminada por el usuario, asi que paso nuevamente a generar una notificaion
+else {
+  //----
+  $sql = "SELECT * FROM tbl_buson_notificacion_usuario WHERE FK_ID_Cotizacion = $PK_ID_Cotizacion_Usuario ";
+  $query = $this->db->prepare($sql);
+  $query->execute();
+  $PK_ID_Buson_Notificacion = 0;
+  foreach ($query->fetchAll() as $key ) {
+    $PK_ID_Buson_Notificacion = $key->PK_ID_Buson_Notificacion;
+  }
+
+  $sql = "CALL `spEliminarDll_buson_notificacion_usuario`(?);";
+  $query = $this->db->prepare($sql);
+  $query->bindParam(1, $PK_ID_Buson_Notificacion);
+  $query->execute();
+
+  
+  if ($query->rowCount() > 0) {
+   $sql = "CALL `spEliminarBuson_notificacion_usuario`(?);";
+   $query = $this->db->prepare($sql);
+   $query->bindParam(1, $PK_ID_Buson_Notificacion);
+   $query->execute();
+
+   
+   
+ }
+//Si no se pudo actualiza la notificacion es por que no existe una notificacion, asi que paso a crear la notificacion para el usuario
+       //
+ $sql = "SELECT `fnRegistrar_Notificacion`(?);";
+ $query = $this->db->prepare($sql);
+ $query->bindParam(1, $PK_ID_Cotizacion_Usuario);
+ $query->execute();
+
+ if ($query->rowCount() > 0) {
+  $Respuesta_Registro_tbl_Buson_Notificacion= $query->fetchColumn();
+  $sql = "CALL `spRegistrarDll_buson_notificacion_usuario`(?,?);";
+  $query = $this->db->prepare($sql);
+  $query->bindParam(1, $Respuesta_Registro_tbl_Buson_Notificacion);
+  $query->bindParam(2, $FK_ID_Usuario);
+  $query->execute();
+  if ($query->rowCount() > 0) {
+        //Si se a creado de nuevo la notificacion paso a atualizar nuevamente la info de  notificacion, para eso tansolo repito el primer proceso, con esto obtenemos, en el primer paso la actualizacion de los datos de la cotizacion y la notificacion, en el segundo paso se crea otra vez la notificacion ya que en el primer paso no se encontro ninguna notificacion a la cual cambiar su estado
+       //
+    $sql = "CALL `spModificarBuson_notificacion_usuario`(?,?,?);";
+    $query = $this->db->prepare($sql);
+    $query->bindParam(1, $FK_ID_Usuario);
+    $query->bindParam(2, $PK_ID_Cotizacion_Usuario);
+    $query->bindParam(3, $Estado_Cotizacion);
+    $query->execute();
+
+    if ($query->rowCount() > 0) {
       return true;
     }else {
       return false;
     }
+        //
+  }else
+  {
+    return false;
   }
-   public function FN_Habilitar_Estado_Cuenta_Usuario(
-   $PK_ID_Usuario
-      )
-    {
-     $sql = "CALL `spHabilitarCuenta_Usuario`(?);";
-     $query = $this->db->prepare($sql);
-     $query->bindParam(1, $PK_ID_Usuario);
-     $query->execute();
+}else{
+  return false;
+}
+}
+}
 
-     
-     if ($query->rowCount() > 0) {
-      return true;
-    }else {
-      return false;
-    }
-  }
+  //************
 
 }

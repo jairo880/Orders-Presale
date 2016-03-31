@@ -14,7 +14,7 @@ section#SC_P_Productos.abcenter.Grid_Contenedor(ng-init="BL_Buscador_Productos =
 				label.icon-buscar.CL_Icono_Buscar(for="BuscarProducto")
 		.Grid-Total.abcenter.Grid_Contenedor.CL_Alerta_5
 			p.icon-retweet.CL_TXT_Enlace_4(title="Actualizar la lista de productos actuales",ng-click="FN_Listar_Productos()")
-		#CONT_P_Productos.ng_repeat_anim1.Grid_Contenedor.Base-100.web-85.abcenter(ng-hide="LisProduct.Estado_Producto == 'Inhabilitado'",ng-class="{'CL_Producto_No_Agregado':LisProduct.BL_Estado_Producto, 'CL_Producto_Agregado': ! LisProduct.BL_Estado_Producto}" ng-repeat="LisProduct in dato.AOBJ_Productos_Principal |  filter:buscar:LisProduct.Nombre_Producto ")
+		#CONT_P_Productos.ng_repeat_anim1.Grid_Contenedor.Base-100.web-80.abcenter(ng-hide="LisProduct.Estado_Producto == 'Inhabilitado'",ng-class="{'CL_Producto_No_Agregado':LisProduct.BL_Estado_Producto, 'CL_Producto_Agregado': ! LisProduct.BL_Estado_Producto}" ng-repeat="LisProduct in dato.AOBJ_Productos_Principal |  filter:buscar:LisProduct.Nombre_Producto ")
 			.Grid_Item.Base-100.web-50
 				.CL_P_Imagen.Grid_Contenedor.Base-100.abcenter
 					img.CL_Imagen_3(ng-src="{{LisProduct.Ruta_Imagen_Producto}}" )
@@ -41,7 +41,7 @@ section#SC_P_Productos.abcenter.Grid_Contenedor(ng-init="BL_Buscador_Productos =
 					.Base-100.tablet-100
 						.CL_ValoracionProducto.Grid_Contenedor.justify
 							
-							.CL_ContOpiniones.Grid_Item.Grid_Contenedor.abcenter.Base-100.tablet-100.web-30
+							.CL_ContOpiniones.Grid_Item.Grid_Contenedor.abcenter.Base-100.tablet-100.web-40
 								.Grid_Item.Grid_Contenedor.abcenter
 									.CL_Precio
 										p {{LisProduct.Valor_Unitario | currency}}
@@ -51,7 +51,7 @@ section#SC_P_Productos.abcenter.Grid_Contenedor(ng-init="BL_Buscador_Productos =
 										span.icon-star
 										span.icon-star
 										span.icon-star
-									.icon-comentarios.Btn_Estilo_5(title="Ver las opiniones de otros usuarios" ng-click="FN_Ver_Comentarios_Producto(LisProduct.PK_ID_Producto)") Ver comentarios
+									.icon-comentarios.Btn_Estilo_5(title="Ver las opiniones de otros usuarios" ng-click="FN_Ver_Comentarios_Producto(LisProduct.PK_ID_Producto)") Comentarios
 							.Grid_Item.Base-100.tablet-100.web-50.Grid_Contenedor.No.Padding
 								.CL_TotalProducto.CL_Alerta_5.Padding-5.Grid_Contenedor
 									p.CL_TXT_Texto_3 Subtotal:

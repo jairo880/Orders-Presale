@@ -15,12 +15,12 @@ section#SC_Modulo_Barra_Navegacion
 
 								.CL_Imagen_Perfil
 									img.CL_Img_Perfil(ng-src!="{{dato.AOBJ_Datos_Usuario[0].Imagen_Usuario}}")
-									span.Estado_Usuario(ng-class="{Activo: dato.AOBJ_Datos_Usuario[0].Disponibilidad == 'Activo', Inactivo:  dato.AOBJ_Datos_Usuario[0].Disponibilidad == 'Inactivo'}" title="Estado actual de tu cuenta")
+									span.Estado_Usuario(ng-if="BL_Btns_Ver_Login == false;Bl_Btn_Login_Iniciar_Sesion == false",ng-class="{Activo: dato.AOBJ_Datos_Usuario[0].Disponibilidad == 'Activo', Inactivo:  dato.AOBJ_Datos_Usuario[0].Disponibilidad == 'Inactivo'}" title="Estado actual de tu cuenta")
 										p
 							#CONT_Datos_Usuario
 								p.CL_TXT_Mensaje {{dato.AOBJ_Datos_Usuario[0].Correo_Electronico}}
 								p.CL_TXT_Nombre {{dato.AOBJ_Datos_Usuario[0].Nombre_Usuario}}
-								div#CONT_Herramientas_Usuario
+								div#CONT_Herramientas_Usuario(ng-if="BL_Btns_Ver_Login == false;Bl_Btn_Login_Iniciar_Sesion == false")
 									#CONT_Opciones_Cuenta.Btn_Estilo_5( )
 										a.icon-login(href!="<?php echo URL; ?>Cliente/Cuenta") 
 									
@@ -35,21 +35,21 @@ section#SC_Modulo_Barra_Navegacion
 							section#CONT_SC_Paginas
 								div(ng-if="BL_Btns_Ver_Login == true;Bl_Btn_Login_Iniciar_Sesion == true")
 									p.CL_TXT_Detalle Opciones
-									li
+									li.Grid_Contenedor.abcenter
 										a.CL_Btn_Enlace.icon-login.ng_repeat_anim1(ng-click="FN_Login()")
 											span.CL_TXT_Nav Ingresar
 								div(ng-if="dato.AOBJ_Datos_Usuario[0].FK_ID_Rol == 3 || dato.AOBJ_Datos_Usuario[0].FK_ID_Rol == 5 ")
 									p.CL_TXT_Detalle Navegaci&oacute;n
-									li
+									li.Grid_Contenedor.abcenter
 										a.CL_Btn_Enlace.icon-inicio(href!="<?php echo URL; ?>Inicio/Inicio")
 											span.CL_TXT_Nav Inicio
-									li
+									li.Grid_Contenedor.abcenter
 										a.CL_Btn_Enlace.icon-ayuda-online( ng-click="FN_Mensaje_Desplegar(true,true,false,false,true)")
 											span.CL_TXT_Nav Ayuda
-									li
+									li.Grid_Contenedor.abcenter
 										a.CL_Btn_Enlace.icon-galeria1(href!="<?php echo URL; ?>Cliente/Productos")
 											span.CL_TXT_Nav Productos
-									li(ng-if="BL_Btns_Ver_Login == true;Bl_Btn_Login_Iniciar_Sesion == true")
+									li.Grid_Contenedor.abcenter(ng-if="BL_Btns_Ver_Login == true;Bl_Btn_Login_Iniciar_Sesion == true")
 										a.CL_Btn_Enlace.icon-registrarme(href!="<?php echo URL; ?>Cliente/Registro")
 											span.CL_TXT_Nav Registrarme
 								
@@ -59,22 +59,25 @@ section#SC_Modulo_Barra_Navegacion
 								p.CL_TXT_Detalle Herramientas
 								//Elemento visible solo para usuarios y usuario sin iniciar sesion
 								div(ng-if="dato.AOBJ_Datos_Usuario[0].FK_ID_Rol == 3 || dato.AOBJ_Datos_Usuario[0].FK_ID_Rol == 5 ")
-									li
+									li.Grid_Contenedor.abcenter
 										a.CL_Btn_Enlace.icon-mensaje(ng-click="FN_Mensaje_Desplegar(true,false,false,false,false)")
 											span.CL_TXT_Nav Mensajes
 											span.CL_Cantidad {{dato.NUM_CantidadMensajeUsuario}}
-									li
+									li.Grid_Contenedor.abcenter
 										a.CL_Btn_Enlace.icon-notificacion( ng-click="FN_Notificacion()" )
 											span.CL_TXT_Nav Notificaciones
 											span.CL_Cantidad  {{dato.NUM_CantidadNotificaciones}}
-									li
+									li.Grid_Contenedor.abcenter
 										a.CL_Btn_Enlace.icon-orden( ng-click="FN_Orden()" title="Desplegar menu de orden")
 											span.CL_TXT_Nav Mi orden actual
 											span.CL_Cantidad  {{dato.NUM_Cantidad_Productos_En_Orden}}
+									li.Grid_Contenedor.abcenter(ng-click="FN_Ordenes_Enviadas()" title="Desplegar menu de ordenes enviadas",ng-if="dato.AOBJ_Datos_Usuario[0].FK_ID_Rol == 3")
+										a.CL_Btn_Enlace.icon-check-clipboard-1( ng-click="FN_Ordenes_Enviadas(2)" title="Desplegar menu de ordenes enviadas")
+											span.CL_TXT_Nav Ordenes enviadas
 								//Elemento visible solo para Administradores
 								div(ng-if="dato.AOBJ_Datos_Usuario[0].FK_ID_Rol == 1")
 									
-									li.ng_repeat_anim1
+									li.Grid_Contenedor.abcenter.ng_repeat_anim1
 										a.CL_Btn_Enlace.icon-bulb(href!="<?php echo URL; ?>Administracion/Guia_Proyecto")
 											span.CL_TXT_Nav Guia proyecto
 									
@@ -83,33 +86,36 @@ section#SC_Modulo_Barra_Navegacion
 							//Elemento visible solo para Administradores
 							section#CONT_SC_Paginas(ng-if="BL_Guia == true ")
 								#CONT_Barra
-										li
+										li.Grid_Contenedor.abcenter
 
 											a.CL_Btn_Enlace.icon-design(ng-click="FN_Ver_Elemento_Guia(1)")
 												span.CL_TXT_Nav UI Elements
-										li
+										li.Grid_Contenedor.abcenter
 
 											a.CL_Btn_Enlace.icon-sitemap(ng-click="FN_Ver_Elemento_Guia(2)")
 												span.CL_TXT_Nav Estructura proyecto
-										li
+										li.Grid_Contenedor.abcenter
 
 											a.CL_Btn_Enlace.icon-css(ng-click="FN_Ver_Elemento_Guia(3)")
 												span.CL_TXT_Nav Sass
-										li
+										li.Grid_Contenedor.abcenter
 
 											a.CL_Btn_Enlace.icon-angular(ng-click="FN_Ver_Elemento_Guia(4)")
 												span.CL_TXT_Nav Angular.js
-										li
+										li.Grid_Contenedor.abcenter
 
 											a.CL_Btn_Enlace.icon-html5(ng-click="FN_Ver_Elemento_Guia(5)")
 												span.CL_TXT_Nav HTML
-										li
+										li.Grid_Contenedor.abcenter
 
 											a.CL_Btn_Enlace.icon-database(ng-click="FN_Ver_Elemento_Guia(6)")
 												span.CL_TXT_Nav Base de datos
-										li
+										li.Grid_Contenedor.abcenter
 											a.CL_Btn_Enlace.icon-feed-rss-2(ng-click="FN_Ver_Elemento_Guia(7)")
 												span.CL_TXT_Nav CRUD ejemplo
+										li.Grid_Contenedor.abcenter
+											a.CL_Btn_Enlace.icon-puzzle-piece(ng-click="FN_Ver_Elemento_Guia(8)")
+												span.CL_TXT_Nav Cuerpo
 
 
 							//Elemento visible solo para administradores
@@ -117,10 +123,10 @@ section#SC_Modulo_Barra_Navegacion
 								div
 									p.CL_TXT_Detalle Opciones
 								
-									li
+									li.Grid_Contenedor.abcenter
 										a.CL_Btn_Enlace.icon-registrarme(href!="<?php echo URL; ?>Administracion/Inicio_Administracion/Registrar_Nuevo_Usuario")
 											span.CL_TXT_Nav Registrar usuario nuevo
-									li
+									li.Grid_Contenedor.abcenter
 										a.CL_Btn_Enlace.icon-users(href!="<?php echo URL; ?>Administracion/Inicio_Administracion/Consultar_Usuarios")
 											span.CL_TXT_Nav Consultar usuarios registrados
 									
@@ -131,43 +137,46 @@ section#SC_Modulo_Barra_Navegacion
 								
 									
 
-									li
+									li.Grid_Contenedor.abcenter
 										a.CL_Btn_Enlace.icon-puzzle-piece(href!="<?php echo URL; ?>Administracion/Inicio_Administracion/Modulo_Producto")
 											span.CL_TXT_Nav M&oacute;dulo producto
 							
-									li
+									li.Grid_Contenedor.abcenter
 										a.CL_Btn_Enlace.icon-puzzle-piece(href!="<?php echo URL; ?>Administracion/Inicio_Administracion/Modulo_Promociones")
 											span.CL_TXT_Nav M&oacute;dulo promociones
-									li
+									li.Grid_Contenedor.abcenter
 										a.CL_Btn_Enlace.icon-puzzle-piece(href!="<?php echo URL; ?>Administracion/Inicio_Administracion/Modulo_Categoria")
 											span.CL_TXT_Nav M&oacute;dulo categoria
-									li
+									li.Grid_Contenedor.abcenter
 										a.CL_Btn_Enlace.icon-puzzle-piece(href!="<?php echo URL; ?>Administracion/Inicio_Administracion/Modulo_Gestion_De_Contenido")
 											span.CL_TXT_Nav M&oacute;dulo gestion de contenido
 							
 							//Elemento visible solo para Administradores
 							section#CONT_SC_Paginas(ng-if="dato.AOBJ_Datos_Usuario[0].FK_ID_Rol == 1")
 								
-								li
+								li.Grid_Contenedor.abcenter
 									a.CL_Btn_Enlace.icon-puzzle-piece(href!="<?php echo URL; ?>Administracion/Inicio_Administracion/Modulo_Permisos_Usuario")
 										span.CL_TXT_Nav M&oacute;dulo permisos usuario
-								li
+								li.Grid_Contenedor.abcenter
+									a.CL_Btn_Enlace.icon-puzzle-piece(href!="<?php echo URL; ?>Administracion/Inicio_Administracion/Modulo_Cotizacion")
+										span.CL_TXT_Nav M&oacute;dulo cotizaci&oacute;n
+								li.Grid_Contenedor.abcenter
 									a.CL_Btn_Enlace.icon-exclamation(href!="<?php echo URL; ?>Error/Error")
 										span.CL_TXT_Nav Error 404
 	//SESION OPCIONES PERFIL
-	section#SC_Opciones_Perfil
-		#CONT_Invisible(ng-click="BL_Opciones_Cuenta =! BL_Opciones_Cuenta" ng-show="BL_Opciones_Cuenta == true")
+	section#SC_Opciones_Perfil(ng-show="BL_Opciones_Cuenta == true")
+		#CONT_Invisible(ng-click="FN_Opciones_Cuenta_Header()")
 			.CL_Cerrar_Modal.CL_Transparente
 		#CONT_Perfil_Opciones_Usuario_P(ng-show="BL_Opciones_Cuenta == true")
-			
-			p.CL_TXT_Categoria Disponibilidad
-			.CL_Estado_Usuario
-				.CL_Opciones_Cuenta.CL_Activo(ng-click="FN_Actualizar_Datos_Tabla_Cliente();dato.AOBJ_Datos_Usuario[0].Disponibilidad = 'Activo'")
-					p.icon-activo
-					a Activo
-				.CL_Opciones_Cuenta.CL_Inactivo(ng-click="FN_Actualizar_Datos_Tabla_Cliente();dato.AOBJ_Datos_Usuario[0].Disponibilidad = 'Inactivo'")
-					p.icon-inactivo
-					a Inactivo
+			.Grid_Contenedor.column(ng-if="BL_Btns_Ver_Login == false;Bl_Btn_Login_Iniciar_Sesion == false")
+				p.CL_TXT_Categoria Disponibilidad
+				.CL_Estado_Usuario
+					.CL_Opciones_Cuenta.CL_Activo(ng-click="FN_Actualizar_Datos_Tabla_Cliente();dato.AOBJ_Datos_Usuario[0].Disponibilidad = 'Activo'")
+						p.icon-activo
+						a Activo
+					.CL_Opciones_Cuenta.CL_Inactivo(ng-click="FN_Actualizar_Datos_Tabla_Cliente();dato.AOBJ_Datos_Usuario[0].Disponibilidad = 'Inactivo'")
+						p.icon-inactivo
+						a Inactivo
 			div(ng-if="BL_Btns_Ver_Login == false;Bl_Btn_Login_Iniciar_Sesion == false")
 				p.CL_TXT_Categoria Cuenta
 				.CL_Opciones_Cuenta
@@ -190,7 +199,10 @@ section#SC_Modulo_Barra_Navegacion
 					.CL_Opciones_Cuenta(ng-click="FN_Orden()" title="Desplegar menu de orden")
 						p.icon-orden
 						a Orden
-				.CL_Opciones_Cuenta(ng-show="Bl_Btn_Login_Cerrrar_Sesion == true")
+					.CL_Opciones_Cuenta(ng-click="FN_Ordenes_Enviadas(2)" title="Desplegar menu de ordenes enviadas",ng-if="dato.AOBJ_Datos_Usuario[0].FK_ID_Rol == 3")
+						p.icon-check-clipboard-1
+						a Ordenes enviadas
+				.CL_Opciones_Cuenta(ng-if="Bl_Btn_Login_Cerrrar_Sesion == true")
 					p.icon-login-2
 					a(ng-click="FN_Cerrar_Sesion()") Cerrar sesi&oacute;n
 				

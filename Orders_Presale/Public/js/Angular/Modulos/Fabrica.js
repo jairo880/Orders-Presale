@@ -2,15 +2,18 @@
 
 
 
-app.factory('Fabrica', function ($timeout) {
+app.factory('Fabrica', function ($timeout,$localStorage,$sessionStorage) {
+    var Promesa;
     var servicio =
     {
         objeto:
         {
                              //variable para guardar los datos del usuario actual
-                            AOBJ_Datos_Usuario: [],
+                             AOBJ_Datos_Usuario: [],
                             //variable para guardar los prodcutos que el usuario agregue en la orden
                             AOBJ_Productos: [],
+                            //variable del localstorage la cual poseera los datos entre vistas
+                            AOBJ_Productos_Local_Storage: $localStorage.Datos_Productos,
                             //variable en la que se guardan los productos consultados a la base de datos
                             AOBJ_Productos_Principal:[],
                             AOBJ_Comentarios_Producto:[],
@@ -22,7 +25,8 @@ app.factory('Fabrica', function ($timeout) {
                             AOBJ_Imagenes_Perfil_Usuario_Avatars:[],
                             //variable para guardar las imagenes de la base de datos
                             AOBJ_Imagenes_Usuario_Fondo_Perfil:[],
-                            
+                            //variable para guardar las notificaciones que poseea un usuario
+                            AOBJ_Notificaciones_Usuario:[],
                             AOBJ_Mensajes_Lista:
                             [
                             {
@@ -74,75 +78,6 @@ app.factory('Fabrica', function ($timeout) {
                                 TXT_Mensaje: 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.',
                                 DATE_Hora_Envio: new Date()
                             }
-
-                            ],
-                            AOBJ_Estado_Notificaciones:
-                            [
-                            {
-                                NUM_ID_Notificacion: '#3540',
-                                TXT_Nombre: 'Atendida',
-                                BL_Estado: 1,
-                                DATE_Hora: new Date()
-
-                            },
-                            {
-                                NUM_ID_Notificacion: '#23423',
-                                TXT_Nombre: 'Atendida',
-                                BL_Estado: 1,
-                                DATE_Hora: new Date()
-
-                            },
-                            {
-                                NUM_ID_Notificacion: '#234236',
-                                TXT_Nombre: 'Atendida',
-                                BL_Estado: 1,
-                                DATE_Hora: new Date()
-
-                            },
-                            {
-                                NUM_ID_Notificacion: '#6432',
-                                TXT_Nombre: 'Atendida',
-                                BL_Estado: 1,
-                                DATE_Hora: new Date()
-
-                            },
-                            {
-                                NUM_ID_Notificacion: '#3523',
-                                TXT_Nombre: 'Cancelado',
-                                BL_Estado: 2,
-                                DATE_Hora: new Date()
-                            },
-                            {
-                                NUM_ID_Notificacion: '#3223',
-                                TXT_Nombre: 'Cancelado',
-                                BL_Estado: 2,
-                                DATE_Hora: new Date()
-                            },
-                            {
-                                NUM_ID_Notificacion: '#35345',
-                                TXT_Nombre: 'En curso',
-                                BL_Estado: 3,
-                                DATE_Hora: new Date()
-                            },
-                            {
-                                NUM_ID_Notificacion: '#235',
-                                TXT_Nombre: 'En curso',
-                                BL_Estado: 3,
-                                DATE_Hora: new Date()
-                            },
-                            {
-                                NUM_ID_Notificacion: '#25223',
-                                TXT_Nombre: 'En curso',
-                                BL_Estado: 3,
-                                DATE_Hora: new Date()
-                            },
-                            {
-                                NUM_ID_Notificacion: '#234',
-                                TXT_Nombre: 'En curso',
-                                BL_Estado: 3,
-                                DATE_Hora: new Date()
-                            }
-
 
                             ],
                             AOBJ_Administradores_Usuario:
@@ -253,11 +188,17 @@ app.factory('Fabrica', function ($timeout) {
 
                                             });
                                             servicio.objeto.NUM_Cantidad_Productos_En_Orden += 1;
-                                            servicio.objeto.AOBJ_Mensaje_Alerta[0].TXT_Mensaje = 'Has añadido' + ' ' + servicio.objeto.NUM_Cantidad_Productos_En_Orden + ' ' + ' producto';
-                                            $timeout(servicio.objeto.FN_Mensaje_Alerta, 200);
+                                            // servicio.objeto.AOBJ_Mensaje_Alerta[0].TXT_Mensaje = 'Has añadido' + ' ' + servicio.objeto.NUM_Cantidad_Productos_En_Orden + ' ' + ' producto';
+                                            // $timeout(servicio.objeto.FN_Mensaje_Alerta, 200,'Finalizado');
                                             servicio.objeto.FN_Calcular_Total();
                                             servicio.objeto.FN_Actualizar_Datos(1, servicio.objeto.AOBJ_Productos_Principal[i].PK_ID_Producto);
-
+                                            // //Guardo en otra variable de localstorage  el contador de productos agregados
+                                            // $localStorage.NUM_Cantidad_Productos_En_Orden = servicio.objeto.NUM_Cantidad_Productos_En_Orden;
+                                            // console.log($localStorage.NUM_Cantidad_Productos_En_Orden);
+                                            //Al ser agregado un producto a AOBJ_Productos guardo en la variable $localStorage.Datos_Productos
+                                            //El producto
+                                            $localStorage.Datos_Productos = servicio.objeto.AOBJ_Productos;
+                                            // console.log( $localStorage.Datos_Productos);
 
 
                                         }
@@ -273,11 +214,47 @@ app.factory('Fabrica', function ($timeout) {
                                     }
                                 }
                             },
-                            FN_EMPAREJAR_INFO: function ()//Esta funcion lo que hace es que al volver a listar los productos, verifica si ya algun producto
-                            // se encuentra agregado en la orden, esto lo hago mediante el id, si se encunentra agregado el producto en la orden, toma los valores
-                            //que posee el producto de la orden y se los aplica al producto que se muestra en la lista
+                            FN_EMPAREJAR_INFO: function ()
+                            //Esta funcion lo que hace es que al volver a listar los productos,
+                            // verifica si ya algun producto
+                            // se encuentra agregado en la orden, esto lo hago mediante el id,
+                            // si se encunentra agregado el producto en la orden, toma los valores
+                            //que posee el producto de la orden y se los aplica al producto que se
+                            // muestra en la lista
                             {
-                                for (var i = 0; i < servicio.objeto.AOBJ_Productos_Principal.length; i++) {
+                                //Al ejecutar la funcion FN_EMPAREJAR_INFO le paso los datos
+                                // que se encuentren guardados en la variable de localstorage
+                                //Para asi saber que productos tiene agregados hasta el momento
+                                //asi  si el usuario le da en eliminar a un producto que ya tenia
+                                // no tendre problemas
+                                //ya que el  AOBJ_Productos poseera los datos actualizados.
+
+
+                                //Antes de pasar los paramtros a la variable AOBJ_Productos
+                                // verifico si la variable de localstorage
+                                //posee datos, esto lo hago validando si es undefined,
+                                // si no es undefined lleno la variable con los datos
+                                //si  es undefined creo un array vacio y se lo paso a la variable
+                                servicio.objeto.NUM_Cantidad_Productos_En_Orden = 0;
+                                if(servicio.objeto.AOBJ_Productos_Local_Storage != undefined)
+                                {
+                                    servicio.objeto.AOBJ_Productos = servicio.objeto.AOBJ_Productos_Local_Storage;
+                                    // console.log(servicio.objeto.AOBJ_Productos);
+
+                                }
+                                else
+                                {
+                                    servicio.objeto.AOBJ_Productos_Local_Storage = [];
+                                    servicio.objeto.AOBJ_Productos = servicio.objeto.AOBJ_Productos_Local_Storage;
+
+                                    // console.log(servicio.objeto.AOBJ_Productos);
+                                }
+                                //Al contador de productos le paso los datos de guarde en la variable contador de localstorage
+                                // servicio.objeto.NUM_Cantidad_Productos_En_Orden = $localStorage.NUM_Cantidad_Productos_En_Orden ;
+                                 // $localStorage.$reset();
+
+
+                                 for (var i = 0; i < servicio.objeto.AOBJ_Productos_Principal.length; i++) {
                                     for (var k = 0; k < servicio.objeto.AOBJ_Productos.length; k++) {
                                         if (servicio.objeto.AOBJ_Productos_Principal[i].PK_ID_Producto == servicio.objeto.AOBJ_Productos[k].PK_ID_Producto)
                                         {
@@ -287,6 +264,9 @@ app.factory('Fabrica', function ($timeout) {
                                             servicio.objeto.AOBJ_Productos_Principal[i].BL_Estado_Producto  = false;
                                             servicio.objeto.AOBJ_Productos_Principal[i].NUM_Total_Producto = servicio.objeto.AOBJ_Productos[k].NUM_Costo;
                                         // alert("Producto encontrado en la orden");
+                                        servicio.objeto.NUM_Cantidad_Productos_En_Orden += 1;
+
+
 
                                     }
                                     else
@@ -308,6 +288,14 @@ app.factory('Fabrica', function ($timeout) {
                                 if (servicio.objeto.AOBJ_Productos[i].PK_ID_Producto == id_ing)
                                 {
                                     servicio.objeto.AOBJ_Productos.splice(i, 1);
+                                    //Al borrar un producto vuelvo a resetear el localstorage
+                                    delete $localStorage.Datos_Productos;
+                                    //Despues de resetear localstorage, vuelvo a agregar AOBJ_Productos
+                                    //Asi consigo mantener actualizado localstorage
+                                    $localStorage.Datos_Productos = servicio.objeto.AOBJ_Productos;
+                                    // console.log($localStorage.Datos_Productos);
+
+
                                     for (var j = 0; j < servicio.objeto.AOBJ_Productos_Principal.length; j++) {
                                         if (servicio.objeto.AOBJ_Productos_Principal[j].PK_ID_Producto == id_ing)
                                         {
@@ -317,8 +305,8 @@ app.factory('Fabrica', function ($timeout) {
                                             servicio.objeto.AOBJ_Productos_Principal[j].NUM_Cantidad = 0;
                                             servicio.objeto.AOBJ_Productos_Principal[j].NUM_Total_Producto = 0;
                                             servicio.objeto.NUM_Cantidad_Productos_En_Orden -= 1;
-                                            servicio.objeto.AOBJ_Mensaje_Alerta[0].TXT_Mensaje = 'Producto eliminado';
-                                            $timeout(servicio.objeto.FN_Mensaje_Alerta, 200);
+                                            // servicio.objeto.AOBJ_Mensaje_Alerta[0].TXT_Mensaje = 'Producto removido de la orden';
+                                            // $timeout(servicio.objeto.FN_Mensaje_Alerta, 200,'Finalizado');
                                             for (var L = 0; L < servicio.objeto.AOBJ_Productos_Principal.length; L++) {
                                                 if (servicio.objeto.AOBJ_Productos_Principal[L].PK_ID_Producto == id_ing)
                                                 {
@@ -411,7 +399,6 @@ app.factory('Fabrica', function ($timeout) {
                             for (var k = 0; k < servicio.objeto.AOBJ_Productos.length; k++)
                             {
 
-
                                 servicio.objeto.NUM_Precio_Total_Orden += servicio.objeto.AOBJ_Productos[k].NUM_Costo;
 
 
@@ -426,8 +413,16 @@ app.factory('Fabrica', function ($timeout) {
 
                             servicio.objeto.AOBJ_Productos.splice(0, servicio.objeto.AOBJ_Productos.length);
                             servicio.objeto.NUM_Precio_Total_Orden = 0;
-                            servicio.objeto.AOBJ_Mensaje_Alerta[0].TXT_Mensaje = 'Se han removido los productos de la orden ';
-                            $timeout(servicio.objeto.FN_Mensaje_Alerta, 200);
+                            // servicio.objeto.AOBJ_Mensaje_Alerta[0].TXT_Mensaje = 'Se han removido los productos de la orden ';
+                            // $timeout(servicio.objeto.FN_Mensaje_Alerta, 200);
+                            // servicio.objeto.Tipo_Mensaje_Alerta = "Finalizado";
+
+                            //Al borrar un producto vuelvo a resetear el localstorage
+                            delete $localStorage.Datos_Productos;
+                            //Despues de resetear localstorage, vuelvo a agregar AOBJ_Productos
+                            //Asi consigo mantener actualizado localstorage
+                            $localStorage.Datos_Productos = servicio.objeto.AOBJ_Productos;
+                            // console.log($localStorage.Datos_Productos);
 
                             for (var i = 0; i < servicio.objeto.AOBJ_Productos_Principal.length; i++) {
 
@@ -450,39 +445,51 @@ app.factory('Fabrica', function ($timeout) {
                         FN_Eliminar_Notificacion: function (PosicionNotificacion)
                         {
 
-                            servicio.objeto.AOBJ_Estado_Notificaciones.splice(PosicionNotificacion, 1);
+                            servicio.objeto.AOBJ_Notificaciones_Usuario.splice(PosicionNotificacion, 1);
 
 
                         },
-                        AOBJ_Mensaje_Alerta: [
+                        AOBJ_Mensaje_Alerta: [],
+                        // EstadoMensaje: false,
+                        Tipo_Mensaje_Alerta: " ",
+                        FN_Crear_Mensaje: function (Mensaje, Tiempo,Tipo_Alerta)
                         {
-                            TXT_Mensaje: ''
-                        },
-                        {
-                            TXT_Mensaje: ''
-                        },
-                        {
-                            TXT_Mensaje: ''
+
+                           var Mensajes_Alerta = 
+                           {
+                            Mensaje_Alerta: Mensaje,
+                            Visibilidad_Alerta: false,
+                            Tipo_Mensaje_Alerta: Tipo_Alerta
+                        };
+
+                        servicio.objeto.AOBJ_Mensaje_Alerta.push(Mensajes_Alerta);
+                        console.log(servicio.objeto.AOBJ_Mensaje_Alerta);
+                        new $timeout(servicio.objeto.FN_Mensaje_Alerta, Tiempo);
+                    },
+                    FN_Mensaje_Alerta: function () {
+                        for (var i = 0; i < servicio.objeto.AOBJ_Mensaje_Alerta.length; i++) {
+                            servicio.objeto.AOBJ_Mensaje_Alerta[i].Visibilidad_Alerta = true;
+                            Promesa = $timeout(servicio.objeto.FN_Cerrar_Mensaje, 8000);
                         }
-                        ],
-                        EstadoMensaje: false,
-                        FN_Crear_Mensaje: function (Mensaje, Tiempo)
-                        {
 
-                            servicio.objeto.AOBJ_Mensaje_Alerta[0].TXT_Mensaje = Mensaje;
-                            $timeout(servicio.objeto.FN_Mensaje_Alerta, Tiempo);
+
+                    },
+                    FN_Cerrar_Mensaje: function () {
+
+                        servicio.objeto.AOBJ_Mensaje_Alerta.splice(0,1);
+                        $timeout.cancel(Promesa); 
+
+                            // console.log(servicio.objeto.AOBJ_Mensaje_Alerta);
+
+
+
                         },
-                        FN_Mensaje_Alerta: function () {
-                            servicio.objeto.EstadoMensaje = !servicio.objeto.EstadoMensaje;
+                        FN_Cerrar_Mensaje_En_Especifico: function (Posicion) {
 
-                            $timeout(servicio.objeto.FN_Cerrar_Mensaje, 3000);
+                            servicio.objeto.AOBJ_Mensaje_Alerta.splice(Posicion,1);
+                            $timeout.cancel(Promesa); 
 
-                        },
-                        FN_Cerrar_Mensaje: function () {
-                            servicio.objeto.EstadoMensaje = false;
-                            for (var i = 0; i < servicio.objeto.AOBJ_Mensaje_Alerta.length; i++) {
-                                servicio.objeto.AOBJ_Mensaje_Alerta[i].TXT_Mensaje = '';
-                            }
+                            // console.log(servicio.objeto.AOBJ_Mensaje_Alerta);
 
 
 

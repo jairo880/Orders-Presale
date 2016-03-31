@@ -124,7 +124,7 @@ class Inicio_Administracion extends Controller {
         require APP . 'view/_Templates/footer.php';
     }
 
-     public function Modulo_Permisos_Usuario() {
+    public function Modulo_Permisos_Usuario() {
         // Basicos para la web
         require APP . 'view/_Templates/header.php';
         //Contenido propio de la vista
@@ -138,8 +138,21 @@ class Inicio_Administracion extends Controller {
         // Basicos para la web
         require APP . 'view/_Templates/footer.php';
     }
-
-  
+    public function Modulo_Cotizacion() {
+        // Basicos para la web
+        require APP . 'view/_Templates/header.php';
+        //Contenido propio de la vista
+        require APP . 'view/Administracion/Modulo_Cotizacion/index.php';
+        //Modulos implementados  
+        // require APP . 'view/_Templates/Modulos/Modulo_Notificaciones.php';
+        // require APP . 'view/_Templates/Modulos/Modulo_Chat.php';
+        // require APP . 'view/_Templates/Modulos/Modulo_Pedido.php';
+        // require APP . 'view/_Templates/Modulos/Modulo_Login.php';
+        require APP . 'view/_Templates/Modulos/Modulo_Barra_Navegacion.php';
+        // Basicos para la web
+        require APP . 'view/_Templates/footer.php';
+    }
+    
 
 
 

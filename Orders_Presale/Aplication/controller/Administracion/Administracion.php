@@ -1,6 +1,5 @@
 <?php
-
-
+require APP.'controller/Modulo/Controlador_Sesion.php';
 class Administracion extends Controller {
 
     /**
@@ -12,6 +11,8 @@ class Administracion extends Controller {
 
     public function __construct() {
       $this->_Mdl_Administracion = $this->loadModel("M_Administracion");
+      Sesion::init();
+
     }
 
     /**
@@ -507,6 +508,63 @@ public function FN_Inhabilitar_Estado_Cuenta_Usuario()
   }
 }
 
+
+public function FN_Listar_Ordenes_Usuario()
+{
+  $objDatos = json_decode(file_get_contents("php://input"));
+
+  if (!isset($objDatos)) {
+    echo 'Los datos no llegarón';
+  }else {
+    $PK_ID_Usuario = $objDatos->PK_ID_Usuario;
+    $Lista_Ordenes = $this->_Mdl_Administracion->FN_Listar_Ordenes_Usuario($PK_ID_Usuario);
+    echo json_encode($Lista_Ordenes);
+  }
+
+
+}
+public function FN_Listar_Detalle_Ordene_Usuario()
+{
+  $objDatos = json_decode(file_get_contents("php://input"));
+
+  if (!isset($objDatos)) {
+    echo 'Los datos no llegarón';
+  }else {
+    $PK_ID_Cotizacion_Usuario = $objDatos->PK_ID_Cotizacion_Usuario;
+    $Lista_Ordenes = $this->_Mdl_Administracion->FN_Listar_Detalle_Ordene_Usuario($PK_ID_Cotizacion_Usuario);
+    echo json_encode($Lista_Ordenes);
+  }
+
+
+}
+public function FN_Actualizar_Estado_Orden()
+{
+  $objDatos = json_decode(file_get_contents("php://input"));
+
+  if (!isset($objDatos)) {
+    echo 'Los datos no llegarón';
+  }else {
+    $Estado_Cotizacion = $objDatos->Estado_Cotizacion;
+    $PK_ID_Cotizacion_Usuario = $objDatos->PK_ID_Cotizacion_Usuario;
+    $PK_ID_Usuario = $objDatos->FK_ID_Usuario;
+    $PK_ID_Cotizacion_Usuario = $objDatos->PK_ID_Cotizacion_Usuario;
+
+    $Actualizacion_Orden_Estado = $this->_Mdl_Administracion->FN_Actualizar_Estado_Orden(
+      $Estado_Cotizacion,
+      $PK_ID_Cotizacion_Usuario,
+      $PK_ID_Usuario,
+      $PK_ID_Cotizacion_Usuario);
+
+    if ($Actualizacion_Orden_Estado) {
+      echo "true";
+    }else {
+      echo "false";
+    }
+    
+  }
+
+
+}
 //_******
 
 

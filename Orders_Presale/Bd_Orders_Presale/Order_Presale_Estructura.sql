@@ -116,9 +116,10 @@ DROP TABLE IF EXISTS TBL_Cotizacion_Usuario;
 CREATE TABLE IF NOT EXISTS TBL_Cotizacion_Usuario (
   PK_ID_Cotizacion_Usuario INT(45) NOT NULL AUTO_INCREMENT,
   FK_ID_Usuario INT(45) NOT NULL,
-  Fecha_Cotizacion Date NOT NULL,
-  Estado_Cotizacion VARCHAR(40) NOT NULL,
+  Fecha_Cotizacion Datetime NOT NULL,
+  Estado_Cotizacion VARCHAR(40) NOT NULL DEFAULT 'En proceso',
   Direccion_entrega VARCHAR(45) NOT NULL,
+  Telefono_Entrega VARCHAR(45) NOT NULL,
   PRIMARY KEY (PK_ID_Cotizacion_Usuario),
   FOREIGN KEY (FK_ID_Usuario) REFERENCES TBL_Cuenta(PK_ID_Usuario)
 
@@ -202,7 +203,7 @@ CREATE TABLE IF NOT EXISTS TBL_DLL_Producto_Cotizacion (
  FK_ID_Producto INT(45) NOT NULL,
  FK_ID_Cotizacion_Usuario INT(40) NOT NULL,
  Cantidad_Productos INT(45) NOT NULL,
- Sub_Total_Cotizacion INT(100) NOT NULL,
+ Sub_Total INT(100) NOT NULL,
  PRIMARY KEY (PK_ID_Producto_Cotizacion),
  FOREIGN KEY (FK_ID_Producto) REFERENCES TBL_Producto (PK_ID_Producto),
  FOREIGN KEY (FK_ID_Cotizacion_Usuario) REFERENCES TBL_Cotizacion_Usuario (PK_ID_Cotizacion_Usuario)
@@ -277,12 +278,11 @@ CREATE TABLE IF NOT EXISTS TBL_DLL_Buson_Mensajes_Usuario (
 DROP TABLE IF EXISTS TBL_Buson_Notificacion_Usuario;
 CREATE TABLE IF NOT EXISTS TBL_Buson_Notificacion_Usuario (
   PK_ID_Buson_Notificacion INT(45) NOT NULL AUTO_INCREMENT,
-  Mensaje VARCHAR(50) NOT NULL,
-  FK_ID_Pedido INT(45) NOT NULL,
-  Estado_Pedido VARCHAR(50) NOT NULL,
-  Fecha_Envio Date NOT NULL,
+  FK_ID_Cotizacion INT(45) NOT NULL,
+  Estado_Pedido VARCHAR(50) NOT NULL DEFAULT 'En proceso',
+  Fecha_Envio Datetime NOT NULL,
   PRIMARY KEY (PK_ID_Buson_Notificacion),
-  FOREIGN KEY (FK_ID_Pedido) REFERENCES TBL_Pedido_Usuario(PK_ID_Pedido)
+  FOREIGN KEY (FK_ID_Cotizacion) REFERENCES TBL_Cotizacion_Usuario(PK_ID_Cotizacion_Usuario)
 
 
 )ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;

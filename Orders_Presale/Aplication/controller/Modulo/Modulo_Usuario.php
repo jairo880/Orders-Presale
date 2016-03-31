@@ -807,7 +807,147 @@ if($Se_Hicieron_Cambios_Cliente_Empleado == "No"  && $Se_Hicieron_Cambios_Cuenta
 }
 }
 //_*****
+public function FN_Verificacion_Sesion()
+{
+    //Si no existe la sesion
+  if(!isset($_SESSION["Aobj_Datos_Usuario"]))
+  {
+    echo "_Sesion_No_Iniciada";
+  }
+  else
+  {
+    echo "_Sesion_Iniciada";
+  }
+}
+
+public function FN_Envio_Orden_Guardado_Datos_Productos()
+{
+  $Orden_Envio =json_decode(file_get_contents("php://input"));
+
+  if (!isset($Orden_Envio)) {
+    echo "No_Hay_Datos";
+  }
+  else {
+    //Para poder tener en un array completo, los datos de los productos qeu el usuario quiere enviar, separe el proceso de registro en dos, el primero el cual es este, es para mandar a php los datos de los productos en la orden, luego estos los guardo en una variable de sesion de php para asi luego usarlo en el segundo paso
+    Sesion::setValue('Orden_Envio',$Orden_Envio);
+    echo "Orden_Guardada";
+  }
+}
+public function FN_Envio_Orden()
+{
+  $Datos =json_decode(file_get_contents("php://input"));
+
+  if (!isset($Datos)) {
+    echo "No_Hay_Datos";
+  }
+  else {
+    //Datos necesarios para hacer el registro en las tablas tbl_Cotizacion_Producto y tbl_dll_Produ_Cotizacion
+    $Direccion_Entrega = $Datos->Direccion_Entrega;
+    $Telefono_Entrega = $Datos->Telefono_Entrega;
+    $PK_ID_Usuario = Sesion::getValue('PK_ID_Usuario');
+    $Datos_Producto = Sesion::getValue('Orden_Envio');
+
+    //Uso la variable guardada en el paso 1, 
+    // var_dump(Sesion::getValue('Orden_Envio') );
+    // var_dump($Telefono_Entrega,$Direccion_Entrega);
+    // var_dump($PK_ID_Usuario);
 
 
+    $Respuesta_Registro_tbl_Cotizacion_Producto = $this->_Mdl_Usuario->FN_Registro_Cotizacion_Producto(
+      $PK_ID_Usuario,
+      $Direccion_Entrega,
+      $Telefono_Entrega,
+      $Datos_Producto
+      );
+
+    if($Respuesta_Registro_tbl_Cotizacion_Producto)
+    {
+      echo "true";
+    }
+    else
+    {
+      echo "false";
+    }
+
+      // var_dump($FK_ID_Producto);
+      // var_dump($Cantidad_Productos);
+      // var_dump($Sub_Total);
+
+    
+  }
+}
+
+//Funcion para listar las ordenes enviadas por el usuario
+public function FN_Listar_Ordenes_Enviadas()
+{
+  $PK_ID_Usuario = Sesion::getValue('PK_ID_Usuario');
+  $Lista_Ordenes_Enviadas = $this->_Mdl_Usuario->FN_Listar_Ordenes_Enviadas($PK_ID_Usuario);
+  echo json_encode($Lista_Ordenes_Enviadas);
+}
+
+public function FN_Listar_Detalles_Ordene_Enviada()
+{
+  $Datos =json_decode(file_get_contents("php://input"));
+
+  if (!isset($Datos)) {
+    echo "No_Hay_Datos";
+  }
+  else {
+    $Lista_Detalle_Ordenes_Enviadas = $this->_Mdl_Usuario->FN_Listar_Detalles_Ordene_Enviada(
+      $Datos->PK_ID_Cotizacion_Usuario);
+    echo json_encode($Lista_Detalle_Ordenes_Enviadas);
+  }
+}
+
+public function FN_Eliminar_Orden_Enviada()
+{
+  $Datos =json_decode(file_get_contents("php://input"));
+
+  if (!isset($Datos)) {
+    echo "No_Hay_Datos";
+  }
+  else {
+    $Respuesta_Eliminacion_Orden = $this->_Mdl_Usuario->FN_Eliminar_Orden_Enviada(
+      $Datos->PK_ID_Cotizacion_Usuario);
+
+    if($Respuesta_Eliminacion_Orden)
+    {
+      echo "true";
+    }
+    else
+    {
+      echo "false";
+    }
+  }
+}
+//Funcion para listar las notificaciones del usuario
+public function FN_Listar_Notificaciones()
+{
+  $PK_ID_Usuario = Sesion::getValue('PK_ID_Usuario');
+  $Lista_Notificaciones = $this->_Mdl_Usuario->FN_Listar_Notificaciones($PK_ID_Usuario);
+  echo json_encode($Lista_Notificaciones);
+}
+
+//Funcion para Eliminar una de  las notificaciones del usuario
+public function FN_Eliminar_Notificacion()
+{
+ $objDatos = json_decode(file_get_contents("php://input"));
+
+ if (!isset($objDatos)) {
+  echo("Los datos no llegaron");
+}else
+{ 
+  $PK_ID_Buson_Notificacion = $objDatos->PK_ID_Buson_Notificacion;
+  $Eliminar_Notificaciones = $this->_Mdl_Usuario->FN_Eliminar_Notificacion($PK_ID_Buson_Notificacion);
+    if($Eliminar_Notificaciones)
+    {
+      echo "true";
+    }
+    else
+    {
+      echo "false";
+    }
+}
+}
 }
 ?>

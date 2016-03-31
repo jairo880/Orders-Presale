@@ -15,7 +15,7 @@
  SET IdAuto = (
 
    SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE
-   TABLE_SCHEMA = 'Orders_Presale'
+   TABLE_SCHEMA = 'orders_presale'
    AND TABLE_NAME = 'tbl_cuenta'
    );
 
@@ -49,14 +49,14 @@
  CREATE FUNCTION `fnRegistrar_Vista_Usuario`( `$Nombre_Vista` VARCHAR(45), `$Url_Vista` VARCHAR(150)) RETURNS int(11)
  BEGIN
 
- DECLARE IdAuto_Producto INT;
+ DECLARE Id_Auto INT;
 
  DECLARE CONTINUE HANDLER FOR SQLEXCEPTION return 0;
 
- SET IdAuto_Producto = (
+ SET Id_Auto = (
 
    SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE
-   TABLE_SCHEMA = 'Orders_Presale'
+   TABLE_SCHEMA = 'orders_presale'
    AND TABLE_NAME = 'tbl_vista_usuario'
    );
 
@@ -68,9 +68,9 @@
   
   );
 
- IF (IdAuto_Producto != 0) THEN
+ IF (Id_Auto != 0) THEN
 
- RETURN IdAuto_Producto;
+ RETURN Id_Auto;
  ELSE
  RETURN 0;
  END IF;
@@ -78,4 +78,84 @@
  END !
 
  DELIMITER ;
+
+
+-- **********************FUNCION PARA REGISTRAR UNA COTIZACION REALIZADA POR UN CLIENTE***********************
+ DELIMITER !
+
+ CREATE FUNCTION `fnRegistrar_Cotizacion_Producto`( `$FK_ID_Usuario` VARCHAR(45), `$Direccion_entrega` VARCHAR(45), `$Telefono_Entrega` VARCHAR(45)) RETURNS int(11)
+ BEGIN
+
+ DECLARE Id_Auto INT;
+
+ DECLARE CONTINUE HANDLER FOR SQLEXCEPTION return 0;
+
+ SET Id_Auto = (
+
+   SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE
+   TABLE_SCHEMA = 'orders_presale'
+   AND TABLE_NAME = 'tbl_cotizacion_usuario'
+   );
+
+ INSERT INTO `tbl_cotizacion_usuario`
+ (`FK_ID_Usuario`,`Fecha_Cotizacion`, `Direccion_entrega`,`Telefono_Entrega`) VALUES
+ (
+  $FK_ID_Usuario,
+  now(),
+  $Direccion_entrega,
+  $Telefono_Entrega
+  
+  );
+
+ IF (Id_Auto != 0) THEN
+
+ RETURN Id_Auto;
+ ELSE
+ RETURN 0;
+ END IF;
+
+ END !
+
+ DELIMITER ;
+
+
+
+
+-- **********************FUNCION PARA REGISTRAR UNA NOTIFICACION DE COTIZACION***********************
+ DELIMITER !
+
+ CREATE FUNCTION `fnRegistrar_Notificacion`( `$FK_ID_Cotizacion` INT(45)) RETURNS int(11)
+ BEGIN
+
+ DECLARE Id_Auto INT;
+
+ DECLARE CONTINUE HANDLER FOR SQLEXCEPTION return 0;
+
+ SET Id_Auto = (
+
+   SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE
+   TABLE_SCHEMA = 'orders_presale'
+   AND TABLE_NAME = 'tbl_buson_notificacion_usuario'
+   );
+
+ INSERT INTO `tbl_buson_notificacion_usuario`
+ (`FK_ID_Cotizacion`,`Fecha_Envio`) VALUES
+ (
+  $FK_ID_Cotizacion,
+  now()
+  
+  );
+
+ IF (Id_Auto != 0) THEN
+
+ RETURN Id_Auto;
+ ELSE
+ RETURN 0;
+ END IF;
+
+ END !
+
+ DELIMITER ;
+
+
 

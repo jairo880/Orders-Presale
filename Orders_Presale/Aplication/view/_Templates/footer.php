@@ -1,13 +1,22 @@
 
 <section class="SC_Mensajes_Validaciones">
-  <div ng-show="dato.EstadoMensaje == true" class="CL_Mensaje_Alerta main_start Grid_Contenedor">
-    <div class="CL_Titulo_Alerta Base-30 abcenter cross_start Grid_Item">
-      <p> <img ng-src="{{dato.AOBJ_Datos_Usuario[0].Imagen_Usuario}}"/></p>
+  <div ng-show="(dato.AOBJ_Mensaje_Alerta).length &gt; 0" class="Grid_Contenedor CL_CONT_Alertas cross_end">
+    <div ng-show="Alertas.Visibilidad_Alerta == true" ng-repeat="Alertas in dato.AOBJ_Mensaje_Alerta" class="Grid_Item ng_show">
+      <div ng-class="{Negro: Alertas.Tipo_Mensaje_Alerta == 'Negro',Blanco: Alertas.Tipo_Mensaje_Alerta == 'Blanco',Finalizado: Alertas.Tipo_Mensaje_Alerta == 'Finalizado',Alerta: Alertas.Tipo_Mensaje_Alerta == 'Alerta',Info: Alertas.Tipo_Mensaje_Alerta == 'Info',Error: Alertas.Tipo_Mensaje_Alerta == 'Error'}" class="CL_Mensaje_Alerta main_start Grid_Contenedor relative">
+        <div class="CL_Titulo_Alerta Base-20 abcenter cross_start Grid_Item">
+          <p> <img ng-src="{{dato.AOBJ_Datos_Usuario[0].Imagen_Usuario}}"/></p>
+        </div>
+        <div class="CL_Mensaje_Alert Grid_Contenedor abcenter cross_start Base-80 Grid_Item">
+          <div class="CL_TXT_Mensaje_Alerta Grid_Contenedor">
+            <div class="Grid_Item Base-5 Grid_Contenedor abcenter">
+              <p class="Icono_Alerta"></p>
+            </div>
+            <div class="Grid_Item Base-80"><span> 
+                <p>{{Alertas.Mensaje_Alerta}}</p></span></div>
+          </div>
+        </div><a ng-click="dato.FN_Cerrar_Mensaje_En_Especifico($index)" class="CL_Eliminar_6_6 CL_Cerrar"></a>
+      </div>
     </div>
-    <div class="CL_Mensaje_Alert Grid_Contenedor abcenter cross_start Base-70 Grid_Item">
-      <div class="CL_TXT_Mensaje_Alerta"><span ng-repeat="Alerta in dato.AOBJ_Mensaje_Alerta">
-          <p>{{Alerta.TXT_Mensaje}}</p></span></div>
-    </div><a ng-click="dato.FN_Mensaje_Alerta()" class="CL_Eliminar_5 CL_Cerrar"></a>
   </div>
 </section>
 <!--SECCION CONFIRMACIONES					-->
@@ -29,21 +38,23 @@
 </section>
 <footer id="CONT_Footer">
   <!--***********************************Javascript_Normal*******************-->
-  <script src="<?php echo URL; ?>public/js/Javascript/Loading/Loading.js"></script>
+  <script language="javascript" src="<?php echo URL; ?>public/js/Javascript/Loading/Loading.js"></script>
   <!--***************************************Angular.js******************-->
   <!--*******************************Modelo*************************-->
-  <script src="<?php echo URL; ?>public/js/Angular/Modulos/Fabrica.js"></script>
+  <script language="javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script language="javascript" src="<?php echo URL; ?>public/js/Angular/Modulos/Fabrica.js"></script>
   <!--*******************************Controladores*************************-->
   <!--Angular pagina inicio-->
-  <script src="<?php echo URL; ?>public/js/Angular/Controladores/Controlador_Principal.js"></script>
+  <script language="javascript" src="<?php echo URL; ?>public/js/Angular/Controladores/Controlador_Principal.js"></script>
   <!--Angular pagina inicio-->
-  <script src="<?php echo URL; ?>public/js/Angular/Controladores/Registrar_Controlador.js"></script>
-  <script src="<?php echo URL; ?>public/js/Angular/Controladores/Administracion/Registrar_Usuario_Controlador.js"></script>
-  <script src="<?php echo URL; ?>public/js/Angular/Controladores/Administracion/Consultar_Usuario.js"></script>
-  <script src="<?php echo URL; ?>public/js/Angular/Controladores/Administracion/Controlador_Producto.js"></script>
-  <script src="<?php echo URL; ?>public/js/Angular/Controladores/Administracion/Modulo_Categoria.js"></script>
-  <script src="<?php echo URL; ?>public/js/Angular/Controladores/Administracion/Modulo_Promociones.js"></script>
-  <script src="<?php echo URL; ?>public/js/Angular/Controladores/Administracion/Controlador_Ejemplo_Crud.js"></script>
+  <script language="javascript" src="<?php echo URL; ?>public/js/Angular/Controladores/Registrar_Controlador.js"></script>
+  <script language="javascript" src="<?php echo URL; ?>public/js/Angular/Controladores/Administracion/Registrar_Usuario_Controlador.js"></script>
+  <script language="javascript" src="<?php echo URL; ?>public/js/Angular/Controladores/Administracion/Consultar_Usuario.js"></script>
+  <script language="javascript" src="<?php echo URL; ?>public/js/Angular/Controladores/Administracion/Controlador_Producto.js"></script>
+  <script language="javascript" src="<?php echo URL; ?>public/js/Angular/Controladores/Administracion/Modulo_Categoria.js"></script>
+  <script language="javascript" src="<?php echo URL; ?>public/js/Angular/Controladores/Administracion/Modulo_Promociones.js"></script>
+  <script language="javascript" src="<?php echo URL; ?>public/js/Angular/Controladores/Administracion/Controlador_Ejemplo_Crud.js"></script>
+  <script language="javascript" src="<?php echo URL; ?>public/js/Javascript/Socket/fancywebsocket.js"></script>
 </footer></section>
 <body/>
 <html/>

@@ -15,7 +15,7 @@
     <div class="Grid-Total abcenter Grid_Contenedor CL_Alerta_5">
       <p title="Actualizar la lista de productos actuales" ng-click="FN_Listar_Productos()" class="icon-retweet CL_TXT_Enlace_4"></p>
     </div>
-    <div id="CONT_P_Productos" ng-hide="LisProduct.Estado_Producto == 'Inhabilitado'" ng-class="{'CL_Producto_No_Agregado':LisProduct.BL_Estado_Producto, 'CL_Producto_Agregado': ! LisProduct.BL_Estado_Producto}" ng-repeat="LisProduct in dato.AOBJ_Productos_Principal |  filter:buscar:LisProduct.Nombre_Producto " class="ng_repeat_anim1 Grid_Contenedor Base-100 web-85 abcenter">
+    <div id="CONT_P_Productos" ng-hide="LisProduct.Estado_Producto == 'Inhabilitado'" ng-class="{'CL_Producto_No_Agregado':LisProduct.BL_Estado_Producto, 'CL_Producto_Agregado': ! LisProduct.BL_Estado_Producto}" ng-repeat="LisProduct in dato.AOBJ_Productos_Principal |  filter:buscar:LisProduct.Nombre_Producto " class="ng_repeat_anim1 Grid_Contenedor Base-100 web-80 abcenter">
       <div class="Grid_Item Base-100 web-50">
         <div class="CL_P_Imagen Grid_Contenedor Base-100 abcenter"><img ng-src="{{LisProduct.Ruta_Imagen_Producto}}" class="CL_Imagen_3"/></div>
       </div>
@@ -43,13 +43,13 @@
         <div class="CONT_Informacion Base-100">
           <div class="Base-100 tablet-100">
             <div class="CL_ValoracionProducto Grid_Contenedor justify">
-              <div class="CL_ContOpiniones Grid_Item Grid_Contenedor abcenter Base-100 tablet-100 web-30">
+              <div class="CL_ContOpiniones Grid_Item Grid_Contenedor abcenter Base-100 tablet-100 web-40">
                 <div class="Grid_Item Grid_Contenedor abcenter">
                   <div class="CL_Precio">
                     <p>{{LisProduct.Valor_Unitario | currency}}</p>
                   </div>
                   <div class="CL_Datos_Valoracion"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span></div>
-                  <div title="Ver las opiniones de otros usuarios" ng-click="FN_Ver_Comentarios_Producto(LisProduct.PK_ID_Producto)" class="icon-comentarios Btn_Estilo_5">Ver comentarios</div>
+                  <div title="Ver las opiniones de otros usuarios" ng-click="FN_Ver_Comentarios_Producto(LisProduct.PK_ID_Producto)" class="icon-comentarios Btn_Estilo_5">Comentarios</div>
                 </div>
               </div>
               <div class="Grid_Item Base-100 tablet-100 web-50 Grid_Contenedor No Padding">

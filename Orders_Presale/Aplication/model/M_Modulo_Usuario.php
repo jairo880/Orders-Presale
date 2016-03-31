@@ -437,12 +437,164 @@ public function FN_Modificar_Permiso_Usuario(
     return false;
   }
 }
+//-----
+public function FN_Registro_Cotizacion_Producto(
+  $PK_ID_Usuario,
+  $Direccion_Entrega,
+  $Telefono_Entrega,
+  $Datos_Producto)
+{
+  $sql = "SELECT `fnRegistrar_Cotizacion_Producto`(?,?,?);";
+  $query = $this->db->prepare($sql);
+  $query->bindParam(1, $PK_ID_Usuario);
+  $query->bindParam(2, $Direccion_Entrega);
+  $query->bindParam(3, $Telefono_Entrega);
+
+  $query->execute();
+  if ($query->rowCount() > 0) {
+    $Respuesta_Registro_tbl_Cotizacion_Producto= $query->fetchColumn();
 
 
+     //Uso un foreach para sacar uno por uno los datos de la variable  Sesion::getValue('Orden_Envio') la cual posee los datos de los productos que el cliente envio en la orden
+    foreach ($Datos_Producto as $key) {
+
+      $FK_ID_Cotizacion_Usuario = $Respuesta_Registro_tbl_Cotizacion_Producto;
+      $FK_ID_Producto = $key->PK_ID_Producto;
+      $Cantidad_Productos = $key->NUM_Cantidad;
+      $Sub_Total = $key->NUM_Costo;
+
+      $sql = "CALL `spRegistrarDll_producto_cotizacion`(?,?,?,?);";
+      $query = $this->db->prepare($sql);
+      $query->bindParam(1, $FK_ID_Producto);
+      $query->bindParam(2, $FK_ID_Cotizacion_Usuario);
+      $query->bindParam(3, $Cantidad_Productos);
+      $query->bindParam(4, $Sub_Total);
+
+      $query->execute();
+
+      
+    }
+    if ($query->rowCount() > 0) {
+      $sql = "SELECT `fnRegistrar_Notificacion`(?);";
+      $query = $this->db->prepare($sql);
+      $query->bindParam(1, $Respuesta_Registro_tbl_Cotizacion_Producto);
+      $query->execute();
+
+      if ($query->rowCount() > 0) {
+        $Respuesta_Registro_tbl_Buson_Notificacion= $query->fetchColumn();
+
+        $sql = "CALL `spRegistrarDll_buson_notificacion_usuario`(?,?);";
+        $query = $this->db->prepare($sql);
+        $query->bindParam(1, $Respuesta_Registro_tbl_Buson_Notificacion);
+        $query->bindParam(2, $PK_ID_Usuario);
+
+        $query->execute();
+        if ($query->rowCount() > 0) {
+          return true;
+        }
+        else
+        {
+          return false;
+        }
+      }
+      else
+      {
+        return false;
+      }
+
+    } else {
+      return false;
+    }
+  }
+  else
+  {
+    return false;
+  }
+}
+
+public function FN_Listar_Ordenes_Enviadas($FK_ID_Usuario)
+{
+  $sql = "CALL `spConsultarCotizacion_usuario`(?);";
+  $query = $this->db->prepare($sql);
+  $query->bindParam(1, $FK_ID_Usuario);
+  $query->execute();
+
+  return $query->fetchAll();
+}
 
 
+public function FN_Listar_Detalles_Ordene_Enviada($FK_ID_Cotizacion_Usuario)
+{
+  $sql = "CALL `spJoin_ConsultarDll_producto_cotizacion`(?);";
+  $query = $this->db->prepare($sql);
+  $query->bindParam(1, $FK_ID_Cotizacion_Usuario);
+  $query->execute();
 
+  return $query->fetchAll();
+}
 
+public function FN_Eliminar_Orden_Enviada($FK_ID_Cotizacion_Usuario)
+{
+
+ $sql = "CALL `spEliminarDll_producto_cotizacion`(?);";
+ $query = $this->db->prepare($sql);
+ $query->bindParam(1, $FK_ID_Cotizacion_Usuario);
+ $query->execute();
+ if ($query->rowCount() > 0) {
+
+  $sql = "CALL `spEliminarCotizacion_usuario`(?);";
+  $query = $this->db->prepare($sql);
+  $query->bindParam(1, $FK_ID_Cotizacion_Usuario);
+  $query->execute();
+
+  if ($query->rowCount() > 0) {
+    return true;
+
+  } else {
+    return false;
+  }
+
+} else {
+  return false;
+}
+}
+
+public function FN_Listar_Notificaciones($FK_ID_Usuario)
+{
+  $sql = "CALL `spConsultarDll_buson_notificacion_usuario`(?);";
+  $query = $this->db->prepare($sql);
+  $query->bindParam(1, $FK_ID_Usuario);
+  $query->execute();
+
+  return $query->fetchAll();
+}
+
+public function FN_Eliminar_Notificacion($PK_ID_Buson_Notificacion)
+{
+  $sql = "CALL `spEliminarDll_buson_notificacion_usuario`(?);";
+  $query = $this->db->prepare($sql);
+  $query->bindParam(1, $PK_ID_Buson_Notificacion);
+  $query->execute();
+
+  
+  if ($query->rowCount() > 0) {
+   $sql = "CALL `spEliminarBuson_notificacion_usuario`(?);";
+   $query = $this->db->prepare($sql);
+   $query->bindParam(1, $PK_ID_Buson_Notificacion);
+   $query->execute();
+
+   
+   if ($query->rowCount() > 0) {
+    return true;
+
+  } else {
+    return false;
+  }
+
+} else {
+  return false;
+}
+}
 
 //¨¨¨¨
 }

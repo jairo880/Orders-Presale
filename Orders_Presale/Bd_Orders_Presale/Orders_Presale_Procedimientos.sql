@@ -59,9 +59,9 @@
 
     DROP PROCEDURE IF EXISTS spRegistrarBuson_notificacion_usuario;
     DELIMITER !
-    CREATE PROCEDURE spRegistrarBuson_notificacion_usuario(IN $Mensaje varchar(50), IN $FK_ID_Pedido int(45), IN $Estado_Pedido varchar(50), IN $Fecha_Envio Date)
+    CREATE PROCEDURE spRegistrarBuson_notificacion_usuario( IN $FK_ID_Pedido int(45), IN $Estado_Pedido varchar(50), IN $Fecha_Envio Date)
     BEGIN
-    INSERT INTO `tbl_buson_notificacion_usuario`(`Mensaje`, `FK_ID_Pedido`, `Estado_Pedido`, `Fecha_Envio`) VALUES ($Mensaje, $FK_ID_Pedido, $Estado_Pedido, $Fecha_Envio);
+    INSERT INTO `tbl_buson_notificacion_usuario`( `FK_ID_Pedido`, `Estado_Pedido`, `Fecha_Envio`) VALUES ( $FK_ID_Pedido, $Estado_Pedido, $Fecha_Envio);
     END !
     DELIMITER ;
 
@@ -69,9 +69,13 @@
 
     DROP PROCEDURE IF EXISTS spModificarBuson_notificacion_usuario;
     DELIMITER !
-    CREATE PROCEDURE spModificarBuson_notificacion_usuario(IN $PK_ID_Buson_Notificacion INT, IN $Mensaje varchar(50), IN $FK_ID_Pedido int(45), IN $Estado_Pedido varchar(50), IN $Fecha_Envio Date)
+    CREATE PROCEDURE spModificarBuson_notificacion_usuario(IN $FK_ID_Usuario INT, IN $FK_ID_Cotizacion int(45), IN $Estado_Pedido varchar(50))
     BEGIN
-    UPDATE `tbl_buson_notificacion_usuario` SET `Mensaje` = $Mensaje, `FK_ID_Pedido` = $FK_ID_Pedido, `Estado_Pedido` = $Estado_Pedido, `Fecha_Envio` = $Fecha_Envio WHERE `PK_ID_Buson_Notificacion` = $PK_ID_Buson_Notificacion;
+    UPDATE `tbl_buson_notificacion_usuario` AS tblNotifi INNER JOIN
+    `tbl_dll_buson_notificacion_usuario` AS tblDll
+    ON tblNotifi.PK_ID_Buson_Notificacion = tblDll.FK_ID_Buson_Notificacion
+    SET  tblNotifi.`Estado_Pedido` = $Estado_Pedido
+    WHERE tblDll.FK_ID_Usuario = $FK_ID_Usuario AND tblNotifi.FK_ID_Cotizacion = $FK_ID_Cotizacion;
     END !
     DELIMITER ;
 
@@ -310,12 +314,11 @@
 
     -- # CRUD tbl_cotizacion_usuario --
     -- ================== REGISTRAR COTIZACION_USUARIO ================= --
-
     DROP PROCEDURE IF EXISTS spRegistrarCotizacion_usuario;
     DELIMITER !
-    CREATE PROCEDURE spRegistrarCotizacion_usuario(IN $FK_ID_Usuario int(45), IN $Fecha_Cotizacion Date, IN $Estado_Cotizacion varchar(40), IN $Direccion_entrega varchar(45))
+    CREATE PROCEDURE spRegistrarCotizacion_usuario(IN $FK_ID_Usuario int(45),   IN $Direccion_entrega varchar(45), IN $Telefono_Entrega varchar(45))
     BEGIN
-    INSERT INTO `tbl_cotizacion_usuario`(`FK_ID_Usuario`, `Fecha_Cotizacion`, `Estado_Cotizacion`, `Direccion_entrega`) VALUES ($FK_ID_Usuario, $Fecha_Cotizacion, $Estado_Cotizacion, $Direccion_entrega);
+    INSERT INTO `tbl_cotizacion_usuario`(`FK_ID_Usuario`, `Fecha_Cotizacion`, `Direccion_entrega`,`Telefono_Entrega`) VALUES ($FK_ID_Usuario,now(), $Direccion_entrega,$Telefono_Entrega);
     END !
     DELIMITER ;
 
@@ -326,6 +329,15 @@
     CREATE PROCEDURE spModificarCotizacion_usuario(IN $PK_ID_Cotizacion_Usuario INT, IN $FK_ID_Usuario int(45), IN $Fecha_Cotizacion Date, IN $Estado_Cotizacion varchar(40), IN $Direccion_entrega varchar(45))
     BEGIN
     UPDATE `tbl_cotizacion_usuario` SET `FK_ID_Usuario` = $FK_ID_Usuario, `Fecha_Cotizacion` = $Fecha_Cotizacion, `Estado_Cotizacion` = $Estado_Cotizacion, `Direccion_entrega` = $Direccion_entrega WHERE `PK_ID_Cotizacion_Usuario` = $PK_ID_Cotizacion_Usuario;
+    END !
+    DELIMITER ;
+    -- ================== MODIFICAR COTIZACION_USUARIO ESTADO ================= --
+
+     DROP PROCEDURE IF EXISTS spModificarCotizacion_usuario_Estado;
+    DELIMITER !
+    CREATE PROCEDURE spModificarCotizacion_usuario_Estado(IN $PK_ID_Cotizacion_Usuario INT,IN $Estado_Cotizacion varchar(40))
+    BEGIN
+    UPDATE `tbl_cotizacion_usuario` SET `Estado_Cotizacion` = $Estado_Cotizacion WHERE `PK_ID_Cotizacion_Usuario` = $PK_ID_Cotizacion_Usuario;
     END !
     DELIMITER ;
 
@@ -343,9 +355,10 @@
 
     DROP PROCEDURE IF EXISTS spConsultarCotizacion_usuario;
     DELIMITER !
-    CREATE PROCEDURE spConsultarCotizacion_usuario(IN $PK_ID_Cotizacion_Usuario INT)
+    CREATE PROCEDURE spConsultarCotizacion_usuario(IN $FK_ID_Usuario INT)
     BEGIN
-    SELECT * FROM `tbl_cotizacion_usuario` WHERE `PK_ID_Cotizacion_Usuario` = $PK_ID_Cotizacion_Usuario;
+    SELECT * FROM `tbl_cotizacion_usuario` WHERE `FK_ID_Usuario` = $FK_ID_Usuario
+    ORDER BY `Fecha_Cotizacion` DESC;
     END !
     DELIMITER ;
 
@@ -359,6 +372,7 @@
     END !
     DELIMITER ;
 
+  
     -- # CRUD tbl_cuenta --
     -- ================== REGISTRAR CUENTA ================= --
 
@@ -537,9 +551,9 @@
 
     DROP PROCEDURE IF EXISTS spEliminarDll_buson_notificacion_usuario;
     DELIMITER !
-    CREATE PROCEDURE spEliminarDll_buson_notificacion_usuario(IN $PK_ID_Notificacion_Usuario INT)
+    CREATE PROCEDURE spEliminarDll_buson_notificacion_usuario(IN $FK_ID_Buson_Notificacion INT)
     BEGIN
-    DELETE FROM `tbl_dll_buson_notificacion_usuario` WHERE `PK_ID_Notificacion_Usuario` = $PK_ID_Notificacion_Usuario;
+    DELETE FROM `tbl_dll_buson_notificacion_usuario` WHERE `FK_ID_Buson_Notificacion` = $FK_ID_Buson_Notificacion;
     END !
     DELIMITER ;
 
@@ -547,9 +561,12 @@
 
     DROP PROCEDURE IF EXISTS spConsultarDll_buson_notificacion_usuario;
     DELIMITER !
-    CREATE PROCEDURE spConsultarDll_buson_notificacion_usuario(IN $PK_ID_Notificacion_Usuario INT)
+    CREATE PROCEDURE spConsultarDll_buson_notificacion_usuario(IN $FK_ID_Usuario INT)
     BEGIN
-    SELECT * FROM `tbl_dll_buson_notificacion_usuario` WHERE `PK_ID_Notificacion_Usuario` = $PK_ID_Notificacion_Usuario;
+    SELECT * FROM `tbl_dll_buson_notificacion_usuario`  AS dll
+    INNER JOIN `tbl_buson_notificacion_usuario` AS tblNotifi
+    ON dll.FK_ID_Buson_Notificacion = tblNotifi.PK_ID_Buson_Notificacion
+    WHERE dll.FK_ID_Usuario = $FK_ID_Usuario;
     END !
     DELIMITER ;
 
@@ -568,9 +585,9 @@
 
     DROP PROCEDURE IF EXISTS spRegistrarDll_producto_cotizacion;
     DELIMITER !
-    CREATE PROCEDURE spRegistrarDll_producto_cotizacion(IN $FK_ID_Producto int(45), IN $FK_ID_Cotizacion_Usuario int(40), IN $Cantidad_Productos int(45), IN $Sub_Total_Cotizacion int(100))
+    CREATE PROCEDURE spRegistrarDll_producto_cotizacion(IN $FK_ID_Producto int(45), IN $FK_ID_Cotizacion_Usuario int(40), IN $Cantidad_Productos int(45), IN $Sub_Total int(100))
     BEGIN
-    INSERT INTO `tbl_dll_producto_cotizacion`(`FK_ID_Producto`, `FK_ID_Cotizacion_Usuario`, `Cantidad_Productos`, `Sub_Total_Cotizacion`) VALUES ($FK_ID_Producto, $FK_ID_Cotizacion_Usuario, $Cantidad_Productos, $Sub_Total_Cotizacion);
+    INSERT INTO `tbl_dll_producto_cotizacion`(`FK_ID_Producto`, `FK_ID_Cotizacion_Usuario`, `Cantidad_Productos`, `Sub_Total`) VALUES ($FK_ID_Producto, $FK_ID_Cotizacion_Usuario, $Cantidad_Productos, $Sub_Total);
     END !
     DELIMITER ;
 
@@ -578,9 +595,9 @@
 
     DROP PROCEDURE IF EXISTS spModificarDll_producto_cotizacion;
     DELIMITER !
-    CREATE PROCEDURE spModificarDll_producto_cotizacion(IN $PK_ID_Producto_Cotizacion INT, IN $FK_ID_Producto int(45), IN $FK_ID_Cotizacion_Usuario int(40), IN $Cantidad_Productos int(45), IN $Sub_Total_Cotizacion int(100))
+    CREATE PROCEDURE spModificarDll_producto_cotizacion(IN $PK_ID_Producto_Cotizacion INT, IN $FK_ID_Producto int(45), IN $FK_ID_Cotizacion_Usuario int(40), IN $Cantidad_Productos int(45), IN $Sub_Total int(100))
     BEGIN
-    UPDATE `tbl_dll_producto_cotizacion` SET `FK_ID_Producto` = $FK_ID_Producto, `FK_ID_Cotizacion_Usuario` = $FK_ID_Cotizacion_Usuario, `Cantidad_Productos` = $Cantidad_Productos, `Sub_Total_Cotizacion` = $Sub_Total_Cotizacion WHERE `PK_ID_Producto_Cotizacion` = $PK_ID_Producto_Cotizacion;
+    UPDATE `tbl_dll_producto_cotizacion` SET `FK_ID_Producto` = $FK_ID_Producto, `FK_ID_Cotizacion_Usuario` = $FK_ID_Cotizacion_Usuario, `Cantidad_Productos` = $Cantidad_Productos, `Sub_Total` = $Sub_Total WHERE `PK_ID_Producto_Cotizacion` = $PK_ID_Producto_Cotizacion;
     END !
     DELIMITER ;
 
@@ -588,21 +605,28 @@
 
     DROP PROCEDURE IF EXISTS spEliminarDll_producto_cotizacion;
     DELIMITER !
-    CREATE PROCEDURE spEliminarDll_producto_cotizacion(IN $PK_ID_Producto_Cotizacion INT)
+    CREATE PROCEDURE spEliminarDll_producto_cotizacion(IN $FK_ID_Cotizacion_Usuario INT)
     BEGIN
-    DELETE FROM `tbl_dll_producto_cotizacion` WHERE `PK_ID_Producto_Cotizacion` = $PK_ID_Producto_Cotizacion;
+    DELETE FROM `tbl_dll_producto_cotizacion` WHERE `FK_ID_Cotizacion_Usuario` = $FK_ID_Cotizacion_Usuario;
     END !
     DELIMITER ;
 
     -- =================== CONSULTAR DLL_PRODUCTO_COTIZACION ================ --
 
-    DROP PROCEDURE IF EXISTS spConsultarDll_producto_cotizacion;
+
+
+    DROP PROCEDURE IF EXISTS spJoin_ConsultarDll_producto_cotizacion;
     DELIMITER !
-    CREATE PROCEDURE spConsultarDll_producto_cotizacion(IN $PK_ID_Producto_Cotizacion INT)
+    CREATE PROCEDURE spJoin_ConsultarDll_producto_cotizacion(IN $FK_ID_Cotizacion_Usuario INT)
     BEGIN
-    SELECT * FROM `tbl_dll_producto_cotizacion` WHERE `PK_ID_Producto_Cotizacion` = $PK_ID_Producto_Cotizacion;
+    SELECT tblP.`Ruta_Imagen_Producto`, tblP.`Valor_Unitario`, Dtll.`Sub_Total`, Dtll.`Cantidad_Productos`
+    FROM `tbl_dll_producto_cotizacion` AS Dtll
+    INNER JOIN `tbl_producto` AS tblP
+    ON Dtll.FK_ID_Producto =  tblP.PK_ID_Producto
+    WHERE Dtll.`FK_ID_Cotizacion_Usuario` = $FK_ID_Cotizacion_Usuario;
     END !
     DELIMITER ;
+
 
     -- ==================== LISTAR DLL_PRODUCTO_COTIZACION ================== --
 
@@ -1246,8 +1270,8 @@
  DELIMITER !
  CREATE  PROCEDURE `spJoin_Comentario_Cuenta`(IN `$FK_ID_Producto` INT)
  BEGIN
-
- SELECT CU.`Nombre_Usuario`,CU.`Imagen_Usuario`, C.`Fecha_Comentario`,C.`Descripcion`,C.`FK_ID_Producto`,
+ 
+ SELECT CU.`Nombre_Usuario`,CU.`Imagen_Usuario`, DATE_FORMAT(C.Fecha_Comentario,'%W-%D-%M-%Y') AS Fecha_Comentario,C.`Descripcion`,C.`FK_ID_Producto`,
  C.`FK_ID_Usuario`,C.`PK_ID_Comentario`,C.`Valoracion_Comentario` FROM `tbl_comentario` AS C INNER JOIN `tbl_cuenta` AS CU
  ON C.`FK_ID_Usuario` =  CU.`PK_ID_Usuario`
  WHERE C.`FK_ID_Producto` =  $FK_ID_Producto
@@ -1255,7 +1279,6 @@
 
  END !
  DELIMITER ;
-
 
 
 -- ==================== PROCEDIMIENTO PARA CONSULTAR CORREOS ================== --
@@ -1643,5 +1666,15 @@ DELIMITER ;
     CREATE PROCEDURE spListarEjemplo_crud()
     BEGIN
     SELECT * FROM `tbl_ejemplo_crud`;
+    END !
+    DELIMITER ;
+
+
+
+    DROP PROCEDURE IF EXISTS spConsultar_Notificacion;
+    DELIMITER !
+    CREATE PROCEDURE spConsultar_Notificacion(IN $PK_ID_Cotizacion_Usuario INT)
+    BEGIN
+    SELECT * FROM tbl_buson_notificacion_usuario WHERE FK_ID_Pedido = $PK_ID_Cotizacion_Usuario;
     END !
     DELIMITER ;

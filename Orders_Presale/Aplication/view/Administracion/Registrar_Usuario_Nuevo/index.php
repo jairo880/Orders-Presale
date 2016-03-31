@@ -5,14 +5,13 @@
   <main id="CONT_Reg_Contenido_Pagina">
     <div id="CONT_Contenedor_Invisible_Header"></div>
     <div id="CONT_Registro" ng-controller="Controlador_Registro_Usuario_Administracion">
-      <div id="CONT_R_Titulo"><img ng-src="{{dato.AOBJ_Datos_Usuario[0].Imagen_Usuario}}"/></div>
       <form id="FORM_Registro" name="Form_Registro_Cliente" ng-submit="Registrar(RN)" class="Grid_Contenedor main_start">
         <div class="Grid_Contenedor">
           <div class="Grid_Total">
             <p class="CL_Alerta_5 Padding-10">Seleccione el tipo de usuario que desea registrar</p>
           </div>
           <div class="Grid_Total"> 
-            <select ng-model="RN.Tipo_Registro" name="Tipo_Registro" value="Cliente" ng-init="Registro_Cliente = false;BL_Datos_Form_Usuario = false" required="required" class="Select_1">
+            <select ng-model="RN.Tipo_Registro" name="Tipo_Registro" value="Cliente" ng-init="Registro_Cliente = false;BL_Datos_Form_Usuario = false" required="required" class="Select_1 Base-30">
               <option value="3" ng-click="FN_No_Posee_Empresa(2)">Cliente</option>
               <option value="2" ng-click="FN_No_Posee_Empresa(1);Pregunta_Datos_Empresa = false">Empleado</option>
               <option value="0" ng-click="Registro_Cliente = false;BL_Datos_Form_Usuario = false;Pregunta_Datos_Empresa = false">Ninguno</option>

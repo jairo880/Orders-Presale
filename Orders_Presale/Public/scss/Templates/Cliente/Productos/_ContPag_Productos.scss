@@ -15,7 +15,7 @@
     {
      border-bottom: solid 1px $Color_2;
      margin-bottom: 30px;
-     padding: 40px 10px;
+     padding: 10px 10px;
      height: auto;
      background-color: $Color_6;
      font-size: 14px;
@@ -24,7 +24,7 @@
      /*Incluido*/
      @include MX_Animacion_Normal(0.3, ease, 0.3);
      @include MX_Box-Sizing(border-box);
-     @include MX_Box_Shadow(0px, 0px, 1px, 0px,rgba(0,0,0,4/10));
+     @include MX_Box_Shadow(0px, 0px, 1px, 0px,rgba(0,0,0,2/10));
 
 
      & .CL_P_Imagen {
@@ -39,7 +39,7 @@
     &:before
     {
         content: "s";
-        font-family: allop;
+        font-family: ordes-presale;
         position: absolute;
         top: 0px;
         left: 0px;
@@ -148,7 +148,7 @@
             &:before
             {
                 content: ':';
-                font-family: allop;
+                font-family: ordes-presale;
                 color: $Color_6;
                 margin-left: -10px;
                 margin-right: 10px;

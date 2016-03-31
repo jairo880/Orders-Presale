@@ -81,47 +81,35 @@
     {
         & .animate-enter, 
         & .animate-leave { 
-            -webkit-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-            -moz-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-            -ms-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-            -o-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-            transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-            position: relative;
-            display: block;
+            opacity: 0;
+            transform:scale(0);
         } 
 
         & .animate-leave.animate-leave-active,
         & .animate-enter {
-            -webkit-transform: rotateX(-180deg) translatez(30px);
-            -moz-transform: rotateX(-180deg) translatez(30px);
-            -ms-transform: rotateX(-180deg) translatez(30px);
-            -o-transform: rotateX(-180deg) translatez(30px);
-            transform: rotateX(-180deg) translatez(30px);
-            opacity: 0;
-            height: 0px;
+           
+            opacity: 1;
+            margin-left: 0;
+            transform:scale(1);
         }        
 
         & .animate-enter.animate-enter-active,
         & .animate-leave {
-            -webkit-transform: rotateX(0deg) translatez(30px);
-            -moz-transform: rotateX(0deg) translatez(30px);
-            -ms-transform: rotateX(0deg) translatez(30px);
-            -o-transform: rotateX(0deg) translatez(30px);
-            transform: rotateX(0deg) translatez(30px);
-            opacity: 1;
-            height: 30px;
-        }
-    }
+         opacity: 1;
+         margin-left: 0;
+         transform:scale(1);
+     }
+ }
 
-    @keyframes Ng_Show_AnimacionGeneral_Inicial {
-        0% { transition-timing-function: ease-in; opacity: 0;margin-left: -500px; overflow: hidden}
-        100% { opacity: 1; margin: 0;overflow: auto; }
+ @keyframes Ng_Show_AnimacionGeneral_Inicial {
+    0% { transition-timing-function: ease-in; opacity: 0;margin-left: -500px; overflow: hidden}
+    100% { opacity: 1; margin: 0;overflow: auto; }
 
-    }
-    @keyframes Ng_Show_AnimacionGeneral_Final {
-        0% { transition-timing-function: ease-in; opacity: 1;margin-left: -500px;}
-        100% { transition-timing-function: ease-in; opacity: 0;margin-left: -500px; overflow: hidden}
-    }
+}
+@keyframes Ng_Show_AnimacionGeneral_Final {
+    0% { transition-timing-function: ease-in; opacity: 1;margin-left: -500px;}
+    100% { transition-timing-function: ease-in; opacity: 0;margin-left: -500px; overflow: hidden}
+}
 
     //***************************keyframe para orden
     @keyframes Ng_Show_Orden_Contenedor_Inicial {

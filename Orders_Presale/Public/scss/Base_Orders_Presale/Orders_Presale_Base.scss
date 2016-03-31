@@ -76,6 +76,7 @@ $Encarpetado:'../../../../img/';
 @include MX_Tablas_Estilo();
 @include MX_Animaciones_Angular();
 @include MX_Cerrar_Icono();
+@include MX_Paginacion();
 
 
 //ESTILOS PARA ELEMENTOS QUE SE REPITEN MUY A MENUDO EN LA PAGINA
@@ -111,7 +112,7 @@ $Encarpetado:'../../../../img/';
 .CL_Body_Menu_Desplegado
 {
 	width: 100%;
-	margin-left: 235px;
+	margin-left: 250px;
 }
 .CL_Body_Menu_Oculto
 {
@@ -127,6 +128,16 @@ $Encarpetado:'../../../../img/';
 {
 	width: 100% !important;
 }
+
+.CL_Ordenes_Enviadas_Desplegado
+{
+	margin-left: 0% !important;
+
+	@include desde(tablet) {
+		margin-left: 40% !important;
+	}
+}
+
 body {
 	margin: 0;
 	font-family: sans-serif;
@@ -166,6 +177,7 @@ footer#CONT_Footer
 {
 	width: 100%;
 	height: 200px;
+	display:none;
 	background: $Color_26;
 }
 .Enlace
@@ -204,33 +216,33 @@ footer#CONT_Footer
 		display: block;
 	}
 }
-//Estilos para el scrollbar de la pagina
-::-webkit-scrollbar{
-	width: 5px;
-	background: rgba(0,0,0,0.1);
-}
-::-webkit-scrollbar-button{
-	width:4px;
-	height: 5px;
-}
-::-webkit-scrollbar-track{
-	background:rgba(0,0,0,0.1);
-	border:thin solid rgba(0,0,0,0.1);
-	-webkit-border-radius: 10px;
-	border-radius: 10px;
-}
-::-webkit-scrollbar-thumb{
-	background: rgba(0,0,0,0.5);
 
-	border-radius: 10px;
-	-webkit-border-radius: 10px;
+/*scrollbar*/
+::-webkit-scrollbar {
+    width: 5px;
+    height: 13px;
 }
-::-webkit-scrollbar-thumb:hover{
-	background: -webkit-linear-gradient(top, #c3c6c4, #c3c6c4);
+
+::-webkit-scrollbar-track {
+    box-shadow:  0px 0px 1px 0px rgba(0,0,0,0.5);
+    -webkit-border-radius:3px;
+    border-radius:12px;
 }
-/* Pseudo-clase */
-::-webkit-scrollbar-thumb:window-inactive {
-	background: rgba(0,0,0,0.8);
+
+::-webkit-scrollbar-track-piece {
+    background-color:transparent;
+}
+
+
+
+
+
+
+::-webkit-scrollbar-thumb,::-webkit-scrollbar-thumb:window-inactive {
+   
+    border: 4px solid rgba(255,255,255,0);
+    background-clip: content-box;
+    background-color: rgba(0,0,0,0.7);
 }
 
 #CONT_Loadig_Allop {

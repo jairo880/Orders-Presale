@@ -4,15 +4,9 @@ section#SC_Consultar_Usuarios()
 	#CONT_Contenedor_Invisible_Header
 	#CONT_Consultar_Usuarios(ng-controller="Controlador_Consultar_Usuarios")
 
-		.Grid_Item.Base-100
-			.CL_Alerta_5.Grid_Contenedor.Base-90.Padding-10.main_end.cross_end(ng-init="BL_Edicion_Datos_Cuentas = false")
-				p.Grid_Item.Base-50 Consultar usuarios
-				.Grid_Item.Base-15
-					.Btn_Estilo_5.icon-list-1(ng-init="Listar_Usuarios()",ng-click="Listar_Usuarios()") Listar usuarios
-				
 
 		.Grid_Contenedor.Base-100.abcenter
-			.Tabla_Estilo_3.relative.Grid_Item.Base-95
+			.Tabla_Estilo_1.relative.Grid_Item.Base-95(ng-init="BL_Edicion_Datos_Cuentas = false")
 						table
 							thead
 								tr
@@ -33,10 +27,33 @@ section#SC_Consultar_Usuarios()
 									th Disponibilidad
 									th Estado cuenta
 									th
+							.Grid_Contenedor.abcenter.CON_Paginacion
+								.Grid_Contenedor.Base-10
+									p.CL_TXT_Texto_2 Pag&iacute;na: {{currentPage}}
+								.Grid_Contenedor.Base-5
+									input.Input_Estilo_1.No_Margin(type="number",min="1",max="100",ng-model="pageSize")
+								.Base-30.Grid_Contenedor.main_end
+									.Grid_Contenedor.Base-80
+										.CL_Contenedor_Buscador
+											input.CL_Buscar#Buscar(type="text", name="" placeholder="Buscar usuario" ng-model="Buscar")
+											label.icon-buscar.CL_Icono_Buscar(for="Buscar")
+								.Base-10.Grid_Contenedor
+									.Btn_Estilo_5.icon-list-1(ng-init="Listar_Usuarios()",ng-click="Listar_Usuarios()") Listar usuarios
 
-
+								dir-pagination-controls.Base-45.cross_end.Grid_Contenedor(boundary-links="true")
+									p.CL_TXT_Texto_3 {{currentPage}}
+									ul.main_end.CL_Paginacion_1.Grid_Contenedor(ng-if="1 < pages.length || !autoHide" )
+										li(ng-if="boundaryLinks" ng-class="{ Paginacion_Disabled : pagination.current == 1 }")
+											a(href="" ng-click="setCurrent(1)") &laquo;
+										li(ng-if="directionLinks" ng-class="{ Paginacion_Disabled : pagination.current == 1 }")
+											a(href="" ng-click="setCurrent(pagination.current - 1)") &lsaquo;
+										li(ng-repeat="pageNumber in pages track by tracker(pageNumber, $index)" ng-class="{ active : pagination.current == pageNumber, Paginacion_Disabled : pageNumber == '...' }") {{ pageNumber }}
+										li(ng-if="directionLinks" ng-class="{ Paginacion_Disabled : pagination.current == pagination.last }")
+											a(href="" ng-click="setCurrent(pagination.current + 1)") &rsaquo;
+										li(ng-if="boundaryLinks"  ng-class="{ Paginacion_Disabled : pagination.current == pagination.last }")
+											a(href="" ng-click="setCurrent(pagination.last)") &raquo;
 							tbody
-								tr(ng-repeat="Item in AOBJ_Lista_Usuarios_Registrados ")
+								tr(dir-paginate="Item in AOBJ_Lista_Usuarios_Registrados | filter:Buscar | itemsPerPage: pageSize" current-page="currentPage")
 									td.Imagen.CL_Imagen.relative
 										img(ng-src="{{Item.Imagen_Usuario}}")
 										//- img(src="http://localhost/Allop/Allop_Aplicacion_Sena/public/img/avatars/avatar1_big.png")
@@ -62,6 +79,8 @@ section#SC_Consultar_Usuarios()
 											span.CL_TXT_Info_Btn Actualizar
 										.icon-lapiz.CL_TXT_Pri_Btn.relative(ng-class="{Invisible:BL_Edicion_Datos_Cuentas == true, Visible: BL_Edicion_Datos_Cuentas == false}" ng-click="BL_Edicion_Datos_Cuentas =!BL_Edicion_Datos_Cuentas")
 											span.CL_TXT_Info_Btn Editar
-
+						.CL_Alerta_5.ng_repeat_anim1.Grid_Contenedor(ng-show="(AOBJ_Lista_Usuarios_Registrados |filter:Buscar).length == 0")
+							.CL_TXT_Texto_3.Base-100.abcenter.Grid_Contenedor
+								p Usuario no encontrado
 
 

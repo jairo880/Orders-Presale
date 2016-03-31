@@ -3,7 +3,7 @@
 @mixin MX_Ventana_Envio_Orden() {
     #CONT_EnviarOrden {
         width: 100%;
-        height: 116%;
+        height: 100%;
         position: fixed;
         top: 0;
         justify-content: flex-start;
@@ -23,17 +23,14 @@
         position: relative;
         width: 100%;
         background-color: $Color_6;
-        height: 80%;
+        height: 100%;
         overflow: auto;
         padding: 10px 5%;
         z-index: 9999;
         @include MX_Box-Sizing(border-box);
         @include MX_Box_Shadow(0px, 0px, 7px, 0px,rgba(0,0,0,5/10));
 
-        & .Tabla_Estilo_1
-        {
-            margin-bottom: 150px;
-        }
+
 
     }
     .CL_TXT_Titulo_Envio {
@@ -176,12 +173,12 @@
         flex-direction: column;
 
         @include desde(tablet) {
-           width: 400px;
-           height: 55%;
-           top: 50px;
+         width: 400px;
+         height: 55%;
+         top: 50px;
 
-       }
-       &.ng-hide-add {
+     }
+     &.ng-hide-add {
         animation: 0.5s Ng_Show_Orden_Contenedor_Final ease;
     }
     /* when showing the picture */
@@ -259,12 +256,148 @@
 }
 }
 @mixin MX_Mensaje_Alerta {
-    .CL_Mensaje_Alerta {
+    .CL_CONT_Alertas
+    {
+        width: 400px;
+        max-height: 500px;
+        min-height: 210px;
+        overflow:hidden;
         position: fixed;
-        bottom: 0px;
-        left: 0px;
-        z-index: 99999;
-        background-color:$Color_6;
+        bottom: 10px;
+        right: 10px;
+        z-index: 100500;
+
+
+        &.ng-hide-add {
+            animation: 0.3s Ng_Show_Orden_Contenedor_Final ease;
+        }
+        /* when showing the picture */
+        &.ng-hide-remove {
+            animation: 0.3s Ng_Show_Orden_Contenedor_Inicial ease;
+        }
+    }
+    .Finalizado
+    {
+        color: #ffffff;
+        background-color: rgba(38, 185, 154, 0.88);
+        border-color: rgba(38, 185, 154, 0.88);
+
+        & .Icono_Alerta{
+
+            &:before
+            {
+                content: 's';
+                font-family: ordes-presale;
+                font-size: 20px;
+                color: $Color_6;
+            }
+        }
+
+
+    }
+    .Info
+    {
+        color: #E9EDEF;
+        background-color: rgba(52, 152, 219, 0.88);
+        border-color: rgba(52, 152, 219, 0.88);
+
+         & .Icono_Alerta{
+
+            &:before
+            {
+                content: 'F';
+                font-family: ordes-presale;
+                font-size: 20px;
+                color: $Color_6;
+            }
+        }
+
+
+    }
+    .Alerta
+    {
+        color: #E9EDEF;
+        background-color: rgba(243, 156, 18, 0.88);
+        border-color: rgba(243, 156, 18, 0.88);
+
+         & .Icono_Alerta{
+
+            &:before
+            {
+                content: 'b';
+                font-family: ordes-presale;
+                font-size: 20px;
+                color: $Color_6;
+            }
+        }
+
+
+    }
+    .Error
+    {
+        color: #E9EDEF;
+        background-color: rgba(231, 76, 60, 0.88);
+        border-color: rgba(231, 76, 60, 0.88);
+
+         & .Icono_Alerta{
+
+            &:before
+            {
+                content: 'G';
+                font-family: ordes-presale;
+                font-size: 20px;
+                color: $Color_6;
+            }
+        }
+
+
+    }
+    .Negro
+    {
+        color: #E9EDEF;
+        background-color: rgba(52, 73, 94, 0.88);
+        border-color: rgba(52, 73, 94, 0.88);
+
+         & .Icono_Alerta{
+
+            &:before
+            {
+                content: 'a';
+                font-family: ordes-presale;
+                font-size: 20px;
+                color: $Color_6;
+            }
+        }
+
+
+    }
+    .Blanco
+    {
+        color: $Color_12;
+        background-color: $Color_6;
+        border-color: $Color_6;
+
+         & .Icono_Alerta{
+
+            &:before
+            {
+                content: 'a';
+                font-family: ordes-presale;
+                font-size: 20px;
+                color: $Color_12;
+            }
+        }
+
+         .CL_Cerrar
+        {
+            color: $Color_12;
+        }
+
+
+
+    }
+    .CL_Mensaje_Alerta {
+        
         @include MX_Box_Shadow(0px,0px, 3px, 0px, rgba($Color_3, .4));
         padding: 15px 5px;
         @include MX_Box-Sizing(border-box);
@@ -272,6 +405,8 @@
         min-height: 70px;
         max-height: 210px;
         cursor: default;
+        margin-bottom: 25px;
+        position: relative;
         // @include MX_Bor_Radius(50px,5);
         // @include MX_Bor_Radius(50px,6);
 
@@ -287,7 +422,7 @@
             height: 100%;
             padding: 5px;
             @include MX_Box-Sizing(border-box);
-            border-right: solid 1px rgba($Color_12,.6);
+            border-right: solid 1px $Color_6;
             & p {
                 margin: 0;
             }
@@ -305,7 +440,6 @@
         .CL_Mensaje_Alert {
 
             position: relative;
-            color: $Color_12;
             padding-left: 50px;
             padding-right:50px;
             z-index: 18;
@@ -314,7 +448,6 @@
             
             & .CL_TXT_Mensaje_Alerta {
 
-                @include Texto_Estilo_3(12px,$Color_12,100,center);
                 & p {
                     margin: 2px;
                 }
@@ -354,17 +487,17 @@
             animation: 0.5s Ng_Show_Orden_Contenedor_Inicial ease;
         }
         @include desde(tablet) {
-           width: 250px;
-           top: 50px;
-        }
+         width: 250px;
+         top: 50px;
+     }
 
-        & .CL_Opciones_Cuenta,
-        .CL_Mas_Opciones_Cuenta .CL_Opciones_Cuenta,
-        & .CL_Estado_Usuario .CL_Opciones_Cuenta {
-            width: 100%;
-            padding: 10px 5px;
-            margin-bottom: 2px;
-            @include MX_Box-Sizing(border-box);
+     & .CL_Opciones_Cuenta,
+     .CL_Mas_Opciones_Cuenta .CL_Opciones_Cuenta,
+     & .CL_Estado_Usuario .CL_Opciones_Cuenta {
+        width: 100%;
+        padding: 10px 5px;
+        margin-bottom: 2px;
+        @include MX_Box-Sizing(border-box);
             /*flex estilos*/
             display: flex;
             align-items: center;

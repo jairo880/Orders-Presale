@@ -26,13 +26,13 @@
                 {
                     //_*mensaje de Alerta
                     $scope.Mensaje = "Nombre de usuario en uso, Ingresa otro nombre";
-                    Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+                    Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Finalizado');
                 }
                 if (Respuesta == "Correo_Existente")
                 {
                     //_*mensaje de Alerta
                     $scope.Mensaje = "El correo ya se encuentra en uso";
-                    Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+                    Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Info');
                 }
 
 
@@ -40,7 +40,7 @@
                 {
                     //_*mensaje de Alerta
                     $scope.Mensaje = "¡La cuenta" + " " + $scope.Usuario_Creado + " " + "Ha sido creada correctamente! ";
-                    Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+                    Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Finalizado');
 
                     //_* Limpio los inputs del formulario
                     //_*Datos cuenta      
@@ -74,7 +74,7 @@
                 if (Respuesta == "false")
                 {
                     $scope.Mensaje = "Registro fallido, intentalo nuevamente.";
-                    Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100);
+                    Fabrica.objeto.FN_Crear_Mensaje($scope.Mensaje, 100, 'Error');
 
                 }
 

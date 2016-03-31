@@ -1,17 +1,20 @@
-
 section.SC_Mensajes_Validaciones
-	.CL_Mensaje_Alerta.main_start.Grid_Contenedor(ng-show="dato.EstadoMensaje == true")
-		//- ng-show="dato.EstadoMensaje == true"
-		
-		.CL_Titulo_Alerta.Base-30.abcenter.cross_start.Grid_Item
-			p 
-				img(ng-src="{{dato.AOBJ_Datos_Usuario[0].Imagen_Usuario}}")
-			
-		.CL_Mensaje_Alert.Grid_Contenedor.abcenter.cross_start.Base-70.Grid_Item
-			.CL_TXT_Mensaje_Alerta
-				span(ng-repeat="Alerta in dato.AOBJ_Mensaje_Alerta")
-					p {{Alerta.TXT_Mensaje}}
-		a.CL_Eliminar_5.CL_Cerrar(ng-click="dato.FN_Mensaje_Alerta()")
+	.Grid_Contenedor.CL_CONT_Alertas.cross_end(ng-show="(dato.AOBJ_Mensaje_Alerta).length > 0")
+		.Grid_Item.ng_show(ng-show="Alertas.Visibilidad_Alerta == true",ng-repeat="Alertas in dato.AOBJ_Mensaje_Alerta" )
+			.CL_Mensaje_Alerta.main_start.Grid_Contenedor.relative(ng-class="{Negro: Alertas.Tipo_Mensaje_Alerta == 'Negro',Blanco: Alertas.Tipo_Mensaje_Alerta == 'Blanco',Finalizado: Alertas.Tipo_Mensaje_Alerta == 'Finalizado',Alerta: Alertas.Tipo_Mensaje_Alerta == 'Alerta',Info: Alertas.Tipo_Mensaje_Alerta == 'Info',Error: Alertas.Tipo_Mensaje_Alerta == 'Error'}")
+				//- ng-show="dato.EstadoMensaje == true"
+				.CL_Titulo_Alerta.Base-20.abcenter.cross_start.Grid_Item
+					p 
+						img(ng-src="{{dato.AOBJ_Datos_Usuario[0].Imagen_Usuario}}")
+					
+				.CL_Mensaje_Alert.Grid_Contenedor.abcenter.cross_start.Base-80.Grid_Item
+					.CL_TXT_Mensaje_Alerta.Grid_Contenedor
+						.Grid_Item.Base-5.Grid_Contenedor.abcenter
+							p.Icono_Alerta
+						.Grid_Item.Base-80
+							span 
+								p {{Alertas.Mensaje_Alerta}}
+				a.CL_Eliminar_6_6.CL_Cerrar(ng-click="dato.FN_Cerrar_Mensaje_En_Especifico($index)")
 //SECCION CONFIRMACIONES					
 section#SC_Confirmaciones
 	#CONT_Confirmacion(ng-show="BL_Ver_Confirmacion == true")
@@ -29,23 +32,27 @@ footer#CONT_Footer
 
 
 	//***********************************Javascript_Normal*******************
-	script(src!="<?php echo URL; ?>public/js/Javascript/Loading/Loading.js")
+	script(language="javascript",src!="<?php echo URL; ?>public/js/Javascript/Loading/Loading.js")
 	//***************************************Angular.js******************
 	//*******************************Modelo*************************
-	script(src!="<?php echo URL; ?>public/js/Angular/Modulos/Fabrica.js")
+	script(language="javascript",src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js")
+	script(language="javascript",src!="<?php echo URL; ?>public/js/Angular/Modulos/Fabrica.js")
 
 	//*******************************Controladores*************************
 	//Angular pagina inicio
-	script(src!="<?php echo URL; ?>public/js/Angular/Controladores/Controlador_Principal.js")
+	script(language="javascript",src!="<?php echo URL; ?>public/js/Angular/Controladores/Controlador_Principal.js")
 	//Angular pagina inicio
-	script(src!="<?php echo URL; ?>public/js/Angular/Controladores/Registrar_Controlador.js")
-	script(src!="<?php echo URL; ?>public/js/Angular/Controladores/Administracion/Registrar_Usuario_Controlador.js")
+	script(language="javascript",src!="<?php echo URL; ?>public/js/Angular/Controladores/Registrar_Controlador.js")
+	script(language="javascript",src!="<?php echo URL; ?>public/js/Angular/Controladores/Administracion/Registrar_Usuario_Controlador.js")
 
-	script(src!="<?php echo URL; ?>public/js/Angular/Controladores/Administracion/Consultar_Usuario.js")
-	script(src!="<?php echo URL; ?>public/js/Angular/Controladores/Administracion/Controlador_Producto.js")
-	script(src!="<?php echo URL; ?>public/js/Angular/Controladores/Administracion/Modulo_Categoria.js")
-	script(src!="<?php echo URL; ?>public/js/Angular/Controladores/Administracion/Modulo_Promociones.js")
-	script(src!="<?php echo URL; ?>public/js/Angular/Controladores/Administracion/Controlador_Ejemplo_Crud.js")
+	script(language="javascript",src!="<?php echo URL; ?>public/js/Angular/Controladores/Administracion/Consultar_Usuario.js")
+	script(language="javascript",src!="<?php echo URL; ?>public/js/Angular/Controladores/Administracion/Controlador_Producto.js")
+	script(language="javascript",src!="<?php echo URL; ?>public/js/Angular/Controladores/Administracion/Modulo_Categoria.js")
+	script(language="javascript",src!="<?php echo URL; ?>public/js/Angular/Controladores/Administracion/Modulo_Promociones.js")
+	script(language="javascript",src!="<?php echo URL; ?>public/js/Angular/Controladores/Administracion/Controlador_Ejemplo_Crud.js")
+	script(language="javascript",src!="<?php echo URL; ?>public/js/Javascript/Socket/fancywebsocket.js")
+
+
 
 	
 

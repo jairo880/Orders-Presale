@@ -21,14 +21,14 @@
       </div>
       <div id="CONT_Botones">
         <li title="Enviar orden" ng-show="dato.NUM_Cantidad_Productos_En_Orden &gt; 0">
-          <p ng-click="BL_Ver_Envio_Orden =! BL_Ver_Envio_Orden" class="icon-enviar CL_TXT_Pri_Btn relative"><span class="CL_TXT_Info_Btn">Enviar orden</span></p>
+          <p ng-click="FN_Envio_Orden(1)" class="icon-enviar CL_TXT_Pri_Btn relative"><span class="CL_TXT_Info_Btn">Enviar</span></p>
         </li>
         <li title="Mi lista" ng-click="BL_Estado_Procutos = ! BL_Estado_Procutos">
           <p ng-show="BL_Estado_Procutos == false" class="icon-orden ng_show CL_TXT_Pri_Btn relative"><span class="CL_TXT_Info_Btn">Orden actual</span></p>
-          <p ng-show="BL_Estado_Procutos == true" class="icon-lista ng_show CL_TXT_Pri_Btn relative"><span class="CL_TXT_Info_Btn">Mis listas</span></p>
+          <p ng-show="BL_Estado_Procutos == true" class="icon-lista ng_show CL_TXT_Pri_Btn relative"><span class="CL_TXT_Info_Btn"> listas</span></p>
         </li>
         <li ng-show="dato.NUM_Cantidad_Productos_En_Orden &gt; 0" title="Eliminar todos los productos">
-          <p ng-click="FN_Confirmacion_Alerta(1,2,false,'¿Eliminar productos actuales?')" class="icon-eliminar CL_TXT_Pri_Btn relative"><span class="CL_TXT_Info_Btn">Vaciar orden</span></p>
+          <p ng-click="FN_Confirmacion_Alerta(1,2,false,'¿Eliminar productos actuales?')" class="icon-eliminar CL_TXT_Pri_Btn relative"><span class="CL_TXT_Info_Btn">Vaciar</span></p>
         </li>
       </div>
     </div>
@@ -93,7 +93,25 @@
             <p class="icon-add"></p>
             <p class="CL_TXT_Info_Btn">Guardar orden actual</p>
           </div>
-          <div ng-repeat="Productos_Agregados in dato.AOBJ_Productos |  orderBy: 'PK_ID_Producto' | filter:buscar_producto:Productos_Agregados.Nombre_Producto" class="CL_Producto_Orden ng_repeat_anim1">
+          <div id="CONT_Herramientas_Orden" class="Grid_Contenedor abcenter CON_Paginacion">
+            <div class="Grid_Contenedor Base-10">
+              <p class="CL_TXT_Texto_2">Pag&iacute;na: {{currentPage}}</p>
+            </div>
+            <div class="Grid_Contenedor Base-20">
+              <input type="number" min="1" max="100" ng-model="pageSize" class="Input_Estilo_1 No_Margin"/>
+            </div>
+            <dir-pagination-controls boundary-links="true" class="Base-55 cross_end Grid_Contenedor">
+              <p class="CL_TXT_Texto_3">{{currentPage}}</p>
+              <ul ng-if="1 &lt; pages.length || !autoHide" class="main_end CL_Paginacion_1 Grid_Contenedor">
+                <li ng-if="boundaryLinks" ng-class="{ Paginacion_Disabled : pagination.current == 1 }"><a href="" ng-click="setCurrent(1)">&laquo;</a></li>
+                <li ng-if="directionLinks" ng-class="{ Paginacion_Disabled : pagination.current == 1 }"><a href="" ng-click="setCurrent(pagination.current - 1)">&lsaquo;</a></li>
+                <li ng-repeat="pageNumber in pages track by tracker(pageNumber, $index)" ng-class="{ active : pagination.current == pageNumber, Paginacion_Disabled : pageNumber == '...' }">{{ pageNumber }}</li>
+                <li ng-if="directionLinks" ng-class="{ Paginacion_Disabled : pagination.current == pagination.last }"><a href="" ng-click="setCurrent(pagination.current + 1)">&rsaquo;</a></li>
+                <li ng-if="boundaryLinks" ng-class="{ Paginacion_Disabled : pagination.current == pagination.last }"><a href="" ng-click="setCurrent(pagination.last)">&raquo;</a></li>
+              </ul>
+            </dir-pagination-controls>
+          </div>
+          <div dir-paginate="Productos_Agregados in dato.AOBJ_Productos |  orderBy: 'PK_ID_Producto' | filter:buscar_producto:Productos_Agregados.Nombre_Producto  | itemsPerPage: pageSize" current-page="currentPage" class="CL_Producto_Orden ng_repeat_anim1">
             <div class="CL_Imagen_Producto"><img ng-src="{{Productos_Agregados.Ruta_Imagen_Producto}}"/></div>
             <div class="CL_Info_Producto">
               <p class="CL_TXT_Nombre_Producto_Orden">{{Productos_Agregados.Nombre_Producto}}</p>
@@ -159,58 +177,112 @@
   
   
   <!--ENVIO ORDEN					-->
-  <section id="SC_Enviar_Orden">
+  <section id="SC_Enviar_Orden" ng-init="BL_Datos_Envio_Producto = false">
     <div id="CONT_EnviarOrden" ng-show="BL_Ver_Envio_Orden == true">
       <div id="CONT_Invisible" ng-click="BL_Ver_Envio_Orden =! BL_Ver_Envio_Orden">
         <div class="CL_Cerrar_Modal"></div>
       </div>
-      <div id="CONT_Enviar_Orden_List">
-        <p class="CL_TXT_Titulo_Envio icon-orden">Lista de productos actuales</p>
-        <div class="Tabla_Estilo_1">
-          <table>
-            <thead>
-              <tr>
-                <th class="Imagen"> </th>
-                <th>ID</th>
-                <th>Producto</th>
-                <th>Precio</th>
-                <th>Cantidad</th>
-                <th>Subtotal</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr ng-repeat="Productos_Agregados in dato.AOBJ_Productos |  orderBy: 'PK_ID_Producto'">
-                <td class="CL_Imagen"> <img ng-src="{{Productos_Agregados.Ruta_Imagen_Producto}}"/></td>
-                <td>{{Productos_Agregados.PK_ID_Producto}}</td>
-                <td>{{Productos_Agregados.Nombre_Producto}}</td>
-                <td>{{Productos_Agregados.Valor_Unitario | currency}}</td>
-                <td>
-                  <input type="number" min="{{Productos_Agregados.Cant_Unid_Min}}" max="{{Productos_Agregados.Cant_Unid_Max}}" value="{{Productos_Agregados.NUM_Cantidad}}" ng-model="Productos_Agregados.NUM_Cantidad" ng-click="FN_Actualizar_Datos(2,Productos_Agregados.PK_ID_Producto)"/>
-                </td>
-                <td>{{Productos_Agregados.NUM_Costo | currency}}</td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td class="CL_TXT_TotalEnvio">Total</td>
-                <td class="CL_TXT_TotalEnvio">{{dato.NUM_Precio_Total_Orden | currency}}</td>
-              </tr>
-            </tbody>
-          </table>
-          <div id="CONT_Confimar_Datos">
-            <p class="CL_TXT_Texto_Confir icon-alerta1">Confirma la siguiente informaci&oacute;n para poder enviar t&uacute; orden</p>
-            <label for="Direccion_Datos" class="icon-ubicacion-1">Direcci&oacute;n donde quiero que llege mi orden</label>
-            <input id="Direccion_Datos" type="text" value="Carrera 60#21-12" class="Input_Estilo_1"/>
-            <label for="Telefono_Datos" class="icon-celular">Telefono con el que me pueden contactar</label>
-            <input id="Telefono_Datos" type="text" value="2064478" class="Input_Estilo_1"/>
+      <div id="CONT_Enviar_Orden_List" ng-if="BL_Datos_Envio_Producto == true">
+        <p class="CL_TXT_Texto_4">Orden actual</p>
+        <p ng-click="FN_Envio_Orden(3)" class="CL_Eliminar_1_1"></p>
+        <form name="Envio_Orden" ng-submit="FN_Envio_Orden(2,DT)">
+          <div class="Tabla_Estilo_1">
+            <table>
+              <thead>
+                <tr>
+                  <th class="Imagen"> </th>
+                  <th>Producto</th>
+                  <th>Precio</th>
+                  <th>Cantidad</th>
+                  <th>Subtotal</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <div class="Grid_Contenedor abcenter CON_Paginacion">
+                <div class="Grid_Contenedor Base-10">
+                  <p class="CL_TXT_Texto_2">Pag&iacute;na: {{currentPage}}</p>
+                </div>
+                <div class="Grid_Contenedor Base-20">
+                  <input type="number" min="1" max="100" ng-model="pageSize" class="Input_Estilo_1 No_Margin"/>
+                </div>
+                <dir-pagination-controls boundary-links="true" class="Base-45 cross_end Grid_Contenedor">
+                  <p class="CL_TXT_Texto_3">{{currentPage}}</p>
+                  <ul ng-if="1 &lt; pages.length || !autoHide" class="main_end CL_Paginacion_1 Grid_Contenedor">
+                    <li ng-if="boundaryLinks" ng-class="{ Paginacion_Disabled : pagination.current == 1 }"><a href="" ng-click="setCurrent(1)">&laquo;</a></li>
+                    <li ng-if="directionLinks" ng-class="{ Paginacion_Disabled : pagination.current == 1 }"><a href="" ng-click="setCurrent(pagination.current - 1)">&lsaquo;</a></li>
+                    <li ng-repeat="pageNumber in pages track by tracker(pageNumber, $index)" ng-class="{ active : pagination.current == pageNumber, Paginacion_Disabled : pageNumber == '...' }">{{ pageNumber }}</li>
+                    <li ng-if="directionLinks" ng-class="{ Paginacion_Disabled : pagination.current == pagination.last }"><a href="" ng-click="setCurrent(pagination.current + 1)">&rsaquo;</a></li>
+                    <li ng-if="boundaryLinks" ng-class="{ Paginacion_Disabled : pagination.current == pagination.last }"><a href="" ng-click="setCurrent(pagination.last)">&raquo;</a></li>
+                  </ul>
+                </dir-pagination-controls>
+              </div>
+              <tbody>
+                <tr dir-paginate="Productos_Agregados in dato.AOBJ_Productos | filter:Buscar | itemsPerPage: pageSize" current-page="currentPage">
+                  <td class="CL_Imagen"> <img ng-src="{{Productos_Agregados.Ruta_Imagen_Producto}}" class="CL_Imagen_3"/></td>
+                  <td>{{Productos_Agregados.Nombre_Producto}}</td>
+                  <td>{{Productos_Agregados.Valor_Unitario | currency}}</td>
+                  <td>
+                    <input name="Cantidad_Productos{{$index}}" type="number" min="{{Productos_Agregados.Cant_Unid_Min}}" max="{{Productos_Agregados.Cant_Unid_Max}}" value="{{Productos_Agregados.NUM_Cantidad}}" ng-model="Productos_Agregados.NUM_Cantidad" ng-click="FN_Actualizar_Datos(2,Productos_Agregados.PK_ID_Producto)" required="required" class="Input_Estilo_1"/>
+                    <!--Mensaje de validacion-->
+                    <div id="CONT_Mensaje_Validacion" ng-show="!Envio_Orden.$pristine &amp;&amp; Envio_Orden.Cantidad_Productos{{$index}}.$error.required">
+                      <p class="icon-negocio">Ingrese la cantidad de productos a solicitar</p>
+                    </div>
+                    <div id="CONT_Mensaje_Validacion" ng-show="!Envio_Orden.Cantidad_Productos{{$index}}.$valid &amp;&amp; !Envio_Orden.$pristine &amp;&amp; !Envio_Orden.Cantidad_Productos{{$index}}.$error.required ">
+                      <p class="icon-login">La cantidad a solicitar no es suficiente</p>
+                    </div>
+                  </td>
+                  <td>{{Productos_Agregados.NUM_Costo | currency}}</td>
+                  <td class="CL_Tbl_Icon">
+                    <div ng-click="FN_Eliminar_Producto(Productos_Agregados.PK_ID_Producto)" class="icon-cancelar2 CL_TXT_Pri_Btn relative"><span class="CL_TXT_Info_Btn">Eliminar</span></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td class="CL_TXT_TotalEnvio">Total</td>
+                  <td class="CL_TXT_TotalEnvio">{{dato.NUM_Precio_Total_Orden | currency}}</td>
+                </tr>
+              </tbody>
+            </table>
+            <div id="CONT_Confimar_Datos" class="Grid_Contenedor Base-100 abcenter">
+              <div class="Grid_Item Base-100 tablet-30 Grid_Contenedor column">
+                <p class="CL_TXT_Texto_4">Confirma la siguiente informaci&oacute;n para poder enviar t&uacute; orden</p>
+                <label for="Direccion_Datos" class="CL_TXT_Texto_2 icon-ubicacion-1">Direcci&oacute;n de entrega</label>
+                <select ng-init="Otra_Direccion = false; DT.Direccion_Entrega = dato.AOBJ_Datos_Usuario[0].Direccion_Establecimiento " class="Select_1">
+                  <option ng-click="Otra_Direccion =! Otra_Direccion;DT.Direccion_Entrega = dato.AOBJ_Datos_Usuario[0].Direccion_Establecimiento" value="{{dato.AOBJ_Datos_Usuario[0].Direccion_Establecimiento}}">{{dato.AOBJ_Datos_Usuario[0].Direccion_Establecimiento}}</option>
+                  <option value="Otra dirección" ng-click="Otra_Direccion =! Otra_Direccion;DT.Direccion_Entrega = ''">Otra dirección</option>
+                </select>
+                <input id="Direccion_Datos" value="{{Direccion_Entrega}}" name="Direccion_Entrega" required="required" maxlength="20" minlength="7" ng-show="Otra_Direccion == true" type="text" ng-model="DT.Direccion_Entrega" class="Input_Estilo_1"/>
+                <!--Mensaje de validacion-->
+                <div id="CONT_Mensaje_Validacion" ng-show="!Envio_Orden.$pristine &amp;&amp; Envio_Orden.Direccion_Entrega.$error.required">
+                  <p class="icon-negocio">Ingrese una dirección de entrega</p>
+                </div>
+                <div id="CONT_Mensaje_Validacion" ng-show="!Envio_Orden.Direccion_Entrega.$valid &amp;&amp; !Envio_Orden.$pristine &amp;&amp; !Envio_Orden.Direccion_Entrega.$error.required ">
+                  <p class="icon-login">La cantidad de caracteres es muy corta</p>
+                </div>
+                <label for="Telefono_Datos" class="CL_TXT_Texto_2 icon-celular">Telefono del lugar de entrega</label>
+                <select ng-init="Otro_Telefono = false;DT.Telefono_Entrega = dato.AOBJ_Datos_Usuario[0].Telefono_Establecimiento" class="Select_1">
+                  <option ng-click="Otro_Telefono =! Otro_Telefono;DT.Telefono_Entrega = dato.AOBJ_Datos_Usuario[0].Telefono_Establecimiento" value="{{dato.AOBJ_Datos_Usuario[0].Telefono_Establecimiento}}">{{dato.AOBJ_Datos_Usuario[0].Telefono_Establecimiento}}</option>
+                  <option value="Otro telefono" ng-click="Otro_Telefono = true;DT.Telefono_Entrega = ''">Otro telefono</option>
+                </select>
+                <input id="Telefono_Datos" name="Telefono_Entrega" required="required" maxlength="10" minlength="7" value="{{Telefono_Entrega}}" ng-show="Otro_Telefono == true" type="tel" ng-model="DT.Telefono_Entrega" class="Input_Estilo_1"/>
+                <!--Mensaje de validacion-->
+                <div id="CONT_Mensaje_Validacion" ng-show="!Envio_Orden.$pristine &amp;&amp; Envio_Orden.Telefono_Entrega.$error.required">
+                  <p class="icon-negocio">Ingrese un numero telefonico</p>
+                </div>
+                <div id="CONT_Mensaje_Validacion" ng-show="!Envio_Orden.Telefono_Entrega.$valid &amp;&amp; !Envio_Orden.$pristine &amp;&amp; !Envio_Orden.Telefono_Entrega.$error.required ">
+                  <p class="icon-login">La cantidad de caracteres es muy corta</p>
+                </div>
+              </div>
+              <div class="CL_Botones_Enviar">
+                <button ng-disabled="!Envio_Orden.$valid " class="Btn_Estilo_1 icon-enviar">Enviar</button>
+                <p ng-click="FN_Envio_Orden(3)" class="Btn_Estilo_5">Cancelar envio</p>
+              </div>
+            </div>
           </div>
-          <div class="CL_Botones_Enviar">
-            <div class="Btn_Estilo_3 icon-agregar3">Enviar</div>
-            <div ng-click="BL_Ver_Envio_Orden =! BL_Ver_Envio_Orden" class="Btn_Estilo_4 icon-actualizar">Modificar orden</div>
-          </div>
-        </div>
+        </form>
       </div>
     </div>
   </section>
@@ -221,42 +293,79 @@
     <div id="CONT_Invisible" ng-click="BL_Comentario = false">
       <div class="CL_Cerrar_Modal"></div>
     </div>
-    <div id="CONT_Com_Product" class="Base-100 web-50 Grid_Contenedor">
-      <div id="CON_Cabezera_Comentarios" class="Grid_Contenedor Grid_Total justyfi">
-        <p class="CL_TXT_Texto_4 Grid_Total Grid_Contenedor abcenter">Comentarios</p>
-        <p ng-click="BL_Comentario  = false" class="CL_Eliminar_1_1"></p>
-      </div>
+    <div id="CONT_Com_Product" class="Base-100 web-70 Grid_Contenedor">
       <div id="CON_Main_Comentarios" class="Grid_Contenedor Padding-5 Base-100 abcenter">
-        <div id="CONT_Comentario" class="Base-95 Padding-5 main_start cross_start">
+        <div id="CONT_Comentario" class="Base-100 Padding-5 main_start cross_start">
           <div class="CL_Crear_Comentario_Nuevo Grid_Contenedor abcenter Padding-5">
-            <div class="Grid_Item CL_Imagen_Usuario_Comentario_Producto"><img ng-src="{{dato.AOBJ_Datos_Usuario[0].Imagen_Usuario}}" class="CL_Imagen_1"/></div>
-            <form ng-submit="FN_Registrar_Nuevo_Comentario(N)" name="Ingresar_Comentario_Producto" class="Grid_Item Base-100 Grid_Contenedor abcenter">
-              <div class="Grid_Item Base-100">
+            <form ng-submit="FN_Registrar_Nuevo_Comentario(N)" name="Ingresar_Comentario_Producto" class="Base-100 Grid_Contenedor abcenter">
+              <div id="CON_Cabezera_Comentarios" class="Grid_Contenedor Grid_Total justyfi">
+                <p ng-show="!Ingresar_Comentario_Producto.$valid &amp;&amp; BL_Edicion_Datos_Comentario == false" class="CL_TXT_Texto_4 Grid_Total Grid_Contenedor abcenter ng_show">Comentarios</p>
+                <p ng-show="!Ingresar_Comentario_Producto.$valid &amp;&amp; BL_Edicion_Datos_Comentario == false" ng-click="BL_Comentario  = false" class="CL_Eliminar_1_1"></p>
+                <div ng-show="Ingresar_Comentario_Producto.$valid &amp;&amp; BL_Edicion_Datos_Comentario == false" class="Grid_Item Base-100 ng_show justify Grid_Contenedor ng_show">
+                  <div class="Grid_Item Base-10 Grid_Contenedor abcenter"><a ng-click="N.Comentario = ''" class="CL_TXT_Texto_5 icon-android-close Enlace"></a></div>
+                  <div class="Grid_Item Base-60 Grid_Contenedor abcenter">
+                    <div class="CL_TXT_Texto_4 Grid_Total Grid_Contenedor abcenter">Nuevo comentario </div>
+                  </div>
+                  <div class="Grid_Item Base-20 Grid_Contenedor abcenter">
+                    <button ng-disabled="!Ingresar_Comentario_Producto.$valid" type="submit" class="icon-android-done CL_TXT_Texto_5 Enlace"></button>
+                  </div>
+                </div>
+                <div ng-show="BL_Edicion_Datos_Comentario == true" class="Grid_Item Base-100 ng_show justify Grid_Contenedor ng_show">
+                  <div class="Grid_Item Base-10 Grid_Contenedor abcenter"><a ng-click="FN_Editar_Comentario(Num_Posicion_Comentario,2)" class="CL_TXT_Texto_5 icon-android-close Enlace"></a></div>
+                  <div class="Grid_Item Base-60 Grid_Contenedor abcenter">
+                    <div class="CL_TXT_Texto_4 Grid_Total Grid_Contenedor abcenter">Editar Comentario</div>
+                  </div>
+                  <div class="Grid_Item Base-10 Grid_Contenedor abcenter"><a ng-click="FN_Modificar_Comentario(Num_Posicion_Comentario)" class="CL_TXT_Texto_5 Enlace Enlace icon-android-done"></a></div>
+                </div>
+              </div>
+              <div class="Grid_Item Base-100 Grid_Contenedor abcenter">
+                <div class="Grid_Item CL_Imagen_Usuario_Comentario_Producto"><img ng-src="{{dato.AOBJ_Datos_Usuario[0].Imagen_Usuario}}" class="CL_Imagen_1"/></div>
                 <textarea ng-model="N.Comentario" type="text" placeholder="Agregar un comentario" required="required" class="Textarea_Estilo_1 No_Margin"></textarea>
                 <input ng-model="N.PK_ID_Producto" class="Input_Estilo_1 Invisible"/>
-              </div>
-              <div ng-show="Ingresar_Comentario_Producto.$valid" class="Grid_Item Base-100 main_end ng_show">
-                <input ng-disabled="!Ingresar_Comentario_Producto.$valid" type="submit" value="Publicar" class="Btn_Estilo_7"/><a ng-click="N.Comentario = ''" class="Btn_Estilo_5">Cancelar</a>
               </div>
             </form>
           </div>
           <div id="CONT_Comentarios_Listados" class="Base-100">
-            <div ng-repeat="Comentarios_Productos in dato.AOBJ_Comentarios_Producto | filter:Comentarios_Productos.Fecha_Comentario" class="CL_Comentario_Usuario_Producto Base-100 Padding-tablet No_Padding Grid_Contenedor abcenter distributed">
+            <div class="Grid_Contenedor abcenter CON_Paginacion">
+              <div class="Grid_Contenedor Base-10">
+                <p class="CL_TXT_Texto_2">Pag&iacute;na: {{currentPage}}</p>
+              </div>
+              <div class="Grid_Contenedor Base-20">
+                <input type="number" min="1" max="100" ng-model="pageSize" class="Input_Estilo_1 No_Margin"/>
+              </div>
+              <dir-pagination-controls boundary-links="true" class="Base-45 cross_end Grid_Contenedor">
+                <p class="CL_TXT_Texto_3">{{currentPage}}</p>
+                <ul ng-if="1 &lt; pages.length || !autoHide" class="main_end CL_Paginacion_1 Grid_Contenedor">
+                  <li ng-if="boundaryLinks" ng-class="{ Paginacion_Disabled : pagination.current == 1 }"><a href="" ng-click="setCurrent(1)">&laquo;</a></li>
+                  <li ng-if="directionLinks" ng-class="{ Paginacion_Disabled : pagination.current == 1 }"><a href="" ng-click="setCurrent(pagination.current - 1)">&lsaquo;</a></li>
+                  <li ng-repeat="pageNumber in pages track by tracker(pageNumber, $index)" ng-class="{ active : pagination.current == pageNumber, Paginacion_Disabled : pageNumber == '...' }">{{ pageNumber }}</li>
+                  <li ng-if="directionLinks" ng-class="{ Paginacion_Disabled : pagination.current == pagination.last }"><a href="" ng-click="setCurrent(pagination.current + 1)">&rsaquo;</a></li>
+                  <li ng-if="boundaryLinks" ng-class="{ Paginacion_Disabled : pagination.current == pagination.last }"><a href="" ng-click="setCurrent(pagination.last)">&raquo;</a></li>
+                </ul>
+              </dir-pagination-controls>
+            </div>
+            <div dir-paginate="Comentarios_Productos in dato.AOBJ_Comentarios_Producto  | itemsPerPage: pageSize" current-page="currentPage" class="CL_Comentario_Usuario_Producto Base-100 Padding-tablet Grid_Contenedor main_start">
               <div class="CL_Imagen_Usuario_Comentario_Producto Grid_Item"><img ng-src="{{Comentarios_Productos.Imagen_Usuario}}" class="CL_Imagen_1"/></div>
-              <div class="CL_Mensaje_Usuario_Comentario_Producto Base-100 tablet-80 Grid_Item Grid_Contenedor abcenter">
+              <div class="CL_Mensaje_Usuario_Comentario_Producto Base-75 tablet-85 Grid_Item Grid_Contenedor abcenter">
                 <div class="Grid_Contenedor abcenter CL_Mensaje_Comentario_Producto Grid_Total Padding-10">
-                  <div class="CL_Nombre_Usuario_Comentario_Producto fixed Base-100">
-                    <div class="Grid_Item CL_TXT_Texto_3 Base-100 tablet-40">{{Comentarios_Productos.Nombre_Usuario}}									</div>
+                  <div class="CL_Nombre_Usuario_Comentario_Producto relative Base-100 Grid_Contenedor justify abcenter">
+                    <div class="Grid_Item CL_TXT_Texto_3 tablet-80">{{Comentarios_Productos.Nombre_Usuario}}</div>
+                    <div ng-click="FN_Ver_Opciones_Comentario($index)" ng-hide="Comentarios_Productos.Nombre_Usuario != dato.AOBJ_Datos_Usuario[0].Nombre_Usuario" class="Grid_Item relative Enlace icon-android-more-vertical Base-10"></div>
+                    <div ng-show="Comentarios_Productos.BL_Opciones_Comentario == true" class="Grid_Contenedor CL_Opciones_Comentario ng_show">
+                      <div id="CONT_Invisible" ng-click="FN_Ver_Opciones_Comentario($index)" ng-show="Comentarios_Productos.BL_Opciones_Comentario == true">
+                        <div class="CL_Cerrar_Modal CL_Transparente"></div>
+                      </div>
+                      <div ng-click="FN_Editar_Comentario($index,1)" class="CL_Opcion Grid_Item Base-100 CL_TXT_Texto_1 Enlace">Editar</div>
+                      <div ng-click="FN_Eliminar_Comentario(Comentarios_Productos.PK_ID_Comentario)" class="CL_Opcion Grid_Item Base-100 CL_TXT_Texto_1 Enlace">Eliminar</div>
+                    </div>
                   </div>
                   <div class="CONT_CL_Comentario_Producto Base-100">
-                    <textarea ng-model="Comentarios_Productos.Descripcion" ng-show="Comentarios_Productos.Nombre_Usuario == dato.AOBJ_Datos_Usuario[0].Nombre_Usuario" ng-disabled=" Comentarios_Productos.Nombre_Usuario != dato.AOBJ_Datos_Usuario[0].Nombre_Usuario" class="Textarea_Estilo_2 CONT_Mensaje_Producto CL_TXT_Texto_1 Base-100 tablet-80"> {{Comentarios_Productos.Descripcion}}</textarea>
+                    <textarea ng-click="FN_Editar_Comentario($index,1)" ng-model="Comentarios_Productos.Descripcion" ng-if="Comentarios_Productos.Nombre_Usuario == dato.AOBJ_Datos_Usuario[0].Nombre_Usuario" ng-disabled=" Comentarios_Productos.Nombre_Usuario != dato.AOBJ_Datos_Usuario[0].Nombre_Usuario" class="Textarea_Estilo_2 CONT_Mensaje_Producto CL_TXT_Texto_1 Base-100 tablet-80"> {{Comentarios_Productos.Descripcion}}</textarea>
                   </div>
-                  <div ng-show="Comentarios_Productos.Nombre_Usuario != dato.AOBJ_Datos_Usuario[0].Nombre_Usuario" ng-disabled=" Comentarios_Productos.Nombre_Usuario != dato.AOBJ_Datos_Usuario[0].Nombre_Usuario" class="CONT_Mensaje_Producto CL_TXT_Texto_1"> {{Comentarios_Productos.Descripcion}}</div>
+                  <div ng-if="Comentarios_Productos.Nombre_Usuario != dato.AOBJ_Datos_Usuario[0].Nombre_Usuario" ng-disabled=" Comentarios_Productos.Nombre_Usuario != dato.AOBJ_Datos_Usuario[0].Nombre_Usuario" class="CONT_Mensaje_Producto CL_TXT_Texto_1"> {{Comentarios_Productos.Descripcion}}</div>
                   <div class="CL_Herramientas_Comentario_Producto fixed Grid_Contenedor Base-100 main_end Padding-5">
-                    <div class="Grid_Item CL_TXT_Texto_1 Base-100 tablet-30">Publicado: {{Comentarios_Productos.Fecha_Comentario}}</div>
-                    <div ng-click="FN_Valoracion_Comentario($index)" class="CL_Valoracion_Comentario_Producto Grid_Item relative CL_TXT_Pri_Btn icon-heart Base-30 tablet-20">{{Comentarios_Productos.Valoracion_Comentario}}<span class="CL_TXT_Info_Btn top-30_30">Puntos</span></div>
-                    <div ng-hide="Comentarios_Productos.Nombre_Usuario != dato.AOBJ_Datos_Usuario[0].Nombre_Usuario" ng-click="FN_Eliminar_Comentario(Comentarios_Productos.PK_ID_Comentario)" class="Grid_Item relative CL_TXT_Pri_Btn icon-trash-can Base-30 tablet-20"><span class="CL_TXT_Info_Btn top-30_30">Remover</span></div>
-                    <div ng-hide="Comentarios_Productos.Nombre_Usuario != dato.AOBJ_Datos_Usuario[0].Nombre_Usuario" ng-click="FN_Modificar_Comentario($index)" class="Grid_Item relative CL_TXT_Pri_Btn icon-lapiz Base-30 tablet-20"><span class="CL_TXT_Info_Btn top-30_30">Editar</span></div>
+                    <div class="Grid_Item CL_TXT_Texto_1 Base-100 tablet-30">{{Comentarios_Productos.Fecha_Comentario | date:'longDate'}}</div>
+                    <div ng-click="FN_Valoracion_Comentario($index)" ng-hide="Comentarios_Productos.Nombre_Usuario == dato.AOBJ_Datos_Usuario[0].Nombre_Usuario" class="CL_Valoracion_Comentario_Producto Grid_Item relative CL_TXT_Pri_Btn icon-heart Base-30 tablet-20">{{Comentarios_Productos.Valoracion_Comentario}}<span class="CL_TXT_Info_Btn top-30_30">Puntos</span></div>
                   </div>
                 </div>
               </div>
@@ -266,5 +375,101 @@
       </div>
     </div>
   </div>
-  <NUM_Tipo_Funcion></NUM_Tipo_Funcion>
+</section>
+<section id="SC_Ordenes_Enviadas" ng-show="BL_Ordenes_Enviadas == true">
+  <div id="CONT_Invisible" ng-click="FN_Ordenes_Enviadas(1)">
+    <div class="CL_Cerrar_Modal CL_Transparente"></div>
+  </div>
+  <div class="CL_CONT_Ordenes_Enviadas Grid_Contenedor Base-100 tablet-40">
+    <div class="Grid_Contenedor CL_Cabezera_Envio_Orden">
+      <p class="CL_TXT_Texto_4 center">Ordenes enviadas</p>
+      <p ng-click="FN_Ordenes_Enviadas(2)" ng-if="BL_Detalle_Orden_Enviada == true" class="Enlace icon-flecha2 relative top-40_40 left-10"></p>
+      <p ng-click="FN_Ordenes_Enviadas(1)" class="CL_Eliminar_1_1"></p>
+    </div>
+    <div ng-if="BL_Lista_Ordenes_Enviadas == true" class="Grid_Contenedor Cl_CONT_Envio_Orden Grid_Item cross_start">
+      <div ng-repeat="Ordenes_Enviadas in AOBJ_Lista_Ordenes_Enviadas" class="Grid_Item Base-100 CL_Orden_Enviada abcenter ng_repeat_anim1">
+        <div class="Grid_Contenedor Base-100">
+          <div class="Tabla_Estilo_1">
+            <table>
+              <thead>
+                <tr>
+                  <th>Codigo </th>
+                  <th>Estado</th>
+                  <th>Fecha de envio</th>
+                  <th>Dirrección</th>
+                  <th>Telefono</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{Ordenes_Enviadas.PK_ID_Cotizacion_Usuario}}</td>
+                  <td class="CL_Estado_CONT">
+                    <div class="CL_Icono_Estado CL_TXT_Pri_Btn relative">
+                      <p ng-class="{'CL_Estado_Confirmado icon-agregar3': Ordenes_Enviadas.Estado_Cotizacion == 'Atendido','CL_Estado_Cancelado icon-cancelado': Ordenes_Enviadas.Estado_Cotizacion == 'Cancelado','CL_Estado_EnProgreso icon-actualizar': Ordenes_Enviadas.Estado_Cotizacion == 'En proceso'}"></p><span class="CL_TXT_Info_Btn">{{Ordenes_Enviadas.Estado_Cotizacion}}</span>
+                    </div>
+                  </td>
+                  <td>{{Ordenes_Enviadas.Fecha_Cotizacion}}</td>
+                  <td>{{Ordenes_Enviadas.Direccion_entrega}}</td>
+                  <td>{{Ordenes_Enviadas.Telefono_Entrega}}</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="Grid_Contenedor justify">
+              <p title="Ver los detalles de esta orden" ng-click="FN_Ordenes_Enviadas(3);FN_Listar_Detalles_Ordene_Enviada($index)" class="Btn_Estilo_7 icon-eye">Ver orden</p>
+              <p ng-if="Ordenes_Enviadas.Estado_Cotizacion == 'Cancelado' || Ordenes_Enviadas.Estado_Cotizacion == 'Atendido'" title="Eliminar esta orden" ng-click="FN_Ordenes_Enviadas(2);FN_Confirmacion_Alerta(7,$index,false,'¿Esta seguro de eliminar la orden?')" class="Btn_Estilo_5 icon-cancelar2">Eliminar</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div ng-show="(AOBJ_Lista_Ordenes_Enviadas).length == 0" class="CL_Alerta_5 Grid_Contenedor abcenter">
+        <p class="CL_TXT_Texto_3 left border_bottom_1 Grid_Contenedor abcenter CL_TXT_Texto_5">No se han encontrado ordenes</p>
+      </div>
+    </div>
+    <div ng-if="BL_Detalle_Orden_Enviada == true" class="Grid_Contenedor Cl_CONT_Envio_Orden Grid_Item cross_start">
+      <p class="CL_TXT_Texto_4">Detalles de la orden</p>
+      <div class="CL_Alerta_5 Padding-10">Precio total de la orden: {{Total_Orden_Enviada | currency}}</div>
+      <div class="Grid_Contenedor abcenter CON_Paginacion">
+        <div class="Grid_Contenedor Base-10">
+          <p class="CL_TXT_Texto_2">Pag&iacute;na: {{currentPage}}</p>
+        </div>
+        <div class="Grid_Contenedor Base-20">
+          <input type="number" min="1" max="100" ng-model="pageSize" class="Input_Estilo_1 No_Margin"/>
+        </div>
+        <dir-pagination-controls boundary-links="true" class="Base-55 cross_end Grid_Contenedor">
+          <p class="CL_TXT_Texto_3">{{currentPage}}</p>
+          <ul ng-if="1 &lt; pages.length || !autoHide" class="main_end CL_Paginacion_1 Grid_Contenedor">
+            <li ng-if="boundaryLinks" ng-class="{ Paginacion_Disabled : pagination.current == 1 }"><a href="" ng-click="setCurrent(1)">&laquo;</a></li>
+            <li ng-if="directionLinks" ng-class="{ Paginacion_Disabled : pagination.current == 1 }"><a href="" ng-click="setCurrent(pagination.current - 1)">&lsaquo;</a></li>
+            <li ng-repeat="pageNumber in pages track by tracker(pageNumber, $index)" ng-class="{ active : pagination.current == pageNumber, Paginacion_Disabled : pageNumber == '...' }">{{ pageNumber }}</li>
+            <li ng-if="directionLinks" ng-class="{ Paginacion_Disabled : pagination.current == pagination.last }"><a href="" ng-click="setCurrent(pagination.current + 1)">&rsaquo;</a></li>
+            <li ng-if="boundaryLinks" ng-class="{ Paginacion_Disabled : pagination.current == pagination.last }"><a href="" ng-click="setCurrent(pagination.last)">&raquo;</a></li>
+          </ul>
+        </dir-pagination-controls>
+      </div>
+      <div dir-paginate="Ordenes_Detalle in AOBJ_Lista_Detalles_Ordenes_Enviadas | filter:Buscar | itemsPerPage: pageSize" current-page="currentPage" class="Grid_Item Base-100 CL_Orden_Enviada abcenter">
+        <div class="Grid_Contenedor Base-100">
+          <div class="Tabla_Estilo_1">
+            <table>
+              <thead>
+                <tr>
+                  <th> </th>
+                  <th class="CL_TXT_Texto_1">Precio</th>
+                  <th class="CL_TXT_Texto_1">Sub total</th>
+                  <th class="CL_TXT_Texto_1">Cantidad</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="CL_Imagen"><img ng-src="{{Ordenes_Detalle.Ruta_Imagen_Producto}}"/></td>
+                  <td class="CL_TXT_Texto_1">{{Ordenes_Detalle.Valor_Unitario | currency}}</td>
+                  <td class="CL_TXT_Texto_1">{{Ordenes_Detalle.Sub_Total | currency}}</td>
+                  <td class="CL_TXT_Texto_1">{{Ordenes_Detalle.Cantidad_Productos}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>

@@ -5,122 +5,162 @@ section#SC_Consultar_Usuarios(ng-controller="Controlador_Consultar_Promociones",
 	#CONT_Consultar_Usuarios
 
 		
-		.CL_Alerta_5.Grid_Contenedor.Base-90.Padding-10.main_end.cross_end(ng-init="BL_Consultar_Promocion = true;BL_Registrar_Promocion = false")
-			.Grid_Item.Base-30
-				p.ng_show.CL_TXT_Texto_4(ng-show="BL_Consultar_Promocion") Consultar promociones
-				p.ng_show.CL_TXT_Texto_4(ng-show="BL_Registrar_Promocion") Registrar nueva promoci&oacute;n
-			.Grid_Item.Base-30(ng-show="BL_Consultar_Promocion")
-				.CL_Contenedor_Buscador
-					input.CL_Buscar#BuscarPromocion(type="text", name="" placeholder="Buscar promocion" ng-model="Buscar_Promocion")
-					label.icon-buscar.CL_Icono_Buscar(for="BuscarPromocion") 
-			.Btn_Estilo_5.icon-list-1(ng-click="Consultar_Promociones();BL_Registrar_Promocion = false; BL_Consultar_Promocion = true") Promociones
-			.Btn_Estilo_1.icon-plus(ng-click="BL_Registrar_Promocion = true; BL_Consultar_Promocion = false") Nueva promoci&oacute;n
-
-				
-		.Grid_Contenedor.Base-100.abcenter.ng_show#CONT_Registro_Promocion(ng-show="BL_Registrar_Promocion == true")
-			.Grid_Item.Base-60.Grid_Contenedor.abcenter#FORM_Registro_Promocion
-				form#FORM_Registro.Grid_Contenedor.Padding-tablet.Base-90(name="Form_Registro_Promocion" ng-submit="Registrar_Promocion(RP)")
-					.Grid_Contenedor.abcenter.Base-100
-						p.CL_Icono_3 {{ RP.Nombre_Promocion | limitTo : 1 : 0}}
-					.Grid_Item.Base-50
-						label.CL_TXT_Texto_2(for="Nombre_Promocion") Nombre promoci&oacute;n
-						input#Nombre_Promocion.Input_Estilo_1(maxlength="45", minlength="5",type="text",name="Nombre_Promocion",ng-model="RP.Nombre_Promocion",placeholder="Nombre",required)
-
-						div#CONT_Mensaje_Validacion(ng-show="!Form_Registro_Promocion.$pristine && Form_Registro_Promocion.Nombre_Promocion.$error.required")
-								p.icon-alerta1 Este campo es obligatorio
-						div#CONT_Mensaje_Validacion(ng-show="!Form_Registro_Promocion.Nombre_Promocion.$valid && !Form_Registro_Promocion.$pristine && !Form_Registro_Promocion.Nombre_Promocion.$error.required")
-								p.icon-login La cantidad de caracteres es muy corta
-						label.CL_TXT_Texto_2(for="Descripcion_Producto") Descripción
-						textarea#Descripcion_Promocion.Textarea_Estilo_1(maxlength="50" ,minlength="15",type="text",name="Descripcion_Promocion",ng-model="RP.Descripcion_Promocion",placeholder="En que consiste la promocion",required)
-
-						div#CONT_Mensaje_Validacion(ng-show="!Form_Registro_Promocion.$pristine && Form_Registro_Promocion.Descripcion_Promocion.$error.required")
-								p.icon-alerta1 Este campo es obligatorio
-						div#CONT_Mensaje_Validacion(ng-show="!Form_Registro_Promocion.Descripcion_Promocion.$valid && !Form_Registro_Promocion.$pristine && !Form_Registro_Promocion.Descripcion_Promocion.$error.required")
-								p.icon-login La cantidad de caracteres es muy corta
-					.Grid_Item.Base-50
-
-						label.CL_TXT_Texto_2(for="Fecha_Nacimiento") Fecha de inicio promocion
-						input#Fecha_Inicio.Input_Estilo_1(name="Fecha_Inicio",type="date", placeholder="año/mes/día",ng-model="RP.Fecha_Inicio",required)
-
-						div#CONT_Mensaje_Validacion(ng-show="!Form_Registro_Promocion.$pristine && Form_Registro_Promocion.Fecha_Inicio.$error.required")
-								p.icon-alerta1 Este campo es obligatorio
-						
-
-						label.CL_TXT_Texto_2(for="Fecha_Nacimiento") Fecha fin de promocion
-						input#Fecha_Fin.Input_Estilo_1(name="Fecha_Fin",type="date", placeholder="año/mes/día",ng-model="RP.Fecha_Fin",required)
-
-						div#CONT_Mensaje_Validacion(ng-show="!Form_Registro_Promocion.$pristine && Form_Registro_Promocion.Fecha_Fin.$error.required")
-								p.icon-alerta1 Este campo es obligatorio
-						
-
-
-
-
-						.Grid_Contenedor.Grid-Item.abcenter.Padding-30
-						input.Btn_Estilo_1#submit(type="submit"  value="Registrar promocion" ng-disabled="!Form_Registro_Promocion.$valid " )
-						a.Btn_Estilo_3(ng-click="FN_Limpiar_Formulario()" ) Limpiar formulario
-		.Grid_Contenedor.Base-100.abcenter.ng_show(ng-show="BL_Consultar_Promocion == true")
-			form.Grid_Contenedor.abcenter(name="Form_Promocion")
-				.Tabla_Estilo_3.relative.Grid_Item.Base-95
-							table
-								thead
-									tr
-										th.Imagen							
-										th Nombre 
-										th Descripcion
-										th Fecha inicio de promocion 
-										th Fecha final de promocion
-										th
-										th
-										th
-										
-
-
-								tbody(ng-init="BL_Activar_Edicion=false; BL_ActivarBTN_Modificar=false")
-									tr(ng-repeat="Promociones in AOBJ_Consultar_Promociones | filter:Buscar_Promocion:Promociones.Nombre_Promocion ")
-										
-										td.Imagen
-											p.CL_Icono_3 {{ Promociones.Nombre_Promocion | limitTo : 1 : 0}}
-										td
-											input.Input_Tabla(name="Nombre_Promocion{{$index}}",type="text" ng-model="Promociones.Nombre_Promocion" ng-disabled="BL_Activar_Edicion == false" maxlength="45", minlength="5",required)
-											//Mensaje de validacion
-											div#CONT_Mensaje_Validacion(ng-show="!Form_Promocion.$pristine && Form_Promocion.Nombre_Promocion{{$index}}.$error.required ")
-												p.icon-login Ingresa un nombre para la Promoci&oacute;n
-											div#CONT_Mensaje_Validacion(ng-show="!Form_Promocion.Nombre_Promocion{{$index}}.$valid && !Form_Promocion.$pristine && !Form_Promocion.Nombre_Promocion{{$index}}.$error.required")
-												p.icon-login La cantidad de caracteres es muy corta
-
-										td.CL_Tam_Texarea
-											textarea.Textarea_Estilo_1(name="Descripcion{{$index}}",type="text" ng-model="Promociones.Descripcion", ng-disabled="BL_Activar_Edicion == false", maxlength="50" ,minlength="15",required )
-											//Mensaje de validacion
-											div#CONT_Mensaje_Validacion(ng-show="!Form_Promocion.$pristine && Form_Promocion.Descripcion{{$index}}.$error.required ")
-												p.icon-login Ingresa un nombre para la categoria
-											div#CONT_Mensaje_Validacion(ng-show="!Form_Promocion.Descripcion{{$index}}.$valid && !Form_Promocion.$pristine && !Form_Promocion.Descripcion{{$index}}.$error.required")
-												p.icon-login La cantidad de caracteres es muy corta
-										td
-											input.Input_Tabla(type="datetime" ng-model="Promociones.Fecha_Inicio", ng-disabled="BL_Activar_Edicion == false" )
-										td
-											input.Input_Tabla(type="datetime" ng-model="Promociones.Fecha_Fin", ng-disabled="BL_Activar_Edicion == false" )
-										
-										td.CL_Tbl_Icon
-
-											.icon-lapiz.CL_TXT_Pri_Btn.relative(ng-class="{Invisible:BL_ActivarBTN_Modificar == true, Visible: BL_ActivarBTN_Modificar == false}",ng-click="BL_ActivarBTN_Modificar =! BL_ActivarBTN_Modificar;BL_Activar_Edicion =!BL_Activar_Edicion")
-												span.CL_TXT_Info_Btn Editar
-											button.icon-actualizar.CL_TXT_Pri_Btn.relative(ng-disabled="!Form_Promocion.$valid",ng-class="{Invisible:BL_ActivarBTN_Modificar == false, Visible: BL_ActivarBTN_Modificar == true}", ng-click="FN_Modificar_Promociones($index);BL_ActivarBTN_Modificar =! BL_ActivarBTN_Modificar;BL_Activar_Edicion =! BL_Activar_Edicion")
-												span.CL_TXT_Info_Btn Actualizar
-												
-										td.CL_Tbl_Icon
-											.icon-enviar.CL_TXT_Pri_Btn.relative(ng-click="FN_Enviar_Promociones()")
-												span.CL_TXT_Info_Btn Enviar
-										td.CL_Tbl_Icon
-											.icon-cancelar2.CL_TXT_Pri_Btn.relative(ng-click="FN_Eliminar_Promociones($index)")
-												span.CL_TXT_Info_Btn Eliminar
-									
-									
-		.Grid_Contenedor
-			.Btn_Circular_3.bottom-30(ng-click="Consultar_Promociones()")
-					p.icon-list-1
-					p.CL_TXT_Info_Btn Consultar promociones
-
 		
+
 				
-	
+		
+		
+		.Tablero_Trabajo_1
+			.Grid_Contenedor.Base-100.abcenter.CL_CONT_Principal_Tablero_Trabajo()
+				.Grid_Contenedor.Base-90.CL_CONT_Tablero_Trabajo()
+					.Grid_Contenedor.Base-30.cross_start.CL_CONT_Tablero
+						.CL_Cabezera_Tablero_Trabajo.Grid_Contenedor.Base-100
+							.Grid_Item.Base-20
+								img.CL_Imagen_Icono_2(ng-src="{{dato.AOBJ_Datos_Usuario[0].Imagen_Usuario}}")
+						.Grid_Contenedor.CL_CONT_Buscador_Tablero_Trabajo.abcenter
+							
+						.Grid_Contenedor.Base-100.cross_start.CL_CONT_Tablero_Trabajo_1
+							.Grid_Contenedor.Base-90.CL_Informacion_Tablero_1.cross_start
+								
+
+								.Grid_Contenedor.Base-100.abcenter.ng_show
+									.Grid_Item.Base-100.Grid_Contenedor.abcenter
+										form#FORM_Registro.Grid_Contenedor.Base-100(name="Form_Registro_Promocion" ng-submit="Registrar_Promocion(RP)")
+											.Grid_Contenedor.abcenter.Base-100
+												p.CL_Icono_3 {{ RP.Nombre_Promocion | limitTo : 1 : 0}}
+											.Grid_Item.Base-100
+												label.CL_TXT_Texto_2(for="Nombre_Promocion") Nombre promoci&oacute;n
+												input#Nombre_Promocion.Input_Estilo_1(maxlength="45", minlength="5",type="text",name="Nombre_Promocion",ng-model="RP.Nombre_Promocion",placeholder="Nombre",required)
+
+												div#CONT_Mensaje_Validacion(ng-show="!Form_Registro_Promocion.$pristine && Form_Registro_Promocion.Nombre_Promocion.$error.required")
+														p.icon-alerta1 Este campo es obligatorio
+												div#CONT_Mensaje_Validacion(ng-show="!Form_Registro_Promocion.Nombre_Promocion.$valid && !Form_Registro_Promocion.$pristine && !Form_Registro_Promocion.Nombre_Promocion.$error.required")
+														p.icon-login La cantidad de caracteres es muy corta
+												label.CL_TXT_Texto_2(for="Descripcion_Producto") Descripción
+												textarea#Descripcion_Promocion.Textarea_Estilo_1(maxlength="50" ,minlength="15",type="text",name="Descripcion_Promocion",ng-model="RP.Descripcion_Promocion",placeholder="En que consiste la promocion",required)
+
+												div#CONT_Mensaje_Validacion(ng-show="!Form_Registro_Promocion.$pristine && Form_Registro_Promocion.Descripcion_Promocion.$error.required")
+														p.icon-alerta1 Este campo es obligatorio
+												div#CONT_Mensaje_Validacion(ng-show="!Form_Registro_Promocion.Descripcion_Promocion.$valid && !Form_Registro_Promocion.$pristine && !Form_Registro_Promocion.Descripcion_Promocion.$error.required")
+														p.icon-login La cantidad de caracteres es muy corta
+											.Grid_Item.Base-100
+
+												label.CL_TXT_Texto_2(for="Fecha_Nacimiento") Fecha de inicio promocion
+												input#Fecha_Inicio.Input_Estilo_1(name="Fecha_Inicio",type="date", placeholder="año/mes/día",ng-model="RP.Fecha_Inicio",required)
+
+												div#CONT_Mensaje_Validacion(ng-show="!Form_Registro_Promocion.$pristine && Form_Registro_Promocion.Fecha_Inicio.$error.required")
+														p.icon-alerta1 Este campo es obligatorio
+												
+
+												label.CL_TXT_Texto_2(for="Fecha_Nacimiento") Fecha fin de promocion
+												input#Fecha_Fin.Input_Estilo_1(name="Fecha_Fin",type="date", placeholder="año/mes/día",ng-model="RP.Fecha_Fin",required)
+
+												div#CONT_Mensaje_Validacion(ng-show="!Form_Registro_Promocion.$pristine && Form_Registro_Promocion.Fecha_Fin.$error.required")
+														p.icon-alerta1 Este campo es obligatorio
+												
+
+
+
+
+											.Grid_Contenedor.Grid_Item.abcenter.Padding-30
+												.Grid_Item.Base-50
+													input.Btn_Estilo_1#submit(type="submit"  value="Registrar" ng-disabled="!Form_Registro_Promocion.$valid " )
+												.Grid_Item.Base-50
+													a.Btn_Estilo_5(ng-click="FN_Limpiar_Formulario()" ) Limpiar
+															
+							//Por si se usa un filtro
+							.CL_Alerta_5.ng_repeat_anim1.Grid_Contenedor(ng-show="(Lista_Datos_Ejemplo |filter:Buscar:Item).length == 0")
+								.CL_TXT_Texto_3.Base-100.abcenter.Grid_Contenedor
+									p Dato no encontrado
+					.Grid_Contenedor.Base-70.cross_start.CL_CONT_Tablero_Trabajo_2
+						.CL_Cabezera_Tablero_Trabajo.Grid_Contenedor.Base-100
+							
+							.Grid_Item.Base-100.Grid_Contenedor.abcenter
+								.CL_TXT_Texto_4 Promociones registradas
+						.Grid_Contenedor.abcenter
+							.Grid_Contenedor.Base-95
+								.CL_Alerta_5.Grid_Contenedor.Padding-5
+									.Grid_Item.Base-50
+										button.Btn_Estilo_5 Consultar promociones
+										
+									.Grid_Contenedor.abcenter.Base-30
+										.CL_Contenedor_Buscador
+											input.CL_Buscar#BuscarPromocion(type="text", name="" placeholder="Buscar promocion" ng-model="Buscar")
+											label.icon-buscar.CL_Icono_Buscar(for="BuscarPromocion") 
+									
+								.Grid_Contenedor
+									.Grid_Contenedor.Base-100.abcenter.ng_show
+										form.Grid_Contenedor.abcenter(name="Form_Promocion")
+											.Tabla_Estilo_3.relative.Grid_Item.Base-95
+												table
+													thead
+														tr
+															th.Imagen							
+															th Nombre 
+															th Descripcion
+															th Fecha inicio de promocion 
+															th Fecha final de promocion
+															th
+															th
+															th
+															
+
+													.Grid_Contenedor.abcenter.CON_Paginacion
+														.Grid_Contenedor.Base-10
+															p.CL_TXT_Texto_2 Pag&iacute;na: {{currentPage}}
+														.Grid_Contenedor.Base-20
+															input.Input_Estilo_1.No_Margin(type="number",min="1",max="100",ng-model="pageSize")
+														
+														dir-pagination-controls.Base-45.cross_end.Grid_Contenedor(boundary-links="true")
+															p.CL_TXT_Texto_3 {{currentPage}}
+															ul.main_end.CL_Paginacion_1.Grid_Contenedor(ng-if="1 < pages.length || !autoHide" )
+																li(ng-if="boundaryLinks" ng-class="{ Paginacion_Disabled : pagination.current == 1 }")
+																	a(href="" ng-click="setCurrent(1)") &laquo;
+																li(ng-if="directionLinks" ng-class="{ Paginacion_Disabled : pagination.current == 1 }")
+																	a(href="" ng-click="setCurrent(pagination.current - 1)") &lsaquo;
+																li(ng-repeat="pageNumber in pages track by tracker(pageNumber, $index)" ng-class="{ active : pagination.current == pageNumber, Paginacion_Disabled : pageNumber == '...' }") {{ pageNumber }}
+																li(ng-if="directionLinks" ng-class="{ Paginacion_Disabled : pagination.current == pagination.last }")
+																	a(href="" ng-click="setCurrent(pagination.current + 1)") &rsaquo;
+																li(ng-if="boundaryLinks"  ng-class="{ Paginacion_Disabled : pagination.current == pagination.last }")
+																	a(href="" ng-click="setCurrent(pagination.last)") &raquo;
+													tbody(ng-init="BL_Activar_Edicion=false; BL_ActivarBTN_Modificar=false")
+														tr(dir-paginate="Promociones in AOBJ_Consultar_Promociones | filter:Buscar | itemsPerPage: pageSize" current-page="currentPage")
+															
+															td.Imagen
+																p.CL_Icono_3 {{ Promociones.Nombre_Promocion | limitTo : 1 : 0}}
+															td
+																input.Input_Tabla(name="Nombre_Promocion{{$index}}",type="text" ng-model="Promociones.Nombre_Promocion" ng-disabled="BL_Activar_Edicion == false" maxlength="45", minlength="5",required)
+																//Mensaje de validacion
+																div#CONT_Mensaje_Validacion(ng-show="!Form_Promocion.$pristine && Form_Promocion.Nombre_Promocion{{$index}}.$error.required ")
+																	p.icon-login Ingresa un nombre para la Promoci&oacute;n
+																div#CONT_Mensaje_Validacion(ng-show="!Form_Promocion.Nombre_Promocion{{$index}}.$valid && !Form_Promocion.$pristine && !Form_Promocion.Nombre_Promocion{{$index}}.$error.required")
+																	p.icon-login La cantidad de caracteres es muy corta
+
+															td.CL_Tam_Texarea
+																textarea.Textarea_Estilo_1(name="Descripcion{{$index}}",type="text" ng-model="Promociones.Descripcion", ng-disabled="BL_Activar_Edicion == false", maxlength="50" ,minlength="15",required )
+																//Mensaje de validacion
+																div#CONT_Mensaje_Validacion(ng-show="!Form_Promocion.$pristine && Form_Promocion.Descripcion{{$index}}.$error.required ")
+																	p.icon-login Ingresa un nombre para la categoria
+																div#CONT_Mensaje_Validacion(ng-show="!Form_Promocion.Descripcion{{$index}}.$valid && !Form_Promocion.$pristine && !Form_Promocion.Descripcion{{$index}}.$error.required")
+																	p.icon-login La cantidad de caracteres es muy corta
+															td
+																input.Input_Tabla(type="datetime" ng-model="Promociones.Fecha_Inicio", ng-disabled="BL_Activar_Edicion == false" )
+															td
+																input.Input_Tabla(type="datetime" ng-model="Promociones.Fecha_Fin", ng-disabled="BL_Activar_Edicion == false" )
+															
+															td.CL_Tbl_Icon
+
+																.icon-lapiz.CL_TXT_Pri_Btn.relative(ng-class="{Invisible:BL_ActivarBTN_Modificar == true, Visible: BL_ActivarBTN_Modificar == false}",ng-click="BL_ActivarBTN_Modificar =! BL_ActivarBTN_Modificar;BL_Activar_Edicion =!BL_Activar_Edicion")
+																	span.CL_TXT_Info_Btn Editar
+																button.icon-actualizar.CL_TXT_Pri_Btn.relative(ng-disabled="!Form_Promocion.$valid",ng-class="{Invisible:BL_ActivarBTN_Modificar == false, Visible: BL_ActivarBTN_Modificar == true}", ng-click="FN_Modificar_Promociones($index);BL_ActivarBTN_Modificar =! BL_ActivarBTN_Modificar;BL_Activar_Edicion =! BL_Activar_Edicion")
+																	span.CL_TXT_Info_Btn Actualizar
+																	
+															td.CL_Tbl_Icon
+																.icon-enviar.CL_TXT_Pri_Btn.relative(ng-click="FN_Enviar_Promociones()")
+																	span.CL_TXT_Info_Btn Enviar
+															td.CL_Tbl_Icon
+																.icon-cancelar2.CL_TXT_Pri_Btn.relative(ng-click="FN_Eliminar_Promociones($index)")
+																	span.CL_TXT_Info_Btn Eliminar
+												.CL_Alerta_5.ng_repeat_anim1.Grid_Contenedor(ng-show="(AOBJ_Consultar_Promociones |filter:Buscar).length == 0")
+													.CL_TXT_Texto_3.Base-100.abcenter.Grid_Contenedor
+														p Promoci&oacute;n no encontrada

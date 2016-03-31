@@ -4,7 +4,6 @@ class Modulo_Registrar_Producto extends controller {
 
 
 	private $_Mdl_Registrar_Producto = null;
-
 	public function __construct() {
 		$this->_Mdl_Registar_Producto = $this->loadModel("M_Registrar_Producto");
 	}
