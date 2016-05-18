@@ -1,0 +1,30 @@
+{
+  "name": "Orders_Presale",
+  "authors": [
+    "Maik3345 <stiven3345@hotmail.com>",
+    "Jairo880 ",
+    "Leider ",
+    "Mateo ",
+    "Amy "
+  ],
+  "description": "Archivo bower.js para las librearias utilizadas en Orders_Presale",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.5.0",
+    "angular-animate": "1.5.0",
+    "angular-locale_es-co": "",
+    "ngstorage": "",
+    "angular-chart.js": ""
+    }
+  }
