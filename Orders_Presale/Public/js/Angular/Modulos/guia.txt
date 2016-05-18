@@ -1,1 +1,0 @@
-Esta carpeta contendra los archivo js principales o modulos que se usan en angular

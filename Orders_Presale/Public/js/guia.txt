@@ -1,3 +1,0 @@
-Esta carpeta contendra los archivos tanto de angular como de javascript, cada un separado en su carpeta:
-Anuglar
-Javascript

@@ -1,1 +1,0 @@
-modulos son elementos que se repiten a lo largo de la pagina web,

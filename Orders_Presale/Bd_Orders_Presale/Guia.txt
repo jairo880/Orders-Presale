@@ -1,5 +1,0 @@
-Tansolo se necesita importar:
-
-1.Importar el archivo Bd_Orders_Presale
-2.Importar Orders_Presale_Funciones
-3.Importar Orders_Presale_Procedimientos
